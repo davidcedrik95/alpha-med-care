@@ -14,13 +14,6 @@
         </span>
       </div>
 
-      <!-- Mittlerer Teil -->
-      <div class="top-bar-center">
-        <strong class="company-specialization">
-          Fachhändler für professionelle Ausrüstung
-        </strong>
-      </div>
-
       <!-- Rechter Teil -->
       <div class="top-bar-right">
         <span>
@@ -36,10 +29,13 @@
     
     <!-- Untere Zeile: Logo, Suche, Icons -->
     <div class="top-bar-lower">
-      <div class="logo-container" aria-label="Firmenlogo">
-        <a href="/">
-          <img src="/images/logo.png" alt="Firmenlogo" width="160" height="40" loading="lazy" />
-        </a>
+      <div class="logo-section">
+        <div class="logo-container" aria-label="Firmenlogo">
+          <a href="/">
+            <img src="/images/logo.png" alt="Firmenlogo" width="160" height="40" loading="lazy" />
+          </a>
+        </div>
+        <div class="logo-subtext">Fachhändler für Medezinische Geräte</div>
       </div>
 
       <form class="search-bar" role="search">
@@ -112,8 +108,8 @@
 
 <style scoped>
 .top-bar {
-  --primary-color: #3382af;
-  --secondary-color: #aaddff;
+  --primary-color: #005b96; /* Bleu médical plus profond */
+  --secondary-color: #b3e0ff; /* Bleu clair pour les éléments secondaires */
   --text-color: white;
   --hover-color: #ffffff;
   --search-bg: white;
@@ -121,6 +117,7 @@
   --dropdown-bg: white;
   --dropdown-text: #003366;
   --badge-color: #e63946;
+  --logo-subtext-color: #e6f2ff;
   
   background-color: var(--primary-color);
   color: var(--text-color);
@@ -157,38 +154,11 @@
   flex: 1;
 }
 
-.top-bar-center {
-  flex: 1;
-  text-align: center;
-}
-
 .top-bar-right {
   display: flex;
   gap: 1.25rem;
   justify-content: flex-end;
   flex: 1;
-}
-
-.company-specialization {
-  font-style: italic;
-  opacity: 0.9;
-  white-space: nowrap;
-}
-
-@media (max-width: 1024px) {
-  .company-specialization {
-    display: none;
-  }
-  
-  .top-bar-left,
-  .top-bar-right {
-    flex: none;
-  }
-  
-  .top-bar-upper {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
 }
 
 .top-bar-lower {
@@ -199,14 +169,29 @@
   gap: 1rem;
 }
 
-.logo-container {
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex-shrink: 0;
   margin-right: 1rem;
 }
+
+.logo-container {
+  margin-bottom: 0.25rem;
+}
+
 .logo-container img {
   height: 2.5rem;
   width: auto;
   object-fit: contain;
+}
+
+.logo-subtext {
+  font-size: 0.8rem;
+  color: var(--logo-subtext-color);
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .search-bar {
@@ -296,6 +281,18 @@
   line-height: 1;
 }
 
+@media (max-width: 1024px) {
+  .top-bar-left,
+  .top-bar-right {
+    flex: none;
+  }
+  
+  .top-bar-upper {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .top-bar {
     padding: 0.5rem;
@@ -312,8 +309,9 @@
     gap: 1rem;
   }
   
-  .logo-container {
+  .logo-section {
     margin: 0 auto;
+    align-items: center;
   }
   
   .search-bar {
@@ -345,6 +343,10 @@
   
   .link-item {
     flex-direction: row;
+  }
+  
+  .logo-subtext {
+    font-size: 0.7rem;
   }
 }
 </style>
