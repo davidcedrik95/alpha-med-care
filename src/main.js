@@ -10,7 +10,7 @@ import 'vuetify/styles'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
-import './assets/main.css' // Cette ligne doit rester, mais ne pas être en fin de fichier
+import './assets/main.css' // ligne CSS ici uniquement une fois
 
 const app = createApp(App)
 
