@@ -99,7 +99,7 @@
 
 <script>
     export default {
-      name: 'NavigatorHeader',
+      name: 'NavigationHeader',
       setup() {
         
       }
