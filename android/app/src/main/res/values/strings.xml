@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">alpha-med-care</string>
+    <string name="title_activity_main">alpha-med-care</string>
+    <string name="package_name">com.alphamedcare.app</string>
+    <string name="custom_url_scheme">com.alphamedcare.app</string>
+</resources>
