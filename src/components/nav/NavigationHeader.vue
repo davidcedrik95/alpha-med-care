@@ -10,7 +10,7 @@
         </span>
         <span>
           <i class="fas fa-phone fa-sm" style="margin-right: 5px;"></i>
-          +33 1 23 45 67 89
+          +49 (0)9666 188950
         </span>
       </div>
 
