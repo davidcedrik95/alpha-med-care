@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "My Company"
+  },
+  "menu": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About us",
+    "contact": "Contact"
+  },
+  "services": {
+    "inspection": "Inspection",
+    "calibration": "Calibration",
+    "service": "Service",
+    "maintenance": "Maintenance",
+    "items": {
+      "stk": "STK (Safety Technical Inspection)",
+      "mtk": "MTK (Measurement Technical Inspection)",
+      "stu": "STÜ (Safety Technical Check)",
+      "mtu": "MTÜ (Measurement Technical Check)",
+      "dguv": "DGUV Inspection",
+      "inspection": "Inspection",
+      "visual": "Visual Inspection",
+      "ergometer": "MTK Ergometer",
+      "thermometer": "MTK Thermometer",
+      "blood_pressure": "MTK Blood Pressure Monitors",
+      "repairs": "Repairs execution",
+      "spare_parts": "Spare parts provision",
+      "delivery": "Delivery and professional installation",
+      "training": "Training according to Medical Devices Act",
+      "disposal": "Old devices collection & certified disposal",
+      "mpbetreibv": "Maintenance according to MPBetreibV",
+      "regular": "Regular inspections",
+      "tests": "Execution of MTK, STK and DGUV tests"
+    }
+  },
+  "header": {
+    "free_shipping": "Free shipping",
+    "phone": "+49 (0)9666 188950",
+    "invoice": "Business invoice",
+    "consultation": "Expert consultation",
+    "search_placeholder": "Search products...",
+    "wishlist": "Wishlist",
+    "account": "My account",
+    "cart": "Shopping cart",
+    "logo_subtext": "Medical equipment specialist"
+  }
+
+  
+}

@@ -1,0 +1,49 @@
+{
+  "app": {
+    "title": "Mon Entreprise"
+  },
+  "menu": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "services": {
+    "inspection": "Vérification",
+    "calibration": "Étalonnage",
+    "service": "Service",
+    "maintenance": "Maintenance",
+    "items": {
+      "stk": "STK (Contrôle Technique de Sécurité)",
+      "mtk": "MTK (Contrôle Technique de Mesure)",
+      "stu": "STÜ (Vérification Technique de Sécurité)",
+      "mtu": "MTÜ (Vérification Technique de Mesure)",
+      "dguv": "Contrôle DGUV",
+      "inspection": "Inspection",
+      "visual": "Inspection visuelle",
+      "ergometer": "MTK Ergomètre",
+      "thermometer": "MTK Thermomètre",
+      "blood_pressure": "MTK Tensioomètres",
+      "repairs": "Réparation",
+      "spare_parts": "Fourniture de pièces détachées",
+      "delivery": "Livraison et installation professionnelle des appareils",
+      "training": "Formation selon la loi sur les dispositifs médicaux",
+      "disposal": "Collecte d'anciens appareils & élimination certifiée",
+      "mpbetreibv": "Maintenance selon MPBetreibV (Ordonnance sur les opérateurs de dispositifs médicaux)",
+      "regular": "Inspections régulières",
+      "tests": "Réalisation des contrôles MTK, STK et DGUV"
+    }
+   
+  },
+   "header": {
+    "free_shipping": "Livraison gratuite",
+    "phone": "+49 (0)9666 188950",
+    "invoice": "Facture professionnelle",
+    "consultation": "Conseil d’expert",
+    "search_placeholder": "Rechercher des produits...",
+    "wishlist": "Liste de souhaits",
+    "account": "Mon compte",
+    "cart": "Panier",
+    "logo_subtext": "Spécialiste en équipements médicaux"
+    }
+}
