@@ -18,10 +18,10 @@
           </template>
 
           <v-card width="100vw" class="mx-auto" elevation="4">
-            <v-container class="py-6">
+            <v-container class="py-6 mega-menu-container">
               <v-row>
                 <v-col cols="12" md="3" v-for="(category, index) in menuCategories" :key="index">
-                  <div class="d-flex flex-column h-100">
+                  <div class="d-flex flex-column h-100 category-column">
                     <h3 class="text-h6 mb-2">{{ $t(`services.${category.key}`) }}</h3>
                     <v-divider class="mb-3" thickness="2" color="primary"></v-divider>
                     <v-list density="compact" class="pa-0 flex-grow-1">
@@ -29,7 +29,7 @@
                         v-for="(item, itemIndex) in category.items"
                         :key="itemIndex"
                         :title="$t(`services.items.${item.key}`)"
-                        class="px-0"
+                        class="px-0 list-item"
                         link
                       >
                         <template v-slot:append>
@@ -165,5 +165,50 @@ const menuCategories = [
 .v-list--density-compact .v-list-item {
   --v-list-item-padding-left: 0;
   --v-list-item-min-height: 32px;
+}
+
+/* Nouveaux styles pour le mega-menu */
+.mega-menu-container {
+  background-color: #f8f9fa; /* Fond gris très léger */
+  border-radius: 4px;
+}
+
+.category-column {
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+.category-column:hover {
+  background-color: #f1f3f5; /* Gris un peu plus prononcé au survol */
+}
+
+.list-item {
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.list-item:hover {
+  background-color: #e9ecef !important; /* Gris moyen pour les items */
+  transform: translateX(4px);
+}
+
+.v-list-item:hover .v-icon {
+  color: #005b96; /* Couleur primaire pour l'icône au survol */
+}
+
+/* Amélioration de la carte globale */
+.v-card {
+  border-top: 3px solid #005b96; /* Bordure colorée en haut */
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* Adaptation des couleurs du texte pour le contraste */
+.text-h6 {
+  color: #005b96 !important;
+}
+
+.v-list-item-title {
+  color: #495057; /* Gris foncé pour le texte */
+  font-weight: 500;
 }
 </style>
