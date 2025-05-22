@@ -132,13 +132,16 @@ const menuCategories = [
 </script>
 
 <style scoped>
+
 .v-app-bar {
   top: auto !important;
   position: relative !important;
   box-shadow: none !important;
   border-top: 1px solid #e0e0e0;
-  background-color: #005b96;
-  color: #e0e0e0;
+  background-color: #b2d6ee !important;
+  /* Vous pouvez soit modifier la valeur ci-dessus, soit ajouter un dégradé par exemple : */
+  /* background: linear-gradient(to right, #b2d6ee, #5ab1f3); */
+  color: rgb(37, 36, 36) !important;
 }
 
 .text-h6 {
