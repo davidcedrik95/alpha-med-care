@@ -32,7 +32,7 @@
       <div class="logo-section">
         <div class="logo-container" aria-label="Firmenlogo">
           <a href="/">
-            <img src="/images/logo.png" :alt="$t('app.title')" width="160" height="40" loading="lazy" />
+            <img src="/images/logo.png" :alt="$t('app.title')" width="160" height="40" loading="lazy"  style="border-radius: 5px;"/>
           </a>
         </div>
         <div class="logo-subtext">{{ $t('header.logo_subtext') }}</div>
