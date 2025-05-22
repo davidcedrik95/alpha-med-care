@@ -167,48 +167,5 @@ const menuCategories = [
   --v-list-item-min-height: 32px;
 }
 
-/* Nouveaux styles pour le mega-menu */
-.mega-menu-container {
-  background-color: #f8f9fa; /* Fond gris très léger */
-  border-radius: 4px;
-}
 
-.category-column {
-  padding: 12px 16px;
-  transition: all 0.3s ease;
-}
-
-.category-column:hover {
-  background-color: #f1f3f5; /* Gris un peu plus prononcé au survol */
-}
-
-.list-item {
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.list-item:hover {
-  background-color: #e9ecef !important; /* Gris moyen pour les items */
-  transform: translateX(4px);
-}
-
-.v-list-item:hover .v-icon {
-  color: #005b96; /* Couleur primaire pour l'icône au survol */
-}
-
-/* Amélioration de la carte globale */
-.v-card {
-  border-top: 3px solid #005b96; /* Bordure colorée en haut */
-  border-radius: 0 0 8px 8px !important;
-}
-
-/* Adaptation des couleurs du texte pour le contraste */
-.text-h6 {
-  color: #005b96 !important;
-}
-
-.v-list-item-title {
-  color: #495057; /* Gris foncé pour le texte */
-  font-weight: 500;
-}
 </style>
