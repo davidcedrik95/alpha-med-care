@@ -20,7 +20,7 @@ Voici votre deuxième code modifié avec les icônes ajoutées à gauche des él
             <v-btn variant="text" v-bind="props" class="text-none nav-btn">{{ $t('menu.services') }}</v-btn>
           </template>
 
-          <v-card width="100vw" class="mx-auto mega-menu" elevation="4" style="margin-top: 15px;">
+          <v-card width="100vw" class="mx-auto mega-menu" elevation="4">
             <v-container class="py-6 mega-menu-container">
               <v-row>
                 <v-col cols="12" md="4" v-for="(category, index) in menuCategories" :key="index" class="category-col">
@@ -172,6 +172,7 @@ const menuCategories = [
   max-width: 1280px;
   left: 50% !important;
   transform: translateX(-50%) !important;
+  margin-top: 14px;
 }
 
 .mega-menu-container {
