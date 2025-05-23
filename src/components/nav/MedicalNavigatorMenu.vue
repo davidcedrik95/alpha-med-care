@@ -1,56 +1,36 @@
+Voici votre deuxième code modifié avec les icônes ajoutées à gauche des éléments de menu, comme dans le premier code :
+
+```vue
 <template>
-  <v-app-bar color="primary">
-    <v-container class="d-flex align-center px-4">
-      <!-- Logo -->
-      <v-toolbar-title class="d-flex align-center">
-        <v-img
-          src="/logo.png"
-          alt="Logo"
-          max-height="40"
-          max-width="120"
-          contain
-          class="mr-2"
-        ></v-img>
-      </v-toolbar-title>
+  <v-app-bar>
+    <v-container class="d-flex align-center">
+      <!-- Logo ou nom du site -->
+      <v-toolbar-title>{{ $t('app.title') }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <!-- Navigation desktop -->
+      <!-- Navigation principale -->
       <v-toolbar-items class="hidden-sm-and-down">
+        <!-- Startseite -->
         <v-btn variant="text" to="/" class="text-none nav-btn">{{ $t('menu.home') }}</v-btn>
 
-        <!-- Mega Menu -->
-        <v-menu
-          open-on-hover
-          :close-on-content-click="false"
-          offset-y
-          transition="slide-y-transition"
-          content-class="centered-mega-menu"
-        >
+        <!-- Dienstleistungen avec méga-menu -->
+        <v-menu open-on-hover offset-y transition="slide-y-transition" close-delay="200">
           <template v-slot:activator="{ props }">
-            <v-btn variant="text" v-bind="props" class="text-none nav-btn">
-              {{ $t('menu.services') }}
-              <v-icon icon="mdi-chevron-down" size="small" class="ml-1"></v-icon>
-            </v-btn>
+            <v-btn variant="text" v-bind="props" class="text-none nav-btn">{{ $t('menu.services') }}</v-btn>
           </template>
 
-          <v-card width="100vw" class="mx-auto" elevation="4" style="margin-top: 15px;">
-            <v-container>
+          <v-card width="100vw" class="mx-auto mega-menu" elevation="4" style="margin-top: 15px;">
+            <v-container class="py-6 mega-menu-container">
               <v-row>
-                <v-col
-                  cols="12"
-                  md="4"
-                  v-for="(category, index) in menuCategories"
-                  :key="index"
-                  class="category-col"
-                >
-                  <div class="d-flex flex-column h-100">
-                    <h3 class="text-h6 mb-2 category-title">
-                      {{ $t(`menu.categories.${category.key}`) }}
-                    </h3>
-                    <v-divider class="mb-3" thickness="2" color="primary"></v-divider>
-                    
-                    <v-list density="compact" class="pa-0">
+                <v-col cols="12" md="4" v-for="(category, index) in menuCategories" :key="index" class="category-col">
+
+                  <div class="d-flex flex-column h-100 category-column">
+                    <!-- Pour les titres de catégories -->
+                    <h3 class="text-h6 mb-2 category-title">{{ $t(`menu.categories.${category.key}`) }}</h3>
+                    <v-divider class="mb-3 category-divider" thickness="2" color="primary"></v-divider>
+                    <v-list density="compact" class="pa-0 flex-grow-1 category-list">
+                      <!-- Pour les items -->
                       <v-list-item
                         v-for="(item, itemIndex) in category.items"
                         :key="itemIndex"
@@ -63,10 +43,11 @@
                           <v-icon :icon="item.icon" size="small" class="mr-2"></v-icon>
                         </template>
                         <template v-slot:append>
-                          <v-icon icon="mdi-chevron-right" size="small"></v-icon>
+                          <v-icon icon="mdi-chevron-right" size="small" class="ml-0"></v-icon>
                         </template>
                       </v-list-item>
                     </v-list>
+                    <v-divider v-if="index < menuCategories.length - 1" class="d-md-none mt-4 mobile-divider"></v-divider>
                   </div>
                 </v-col>
               </v-row>
@@ -74,7 +55,10 @@
           </v-card>
         </v-menu>
 
+        <!-- Über uns -->
         <v-btn variant="text" to="/about" class="text-none nav-btn">{{ $t('menu.about') }}</v-btn>
+
+        <!-- Contact -->
         <v-btn variant="text" to="/contact" class="text-none nav-btn">{{ $t('menu.contact') }}</v-btn>
       </v-toolbar-items>
 
@@ -83,94 +67,39 @@
         <template v-slot:activator="{ props }">
           <v-btn variant="text" v-bind="props" class="text-none language-btn">
             {{ currentLocale.toUpperCase() }}
-            <v-icon icon="mdi-chevron-down" size="small" class="ml-1"></v-icon>
           </v-btn>
         </template>
-        <v-list>
+        <v-list class="language-list">
           <v-list-item 
             v-for="locale in availableLocales" 
             :key="locale" 
             @click="changeLocale(locale)"
-            :class="{ 'active-language': locale === currentLocale }"
+            class="language-item"
           >
             <v-list-item-title>{{ locale.toUpperCase() }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
 
-      <!-- Mobile menu button -->
-      <v-app-bar-nav-icon 
-        class="hidden-md-and-up" 
-        @click="drawer = !drawer"
-      ></v-app-bar-nav-icon>
+      <!-- Menu mobile - seulement pour les petits écrans -->
+      <v-app-bar-nav-icon class="hidden-md-and-up mobile-menu-icon"></v-app-bar-nav-icon>
     </v-container>
   </v-app-bar>
-
-  <!-- Mobile navigation drawer -->
-  <v-navigation-drawer
-    v-model="drawer"
-    temporary
-    location="right"
-    width="300"
-  >
-    <v-list>
-      <v-list-item to="/" @click="drawer = false">{{ $t('menu.home') }}</v-list-item>
-      
-      <v-list-group :value="true">
-        <template v-slot:activator="{ props }">
-          <v-list-item v-bind="props" :title="$t('menu.services')"></v-list-item>
-        </template>
-
-        <v-list-item
-          v-for="(category, index) in menuCategories"
-          :key="index"
-          :title="$t(`menu.categories.${category.key}`)"
-          class="category-title-mobile"
-        ></v-list-item>
-          
-        <v-list-item
-          v-for="(item, itemIndex) in menuCategories.flatMap(c => c.items)"
-          :key="'item-' + itemIndex"
-          :title="$t(`menu.items.${item.key}`)"
-          :prepend-icon="item.icon"
-          :value="item.route"
-          @click="navigateToService(item.route); drawer = false"
-          class="px-8"
-        ></v-list-item>
-      </v-list-group>
-
-      <v-list-item to="/about" @click="drawer = false">{{ $t('menu.about') }}</v-list-item>
-      <v-list-item to="/contact" @click="drawer = false">{{ $t('menu.contact') }}</v-list-item>
-      
-      <v-divider class="my-2"></v-divider>
-      
-      <v-list-subheader>{{ $t('menu.language') }}</v-list-subheader>
-      <v-list-item
-        v-for="locale in availableLocales"
-        :key="'lang-' + locale"
-        @click="changeLocale(locale)"
-      >
-        <v-list-item-title>{{ locale.toUpperCase() }}</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 const { locale, availableLocales } = useI18n()
 const router = useRouter()
-const drawer = ref(false)
 
 const currentLocale = computed(() => locale.value)
 
 const changeLocale = (newLocale) => {
   locale.value = newLocale
   localStorage.setItem('userLocale', newLocale)
-  drawer.value = false
 }
 
 const navigateToService = (route) => {
@@ -215,9 +144,10 @@ const menuCategories = [
 <style scoped>
 /* Variables */
 :root {
+  --header-bg: #b2d6ee;
+  --header-text: rgb(37, 36, 36);
   --primary-color: #005b96;
-  --secondary-color: #e3f2fd;
-  --hover-color: rgba(0, 91, 150, 0.08);
+  --hover-bg: #f5f5f5;
 }
 
 /* App Bar */
@@ -229,79 +159,81 @@ const menuCategories = [
   background-color: #b2d6ee !important; /* Remplacement direct */
   color: rgb(37, 36, 36) !important;
 }
+
 /* Navigation buttons */
 .nav-btn {
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: normal;
-  transition: all 0.3s ease;
-}
-
-.nav-btn:hover {
-  color: var(--primary-color) !important;
-  background-color: var(--hover-color) !important;
 }
 
 /* Mega menu */
-.centered-mega-menu {
+.mega-menu {
+  max-width: 1280px;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  margin-top: 15px !important;
-  max-width: 1280px;
+}
+
+.mega-menu-container {
   width: 100%;
+  margin: 0;
 }
 
 .category-title {
-  color: var(--primary-color);
+  font-size: 1.125rem;
   font-weight: 600;
+  color: var(--primary-color);
+}
+
+.category-list {
+  font-size: 0.9375rem;
 }
 
 .service-item {
-  min-height: 38px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  min-height: 32px;
+  margin-bottom: 4px;
+  white-space: nowrap;
 }
 
 .service-item:hover {
-  background-color: var(--hover-color);
   color: var(--primary-color);
+  background-color: var(--hover-bg);
 }
 
+/* Style pour les icônes */
 .service-item :deep(.v-list-item__prepend) {
   margin-inline-end: 12px;
 }
 
+.v-list--density-compact .v-list-item .v-list-item__append {
+  margin-inline-start: 4px !important;
+}
+
 /* Language switcher */
 .language-btn {
-  font-weight: 500;
+  font-size: 0.875rem;
 }
 
-.active-language {
-  color: var(--primary-color);
-  background-color: var(--hover-color);
+.language-list {
+  padding: 0.5rem 0;
 }
 
-/* Mobile styles */
-.category-title-mobile {
-  font-weight: 600;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
+.language-item {
+  min-height: 40px;
 }
 
+/* Responsive adjustments */
 @media (max-width: 959px) {
-  .category-col {
-    margin-bottom: 16px;
+  .category-title {
+    font-size: 1rem;
   }
   
-  .category-col:last-child {
-    margin-bottom: 0;
+  .category-list {
+    font-size: 0.875rem;
   }
 }
 
 @media (max-width: 599px) {
-  .v-toolbar-title {
-    font-size: 1.25rem;
-  }
-  
   .nav-btn {
     font-size: 0.875rem;
   }
