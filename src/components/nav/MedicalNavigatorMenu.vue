@@ -166,6 +166,15 @@ const menuCategories = [
   margin: 0;
 }
 
+/* Corrige le recentrage du mega-menu sur tous les écrans */
+.v-menu__content.mega-menu {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: 1280px;
+  width: 100vw;
+}
+
+
 .category-title {
   font-size: 1.125rem;
   font-weight: 600;
