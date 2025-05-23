@@ -6,44 +6,40 @@
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
-    "contact": "Contact"
-  },
-  "services": {
-    "inspection": "Vérification",
-    "calibration": "Étalonnage",
-    "service": "Service",
-    "maintenance": "Maintenance",
+    "contact": "Contact",
+    "categories": {
+      "inspections": "Inspections & Contrôles",
+      "calibration": "Services d'Étalonnage",
+      "maintenance": "Maintenance & Service"
+    },
     "items": {
-      "stk": "STK (Contrôle Technique de Sécurité)",
-      "mtk": "MTK (Contrôle Technique de Mesure)",
-      "stu": "STÜ (Vérification Technique de Sécurité)",
-      "mtu": "MTÜ (Vérification Technique de Mesure)",
-      "dguv": "Contrôle DGUV",
-      "inspection": "Inspection",
-      "visual": "Inspection visuelle",
-      "ergometer": "MTK Ergomètre",
-      "thermometer": "MTK Thermomètre",
-      "blood_pressure": "MTK Tensioomètres",
-      "repairs": "Réparation",
-      "spare_parts": "Fourniture de pièces détachées",
-      "delivery": "Livraison et installation professionnelle des appareils",
-      "training": "Formation selon la loi sur les dispositifs médicaux",
-      "disposal": "Collecte d'anciens appareils & élimination certifiée",
-      "mpbetreibv": "Maintenance selon MPBetreibV (Ordonnance sur les opérateurs de dispositifs médicaux)",
-      "regular": "Inspections régulières",
-      "tests": "Réalisation des contrôles MTK, STK et DGUV"
+      "stk_inspection": "Contrôle Technique de Sécurité (STK)",
+      "mtk_inspection": "Contrôle Technique de Mesure (MTK)",
+      "stue_inspection": "Vérification Technique de Sécurité (STÜ)",
+      "mtue_inspection": "Vérification Technique de Mesure (MTÜ)",
+      "dguv_inspection": "Contrôle DGUV",
+      "general_inspection": "Inspection Générale",
+      "visual_inspection": "Inspection Visuelle",
+      "ergometer_calibration": "Étalonnage d'Ergomètre",
+      "thermometer_calibration": "Étalonnage de Thermomètre",
+      "blood_pressure_calibration": "Étalonnage de Tensioomètre",
+      "repairs": "Réparations d'Appareils",
+      "spare_parts": "Pièces Détachées",
+      "installation_service": "Service d'Installation",
+      "training": "Formation Utilisateur",
+      "equipment_disposal": "Élimination d'Équipement",
+      "regular_maintenance": "Maintenance Régulière"
     }
-   
   },
-   "header": {
+  "header": {
     "free_shipping": "Livraison gratuite",
     "phone": "+49 (0)9666 188950",
     "invoice": "Facture professionnelle",
-    "consultation": "Conseil d’expert",
+    "consultation": "Conseil d'expert",
     "search_placeholder": "Rechercher des produits...",
     "wishlist": "Liste de souhaits",
     "account": "Mon compte",
     "cart": "Panier",
     "logo_subtext": "Spécialiste en équipements médicaux"
-    }
+  }
 }

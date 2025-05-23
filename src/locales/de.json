@@ -6,35 +6,36 @@
     "home": "Startseite",
     "services": "Dienstleistungen",
     "about": "Über uns",
-    "contact": "Kontakt"
-  },
-  "services": {
-    "inspection": "Prüfen",
-    "calibration": "Kalibrieren",
-    "service": "Service",
-    "maintenance": "Wartung",
-        "items": {
-        "stk": "STK (SicherheitsTechnische Kontrolle)",
-        "mtk": "MTK (MessTechnische Kontrolle)",
-        "stu": "STÜ (SicherheitsTechnische Überprüfung)",
-        "mtu": "MTÜ (MessTechnische Überprüfung)",
-        "dguv": "DGUV-Prüfung",
-        "inspection": "Inspektion",
-        "visual": "Sichtprüfung",
-        "ergometer": "MTK Ergometer",
-        "thermometer": "MTK Thermometer",
-        "blood_pressure": "MTK Blutdruckmessgeräte",
-        "repairs": "Durchführung von Reparaturen",
-        "spare_parts": "Bereitstellung von Ersatzteilen",
-        "delivery": "Lieferung und fachgerechte Installation der Geräte",
-        "training": "Einweisung gemäß Medizinproduktegesetz",
-        "disposal": "Altgeräte-Abholung & zertifizierte Entsorgung",
-        "mpbetreibv": "Wartung gemäß MPBetreibV (Medizinprodukte-Betreiberverordnung)",
-        "regular": "Regelmäßige Inspektionen",
-        "tests": "Durchführung von MTK, STK und DGUV-Prüfungen"
-        }
+    "contact": "Kontakt",
+    
+    "categories": {
+      "inspections": "Prüfungen & Kontrollen",
+      "calibration": "Kalibrierungsdienstleistungen",
+      "maintenance": "Wartung & Service"
     },
-    "header": {
+    
+    "items": {
+      "stk_inspection": "Sicherheitstechnische Kontrolle (STK)",
+      "mtk_inspection": "Messtechnische Kontrolle (MTK)",
+      "stue_inspection": "Sicherheitstechnische Überprüfung (STÜ)",
+      "mtue_inspection": "Messtechnische Überprüfung (MTÜ)",
+      "dguv_inspection": "DGUV-Prüfung",
+      "general_inspection": "Inspektion",
+      "visual_inspection": "Sichtprüfung",
+      
+      "ergometer_calibration": "Ergometer Kalibrierung",
+      "thermometer_calibration": "Thermometer Kalibrierung",
+      "blood_pressure_calibration": "Blutdruckmessgeräte Kalibrierung",
+      
+      "repairs": "Gerätereparaturen",
+      "spare_parts": "Ersatzteile",
+      "installation_service": "Installationsservice",
+      "training": "Benutzerschulung",
+      "equipment_disposal": "Geräteentsorgung",
+      "regular_maintenance": "Regelmäßige Wartung"
+    }
+  },
+  "header": {
     "free_shipping": "Versandkostenfrei",
     "phone": "+49 (0)9666 188950",
     "invoice": "Geschäftsrechnung",

@@ -20,15 +20,18 @@
           <v-card width="100vw" class="mx-auto mega-menu" elevation="4" style="margin-top: 15px;">
             <v-container class="py-6 mega-menu-container">
               <v-row>
-                <v-col cols="12" md="3" v-for="(category, index) in menuCategories" :key="index" class="category-col">
+                <v-col cols="12" md="4" v-for="(category, index) in menuCategories" :key="index" class="category-col">
+
                   <div class="d-flex flex-column h-100 category-column">
-                    <h3 class="text-h6 mb-2 category-title">{{ $t(`services.${category.key}`) }}</h3>
+                    <!-- Pour les titres de catégories -->
+                    <h3 class="text-h6 mb-2 category-title">{{ $t(`menu.categories.${category.key}`) }}</h3>
                     <v-divider class="mb-3 category-divider" thickness="2" color="primary"></v-divider>
                     <v-list density="compact" class="pa-0 flex-grow-1 category-list">
+                      <!-- Pour les items -->
                       <v-list-item
                         v-for="(item, itemIndex) in category.items"
                         :key="itemIndex"
-                        :title="$t(`services.items.${item.key}`)"
+                        :title="$t(`menu.items.${item.key}`)"
                         class="px-0 list-item service-item"
                         link
                       >
@@ -92,41 +95,34 @@ const changeLocale = (newLocale) => {
 
 const menuCategories = [
   {
-    key: "inspection",
+    key: "inspections",
     items: [
-      { key: "stk" },
-      { key: "mtk" },
-      { key: "stu" },
-      { key: "mtu" },
-      { key: "dguv" },
-      { key: "inspection" },
-      { key: "visual" }
+      { key: "stk_inspection" },
+      { key: "mtk_inspection" },
+      { key: "stue_inspection" },
+      { key: "mtue_inspection" },
+      { key: "dguv_inspection" },
+      { key: "general_inspection" },
+      { key: "visual_inspection" }
     ]
   },
   {
     key: "calibration",
     items: [
-      { key: "ergometer" },
-      { key: "thermometer" },
-      { key: "blood_pressure" }
-    ]
-  },
-  {
-    key: "service",
-    items: [
-      { key: "repairs" },
-      { key: "spare_parts" },
-      { key: "delivery" },
-      { key: "training" },
-      { key: "disposal" }
+      { key: "ergometer_calibration" },
+      { key: "thermometer_calibration" },
+      { key: "blood_pressure_calibration" }
     ]
   },
   {
     key: "maintenance",
     items: [
-      { key: "mpbetreibv" },
-      { key: "regular" },
-      { key: "tests" }
+      { key: "repairs" },
+      { key: "spare_parts" },
+      { key: "installation_service" },
+      { key: "training" },
+      { key: "equipment_disposal" },
+      { key: "regular_maintenance" }
     ]
   }
 ]
@@ -166,8 +162,8 @@ const menuCategories = [
 }
 
 .mega-menu-container {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
 }
 
 .category-title {

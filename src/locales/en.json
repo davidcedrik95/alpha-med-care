@@ -6,32 +6,29 @@
     "home": "Home",
     "services": "Services",
     "about": "About us",
-    "contact": "Contact"
-  },
-  "services": {
-    "inspection": "Inspection",
-    "calibration": "Calibration",
-    "service": "Service",
-    "maintenance": "Maintenance",
+    "contact": "Contact",
+    "categories": {
+      "inspections": "Inspections & Controls",
+      "calibration": "Calibration Services",
+      "maintenance": "Maintenance & Service"
+    },
     "items": {
-      "stk": "STK (Safety Technical Inspection)",
-      "mtk": "MTK (Measurement Technical Inspection)",
-      "stu": "STÜ (Safety Technical Check)",
-      "mtu": "MTÜ (Measurement Technical Check)",
-      "dguv": "DGUV Inspection",
-      "inspection": "Inspection",
-      "visual": "Visual Inspection",
-      "ergometer": "MTK Ergometer",
-      "thermometer": "MTK Thermometer",
-      "blood_pressure": "MTK Blood Pressure Monitors",
-      "repairs": "Repairs execution",
-      "spare_parts": "Spare parts provision",
-      "delivery": "Delivery and professional installation",
-      "training": "Training according to Medical Devices Act",
-      "disposal": "Old devices collection & certified disposal",
-      "mpbetreibv": "Maintenance according to MPBetreibV",
-      "regular": "Regular inspections",
-      "tests": "Execution of MTK, STK and DGUV tests"
+      "stk_inspection": "Safety Technical Inspection (STK)",
+      "mtk_inspection": "Measurement Technical Inspection (MTK)",
+      "stue_inspection": "Safety Technical Check (STÜ)",
+      "mtue_inspection": "Measurement Technical Check (MTÜ)",
+      "dguv_inspection": "DGUV Inspection",
+      "general_inspection": "General Inspection",
+      "visual_inspection": "Visual Inspection",
+      "ergometer_calibration": "Ergometer Calibration",
+      "thermometer_calibration": "Thermometer Calibration",
+      "blood_pressure_calibration": "Blood Pressure Monitor Calibration",
+      "repairs": "Device Repairs",
+      "spare_parts": "Spare Parts",
+      "installation_service": "Installation Service",
+      "training": "User Training",
+      "equipment_disposal": "Equipment Disposal",
+      "regular_maintenance": "Regular Maintenance"
     }
   },
   "header": {
@@ -45,6 +42,4 @@
     "cart": "Shopping cart",
     "logo_subtext": "Medical equipment specialist"
   }
-
-  
 }
