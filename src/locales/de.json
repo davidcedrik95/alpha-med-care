@@ -35,17 +35,19 @@
       "regular_maintenance": "Regelmäßige Wartung"
     }
   },
+
   "header": {
     "free_shipping": "Versandkostenfrei",
     "phone": "+49 (0)9666 188950",
     "invoice": "Geschäftsrechnung",
     "consultation": "Fachberatung",
     "search_placeholder": "Produkte suchen...",
-    "wishlist": "Wunschliste",
+    "wishlist": "Merkliste",
     "account": "Mein Konto",
     "cart": "Warenkorb",
     "logo_subtext": "Ihr Spezialist für Medizintechnik"
   },
+
   "language": {
     "de": "Deutsch",
     "en": "Englisch",
