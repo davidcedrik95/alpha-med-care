@@ -257,20 +257,54 @@ onBeforeUnmount(() => {
 }
 
 /* Liens icônes */
+/* Pour les icônes de droite sur desktop */
 .top-bar-links {
   display: flex;
-  gap: 16px;
+  gap: 24px;
   align-items: center;
 }
 
+/* Chaque lien devient un bloc avec texte en dessous de l’icône */
 .link-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   color: #333;
   text-decoration: none;
   font-size: 14px;
   position: relative;
 }
+
+/* On agrandit les icônes pour desktop */
+.link-item .icon {
+  width: 25px;   /* taille augmentée */
+  height: 25px;
+  margin: 0 0 6px 0; /* espace entre icône et texte */
+  fill: currentColor;
+}
+
+/* Texte sous l’icône */
+.link-text {
+  white-space: normal;
+  font-size: 14px;
+}
+
+/* En mobile on revient à l’ancien style avec texte caché */
+@media (max-width: 768px) {
+  .link-item {
+    flex-direction: row;
+    align-items: center;
+  }
+  .link-item .icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 6px 0 0;
+  }
+  .link-text {
+    display: none;
+  }
+}
+
 
 .link-item:hover {
   color: #007bff;
