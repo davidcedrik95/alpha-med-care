@@ -162,6 +162,8 @@ onBeforeUnmount(() => {
   color: #333;
   user-select: none;
   border-bottom: 1px solid #ddd;
+   position: relative;
+  z-index: 999; /* Un peu plus bas que le drawer (1003) mais plus haut que le reste */
 }
 
 /* Barre supérieure, cachée sur mobile */
@@ -200,6 +202,8 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
+  background: white; /* Fond solide pour éviter la transparence */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombre pour bien le distinguer */
 }
 
 /* Logo */
