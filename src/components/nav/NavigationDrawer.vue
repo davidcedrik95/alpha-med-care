@@ -10,7 +10,7 @@
       <!-- En-tête -->
       <v-list-item class="drawer-header">
         <template v-slot:prepend>
-          <v-icon icon="mdi-heart-pulse" size="large" color="primary"/>
+          <v-icon icon="mdi-chair-school" size="large" style="color: #626363;"/>
         </template>
         <v-list-item-title class="app-title">{{ $t('app.title') }}</v-list-item-title>
       </v-list-item>
@@ -120,7 +120,8 @@ const menuCategories = [
 
 .app-title {
   font-weight: bold;
-  color: var(--primary-color);
+  color: #626363 !important;
+  font-size: 1rem;
 }
 
 .v-list-item {
