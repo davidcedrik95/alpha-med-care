@@ -2,7 +2,8 @@
   <v-app-bar>
     <v-container class="d-flex align-center">
       <!-- Logo / Titre du site -->
-     <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
+      <v-icon icon="mdi-heart-pulse" size="large" color="primary" class="mr-2 pulse-animation"></v-icon>
+
 
       <v-spacer></v-spacer>
 
@@ -251,14 +252,6 @@ const menuCategories = [
   background-color: #b2d6ee!important;
   color: #252424 !important;
 }
-
-.app-title {
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: unset;
-  max-width: none;
-}
-
 
 .nav-btn {
   font-size: 1rem;

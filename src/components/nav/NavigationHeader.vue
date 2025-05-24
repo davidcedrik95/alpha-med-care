@@ -347,8 +347,9 @@ onBeforeUnmount(() => {
 }
 
 .mobile-search-text {
-  font-size: 0.6rem;
-  color: var(--secondary-color);
+  font-size: 0.8rem;
+  color: #ffffff !important;
+  
 }
 
 @media (max-width: 480px) {
