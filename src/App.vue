@@ -1,14 +1,47 @@
 <template>
   <v-app>
-    <NavigationHeader />
-    <MedicalNavigatorMenu @toggle-drawer="mobileDrawer = !mobileDrawer" />
-    <NavigationDrawer v-model="mobileDrawer" />
-    
-    <v-main style="margin-top: 120px"> <!-- Ajustez selon la hauteur combinée -->
-      <router-view />
-    </v-main>
+    <div class="layout-container">
+      <NavigationHeader class="header" />
+      <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="mobileDrawer = !mobileDrawer" />
+      <NavigationDrawer v-model="mobileDrawer" />
+      
+      <v-main class="content">
+        <router-view />
+      </v-main>
+    </div>
   </v-app>
 </template>
+
+<style scoped>
+.layout-container {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "nav"
+    "content";
+  grid-template-rows: auto auto 1fr;
+  min-height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-bar {
+  grid-area: nav;
+  position: sticky;
+  top: 56px; /* Hauteur du header */
+  z-index: 99;
+}
+
+.content {
+  grid-area: content;
+  margin-top: 0;
+}
+</style>
 <script setup>
 import { ref } from 'vue'
 import NavigationHeader from './components/nav/NavigationHeader.vue'
@@ -19,9 +52,3 @@ const mobileDrawer = ref(false)
 </script>
 
 
-<style>
-.mobile-drawer {
-  z-index: 1003 !important;
-}
-
-</style>

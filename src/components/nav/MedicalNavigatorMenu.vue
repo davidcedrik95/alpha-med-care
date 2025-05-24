@@ -232,8 +232,9 @@ const menuCategories = [
 .v-app-bar {
   background-color: #b2d6ee !important;
   color: #252424 !important;
-  z-index: 998 !important; /* Juste en dessous du header */
+  z-index: 1000 !important; /* Juste en dessous du header */
   top: 56px !important; /* Ajustez selon la hauteur de votre header */
+  position: sticky !important;
 }
 
 .app-title {
