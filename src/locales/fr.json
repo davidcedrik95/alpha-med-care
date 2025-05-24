@@ -1,4 +1,7 @@
 {
+  "app": {
+    "title": "alpha med care GmbH"
+  },
   "menu": {
     "home": "Accueil",
     "services": "Services",

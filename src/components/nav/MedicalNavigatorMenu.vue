@@ -2,7 +2,10 @@
   <v-app-bar>
     <v-container class="d-flex align-center">
       <!-- Logo / Titre du site -->
-      <v-icon icon="mdi-heart-pulse" size="large" color="primary" class="mr-2 pulse-animation"></v-icon>
+      <div class="d-flex align-center hidden-md-and-up">
+        <v-icon icon="mdi-heart-pulse" size="large" color="primary" class="mr-2"></v-icon>
+        <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
+      </div>
 
 
       <v-spacer></v-spacer>
@@ -251,6 +254,13 @@ const menuCategories = [
   position: relative !important;
   background-color: #b2d6ee!important;
   color: #252424 !important;
+}
+
+.app-title {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  max-width: none;
 }
 
 .nav-btn {
