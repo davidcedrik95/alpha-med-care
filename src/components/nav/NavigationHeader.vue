@@ -47,10 +47,10 @@
           ref="searchInput"
           v-model="searchQuery"
         />
+        <!-- Dans le formulaire de recherche desktop -->
         <button type="submit" :aria-label="$t('header.search_placeholder')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/>
           </svg>
         </button>
       </form>
@@ -58,15 +58,15 @@
       <!-- Groupe d'icônes droite (mobile) -->
       <div class="mobile-icons-group">
         <!-- Icône de recherche mobile -->
-        <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile">
-          <div class="mobile-search-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-            <span class="mobile-search-text">{{ $t('header.search') }}</span>
-          </div>
-        </button>
+       
+      <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile">
+        <div class="mobile-search-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/>
+          </svg>
+          <span class="link-text">{{ $t('header.search') }}</span>
+        </div>
+      </button>
 
         <nav class="top-bar-links" aria-label="Secondary navigation">
           <a href="#" class="link-item" :aria-label="$t('header.wishlist')">
@@ -341,17 +341,46 @@ onBeforeUnmount(() => {
 }
 
 /* Styles pour l'icône de recherche mobile avec texte */
+/* Modifiez ces styles dans la section <style> */
 .mobile-search-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
-.mobile-search-text {
-  font-size: 0.8rem;
-  color: #ffffff !important;
-  
+.mobile-search-icon {
+  color: var(--secondary-color);
+  padding: 0.25rem;
+}
+
+.mobile-search-icon .link-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+  transition: color 0.2s ease;
+}
+
+.mobile-search-icon:hover .link-text,
+.mobile-search-icon:hover svg {
+  color: var(--hover-color);
+}
+
+.mobile-search-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.mobile-search-icon:hover svg {
+  transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+  .mobile-search-icon .link-text {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
