@@ -1,6 +1,3 @@
-Voici votre deuxième code modifié avec les icônes ajoutées à gauche des éléments de menu, comme dans le premier code :
-
-```vue
 <template>
   <v-app-bar>
     <v-container class="d-flex align-center">
@@ -15,22 +12,46 @@ Voici votre deuxième code modifié avec les icônes ajoutées à gauche des él
         <v-btn variant="text" to="/" class="text-none nav-btn">{{ $t('menu.home') }}</v-btn>
 
         <!-- Dienstleistungen avec méga-menu -->
-        <v-menu open-on-hover offset-y transition="slide-y-transition" close-delay="200">
+        <v-menu 
+          :open-on-hover="!isMobile"
+          :close-on-content-click="false"
+          offset-y 
+          transition="slide-y-transition"
+          v-model="isServicesMenuOpen"
+          ref="servicesMenu"
+        >
           <template v-slot:activator="{ props }">
-            <v-btn variant="text" v-bind="props" class="text-none nav-btn">{{ $t('menu.services') }}</v-btn>
+            <v-btn 
+              variant="text" 
+              v-bind="props" 
+              class="text-none nav-btn"
+              :class="{ 'active-link': isServicesMenuOpen }"
+              @click="handleActivatorClick"
+            >
+              {{ $t('menu.services') }}
+              <v-icon right>mdi-chevron-down</v-icon>
+            </v-btn>
           </template>
 
           <v-card width="100vw" class="mx-auto mega-menu" elevation="4">
+            <div class="close-button-wrapper">
+              <v-btn
+                icon
+                class="close-megamenu"
+                @click="closeServicesMenu"
+                aria-label="Close menu"
+              >
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </div>
+
             <v-container class="py-6 mega-menu-container">
               <v-row>
                 <v-col cols="12" md="4" v-for="(category, index) in menuCategories" :key="index" class="category-col">
-
                   <div class="d-flex flex-column h-100 category-column">
-                    <!-- Pour les titres de catégories -->
                     <h3 class="text-h6 mb-2 category-title">{{ $t(`menu.categories.${category.key}`) }}</h3>
                     <v-divider class="mb-3 category-divider" thickness="2" color="primary"></v-divider>
                     <v-list density="compact" class="pa-0 flex-grow-1 category-list">
-                      <!-- Pour les items -->
                       <v-list-item
                         v-for="(item, itemIndex) in category.items"
                         :key="itemIndex"
@@ -63,34 +84,60 @@ Voici votre deuxième code modifié avec les icônes ajoutées à gauche des él
       </v-toolbar-items>
 
       <!-- Language switcher -->
-      <v-menu offset-y>
-        <template v-slot:activator="{ props }">
-          <v-btn variant="text" v-bind="props" class="text-none language-btn">
-            {{ currentLocale.toUpperCase() }}
-          </v-btn>
-        </template>
-        <v-list class="language-list">
-          <v-list-item 
-            v-for="locale in availableLocales" 
-            :key="locale" 
-            @click="changeLocale(locale)"
-            class="language-item"
-          >
-            <v-list-item-title>{{ locale.toUpperCase() }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+     
+<v-menu offset-y>
+  <template v-slot:activator="{ props }">
+    <v-btn variant="text" v-bind="props" class="text-none language-btn">
+      <img 
+        :src="`/images/flags/${currentLocale}.png`"
+        :alt="$t(`language.${currentLocale}`)"
+        width="24"
+        height="16"
+        loading="lazy"
+        class="flag-icon mr-2"
+      />
+      {{ currentLocale.toUpperCase() }}
+      <v-icon right>mdi-chevron-down</v-icon>
+    </v-btn>
+  </template>
+  <v-list class="language-list">
+    <v-list-item 
+      v-for="locale in availableLocales" 
+      :key="locale" 
+      @click="changeLocale(locale)"
+      class="language-item"
+    >
+      <template v-slot:prepend>
+        <img 
+          :src="`/images/flags/${locale}.png`" 
+          :alt="$t(`language.${locale}`)"
+          width="24"
+          height="16"
+          loading="lazy"
+          class="flag-icon mr-2"
+        />
+      </template>
+      <v-list-item-title>{{ $t(`language.${locale}`) }}</v-list-item-title>
+    </v-list-item>
+  </v-list>
+</v-menu>
 
-      <!-- Menu mobile - seulement pour les petits écrans -->
-      <v-app-bar-nav-icon class="hidden-md-and-up mobile-menu-icon"></v-app-bar-nav-icon>
+      <!-- Menu mobile -->
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleMobileMenu"></v-app-bar-nav-icon>
     </v-container>
   </v-app-bar>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+
+// État du menu
+const isServicesMenuOpen = ref(false)
+const servicesMenu = ref(null)
+const isMobile = ref(false)
+const isMobileMenuOpen = ref(false)
 
 const { locale, availableLocales } = useI18n()
 const router = useRouter()
@@ -104,6 +151,26 @@ const changeLocale = (newLocale) => {
 
 const navigateToService = (route) => {
   router.push(route)
+  closeServicesMenu()
+}
+
+const closeServicesMenu = () => {
+  isServicesMenuOpen.value = false
+  if (servicesMenu.value) {
+    servicesMenu.value.isActive = false
+  }
+}
+
+const handleActivatorClick = () => {
+  if (isServicesMenuOpen.value) {
+    closeServicesMenu()
+  } else {
+    isServicesMenuOpen.value = true
+  }
+}
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
 const menuCategories = [
@@ -148,6 +215,7 @@ const menuCategories = [
   --header-text: rgb(37, 36, 36);
   --primary-color: #005b96;
   --hover-bg: #f5f5f5;
+  --transition-speed: 0.3s;
 }
 
 /* App Bar */
@@ -156,8 +224,8 @@ const menuCategories = [
   position: relative !important;
   box-shadow: none !important;
   border-top: 1px solid #e0e0e0;
-  background-color: #b2d6ee !important; /* Remplacement direct */
-  color: rgb(37, 36, 36) !important;
+  background-color: #b2d6ee !important;
+  color: var(--header-text) !important;
 }
 
 /* Navigation buttons */
@@ -165,6 +233,28 @@ const menuCategories = [
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: normal;
+  transition: color var(--transition-speed) ease;
+}
+
+.nav-btn:hover {
+  color: var(--primary-color) !important;
+}
+
+.active-link {
+  color: var(--primary-color) !important;
+  position: relative;
+}
+
+.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
 /* Mega menu */
@@ -173,6 +263,8 @@ const menuCategories = [
   left: 50% !important;
   transform: translateX(-50%) !important;
   margin-top: 14px;
+  position: relative;
+  background-color: #ddeaf1;
 }
 
 .mega-menu-container {
@@ -180,10 +272,36 @@ const menuCategories = [
   margin: 0;
 }
 
+.close-button-wrapper {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.close-megamenu {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-speed) ease;
+}
+
+.close-megamenu:hover {
+  transform: scale(1.1);
+  background-color: #f5f5f5;
+}
+
+.close-megamenu:active {
+  transform: scale(0.95);
+}
+
 .category-title {
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--primary-color);
+}
+
+.category-divider {
+  opacity: 0.5;
 }
 
 .category-list {
@@ -194,33 +312,41 @@ const menuCategories = [
   min-height: 32px;
   margin-bottom: 4px;
   white-space: nowrap;
+  transition: all var(--transition-speed) ease;
 }
 
 .service-item:hover {
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   background-color: var(--hover-bg);
 }
 
-/* Style pour les icônes */
-.service-item :deep(.v-list-item__prepend) {
-  margin-inline-end: 12px;
-}
-
-.v-list--density-compact .v-list-item .v-list-item__append {
-  margin-inline-start: 4px !important;
-}
-
 /* Language switcher */
+.flag-icon {
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+
+/* Language menu adjustments */
 .language-btn {
+  display: flex;
+  align-items: center;
   font-size: 0.875rem;
+  transition: all var(--transition-speed) ease;
 }
 
 .language-list {
-  padding: 0.5rem 0;
+  min-width: 120px;
 }
 
 .language-item {
-  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.language-item:hover {
+  background-color: var(--hover-bg);
 }
 
 /* Responsive adjustments */
@@ -237,6 +363,13 @@ const menuCategories = [
 @media (max-width: 599px) {
   .nav-btn {
     font-size: 0.875rem;
+  }
+  
+  .mega-menu {
+    width: 100vw !important;
+    left: 0 !important;
+    transform: none !important;
+    margin-left: 0 !important;
   }
 }
 </style>

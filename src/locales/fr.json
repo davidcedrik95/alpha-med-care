@@ -41,5 +41,10 @@
     "account": "Mon compte",
     "cart": "Panier",
     "logo_subtext": "Spécialiste en équipements médicaux"
+  },
+  "language": {
+    "de": "Allemand",
+    "en": "Anglais",
+    "fr": "Français"
   }
 }

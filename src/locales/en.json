@@ -41,5 +41,11 @@
     "account": "My account",
     "cart": "Shopping cart",
     "logo_subtext": "Medical equipment specialist"
+  },
+
+  "language": {
+    "de": "German",
+    "en": "English",
+    "fr": "French"
   }
 }

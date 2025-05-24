@@ -45,5 +45,10 @@
     "account": "Mein Konto",
     "cart": "Warenkorb",
     "logo_subtext": "Ihr Spezialist für Medizintechnik"
+  },
+  "language": {
+    "de": "Deutsch",
+    "en": "Englisch",
+    "fr": "Französisch"
   }
 }
