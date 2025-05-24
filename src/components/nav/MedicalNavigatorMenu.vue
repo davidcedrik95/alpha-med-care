@@ -3,7 +3,7 @@
     <v-container class="d-flex align-center">
       <!-- Logo / Titre du site -->
       <div class="d-flex align-center hidden-md-and-up">
-        <v-icon icon="mdi-heart-pulse" size="large" color="primary" class="mr-2"></v-icon>
+        <v-icon icon="mdi-chair-school" size="large" color="primary" class="mr-2"></v-icon>
         <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
       </div>
 
@@ -239,6 +239,7 @@ const menuCategories = [
 
 .app-title {
   font-weight: bold;
+   color: #626363 !important;
 }
 
 .nav-btn {
