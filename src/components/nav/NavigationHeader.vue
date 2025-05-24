@@ -226,19 +226,20 @@ onBeforeUnmount(() => {
 
 .top-bar-lower {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Modifié pour centrer les éléments */
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
   position: relative;
+  width: 100%; /* Assure que le conteneur prend toute la largeur */
 }
-
 .logo-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
   margin-right: 1rem;
+  order: 0; /* Logo à gauche */
 }
 
 .logo-container img {
@@ -260,11 +261,11 @@ onBeforeUnmount(() => {
   flex: 1 1 auto;
   min-width: 12rem;
   max-width: 32rem;
-  margin: 0 1rem;
+  margin: 0 auto; /* Modifié pour centrer */
   position: relative;
   display: flex;
+  order: 1; /* Ajouté pour assurer le bon ordre dans le flux flex */
 }
-
 .desktop-search input {
   width: 100%;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
@@ -299,6 +300,7 @@ onBeforeUnmount(() => {
   align-items: center;
   margin-left: auto;
   gap: 0.5rem;
+  order: 2; /* Icônes à droite */
 }
 
 /* Icône de recherche mobile */
