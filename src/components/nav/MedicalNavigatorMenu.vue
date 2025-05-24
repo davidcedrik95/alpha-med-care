@@ -296,6 +296,12 @@ const menuCategories = [
   position: relative;
 }
 
+.mega-menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .close-button-wrapper {
   position: absolute;
   top: 12px;

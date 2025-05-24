@@ -59,10 +59,13 @@
       <div class="mobile-icons-group">
         <!-- Icône de recherche mobile -->
         <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
+          <div class="mobile-search-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <span class="mobile-search-text">{{ $t('header.search') }}</span>
+          </div>
         </button>
 
         <nav class="top-bar-links" aria-label="Secondary navigation">
@@ -333,6 +336,25 @@ onBeforeUnmount(() => {
 .mobile-search-bar {
   display: flex;
   position: relative;
+}
+
+/* Styles pour l'icône de recherche mobile avec texte */
+.mobile-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.mobile-search-text {
+  font-size: 0.6rem;
+  color: var(--secondary-color);
+}
+
+@media (max-width: 480px) {
+  .mobile-search-text {
+    display: none;
+  }
 }
 
 .mobile-search-bar input {
