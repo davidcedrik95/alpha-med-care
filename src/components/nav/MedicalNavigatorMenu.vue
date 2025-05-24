@@ -12,13 +12,13 @@
 
         <!-- Mega-menu -->
        <v-menu
-  :open-on-hover="!isMobile && hoverEnabled"
-  :close-on-content-click="false"
-  offset-y
-  :transition="!isMobile ? 'slide-y-reverse-transition' : 'slide-y-transition'"
-  v-model="isServicesMenuOpen"
-  ref="servicesMenu"
->
+        :open-on-hover="!isMobile && hoverEnabled"
+        :close-on-content-click="false"
+        offset-y
+        :transition="!isMobile ? 'slide-y-reverse-transition' : 'slide-y-transition'"
+        v-model="isServicesMenuOpen"
+        ref="servicesMenu"
+      >
           <template v-slot:activator="{ props }">
             <v-btn
               variant="text"

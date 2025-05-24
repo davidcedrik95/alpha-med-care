@@ -1,50 +1,51 @@
 <template>
   <header class="top-bar">
-    <!-- Obere Zeile: Allgemeine Informationen -->
+    <!-- Barre supérieure (masquée sur mobile) -->
     <div class="top-bar-upper">
-      <!-- Linker Teil -->
       <div class="top-bar-left">
-        <span>
+        <span class="hide-on-mobile">
           <i class="fas fa-truck fa-sm" style="margin-right: 5px;"></i>
           {{ $t('header.free_shipping') }}
         </span>
-        <span>
+        <span class="hide-on-mobile">
           <i class="fas fa-phone fa-sm" style="margin-right: 5px;"></i>
           {{ $t('header.phone') }}
         </span>
       </div>
 
-      <!-- Rechter Teil -->
       <div class="top-bar-right">
-        <span>
+        <span class="hide-on-mobile">
           <i class="fas fa-file-invoice fa-sm" style="margin-right: 5px;"></i>
           {{ $t('header.invoice') }}
         </span>
-        <span>
+        <span class="hide-on-mobile">
           <i class="fas fa-headset fa-sm" style="margin-right: 5px;"></i>
           {{ $t('header.consultation') }}
         </span>
       </div>
     </div>
     
-    <!-- Untere Zeile: Logo, Suche, Icons -->
+    <!-- Barre inférieure -->
     <div class="top-bar-lower">
       <div class="logo-section">
         <div class="logo-container" aria-label="Firmenlogo">
           <a href="/">
-            <img src="/images/logo.png" :alt="$t('app.title')" width="160" height="40" loading="lazy"  style="border-radius: 5px;"/>
+            <img src="/images/logo.png" :alt="$t('app.title')" width="160" height="40" loading="lazy" style="border-radius: 5px;"/>
           </a>
         </div>
         <div class="logo-subtext">{{ $t('header.logo_subtext') }}</div>
       </div>
 
-      <form class="search-bar" role="search">
+      <!-- Barre de recherche desktop -->
+      <form class="search-bar desktop-search" role="search" :class="{ 'active': searchExpanded }">
         <input 
           type="search"
           :placeholder="$t('header.search_placeholder')"
           aria-label="Search field"
           autocomplete="off"
           spellcheck="false"
+          ref="searchInput"
+          v-model="searchQuery"
         />
         <button type="submit" :aria-label="$t('header.search_placeholder')">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -53,6 +54,14 @@
           </svg>
         </button>
       </form>
+
+      <!-- Icône de recherche mobile -->
+      <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
 
       <nav class="top-bar-links" aria-label="Secondary navigation">
         <a href="#" class="link-item" :aria-label="$t('header.wishlist')">
@@ -63,7 +72,7 @@
                      19.58 3 22 5.42 22 8.5
                      c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
-          <span>{{ $t('header.wishlist') }}</span>
+          <span class="link-text">{{ $t('header.wishlist') }}</span>
         </a>
 
         <a href="#" class="link-item" :aria-label="$t('header.account')">
@@ -73,7 +82,7 @@
                      c-2.67 0-8 1.34-8 4v2h16v-2
                      c0-2.66-5.33-4-8-4z"/>
           </svg>
-          <span>{{ $t('header.account') }}</span>
+          <span class="link-text">{{ $t('header.account') }}</span>
         </a>
 
         <a href="#" class="link-item cart-link" :aria-label="$t('header.cart')">
@@ -89,25 +98,87 @@
                      c-1.1 0-1.99.9-1.99 2s.89 2
                      1.99 2 2-.9 2-2-.9-2-2-2z"/>
           </svg>
-          <span>{{ $t('header.cart') }}</span>
+          <span class="link-text">{{ $t('header.cart') }}</span>
           <span class="cart-badge" aria-hidden="true">0</span>
         </a>
       </nav>
+    </div>
+
+    <!-- Barre de recherche mobile (apparaît lors du clic) -->
+    <div class="mobile-search-container" v-if="isMobile && searchExpanded">
+      <form class="mobile-search-bar" role="search" @submit.prevent="performSearch">
+        <input 
+          type="search"
+          :placeholder="$t('header.search_placeholder')"
+          aria-label="Search field"
+          autocomplete="off"
+          spellcheck="false"
+          ref="mobileSearchInput"
+          v-model="searchQuery"
+        />
+        <button type="button" class="close-search" @click="closeSearch" :aria-label="$t('header.close_search')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </form>
     </div>
   </header>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const { t } = useI18n()
-</script>
 
+const searchQuery = ref('')
+const searchExpanded = ref(false)
+const isMobile = ref(false)
+const searchInput = ref(null)
+const mobileSearchInput = ref(null)
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+const toggleSearch = () => {
+  searchExpanded.value = !searchExpanded.value
+  if (searchExpanded.value) {
+    nextTick(() => {
+      mobileSearchInput.value.focus()
+    })
+  }
+}
+
+const closeSearch = () => {
+  searchExpanded.value = false
+  searchQuery.value = ''
+}
+
+const performSearch = () => {
+  if (searchQuery.value.trim()) {
+    // Effectuer la recherche ici
+    console.log('Recherche:', searchQuery.value)
+    closeSearch()
+  }
+}
+
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkMobile)
+})
+</script>
 
 <style scoped>
 .top-bar {
-  --primary-color: #005b96; /* Bleu médical plus profond */
-  --secondary-color: #b3e0ff; /* Bleu clair pour les éléments secondaires */
+  --primary-color: #005b96;
+  --secondary-color: #b3e0ff;
   --text-color: white;
   --hover-color: #ffffff;
   --search-bg: white;
@@ -130,13 +201,6 @@ const { t } = useI18n()
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.info-icon {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.3rem;
-  vertical-align: middle;
-}
-
 .top-bar-upper {
   display: flex;
   justify-content: space-between;
@@ -145,18 +209,13 @@ const { t } = useI18n()
   font-size: 14px;
 }
 
-.top-bar-left {
+.top-bar-left, .top-bar-right {
   display: flex;
   gap: 1.25rem;
-  justify-content: flex-start;
-  flex: 1;
 }
 
 .top-bar-right {
-  display: flex;
-  gap: 1.25rem;
   justify-content: flex-end;
-  flex: 1;
 }
 
 .top-bar-lower {
@@ -165,6 +224,7 @@ const { t } = useI18n()
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  position: relative;
 }
 
 .logo-section {
@@ -175,14 +235,11 @@ const { t } = useI18n()
   margin-right: 1rem;
 }
 
-.logo-container {
-  margin-bottom: 0.25rem;
-}
-
 .logo-container img {
   height: 2.5rem;
   width: auto;
   object-fit: contain;
+  border-radius: 5px;
 }
 
 .logo-subtext {
@@ -192,7 +249,8 @@ const { t } = useI18n()
   white-space: nowrap;
 }
 
-.search-bar {
+/* Barre de recherche desktop */
+.desktop-search {
   flex: 1 1 auto;
   min-width: 12rem;
   max-width: 32rem;
@@ -201,7 +259,7 @@ const { t } = useI18n()
   display: flex;
 }
 
-.search-bar input {
+.desktop-search input {
   width: 100%;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   font-size: 0.9rem;
@@ -213,11 +271,11 @@ const { t } = useI18n()
   transition: box-shadow 0.3s ease;
 }
 
-.search-bar input:focus {
+.desktop-search input:focus {
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
 }
 
-.search-bar button {
+.desktop-search button {
   position: absolute;
   right: 0.5rem;
   top: 50%;
@@ -227,6 +285,67 @@ const { t } = useI18n()
   color: var(--primary-color);
   cursor: pointer;
   padding: 0.25rem;
+}
+
+/* Icône de recherche mobile */
+.mobile-search-icon {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.mobile-search-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Barre de recherche mobile */
+.mobile-search-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--primary-color);
+  padding: 0.5rem 1rem;
+  z-index: 1001;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-search-bar {
+  display: flex;
+  position: relative;
+}
+
+.mobile-search-bar input {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--search-bg);
+  background-color: var(--search-bg);
+  color: var(--search-text);
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.close-search {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.close-search svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .top-bar-links {
@@ -297,54 +416,51 @@ const { t } = useI18n()
   }
   
   .top-bar-upper {
-    flex-direction: column;
-    gap: 0.5rem;
+    display: none;
+  }
+  
+  .desktop-search {
+    display: none;
+  }
+  
+  .mobile-search-icon {
+    display: block;
   }
   
   .top-bar-lower {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
+    flex-wrap: nowrap;
   }
   
   .logo-section {
-    margin: 0 auto;
-    align-items: center;
+    margin-right: 0.5rem;
   }
   
-  .search-bar {
-    margin: 0;
-    width: 100%;
+  .logo-container img {
+    height: 2rem;
   }
   
   .top-bar-links {
-    justify-content: space-around;
     gap: 1rem;
-    padding: 0.5rem 0;
+    margin-left: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .top-bar-infos span,
-  .top-bar-extra span {
-    font-size: 0.75rem;
-  }
-  
-  .info-icon {
-    width: 0.8rem;
-    height: 0.8rem;
-  }
-
-  .link-item span {
+  .link-text {
     display: none;
   }
   
   .link-item {
     flex-direction: row;
+    gap: 0;
   }
   
   .logo-subtext {
     font-size: 0.7rem;
+  }
+  
+  .top-bar-links {
+    gap: 0.75rem;
   }
 }
 </style>
