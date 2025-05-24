@@ -2,7 +2,7 @@
   <v-app-bar>
     <v-container class="d-flex align-center">
       <!-- Logo / Titre du site -->
-      <v-toolbar-title>{{ $t('app.title') }}</v-toolbar-title>
+     <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -252,6 +252,14 @@ const menuCategories = [
   color: #252424 !important;
 }
 
+.app-title {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  max-width: none;
+}
+
+
 .nav-btn {
   font-size: 1rem;
   font-weight: 500;
@@ -316,4 +324,18 @@ const menuCategories = [
   border-radius: 2px;
   box-shadow: 0 0 1px rgba(0,0,0,0.3);
 }
+
+@media (max-width: 600px) {
+  .app-title {
+    font-size: 1rem; /* Ajustez la taille si nécessaire */
+    margin-right: 8px; /* Espacement supplémentaire */
+  }
+  
+  /* Optionnel : réduire légèrement l'espacement des boutons si nécessaire */
+  .nav-btn {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
 </style>
