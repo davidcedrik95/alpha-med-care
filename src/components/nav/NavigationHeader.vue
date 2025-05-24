@@ -33,7 +33,7 @@
             <img src="/images/logo.png" :alt="$t('app.title')" width="160" height="40" loading="lazy" style="border-radius: 5px;"/>
           </a>
         </div>
-        <div class="logo-subtext">{{ $t('header.logo_subtext') }}</div>
+        <div class="logo-subtext hide-on-mobile">{{ $t('header.logo_subtext') }}</div>
       </div>
 
       <!-- Barre de recherche desktop -->
@@ -247,6 +247,7 @@ onBeforeUnmount(() => {
   color: var(--logo-subtext-color);
   font-weight: 500;
   white-space: nowrap;
+  
 }
 
 /* Barre de recherche desktop */
@@ -348,6 +349,10 @@ onBeforeUnmount(() => {
   height: 1.25rem;
 }
 
+.hide-on-mobile {
+  display: none;
+}
+
 .top-bar-links {
   display: flex;
   gap: 1.5rem;
@@ -442,6 +447,12 @@ onBeforeUnmount(() => {
   .top-bar-links {
     gap: 1rem;
     margin-left: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-on-mobile {
+    display: inline;
   }
 }
 
