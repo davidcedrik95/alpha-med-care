@@ -261,6 +261,8 @@ const menuCategories = [
   overflow: visible;
   text-overflow: unset;
   max-width: none;
+  font-weight: bold;
+  
 }
 
 .nav-btn {
