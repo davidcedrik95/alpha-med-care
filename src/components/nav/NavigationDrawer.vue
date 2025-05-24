@@ -111,7 +111,7 @@ const menuCategories = [
 
 <style scoped>
 .mobile-drawer {
-  z-index: 1003;
+ z-index: 1002; /* Entre le header (1000) et la recherche mobile (1001) */
 }
 
 .drawer-header {

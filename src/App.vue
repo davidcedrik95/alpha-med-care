@@ -14,32 +14,24 @@
 
 <style scoped>
 .layout-container {
-  display: grid;
-  grid-template-areas:
-    "header"
-    "nav"
-    "content";
-  grid-template-rows: auto auto 1fr;
-  min-height: 100vh;
+  position: relative;
 }
 
 .header {
-  grid-area: header;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .nav-bar {
-  grid-area: nav;
   position: sticky;
-  top: 56px; /* Hauteur du header */
-  z-index: 99;
+  top: 56px;
+  z-index: 999;
 }
 
 .content {
-  grid-area: content;
-  margin-top: 0;
+  position: relative;
+  z-index: 1;
 }
 </style>
 <script setup>

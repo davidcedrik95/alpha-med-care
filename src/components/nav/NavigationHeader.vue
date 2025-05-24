@@ -163,7 +163,7 @@ onBeforeUnmount(() => {
   user-select: none;
   border-bottom: 1px solid #ddd;
    position: relative;
-  z-index: 999; /* Un peu plus bas que le drawer (1003) mais plus haut que le reste */
+  z-index: 1000; /* Un peu plus bas que le drawer (1003) mais plus haut que le reste */
 }
 
 /* Barre supérieure, cachée sur mobile */
@@ -376,14 +376,13 @@ onBeforeUnmount(() => {
 /* Conteneur recherche mobile en overlay */
 .mobile-search-container {
   position: fixed;
-  top: 56px; /* juste sous le header */
+  top: 56px; /* Hauteur du header */
   left: 0;
   right: 0;
+  z-index: 1001; /* Doit être au-dessus du header et du menu */
   background: white;
   padding: 12px;
-  border-bottom: 1px solid #ddd;
-  z-index: 9999;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* Barre recherche mobile */
