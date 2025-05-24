@@ -37,7 +37,12 @@
       </div>
 
       <!-- Barre de recherche desktop -->
-      <form class="search-bar desktop-search" role="search" :class="{ 'active': searchExpanded && !isMobile }" @submit.prevent="performSearch">
+      <form 
+        class="search-bar desktop-search" 
+        role="search" 
+        :class="{ 'active': searchExpanded && !isMobile }" 
+        @submit.prevent="performSearch"
+      >
         <input 
           type="search"
           :placeholder="$t('header.search_placeholder')"
@@ -60,7 +65,7 @@
       <!-- Groupe d'icônes droite (mobile) -->
       <div class="mobile-icons-group">
         <!-- Icône de recherche mobile -->
-        <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile">
+        <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile" aria-label="Toggle search">
           <div class="mobile-search-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/>
@@ -122,11 +127,17 @@
           spellcheck="false"
           ref="mobileSearchInput"
           v-model="searchQuery"
+          autofocus
         />
         <button type="button" class="close-search" @click="closeSearch" :aria-label="$t('header.close_search')">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <button type="submit" :aria-label="$t('header.search_placeholder')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/>
           </svg>
         </button>
       </form>
@@ -135,7 +146,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 const searchQuery = ref('')
 const searchExpanded = ref(false)
@@ -143,16 +154,25 @@ const searchExpanded = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
 
 function updateIsMobile() {
-  isMobile.value = window.innerWidth <= 768
+  const mobileNow = window.innerWidth <= 768
+  if (isMobile.value !== mobileNow) {
+    isMobile.value = mobileNow
+    if (!mobileNow) {
+      searchExpanded.value = false
+      searchQuery.value = ''
+    }
+  }
 }
 
-// Écouteur resize pour mettre à jour isMobile
 onMounted(() => {
   window.addEventListener('resize', updateIsMobile)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateIsMobile)
 })
+
+const searchInput = ref(null)
+const mobileSearchInput = ref(null)
 
 function toggleSearch() {
   searchExpanded.value = !searchExpanded.value
@@ -167,15 +187,14 @@ function toggleSearch() {
 function closeSearch() {
   searchExpanded.value = false
   searchQuery.value = ''
+  nextTick(() => {
+    const btn = document.querySelector('.mobile-search-icon')
+    btn?.focus()
+  })
 }
-
-// Refs inputs
-const searchInput = ref(null)
-const mobileSearchInput = ref(null)
 
 function performSearch() {
   if (!searchQuery.value.trim()) return
-  // Exemple: redirection ou action de recherche
   alert(`Recherche lancée: ${searchQuery.value}`)
   searchQuery.value = ''
   searchExpanded.value = false
@@ -184,270 +203,221 @@ function performSearch() {
 
 <style scoped>
 .top-bar {
-  font-family: Arial, sans-serif;
-  color: #444;
-  user-select: none;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
 /* Barre supérieure */
 .top-bar-upper {
   display: flex;
   justify-content: space-between;
-  background: #f7f7f7;
-  padding: 0.4rem 1rem;
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.875rem;
+  padding: 0.2rem 1rem;
+  background-color: #ddd;
 }
 
-.top-bar-left, .top-bar-right {
+.top-bar-left,
+.top-bar-right {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   align-items: center;
 }
 
-/* Masquer sur mobile */
 .hide-on-mobile {
   display: inline-block;
-}
-
-@media (max-width: 768px) {
-  .hide-on-mobile {
-    display: none;
-  }
 }
 
 /* Barre inférieure */
 .top-bar-lower {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 1rem;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
+  align-items: center;
+  padding: 0.5rem 1rem;
 }
 
 .logo-section {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.logo-container img {
-  max-height: 40px;
-  border-radius: 5px;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo-subtext {
-  font-size: 0.8rem;
-  color: #777;
-  margin-top: 2px;
+  font-size: 0.85rem;
+  color: #666;
 }
 
-/* Barre de recherche desktop */
+/* Recherche desktop */
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  max-width: 350px;
-  transition: max-width 0.3s ease;
-}
-
-.search-bar input[type="search"] {
-  flex-grow: 1;
-  padding: 0.35rem 0.5rem;
+  gap: 0.4rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  outline-offset: 2px;
-  outline-color: #999;
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+  transition: box-shadow 0.3s ease;
+  background-color: white;
+  min-width: 180px;
 }
 
-.search-bar input[type="search"]:focus {
-  outline-color: #0078d7;
-  border-color: #0078d7;
+.search-bar input {
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  width: 200px;
+  padding: 0.3rem 0.4rem;
 }
 
 .search-bar button {
-  border: none;
   background: none;
+  border: none;
   cursor: pointer;
-  color: #666;
-  padding: 0;
+  padding: 0.3rem;
+  color: #555;
 }
 
-.search-bar button:hover {
-  color: #0078d7;
+.search-bar.active {
+  box-shadow: 0 0 6px #0078d4;
 }
 
-/* Cacher la recherche desktop sur mobile */
-@media (max-width: 768px) {
-  .desktop-search {
-    display: none;
-  }
+.desktop-search {
+  display: flex;
 }
 
-/* Groupe icônes mobile */
+/* Icônes de droite */
 .mobile-icons-group {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-/* Liens de navigation (icônes + texte) */
 .top-bar-links {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-/* Agrandir les icônes à droite */
-.top-bar-links .link-item .icon {
-  width: 28px;    /* augmenter largeur */
-  height: 28px;   /* augmenter hauteur */
-  margin-bottom: 6px; /* un peu plus d’espace sous l’icône */
-}
-
-/* Centrer et espacer correctement le texte sous l’icône */
-.top-bar-links .link-item .link-text {
-  display: block;
-  font-size: 0.75rem; /* augmenter un peu la taille du texte */
-  line-height: 1.2;
-  text-align: center;
-  white-space: nowrap; /* éviter que le texte se casse sur plusieurs lignes */
-}
-
-
 .link-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 0.65rem;
-  color: #555;
+  color: #333;
+  font-size: 0.75rem;
   text-decoration: none;
-  position: relative;
-  width: 48px;
-  height: 48px;
-  justify-content: center;
+  cursor: pointer;
 }
 
 .link-item:hover,
-.link-item:focus-visible {
-  color: #0078d7;
+.link-item:focus {
+  color: #0078d4;
+  outline: none;
 }
 
-.link-item .icon {
-  fill: currentColor;
-  width: 20px;
-  height: 20px;
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: #555;
   margin-bottom: 2px;
 }
 
-/* Texte sous les icônes */
-.link-text {
-  display: block;
-  font-size: 0.6rem;
-  line-height: 1;
+.cart-link {
+  position: relative;
 }
 
-/* Badge sur le panier */
 .cart-badge {
   position: absolute;
-  top: 4px;
-  right: 8px;
-  background: #e74c3c;
+  top: -6px;
+  right: -10px;
+  background: #ff3333;
   color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
   border-radius: 12px;
-  font-size: 0.6rem;
-  padding: 0 5px;
+  font-weight: bold;
   pointer-events: none;
 }
 
-/* Icône recherche mobile */
+/* Bouton recherche mobile */
 .mobile-search-icon {
   background: none;
   border: none;
   cursor: pointer;
-  color: #555;
+  color: #333;
   font-size: 1rem;
   display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 6px;
-  border-radius: 4px;
-  user-select: none;
-}
-
-.mobile-search-icon:hover,
-.mobile-search-icon:focus-visible {
-  color: #0078d7;
-}
-
-.mobile-search-wrapper {
-  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .mobile-search-wrapper svg {
-  width: 20px;
-  height: 20px;
   fill: currentColor;
 }
 
-.mobile-search-wrapper .link-text {
-  font-size: 0.85rem;
-  font-weight: 600;
+.link-text {
+  margin-top: 2px;
 }
 
 /* Barre de recherche mobile */
 .mobile-search-container {
-  padding: 0.5rem 1rem;
-  background: white;
-  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+  padding: 0.4rem 1rem;
+  border-top: 1px solid #ccc;
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .mobile-search-bar {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 0.2rem 0.6rem;
+  background-color: white;
 }
 
-.mobile-search-bar input[type="search"] {
+.mobile-search-bar input {
+  border: none;
+  outline: none;
   flex-grow: 1;
-  padding: 0.4rem 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline-offset: 2px;
-  outline-color: #999;
+  padding: 0.4rem;
 }
 
-.mobile-search-bar input[type="search"]:focus {
-  outline-color: #0078d7;
-  border-color: #0078d7;
-}
-
-.close-search {
+.mobile-search-bar button {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 0.3rem;
   color: #555;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  user-select: none;
-}
-
-.close-search:hover,
-.close-search:focus-visible {
-  color: #0078d7;
 }
 
 .close-search svg {
-  width: 18px;
-  height: 18px;
+  stroke: #333;
+  stroke-width: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-bar-upper {
+    display: none;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .desktop-search {
+    display: none;
+  }
+
+  .mobile-icons-group {
+    gap: 0.8rem;
+  }
 }
 </style>
