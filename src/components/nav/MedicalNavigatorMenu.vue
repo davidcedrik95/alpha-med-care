@@ -7,7 +7,6 @@
         <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
       </div>
 
-
       <v-spacer></v-spacer>
 
       <!-- Menu principal -->
@@ -15,14 +14,14 @@
         <v-btn variant="text" to="/" class="text-none nav-btn">{{ $t('menu.home') }}</v-btn>
 
         <!-- Mega-menu -->
-       <v-menu
-        :open-on-hover="!isMobile && hoverEnabled"
-        :close-on-content-click="false"
-        offset-y
-        :transition="!isMobile ? 'slide-y-reverse-transition' : 'slide-y-transition'"
-        v-model="isServicesMenuOpen"
-        ref="servicesMenu"
-      >
+        <v-menu
+          :open-on-hover="!isMobile && hoverEnabled"
+          :close-on-content-click="false"
+          :transition="!isMobile ? 'slide-y-reverse-transition' : 'slide-y-transition'"
+          v-model="isServicesMenuOpen"
+          ref="servicesMenu"
+          offset-y
+        >
           <template v-slot:activator="{ props }">
             <v-btn
               variant="text"
@@ -36,13 +35,14 @@
             </v-btn>
           </template>
 
-          <v-card width="100vw" class="mx-auto mega-menu" elevation="4">
+          <v-card 
+            :width="isMobile ? '100%' : '100vw'" 
+            class="mx-auto mega-menu" 
+            elevation="4"
+            :max-width="isMobile ? '100%' : '1280px'"
+          >
             <div class="close-button-wrapper">
-              <v-btn 
-                icon 
-                class="close-megamenu" 
-                @click.stop="closeServicesMenu"
-              >
+              <v-btn icon class="close-megamenu" @click.stop="closeServicesMenu">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </div>
@@ -131,15 +131,17 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { onBeforeUnmount } from 'vue'
 
-// Nettoyage du timeout quand le composant est détruit
-onBeforeUnmount(() => {
-  if (hoverTimeout) clearTimeout(hoverTimeout)
-})
+const { locale, availableLocales } = useI18n()
+const router = useRouter()
+const currentLocale = computed(() => locale.value)
+const servicesMenu = ref(null)
+const isServicesMenuOpen = ref(false)
+const hoverEnabled = ref(true)
+let hoverTimeout = null
 
 // Responsiveness
 const isMobile = ref(false)
@@ -150,38 +152,27 @@ onMounted(() => {
   })
 })
 
-// i18n
-const { locale, availableLocales } = useI18n()
-const currentLocale = computed(() => locale.value)
+// Nettoyage
+onBeforeUnmount(() => {
+  if (hoverTimeout) clearTimeout(hoverTimeout)
+})
 
 const changeLocale = (newLocale) => {
   locale.value = newLocale
   localStorage.setItem('userLocale', newLocale)
 }
 
-// Navigation
-const router = useRouter()
 const navigateToService = (route) => {
   router.push(route)
   closeServicesMenu()
 }
 
-const servicesMenu = ref(null)
-
-// Mega-menu
-const isServicesMenuOpen = ref(false)
-const hoverEnabled = ref(true)
-let hoverTimeout = null
-
 const closeServicesMenu = () => {
-  // Désactive immédiatement le hover
   hoverEnabled.value = false
   isServicesMenuOpen.value = false
   
-  // Annule tout timeout précédent
   if (hoverTimeout) clearTimeout(hoverTimeout)
   
-  // Réactive le hover après un délai suffisant (500ms)
   hoverTimeout = setTimeout(() => {
     hoverEnabled.value = true
   }, 500)
@@ -189,19 +180,16 @@ const closeServicesMenu = () => {
 
 const handleActivatorClick = () => {
   if (isMobile.value) {
-    // Comportement mobile simple
     isServicesMenuOpen.value = !isServicesMenuOpen.value
-  } else {
-    // Sur desktop, ne s'ouvre que si le hover est activé
-    if (hoverEnabled.value) {
-      isServicesMenuOpen.value = true
-    }
+  } else if (hoverEnabled.value) {
+    isServicesMenuOpen.value = true
   }
 }
 
+const emit = defineEmits(['toggle-drawer'])
+
 const toggleMobileMenu = () => {
-  // À personnaliser : gestion du menu mobile drawer
-  console.log('Mobile menu toggled')
+  emit('toggle-drawer')
 }
 
 // Données du mega-menu
@@ -241,42 +229,27 @@ const menuCategories = [
 </script>
 
 <style scoped>
-:root {
-  --header-bg: #b2d6ee;
-  --header-text: #252424;
-  --primary-color: #005b96;
-  --hover-bg: #f5f5f5;
-  --transition-speed: 0.3s;
-}
-
 .v-app-bar {
-  top: auto !important;
-  position: relative !important;
-  background-color: #b2d6ee!important;
+  background-color: #b2d6ee !important;
   color: #252424 !important;
 }
 
 .app-title {
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: unset;
-  max-width: none;
   font-weight: bold;
-  
 }
 
 .nav-btn {
   font-size: 1rem;
   font-weight: 500;
-  transition: color var(--transition-speed) ease;
+  transition: color 0.3s ease;
 }
 
 .nav-btn:hover {
-  color: var(--primary-color) !important;
+  color: #005b96 !important;
 }
 
 .active-link {
-  color: var(--primary-color) !important;
+  color: #005b96 !important;
   position: relative;
 }
 
@@ -288,7 +261,7 @@ const menuCategories = [
   transform: translateX(-50%);
   width: 30px;
   height: 3px;
-  background-color: var(--primary-color);
+  background-color: #005b96;
   border-radius: 2px;
 }
 
@@ -298,13 +271,12 @@ const menuCategories = [
   background-color: #ddeaf1;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  position: relative;
 }
 
 .mega-menu-container {
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  padding: 0 16px;
 }
 
 .close-button-wrapper {
@@ -317,46 +289,15 @@ const menuCategories = [
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.v-menu__content {
-  pointer-events: none;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.v-menu__content.menuable__content__active {
-  pointer-events: auto;
-}
-
-.language-btn {
-  text-transform: none;
-  min-width: 64px;
-}
-
-.flag-icon {
-  border-radius: 2px;
-  box-shadow: 0 0 1px rgba(0,0,0,0.3);
-}
-
-.pulse-animation {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
 @media (max-width: 600px) {
   .app-title {
-    font-size: 1rem; /* Ajustez la taille si nécessaire */
-    margin-right: 8px; /* Espacement supplémentaire */
+    font-size: 1rem;
+    margin-right: 8px;
   }
   
-  /* Optionnel : réduire légèrement l'espacement des boutons si nécessaire */
   .nav-btn {
     padding-left: 8px;
     padding-right: 8px;
   }
 }
-
 </style>

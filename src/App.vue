@@ -1,34 +1,36 @@
 <template>
   <v-app>
-    <div class="header-container">
-      <NavigationHeader />
-    </div>
+    <!-- Menu de navigation - maintenant en premier -->
+    <MedicalNavigatorMenu @toggle-drawer="mobileDrawer = !mobileDrawer" />
     
-    <div class="menu-container">
-      <MedicalNavigatorMenu />
-    </div>
-    
+    <!-- Header en haut - maintenant en second -->
+    <NavigationHeader />
+
+    <!-- Drawer latéral -->
+    <NavigationDrawer v-model="mobileDrawer" />
+
+    <!-- Contenu principal -->
     <v-main>
       <v-container>
-        <router-view></router-view>
+        <router-view />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
-<style scoped>
-.header-container {
-  position: relative;
-  z-index: 1002;
-}
-
-.menu-container {
-  position: relative;
-  z-index: 1001;
-}
-</style>
-
 <script setup>
+import { ref } from 'vue'
 import NavigationHeader from './components/nav/NavigationHeader.vue'
 import MedicalNavigatorMenu from './components/nav/MedicalNavigatorMenu.vue'
+import NavigationDrawer from './components/nav/NavigationDrawer.vue'
+
+const mobileDrawer = ref(false)
 </script>
+
+
+<style>
+.mobile-drawer {
+  z-index: 1003 !important;
+}
+
+</style>
