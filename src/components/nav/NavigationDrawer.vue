@@ -511,7 +511,7 @@ function closeDrawer() {
 /* Social Footer */
 .social-footer {
   padding: 12px 0;
-  background-color: #f8fafc;
+  background-color: #d1d9e6;
   border-top: 1px solid #d1d9e6;
 }
 
