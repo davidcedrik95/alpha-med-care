@@ -70,6 +70,7 @@
   },
   
   "account": {
+  "title": "Mein Konto",
   "myAccount": "Mein Konto",
   "orders": "Meine Bestellungen",
   "returns": "Meine Rücksendungen",

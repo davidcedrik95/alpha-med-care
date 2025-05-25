@@ -8,185 +8,197 @@
     class="navigation-drawer"
     @click-outside="closeDrawer"
   >
-    <!-- Première carte pour le menu principal -->
-    <v-card class="menu-card" flat>
-      <v-list dense nav>
-        <!-- Header Drawer -->
-        <v-list-item class="drawer-header">
-          <div class="drawer-header-content">
-            <v-icon size="36" color="#626363">mdi-menu-open</v-icon>
-            <span class="title">{{ $t('app.title') }}</span>
-            <v-btn
-              icon
-              @click.stop="closeDrawer"
-              variant="text"
-              aria-label="Close drawer"
-              class="close-btn"
-            >
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </div>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <!-- Menu principal -->
-        <v-list-item
-          :to="'/'"
-          link
-          @click="closeDrawer"
+    <!-- Barre de navigation header -->
+    <div class="drawer-header">
+      <div class="drawer-header-content">
+        <v-icon size="36" color="#626363">mdi-menu-open</v-icon>
+        <span class="title">{{ $t('app.title') }}</span>
+        <v-btn
+          icon
+          @click.stop="closeDrawer"
+          variant="text"
+          aria-label="Close drawer"
+          class="close-btn"
         >
-          <template v-slot:prepend>
-            <v-icon>mdi-home</v-icon>
-          </template>
-          <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
-        </v-list-item>
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </div>
+    </div>
 
-        <!-- Menu déroulant Services -->
-        <v-list-group value="Services">
-          <template v-slot:activator="{ props }">
-            <v-list-item v-bind="props">
-              <template v-slot:prepend>
-                <v-icon>mdi-cog</v-icon>
-              </template>
-              <v-list-item-title>{{ $t('menu.services') }}</v-list-item-title>
-            </v-list-item>
-          </template>
+    <!-- Contenu principal -->
+    <div class="drawer-content">
+      <!-- Première carte pour le menu principal -->
+      <v-card class="menu-card" flat>
+        <v-list dense nav>
+          <v-divider></v-divider>
 
-          <!-- Sous-menu Inspections -->
-          <v-list-group value="Inspections" sub-group>
+          <!-- Menu principal -->
+          <v-list-item
+            :to="'/'"
+            link
+            @click="closeDrawer"
+          >
+            <template v-slot:prepend>
+              <v-icon>mdi-home</v-icon>
+            </template>
+            <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
+          </v-list-item>
+
+          <!-- Menu déroulant Services -->
+          <v-list-group value="Services">
             <template v-slot:activator="{ props }">
               <v-list-item v-bind="props">
                 <template v-slot:prepend>
-                  <v-icon>mdi-clipboard-check</v-icon>
+                  <v-icon>mdi-cog</v-icon>
                 </template>
-                <v-list-item-title>{{ $t('menu.categories.inspections') }}</v-list-item-title>
+                <v-list-item-title>{{ $t('menu.services') }}</v-list-item-title>
               </v-list-item>
             </template>
-            
-            <v-list-item
-              v-for="(item, index) in menuCategories[0].items"
-              :key="'inspections-'+index"
-              :to="item.route"
-              link
-              @click="closeDrawer"
-            >
-              <template v-slot:prepend>
-                <v-icon>{{ item.icon }}</v-icon>
-              </template>
-              <v-list-item-title>
-                {{ $t(`menu.items.${item.key}`) }}
-              </v-list-item-title>
-            </v-list-item>
-          </v-list-group>
 
-          <!-- Sous-menu Calibration -->
-          <v-list-group value="Calibration" sub-group>
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props">
+            <!-- Sous-menu Inspections -->
+            <v-list-group value="Inspections" sub-group>
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-clipboard-check</v-icon>
+                  </template>
+                  <v-list-item-title>{{ $t('menu.categories.inspections') }}</v-list-item-title>
+                </v-list-item>
+              </template>
+              
+              <v-list-item
+                v-for="(item, index) in menuCategories[0].items"
+                :key="'inspections-'+index"
+                :to="item.route"
+                link
+                @click="closeDrawer"
+              >
                 <template v-slot:prepend>
-                  <v-icon>mdi-tune</v-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
                 </template>
-                <v-list-item-title>{{ $t('menu.categories.calibration') }}</v-list-item-title>
+                <v-list-item-title>
+                  {{ $t(`menu.items.${item.key}`) }}
+                </v-list-item-title>
               </v-list-item>
-            </template>
-            
-            <v-list-item
-              v-for="(item, index) in menuCategories[1].items"
-              :key="'calibration-'+index"
-              :to="item.route"
-              link
-              @click="closeDrawer"
-            >
-              <template v-slot:prepend>
-                <v-icon>{{ item.icon }}</v-icon>
-              </template>
-              <v-list-item-title>
-                {{ $t(`menu.items.${item.key}`) }}
-              </v-list-item-title>
-            </v-list-item>
-          </v-list-group>
+            </v-list-group>
 
-          <!-- Sous-menu Maintenance -->
-          <v-list-group value="Maintenance" sub-group>
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props">
+            <!-- Sous-menu Calibration -->
+            <v-list-group value="Calibration" sub-group>
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-tune</v-icon>
+                  </template>
+                  <v-list-item-title>{{ $t('menu.categories.calibration') }}</v-list-item-title>
+                </v-list-item>
+              </template>
+              
+              <v-list-item
+                v-for="(item, index) in menuCategories[1].items"
+                :key="'calibration-'+index"
+                :to="item.route"
+                link
+                @click="closeDrawer"
+              >
                 <template v-slot:prepend>
-                  <v-icon>mdi-wrench</v-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
                 </template>
-                <v-list-item-title>{{ $t('menu.categories.maintenance') }}</v-list-item-title>
+                <v-list-item-title>
+                  {{ $t(`menu.items.${item.key}`) }}
+                </v-list-item-title>
               </v-list-item>
-            </template>
-            
-            <v-list-item
-              v-for="(item, index) in menuCategories[2].items"
-              :key="'maintenance-'+index"
-              :to="item.route"
-              link
-              @click="closeDrawer"
-            >
-              <template v-slot:prepend>
-                <v-icon>{{ item.icon }}</v-icon>
+            </v-list-group>
+
+            <!-- Sous-menu Maintenance -->
+            <v-list-group value="Maintenance" sub-group>
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-wrench</v-icon>
+                  </template>
+                  <v-list-item-title>{{ $t('menu.categories.maintenance') }}</v-list-item-title>
+                </v-list-item>
               </template>
-              <v-list-item-title>
-                {{ $t(`menu.items.${item.key}`) }}
-              </v-list-item-title>
-            </v-list-item>
+              
+              <v-list-item
+                v-for="(item, index) in menuCategories[2].items"
+                :key="'maintenance-'+index"
+                :to="item.route"
+                link
+                @click="closeDrawer"
+              >
+                <template v-slot:prepend>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </template>
+                <v-list-item-title>
+                  {{ $t(`menu.items.${item.key}`) }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
           </v-list-group>
-        </v-list-group>
 
-        <!-- Autres liens -->
-        <v-list-item
-          :to="'/products'"
-          link
-          @click="closeDrawer"
-        >
-          <template v-slot:prepend>
-            <v-icon>mdi-cart</v-icon>
-          </template>
-          <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
-        </v-list-item>
+          <!-- Autres liens -->
+          <v-list-item
+            :to="'/products'"
+            link
+            @click="closeDrawer"
+          >
+            <template v-slot:prepend>
+              <v-icon>mdi-cart</v-icon>
+            </template>
+            <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
+          </v-list-item>
 
-        <v-list-item
-          :to="'/contact'"
-          link
-          @click="closeDrawer"
-        >
-          <template v-slot:prepend>
-            <v-icon>mdi-phone</v-icon>
-          </template>
-          <v-list-item-title>{{ $t('menu.contact') }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-card>
+          <v-list-item
+            :to="'/contact'"
+            link
+            @click="closeDrawer"
+          >
+            <template v-slot:prepend>
+              <v-icon>mdi-phone</v-icon>
+            </template>
+            <v-list-item-title>{{ $t('menu.contact') }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-card>
 
-    <!-- Deuxième carte pour les options de compte -->
-    <v-card class="account-card" flat>
-      <v-list dense>
-        <v-list-item
-          v-for="(item, index) in accountItems"
-          :key="'account-'+index"
-          :to="item.route"
-          link
-          @click="closeDrawer"
-        >
-          <template v-slot:prepend>
-            <v-icon>{{ item.icon }}</v-icon>
-          </template>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-card>
+      <!-- Deuxième carte - Version améliorée -->
+<div class="account-section">
+  <!-- Titre placé avant la carte -->
+  <div class="section-header">
+    <h3>{{ $t('account.title') }}</h3>
+  </div>
+  
+  <!-- La carte elle-même -->
+  <v-card class="account-card" flat>
+    <v-list dense>
+      <v-list-item
+        v-for="(item, index) in accountItems"
+        :key="'account-'+index"
+        :to="item.route"
+        link
+        @click="closeDrawer"
+      >
+        <template v-slot:prepend>
+          <v-icon>{{ item.icon }}</v-icon>
+        </template>
+        <v-list-item-title>{{ item.title }}</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-card>
+</div>
 
-    <!--  Troisième carte pour la connexion -->
-    <v-card class="social-card" flat>
-      <!-- Liens Anmelden et Registrieren -->
-      <v-card-actions class="auth-links">
-        <v-btn variant="text" class="auth-link" to="/login">Anmelden</v-btn>
-        <v-divider vertical></v-divider>
-        <v-btn variant="text" class="auth-link" to="/register">Registrieren</v-btn>
-      </v-card-actions>
-    </v-card>
+
+      <!-- Troisième carte pour la connexion -->
+      <v-card class="social-card" flat>
+        <!-- Liens Anmelden et Registrieren -->
+        <v-card-actions class="auth-links">
+          <v-btn variant="text" class="auth-link" to="/login">Anmelden</v-btn>
+          <v-divider vertical></v-divider>
+          <v-btn variant="text" class="auth-link" to="/register">Registrieren</v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
 
     <!-- Footer avec icônes réseaux sociaux -->
     <footer class="social-footer">
@@ -267,7 +279,7 @@ const menuCategories = [
 const accountItems = [
   { title: 'Mein Konto', icon: 'mdi-account', route: '/account' },
   { title: 'Meine Bestellungen', icon: 'mdi-package-variant', route: '/orders' },
-  { title: 'Meine Rücksendungen', icon: 'mdi-truck-return', route: '/returns' },
+  { title: 'Meine Rücksendungen', icon: 'mdi-undo-variant', route: '/returns' },
   { title: 'Informationen zur Rücksendungen', icon: 'mdi-information', route: '/return-info' },
   { title: 'Kontakteinstellungen', icon: 'mdi-account-cog', route: '/contact-settings' }
 ]
@@ -279,35 +291,22 @@ function closeDrawer() {
 
 <style scoped>
 .navigation-drawer {
-  background: linear-gradient(135deg, #f0f4f8, #e6ebf1);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #f0f4f8, #e6ebf1);
   box-shadow: 0 6px 20px rgb(0 0 0 / 0.08);
 }
 
-.menu-card {
-  flex: 1;
-  overflow-y: auto;
-  background: #ffffff;
-  box-shadow: inset 0 0 10px rgb(0 0 0 / 0.04);
-  padding-top: 8px;
-  transition: box-shadow 0.3s ease;
-}
-
-.menu-card:hover {
-  box-shadow: inset 0 0 20px rgb(0 0 0 / 0.08);
-}
-
-.social-card, .account-card {
-  background: #fff;
-  border-top: 1px solid #d1d9e6;
-  box-shadow: 0 -2px 6px rgb(0 0 0 / 0.04);
-  padding: 12px 24px;
-}
-
 .drawer-header {
-  border-bottom: 1px solid #ccd6e3;
-  padding: 12px 24px;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .drawer-header-content {
@@ -318,20 +317,62 @@ function closeDrawer() {
 }
 
 .title {
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: #2c3e50;
-  user-select: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #333;
+  flex-grow: 1;
 }
 
 .close-btn {
   margin-left: auto;
-  color: #606f7b;
-  transition: color 0.3s ease;
+  color: #757575;
 }
 
-.close-btn:hover {
-  color: #e74c3c;
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.menu-card {
+  background: #ffffff;
+  box-shadow: inset 0 0 10px rgb(0 0 0 / 0.04);
+  padding-top: 8px;
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.menu-card:hover {
+  box-shadow: inset 0 0 20px rgb(0 0 0 / 0.08);
+}
+
+/* Style pour les sections */
+.section-header {
+  background: linear-gradient(135deg, #f0f4f8, #e6ebf1);
+  padding: 12px 16px;
+  margin: 8px 0 0 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.account-card {
+  border-radius: 0 0 4px 4px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.social-card, .account-card {
+  background: #fff;
+  border-top: 1px solid #d1d9e6;
+  box-shadow: 0 -2px 6px rgb(0 0 0 / 0.04);
+  padding: 12px 24px;
+  margin-bottom: 8px;
 }
 
 .v-list-item {
@@ -423,6 +464,14 @@ function closeDrawer() {
   .navigation-drawer {
     height: 100vh !important;
     top: 0 !important;
+  }
+  
+  .drawer-header {
+    padding: 10px 12px;
+  }
+  
+  .title {
+    font-size: 1.1rem;
   }
 }
 </style>
