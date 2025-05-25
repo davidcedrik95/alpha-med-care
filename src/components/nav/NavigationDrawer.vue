@@ -296,7 +296,7 @@
         </v-btn>
       </div>
       <div class="copyright">
-        © {{ new Date().getFullYear() }} Medical Company
+          © {{ new Date().getFullYear() }} {{ $t('company.name') }}. {{ $t('company.copyright') }}
       </div>
     </footer>
   </v-navigation-drawer>

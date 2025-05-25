@@ -96,6 +96,13 @@
   "terms": "Terms and Conditions",
   "privacy": "Privacy Policy",
   "imprint": "Imprint"
-}
+},
+
+"company": {
+    "name": "alpha-med-scare Inc.",
+    "legal_name": "Medical Solutions International Corporation",
+    "copyright": "All rights reserved",
+    "slogan": "Innovating for your health"
+  }
 
 }

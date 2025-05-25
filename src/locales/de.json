@@ -117,5 +117,12 @@
     "terms": "AGB",
     "privacy": "Datenschutzerklärung",
     "imprint": "Impressum"
+  },
+
+  "company": {
+    "name": "alpha-med-care GmbH",
+    "legal_name": "Medizinische Lösungen International",
+    "copyright": "Alle Rechte vorbehalten",
+    "slogan": "Innovation für Ihre Gesundheit"
   }
 }

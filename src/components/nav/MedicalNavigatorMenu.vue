@@ -226,15 +226,17 @@ const menuCategories = [
 ]
 </script>
 
+
 <style scoped>
 .v-app-bar {
-  background-color: #b2d6ee !important;
-  color: #252424 !important;
+  background-color: rgba(13, 43, 107, 0.95) !important;
+  color: white !important;
   z-index: 999 !important;
   top: 56px !important;
   position: sticky !important;
   overflow: visible !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .app-title {
@@ -245,7 +247,8 @@ const menuCategories = [
   margin-right: 16px;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #252424 !important;
+  color: white !important;
+  letter-spacing: 0.5px;
 }
 
 /* Navigation buttons */
@@ -255,11 +258,12 @@ const menuCategories = [
   transition: all 0.3s ease;
   position: relative;
   letter-spacing: normal;
+  color: white !important;
 }
 
 .nav-btn:hover,
 .nav-btn.router-link-active {
-  color: #005b96 !important;
+  color: #a0c4ff !important;
   background-color: transparent !important;
 }
 
@@ -271,13 +275,13 @@ const menuCategories = [
   transform: translateX(-50%);
   width: 30px;
   height: 3px;
-  background-color: #005b96;
+  background-color: #a0c4ff;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
 
 .nav-btn.active-link {
-  color: #005b96 !important;
+  color: #a0c4ff !important;
 }
 
 .nav-btn.active-link::after {
@@ -288,19 +292,22 @@ const menuCategories = [
   transform: translateX(-50%);
   width: 30px;
   height: 3px;
-  background-color: #005b96;
+  background-color: #a0c4ff;
   border-radius: 2px;
 }
 
-/* Mega menu styles */
+/* Mega menu styles - version bleue avec texte et icônes blanches */
 .mega-menu {
   max-width: 1280px;
   margin-top: 14px;
-  background-color: #ddeaf1;
+  background: rgba(13, 43, 107, 0.98) !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   animation: fadeInDown 0.3s ease-out;
   border-radius: 0 0 8px 8px;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 .mega-menu-container {
@@ -319,6 +326,7 @@ const menuCategories = [
 .close-megamenu {
   background-color: rgba(255, 255, 255, 0.9);
   transition: all 0.2s ease;
+  color: #0d2b6b !important;
 }
 
 .close-megamenu:hover {
@@ -327,27 +335,30 @@ const menuCategories = [
 
 /* Category styles */
 .category-title {
-  color: #005b96;
+  color: white !important;
   font-weight: 600;
+  opacity: 0.9;
 }
 
 .category-divider {
-  opacity: 0.8;
+  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .category-list {
   background-color: transparent !important;
 }
 
-/* Service items */
+/* Service items - version avec icônes blanches */
 .service-item {
   transition: all 0.2s ease;
   border-radius: 4px;
   margin-bottom: 4px;
+  color: white !important;
 }
 
 .service-item:hover {
-  background-color: rgba(0, 91, 150, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .service-item:active {
@@ -355,44 +366,59 @@ const menuCategories = [
 }
 
 .service-item.router-link-active {
-  background-color: rgba(0, 91, 150, 0.1) !important;
-  color: #005b96 !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
 }
 
-.service-item.router-link-active .v-icon {
-  color: #005b96 !important;
-}
-
-.service-item .v-list-item__prepend .v-icon {
-  transition: color 0.2s ease;
+.service-item .v-icon {
+  color: white !important;
+  opacity: 0.8;
 }
 
 .service-item:hover .v-icon,
 .service-item.router-link-active .v-icon {
-  color: #005b96 !important;
+  opacity: 1;
+  color: white !important;
+}
+
+.service-item .v-list-item__prepend .v-icon {
+  transition: opacity 0.2s ease;
+}
+
+/* Chevron right icon */
+.service-item .v-list-item__append .v-icon {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.service-item:hover .v-list-item__append .v-icon {
+  color: white !important;
 }
 
 /* Language selector */
 .language-btn {
   font-weight: 500;
+  color: white !important;
 }
 
 .language-list {
   padding: 8px 0;
+  background-color: rgba(13, 43, 107, 0.98) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 .language-item {
   transition: all 0.2s ease;
   min-height: 40px;
+  color: white !important;
 }
 
 .language-item:hover {
-  background-color: rgba(0, 91, 150, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .language-item.active {
-  background-color: rgba(0, 91, 150, 0.1) !important;
-  color: #005b96;
+  background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .flag-icon {
@@ -417,6 +443,7 @@ const menuCategories = [
 @media (max-width: 960px) {
   .v-app-bar {
     top: 0 !important;
+    background-color: rgba(13, 43, 107, 0.98) !important;
   }
   
   .app-title {
@@ -427,6 +454,9 @@ const menuCategories = [
   .mega-menu {
     margin-top: 0;
     border-radius: 0;
+    background-color: rgba(13, 43, 107, 0.98) !important;
+    border-left: none;
+    border-right: none;
   }
 }
 
@@ -458,5 +488,14 @@ const menuCategories = [
 
 .v-btn:active {
   transform: scale(0.98);
+}
+
+/* Active state for mobile */
+.v-app-bar-nav-icon {
+  color: white !important;
+}
+
+.v-app-bar-nav-icon:hover {
+  color: #a0c4ff !important;
 }
 </style>

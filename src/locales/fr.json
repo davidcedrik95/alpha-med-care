@@ -88,6 +88,13 @@
   "login": "Connexion",
   "register": "Inscription",
   "authentication": "Authentification"
-}
+},
+
+ "company": {
+    "name": "alpha-med-care SAS",
+    "legal_name": "Solutions Médicales Internationales",
+    "copyright": "Tous droits réservés",
+    "slogan": "Innovation pour votre santé"
+  }
 
 }
