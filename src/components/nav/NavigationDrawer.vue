@@ -28,7 +28,11 @@
       <v-divider></v-divider>
 
       <!-- Menu principal -->
-      <v-list-item :to="'/'" link @click="closeDrawer">
+      <v-list-item
+        :to="'/'"
+        link
+        @click="closeDrawer"
+      >
         <v-list-item-icon>
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
@@ -66,7 +70,11 @@
       </v-list-group>
 
       <!-- Autres liens -->
-      <v-list-item :to="'/products'" link @click="closeDrawer">
+      <v-list-item
+        :to="'/products'"
+        link
+        @click="closeDrawer"
+      >
         <v-list-item-icon>
           <v-icon>mdi-cart</v-icon>
         </v-list-item-icon>
@@ -75,7 +83,11 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item :to="'/contact'" link @click="closeDrawer">
+      <v-list-item
+        :to="'/contact'"
+        link
+        @click="closeDrawer"
+      >
         <v-list-item-icon>
           <v-icon>mdi-phone</v-icon>
         </v-list-item-icon>
@@ -144,19 +156,4 @@ function closeDrawer() {
 .close-btn {
   margin-left: auto;
 }
-
-.v-list-item {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 12px; /* espace entre icône et texte */
-}
-
-.v-list-item-icon {
-  min-width: 36px;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
 </style>
