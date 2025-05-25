@@ -33,21 +33,20 @@
         link
         @click="closeDrawer"
       >
-        <v-list-item-icon>
+        <template v-slot:prepend>
           <v-icon>mdi-home</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
-        </v-list-item-content>
+        </template>
+        <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
       </v-list-item>
 
       <!-- Menu déroulant Services -->
-      <v-list-group prepend-icon="mdi-cog" no-action>
-        <template #activator="{ props }">
+      <v-list-group value="Services">
+        <template v-slot:activator="{ props }">
           <v-list-item v-bind="props">
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('menu.services') }}</v-list-item-title>
-            </v-list-item-content>
+            <template v-slot:prepend>
+              <v-icon>mdi-cog</v-icon>
+            </template>
+            <v-list-item-title>{{ $t('menu.services') }}</v-list-item-title>
           </v-list-item>
         </template>
 
@@ -58,14 +57,12 @@
           link
           @click="closeDrawer"
         >
-          <v-list-item-icon>
+          <template v-slot:prepend>
             <v-icon>{{ category.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t(`menu.categories.${category.key}`) }}
-            </v-list-item-title>
-          </v-list-item-content>
+          </template>
+          <v-list-item-title>
+            {{ $t(`menu.categories.${category.key}`) }}
+          </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
@@ -75,12 +72,10 @@
         link
         @click="closeDrawer"
       >
-        <v-list-item-icon>
+        <template v-slot:prepend>
           <v-icon>mdi-cart</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
-        </v-list-item-content>
+        </template>
+        <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
       </v-list-item>
 
       <v-list-item
@@ -88,12 +83,10 @@
         link
         @click="closeDrawer"
       >
-        <v-list-item-icon>
+        <template v-slot:prepend>
           <v-icon>mdi-phone</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ $t('menu.contact') }}</v-list-item-title>
-        </v-list-item-content>
+        </template>
+        <v-list-item-title>{{ $t('menu.contact') }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -155,5 +148,18 @@ function closeDrawer() {
 
 .close-btn {
   margin-left: auto;
+}
+
+/* Style pour aligner les icônes */
+.v-list-item {
+  padding-left: 16px;
+}
+
+.v-list-item__prepend {
+  margin-right: 32px;
+}
+
+.v-list-group__items .v-list-item {
+  padding-left: 40px;
 }
 </style>
