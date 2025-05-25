@@ -163,30 +163,30 @@
       </v-card>
 
       <!-- Deuxième carte - Version améliorée -->
-<div class="account-section">
-  <!-- Titre placé avant la carte -->
-  <div class="section-header">
-    <h3>{{ $t('account.title') }}</h3>
-  </div>
-  
-  <!-- La carte elle-même -->
-  <v-card class="account-card" flat>
-    <v-list dense>
-      <v-list-item
-        v-for="(item, index) in accountItems"
-        :key="'account-'+index"
-        :to="item.route"
-        link
-        @click="closeDrawer"
-      >
-        <template v-slot:prepend>
-          <v-icon>{{ item.icon }}</v-icon>
-        </template>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-card>
-</div>
+        <div class="account-section">
+          <!-- Titre placé avant la carte -->
+          <div class="section-header">
+            <h3>{{ $t('account.title') }}</h3>
+          </div>
+          
+          <!-- La carte elle-même -->
+          <v-card class="account-card" flat>
+            <v-list dense>
+              <v-list-item
+                v-for="(item, index) in accountItems"
+                :key="'account-'+index"
+                :to="item.route"
+                link
+                @click="closeDrawer"
+              >
+                <template v-slot:prepend>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </template>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </div>
 
 
       <!-- Troisième carte pour la connexion -->
@@ -361,10 +361,53 @@ function closeDrawer() {
   color: #2c3e50;
 }
 
+/* Styles optimisés pour account-card */
+.account-section {
+  margin-bottom: 12px;
+}
+
 .account-card {
   border-radius: 0 0 4px 4px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 0; /* Ajusté car géré par account-section */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  padding: 4px 0;
+}
+
+.account-card .v-list {
+  padding: 2px 0;
+}
+
+.account-card .v-list-item {
+  min-height: 36px;
+  padding-left: 12px;
+  margin: 0 4px;
+  border-radius: 6px;
+}
+
+.account-card .v-list-item__prepend {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.account-card .v-list-item-title {
+  font-size: 0.825rem;
+  font-weight: 500;
+}
+
+/* Version compacte pour mobile */
+@media (max-width: 599px) {
+  .account-card .v-list-item {
+    min-height: 32px;
+  }
+  
+  .account-card .v-list-item__prepend {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .account-card .v-list-item-title {
+    font-size: 0.8rem;
+  }
 }
 
 .social-card, .account-card {
