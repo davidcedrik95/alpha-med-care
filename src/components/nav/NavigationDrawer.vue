@@ -162,42 +162,57 @@
         </v-list>
       </v-card>
 
-      <!-- Deuxième carte - Version améliorée -->
-        <div class="account-section">
-          <!-- Titre placé avant la carte -->
-          <div class="section-header">
-            <h3>{{ $t('account.title') }}</h3>
-          </div>
-          
-          <!-- La carte elle-même -->
-          <v-card class="account-card" flat>
-            <v-list dense>
-              <v-list-item
-                v-for="(item, index) in accountItems"
-                :key="'account-'+index"
-                :to="item.route"
-                link
-                @click="closeDrawer"
-              >
-                <template v-slot:prepend>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </template>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-card>
+      <!-- Deuxième carte - Compte utilisateur -->
+      <div class="account-section">
+        <!-- Titre placé avant la carte -->
+        <div class="section-header">
+          <h3>{{ $t('account.title') }}</h3>
         </div>
+        
+        <!-- La carte elle-même -->
+        <v-card class="account-card" flat>
+          <v-list dense>
+            <v-list-item
+              v-for="(item, index) in accountItems"
+              :key="'account-'+index"
+              :to="item.route"
+              link
+              @click="closeDrawer"
+            >
+              <template v-slot:prepend>
+                <v-icon>{{ item.icon }}</v-icon>
+              </template>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </div>
 
-
-      <!-- Troisième carte pour la connexion -->
-      <v-card class="social-card" flat>
-        <!-- Liens Anmelden et Registrieren -->
-        <v-card-actions class="auth-links">
-          <v-btn variant="text" class="auth-link" to="/login">Anmelden</v-btn>
-          <v-divider vertical></v-divider>
-          <v-btn variant="text" class="auth-link" to="/register">Registrieren</v-btn>
-        </v-card-actions>
-      </v-card>
+      <!-- Troisième carte - Authentification -->
+      <div class="auth-section">
+        <!-- Titre placé avant la carte -->
+        <div class="section-header">
+          <h3>{{ $t('auth.authentication') }}</h3>
+        </div>
+        
+        <!-- La carte elle-même -->
+        <v-card class="auth-card" flat>
+          <v-list dense>
+            <v-list-item
+              v-for="(item, index) in authItems"
+              :key="'auth-'+index"
+              :to="item.route"
+              link
+              @click="closeDrawer"
+            >
+              <template v-slot:prepend>
+                <v-icon>{{ item.icon }}</v-icon>
+              </template>
+              <v-list-item-title>{{ $t(`auth.${item.key}`) }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </div>
     </div>
 
     <!-- Footer avec icônes réseaux sociaux -->
@@ -284,6 +299,11 @@ const accountItems = [
   { title: 'Kontakteinstellungen', icon: 'mdi-account-cog', route: '/contact-settings' }
 ]
 
+const authItems = [
+  { key: "login", icon: "mdi-login", route: "/login" },
+  { key: "register", icon: "mdi-account-plus", route: "/register" }
+]
+
 function closeDrawer() {
   drawer.value = false
 }
@@ -368,7 +388,7 @@ function closeDrawer() {
 
 .account-card {
   border-radius: 0 0 4px 4px;
-  margin-bottom: 0; /* Ajusté car géré par account-section */
+  margin-bottom: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,0.08);
   padding: 4px 0;
 }
@@ -394,28 +414,41 @@ function closeDrawer() {
   font-weight: 500;
 }
 
-/* Version compacte pour mobile */
-@media (max-width: 599px) {
-  .account-card .v-list-item {
-    min-height: 32px;
-  }
-  
-  .account-card .v-list-item__prepend {
-    font-size: 16px;
-    margin-right: 10px;
-  }
-  
-  .account-card .v-list-item-title {
-    font-size: 0.8rem;
-  }
+/* Styles pour la section d'authentification */
+.auth-section {
+  margin-bottom: 12px;
 }
 
-.social-card, .account-card {
-  background: #fff;
-  border-top: 1px solid #d1d9e6;
-  box-shadow: 0 -2px 6px rgb(0 0 0 / 0.04);
-  padding: 12px 24px;
-  margin-bottom: 8px;
+.auth-card {
+  border-radius: 0 0 4px 4px;
+  margin-bottom: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  padding: 4px 0;
+}
+
+.auth-card .v-list {
+  padding: 2px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.auth-card .v-list-item {
+  min-height: 36px;
+  padding-left: 12px;
+  margin: 0 4px;
+  border-radius: 6px;
+  width: calc(50% - 8px);
+  box-sizing: border-box;
+}
+
+.auth-card .v-list-item__prepend {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.auth-card .v-list-item-title {
+  font-size: 0.825rem;
+  font-weight: 500;
 }
 
 .v-list-item {
@@ -462,28 +495,6 @@ function closeDrawer() {
   font-size: 20px;
 }
 
-/* Auth links */
-.auth-links {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  border-top: 1px solid #d1d9e6;
-}
-
-.auth-link {
-  flex: 1;
-  text-align: center;
-  text-decoration: underline;
-  color: #1976d2;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.auth-link:hover {
-  color: #0d47a1;
-}
-
 /* Social Footer */
 .social-footer {
   padding: 16px 0;
@@ -515,6 +526,26 @@ function closeDrawer() {
   
   .title {
     font-size: 1.1rem;
+  }
+
+  .account-card .v-list-item,
+  .auth-card .v-list-item {
+    min-height: 32px;
+  }
+  
+  .account-card .v-list-item__prepend,
+  .auth-card .v-list-item__prepend {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .account-card .v-list-item-title,
+  .auth-card .v-list-item-title {
+    font-size: 0.8rem;
+  }
+
+  .auth-card .v-list-item {
+    width: calc(50% - 6px);
   }
 }
 </style>
