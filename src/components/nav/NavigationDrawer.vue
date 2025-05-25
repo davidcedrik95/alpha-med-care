@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer
+ <v-navigation-drawer
     v-model="drawer"
     app
     temporary
@@ -11,7 +11,7 @@
     <!-- Barre de navigation header -->
     <div class="drawer-header">
       <div class="drawer-header-content">
-        <v-icon size="36" color="#626363">mdi-menu-open</v-icon>
+        <v-icon size="36" color="white">mdi-menu-open</v-icon>
         <span class="title">{{ $t('app.title') }}</span>
         <v-btn
           icon
@@ -20,7 +20,7 @@
           aria-label="Close drawer"
           class="close-btn"
         >
-          <v-icon>mdi-close</v-icon>
+          <v-icon color="white">mdi-close</v-icon>
         </v-btn>
       </div>
     </div>
@@ -258,18 +258,45 @@
     <!-- Footer avec icônes réseaux sociaux -->
     <footer class="social-footer">
       <div class="social-links">
-        <v-btn icon variant="text" aria-label="Facebook" color="#3b5998">
-          <v-icon>mdi-facebook</v-icon>
+        <v-btn 
+          icon 
+          variant="text" 
+          aria-label="Facebook"
+          class="social-icon"
+          color="white"
+        >
+          <v-icon size="24">mdi-facebook</v-icon>
         </v-btn>
-        <v-btn icon variant="text" aria-label="Twitter" color="#1da1f2">
-          <v-icon>mdi-twitter</v-icon>
+        <v-btn 
+          icon 
+          variant="text" 
+          aria-label="Twitter"
+          class="social-icon"
+          color="white"
+        >
+          <v-icon size="24">mdi-twitter</v-icon>
         </v-btn>
-        <v-btn icon variant="text" aria-label="Instagram" color="#e1306c">
-          <v-icon>mdi-instagram</v-icon>
+        <v-btn 
+          icon 
+          variant="text" 
+          aria-label="LinkedIn"
+          class="social-icon"
+          color="white"
+        >
+          <v-icon size="24">mdi-linkedin</v-icon>
         </v-btn>
-        <v-btn icon variant="text" aria-label="WhatsApp" color="#25D366">
-          <v-icon>mdi-whatsapp</v-icon>
+        <v-btn 
+          icon 
+          variant="text" 
+          aria-label="YouTube"
+          class="social-icon"
+          color="white"
+        >
+          <v-icon size="24">mdi-youtube</v-icon>
         </v-btn>
+      </div>
+      <div class="copyright">
+        © {{ new Date().getFullYear() }} Medical Company
       </div>
     </footer>
   </v-navigation-drawer>
@@ -378,22 +405,23 @@ function closeDrawer() {
   drawer.value = false
 }
 </script>
-
 <style scoped>
 .navigation-drawer {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: linear-gradient(135deg, #f0f4f8, #e6ebf1);
-  box-shadow: 0 6px 20px rgb(0 0 0 / 0.08);
+  background: #0d2b6b; /* Bleu médical foncé principal */
+  background: linear-gradient(135deg, #0d2b6b 0%, #0a1942 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .drawer-header {
-  background-color: #ffffff;
-  padding: 12px 16px;
+  background-color: rgba(13, 43, 107, 0.95);
+  padding: 14px 16px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   position: sticky;
   top: 0;
   z-index: 2;
@@ -408,265 +436,194 @@ function closeDrawer() {
 
 .title {
   font-weight: 600;
-  font-size: 1.2rem;
-  color: #333;
+  font-size: 1.25rem;
+  color: white;
   flex-grow: 1;
+  letter-spacing: 0.5px;
 }
 
 .close-btn {
   margin-left: auto;
-  color: #757575;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.close-btn:hover {
+  opacity: 1;
 }
 
 .drawer-content {
   flex: 1;
   overflow-y: auto;
-  padding: 8px;
+  padding: 12px 8px;
 }
 
-/* Styles optimisés pour la première carte (menu principal) */
-.menu-card {
-  background: #ffffff;
-  box-shadow: inset 0 0 10px rgb(0 0 0 / 0.04);
-  padding-top: 4px;
-  transition: box-shadow 0.3s ease;
-  margin-bottom: 8px;
-  border-radius: 8px;
+/* Styles pour toutes les cartes */
+.menu-card,
+.account-card,
+.auth-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.menu-card:hover {
-  box-shadow: inset 0 0 20px rgb(0 0 0 / 0.08);
+.menu-card:hover,
+.account-card:hover,
+.auth-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.menu-card .v-list {
-  padding: 0;
-}
-
-.menu-card .v-list-item {
-  min-height: 40px;
-  padding: 0 12px;
-  margin: 1px 8px;
-  transition: background-color 0.25s ease;
-  border-radius: 6px;
-}
-
-.menu-card .v-list-item:hover {
-  background-color: #dde6f3;
-  cursor: pointer;
-}
-
-.menu-card .v-list-item--active, 
-.menu-card .v-list-item--active:hover {
-  background-color: #1976d2 !important;
+/* Styles communs pour les listes */
+.v-list {
+  background: transparent !important;
   color: white !important;
+  padding: 4px 0 !important;
 }
 
-.menu-card .v-list-item--active .v-icon,
-.menu-card .v-list-item--active .v-list-item-title {
+.v-list-item {
   color: white !important;
+  min-height: 48px;
+  padding: 0 16px !important;
 }
 
-.menu-card .v-list-item__prepend {
+.v-list-item__prepend {
   margin-right: 16px;
-  color: #4a6572;
-  font-size: 20px;
 }
 
-.menu-card .v-list-item-title {
-  font-size: 0.875rem;
+.v-list-item__prepend .v-icon {
+  color: rgba(255, 255, 255, 0.9) !important;
+  opacity: 0.9;
+}
+
+.v-list-item-title {
+  font-size: 0.9rem;
   font-weight: 500;
+  letter-spacing: 0.2px;
+  color: white !important;
 }
 
-.menu-card .v-list-group__items .v-list-item {
-  padding-left: 36px;
-  margin: 1px 8px;
+.v-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-.menu-card .v-list-group--sub-group .v-list-item {
-  padding-left: 48px;
-  margin: 1px 8px;
+.v-list-item--active {
+  background-color: #1e88e5 !important;
+  color: white !important;
 }
 
-.menu-card .v-list-group--sub-group .v-list-item__prepend {
-  margin-right: 16px;
-  color: #5a7d8a;
-  font-size: 18px;
+/* Styles spécifiques pour les groupes */
+.v-list-group__items .v-list-item {
+  padding-left: 48px !important;
 }
 
-/* Style pour les sections */
+.v-list-group__items .v-list-item__prepend {
+  margin-right: 12px;
+}
+
+/* Section Header */
 .section-header {
-  background: linear-gradient(135deg, #f0f4f8, #e6ebf1);
-  padding: 10px 16px;
-  margin: 8px 0 0 0;
-  border-radius: 4px 4px 0 0;
+  background: linear-gradient(to right, rgba(13, 43, 107, 0.9), rgba(30, 136, 229, 0.4));
+  padding: 12px 16px;
+  margin: 0 0 4px 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .section-header h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Styles optimisés pour account-card */
-.account-section {
-  margin-bottom: 12px;
-}
-
-.account-card {
-  border-radius: 0 0 4px 4px;
-  margin-bottom: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-  padding: 2px 0;
-}
-
-.account-card .v-list {
-  padding: 0;
-}
-
-.account-card .v-list-item {
-  min-height: 36px;
-  padding: 0 12px;
-  margin: 1px 4px;
-  border-radius: 6px;
-}
-
-.account-card .v-list-item__prepend {
-  margin-right: 12px;
-  font-size: 18px;
-}
-
-.account-card .v-list-item-title {
-  font-size: 0.825rem;
-  font-weight: 500;
-}
-
-
-/* Ajoutez ces styles CSS : */
-.account-card .v-list-group__items .v-list-item {
-  padding-left: 36px;
-  min-height: 32px;
-}
-
-.account-card .v-list-item__append {
-  margin-left: 8px;
-}
-
-.account-card .v-list-group__items .v-list-item-title {
-  font-size: 0.8rem;
-}
-
-/* Animation pour l'icône plus/moins */
-.account-card .v-list-group--active .v-icon:last-child {
-  transform: rotate(45deg);
-  transition: transform 0.3s ease;
-}
-
-/* Style personnalisé pour les séparateurs */
-.account-card .v-divider {
-  margin: 4px 16px;
-  opacity: 0.6;
-}
-
-/* Ou pour un style plus discret */
-.account-card .custom-divider {
-  border-color: rgba(0, 0, 0, 0.12);
-  border-width: 1px;
-  width: calc(100% - 32px);
-  margin: 4px 16px;
-}
-/* Styles pour la section d'authentification */
-.auth-section {
-  margin-bottom: 12px;
-}
-
-.auth-card {
-  border-radius: 0 0 4px 4px;
-  margin-bottom: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-  padding: 2px 0;
-}
-
-.auth-card .v-list {
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.auth-card .v-list-item {
-  min-height: 36px;
-  padding: 0 12px;
-  margin: 1px 4px;
-  border-radius: 6px;
-  width: calc(50% - 8px);
-  box-sizing: border-box;
-}
-
-.auth-card .v-list-item__prepend {
-  margin-right: 12px;
-  font-size: 18px;
-}
-
-.auth-card .v-list-item-title {
-  font-size: 0.825rem;
-  font-weight: 500;
+/* Divider personnalisé */
+.v-divider {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  margin: 8px 16px !important;
 }
 
 /* Social Footer */
 .social-footer {
-  padding: 12px 0;
-  
+  padding: 20px 0 12px;
+  background: rgba(13, 43, 107, 0.9);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 20px;
+  margin-bottom: 12px;
 }
 
-.social-links .v-btn:hover .v-icon {
-  transform: scale(1.2);
-  transition: transform 0.3s ease;
+.social-icon {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive tweaks */
+.social-icon:hover {
+  transform: translateY(-2px) scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.social-icon .v-icon {
+  font-size: 20px;
+  color: white;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive */
 @media (max-width: 599px) {
   .navigation-drawer {
     height: 100vh !important;
     top: 0 !important;
   }
-  
+
   .drawer-header {
-    padding: 10px 12px;
+    padding: 12px;
   }
-  
+
   .title {
     font-size: 1.1rem;
   }
 
-  .menu-card .v-list-item {
-    min-height: 36px;
-    padding: 0 10px;
-  }
-  
-  .account-card .v-list-item,
-  .auth-card .v-list-item {
-    min-height: 32px;
-  }
-  
-  .account-card .v-list-item__prepend,
-  .auth-card .v-list-item__prepend {
-    font-size: 16px;
-    margin-right: 10px;
-  }
-  
-  .account-card .v-list-item-title,
-  .auth-card .v-list-item-title {
-    font-size: 0.8rem;
+  .v-list-item {
+    min-height: 44px;
+    padding: 0 12px !important;
   }
 
-  .auth-card .v-list-item {
-    width: calc(50% - 6px);
+  .social-links {
+    gap: 16px;
+  }
+
+  .social-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-icon .v-icon {
+    font-size: 18px;
   }
 }
 </style>
