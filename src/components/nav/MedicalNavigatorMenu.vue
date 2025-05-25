@@ -2,14 +2,13 @@
   <v-app-bar>
     <v-container class="d-flex align-center">
       <!-- Logo / Titre du site -->
-      
       <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
    
       <v-spacer></v-spacer>
 
       <!-- Menu principal -->
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn variant="text" to="/" class="text-none nav-btn">{{ $t('menu.home') }}</v-btn>
+        <v-btn variant="text" to="/" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.home') }}</v-btn>
 
         <!-- Mega-menu -->
         <v-menu
@@ -62,8 +61,8 @@
                         :key="itemIndex"
                         :title="$t(`menu.items.${item.key}`)"
                         class="px-0 list-item service-item"
-                        link
-                        @click="navigateToService(item.route)"
+                        :to="item.route"
+                        active-class="router-link-active"
                       >
                         <template v-slot:prepend>
                           <v-icon :icon="item.icon" size="small" class="mr-2"></v-icon>
@@ -80,8 +79,8 @@
           </v-card>
         </v-menu>
 
-        <v-btn variant="text" to="/about" class="text-none nav-btn">{{ $t('menu.about') }}</v-btn>
-        <v-btn variant="text" to="/contact" class="text-none nav-btn">{{ $t('menu.contact') }}</v-btn>
+        <v-btn variant="text" to="/about" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.about') }}</v-btn>
+        <v-btn variant="text" to="/contact" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.contact') }}</v-btn>
       </v-toolbar-items>
 
       <!-- Sélecteur de langue -->
@@ -106,6 +105,7 @@
             :key="locale"
             @click="changeLocale(locale)"
             class="language-item"
+            :class="{ 'active': currentLocale === locale }"
           >
             <template v-slot:prepend>
               <img
@@ -230,38 +230,57 @@ const menuCategories = [
 .v-app-bar {
   background-color: #b2d6ee !important;
   color: #252424 !important;
-  z-index: 999 !important; /* Juste en dessous du header */
-  top: 56px !important; /* Ajustez selon la hauteur de votre header */
+  z-index: 999 !important;
+  top: 56px !important;
   position: sticky !important;
-  overflow: visible !important; /* Important pour les petits écrans */
+  overflow: visible !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .app-title {
-  white-space: nowrap;       /* Empêche le retour à la ligne */
-  overflow: visible;         /* Permet au texte de déborder */
-  text-overflow: unset;      /* Désactive l'ellipsis (...) */
-  min-width: max-content;    /* S'adapte à la longueur du texte */
-  margin-right: 16px;        /* Espacement avant le v-spacer */
-  font-size: 1.25rem;        /* Taille cohérente avec le design */
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  min-width: max-content;
+  margin-right: 16px;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #252424 !important;
 }
+
+/* Navigation buttons */
 .nav-btn {
   font-size: 1rem;
   font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-btn:hover {
-  color: #005b96 !important;
-}
-
-.active-link {
-  color: #005b96 !important;
+  transition: all 0.3s ease;
   position: relative;
+  letter-spacing: normal;
 }
 
-.active-link::after {
+.nav-btn:hover,
+.nav-btn.router-link-active {
+  color: #005b96 !important;
+  background-color: transparent !important;
+}
+
+.nav-btn.router-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background-color: #005b96;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn.active-link {
+  color: #005b96 !important;
+}
+
+.nav-btn.active-link::after {
   content: '';
   position: absolute;
   bottom: 8px;
@@ -273,12 +292,15 @@ const menuCategories = [
   border-radius: 2px;
 }
 
+/* Mega menu styles */
 .mega-menu {
   max-width: 1280px;
   margin-top: 14px;
   background-color: #ddeaf1;
   left: 50% !important;
   transform: translateX(-50%) !important;
+  animation: fadeInDown 0.3s ease-out;
+  border-radius: 0 0 8px 8px;
 }
 
 .mega-menu-container {
@@ -291,10 +313,121 @@ const menuCategories = [
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 1;
 }
 
 .close-megamenu {
   background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease;
+}
+
+.close-megamenu:hover {
+  transform: rotate(90deg);
+}
+
+/* Category styles */
+.category-title {
+  color: #005b96;
+  font-weight: 600;
+}
+
+.category-divider {
+  opacity: 0.8;
+}
+
+.category-list {
+  background-color: transparent !important;
+}
+
+/* Service items */
+.service-item {
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.service-item:hover {
+  background-color: rgba(0, 91, 150, 0.1) !important;
+}
+
+.service-item:active {
+  transform: scale(0.98);
+}
+
+.service-item.router-link-active {
+  background-color: rgba(0, 91, 150, 0.1) !important;
+  color: #005b96 !important;
+}
+
+.service-item.router-link-active .v-icon {
+  color: #005b96 !important;
+}
+
+.service-item .v-list-item__prepend .v-icon {
+  transition: color 0.2s ease;
+}
+
+.service-item:hover .v-icon,
+.service-item.router-link-active .v-icon {
+  color: #005b96 !important;
+}
+
+/* Language selector */
+.language-btn {
+  font-weight: 500;
+}
+
+.language-list {
+  padding: 8px 0;
+}
+
+.language-item {
+  transition: all 0.2s ease;
+  min-height: 40px;
+}
+
+.language-item:hover {
+  background-color: rgba(0, 91, 150, 0.1) !important;
+}
+
+.language-item.active {
+  background-color: rgba(0, 91, 150, 0.1) !important;
+  color: #005b96;
+}
+
+.flag-icon {
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .v-app-bar {
+    top: 0 !important;
+  }
+  
+  .app-title {
+    font-size: 1.1rem;
+    margin-right: 12px;
+  }
+  
+  .mega-menu {
+    margin-top: 0;
+    border-radius: 0;
+  }
 }
 
 @media (max-width: 600px) {
@@ -306,6 +439,24 @@ const menuCategories = [
   .nav-btn {
     padding-left: 8px;
     padding-right: 8px;
+    font-size: 0.9rem;
   }
+  
+  .mega-menu-container {
+    padding: 0 8px;
+  }
+  
+  .category-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Global transitions */
+.v-list-item {
+  transition: all 0.2s ease;
+}
+
+.v-btn:active {
+  transform: scale(0.98);
 }
 </style>
