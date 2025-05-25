@@ -9,11 +9,17 @@
     <v-list>
       <!-- En-tête -->
       <v-list-item class="drawer-header">
-        <template v-slot:prepend>
-          <v-icon icon="mdi-chair-school" size="large" style="color: #626363;"/>
-        </template>
-        <v-list-item-title class="app-title">{{ $t('app.title') }}</v-list-item-title>
+        <div class="drawer-header-content">
+          <v-icon icon="mdi-chair-school" size="large" style="color: #626363;" />
+          <span class="app-title" style="margin-left: 8px;">{{ $t('app.title') }}</span>
+          <v-spacer />
+          <v-btn icon @click="model = false" variant="text">
+            <v-icon icon="mdi-close" />
+          </v-btn>
+        </div>
       </v-list-item>
+
+
 
       <v-divider/>
 
@@ -113,6 +119,14 @@ const menuCategories = [
 .mobile-drawer {
  z-index: 1002; /* Entre le header (1000) et la recherche mobile (1001) */
 }
+
+.drawer-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 
 .drawer-header {
   background: rgba(178, 214, 238, 0.2);
