@@ -296,7 +296,7 @@ const accountItems = [
   { title: 'Meine Bestellungen', icon: 'mdi-package-variant', route: '/orders' },
   { title: 'Meine Rücksendungen', icon: 'mdi-undo-variant', route: '/returns' },
   { title: 'Informationen zur Rücksendungen', icon: 'mdi-information', route: '/return-info' },
-  { title: 'Kontakteinstellungen', icon: 'mdi-account-cog', route: '/contact-settings' }
+  { title: 'Kontakteinstellungen', icon: 'mdi-message-settings', route: '/contact-settings' }
 ]
 
 const authItems = [
