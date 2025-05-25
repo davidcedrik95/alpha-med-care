@@ -207,6 +207,38 @@
             <v-list-item-title class="account-text">{{ $t(`account.${item.key}`) }}</v-list-item-title>
           </v-list-item>
         </v-list>
+
+        <!-- Carte d'authentification -->
+        <v-card class="auth-card mx-4 my-4">
+          <v-card-title class="auth-card-title">
+            <v-icon left>mdi-account-key</v-icon>
+            {{ $t('auth.authentication') }}
+          </v-card-title>
+          <v-card-text class="auth-card-actions">
+            <v-btn
+              block
+              variant="tonal"
+              color="primary"
+              class="auth-action-btn"
+              to="/login"
+              @click="closeDrawer"
+            >
+              <v-icon left>mdi-login</v-icon>
+              {{ $t('auth.login') }}
+            </v-btn>
+            <v-btn
+              block
+              variant="outlined"
+              color="primary"
+              class="auth-action-btn mt-3"
+              to="/register"
+              @click="closeDrawer"
+            >
+              <v-icon left>mdi-account-plus</v-icon>
+              {{ $t('auth.register') }}
+            </v-btn>
+          </v-card-text>
+        </v-card>
       </div>
 
       <!-- Footer avec réseaux sociaux -->
@@ -247,27 +279,6 @@
             color="#25D366"
           >
             <v-icon size="28">mdi-whatsapp</v-icon>
-          </v-btn>
-        </div>
-
-        <!-- Connexion -->
-        <div class="auth-section">
-          <v-btn 
-            variant="text" 
-            class="auth-btn" 
-            to="/login"
-            size="small"
-          >
-            {{ $t('auth.login') }}
-          </v-btn>
-          <v-divider vertical class="auth-divider"></v-divider>
-          <v-btn 
-            variant="text" 
-            class="auth-btn" 
-            to="/register"
-            size="small"
-          >
-            {{ $t('auth.register') }}
           </v-btn>
         </div>
       </div>
@@ -525,6 +536,47 @@ function closeDrawer() {
     }
   }
 
+  .auth-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .auth-card-title {
+      background-color: #f8fafc;
+      color: #4a6cf7;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .auth-card-actions {
+      padding: 16px;
+      background-color: white;
+    }
+
+    .auth-action-btn {
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 500;
+      height: 44px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+
   .drawer-footer {
     padding: 16px;
     border-top: 1px solid #e2e8f0;
@@ -542,32 +594,6 @@ function closeDrawer() {
         &:hover {
           transform: scale(1.1);
         }
-      }
-    }
-    
-    .auth-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      
-      .auth-btn {
-        color: #4a6cf7;
-        font-weight: 500;
-        font-size: 0.85rem;
-        text-transform: none;
-        letter-spacing: normal;
-        padding: 0 8px;
-        min-width: auto;
-        
-        &:hover {
-          color: #3a5bd9;
-        }
-      }
-      
-      .auth-divider {
-        height: 20px;
-        opacity: 0.5;
       }
     }
   }
