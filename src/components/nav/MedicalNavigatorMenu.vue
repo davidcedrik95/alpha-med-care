@@ -2,6 +2,8 @@
   <v-app-bar>
     <v-container class="d-flex align-center">
       <!-- Logo / Titre du site -->
+      
+      <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
    
       <v-spacer></v-spacer>
 
@@ -231,9 +233,19 @@ const menuCategories = [
   z-index: 999 !important; /* Juste en dessous du header */
   top: 56px !important; /* Ajustez selon la hauteur de votre header */
   position: sticky !important;
+  overflow: visible !important; /* Important pour les petits écrans */
 }
 
-
+.app-title {
+  white-space: nowrap;       /* Empêche le retour à la ligne */
+  overflow: visible;         /* Permet au texte de déborder */
+  text-overflow: unset;      /* Désactive l'ellipsis (...) */
+  min-width: max-content;    /* S'adapte à la longueur du texte */
+  margin-right: 16px;        /* Espacement avant le v-spacer */
+  font-size: 1.25rem;        /* Taille cohérente avec le design */
+  font-weight: 600;
+  color: #252424 !important;
+}
 .nav-btn {
   font-size: 1rem;
   font-weight: 500;
