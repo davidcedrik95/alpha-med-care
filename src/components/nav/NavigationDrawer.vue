@@ -163,31 +163,71 @@
       </v-card>
 
       <!-- Deuxième carte - Compte utilisateur -->
-      <div class="account-section">
-        <!-- Titre placé avant la carte -->
-        <div class="section-header">
-          <h3>{{ $t('account.title') }}</h3>
-        </div>
-        
-        <!-- La carte elle-même -->
-        <v-card class="account-card" flat>
-          <v-list dense>
-            <v-list-item
-              v-for="(item, index) in accountItems"
-              :key="'account-'+index"
-              :to="item.route"
-              link
-              @click="closeDrawer"
-            >
-              <template v-slot:prepend>
-                <v-icon>{{ item.icon }}</v-icon>
-              </template>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </div>
-
+      <!-- Dans le template, modifiez la partie account-section comme ceci : -->
+<div class="account-section">
+  <!-- Titre placé avant la carte -->
+  <div class="section-header">
+    <h3>{{ $t('account.title') }}</h3>
+  </div>
+  
+  <!-- La carte elle-même -->
+  <v-card class="account-card" flat>
+    <v-list dense>
+      <v-list-item
+        v-for="(item, index) in accountItems"
+        :key="'account-'+index"
+        :to="item.route"
+        link
+        @click="closeDrawer"
+      >
+        <template v-slot:prepend>
+          <v-icon>{{ item.icon }}</v-icon>
+        </template>
+        <v-list-item-title>{{ item.title }}</v-list-item-title>
+      </v-list-item>
+      
+      <!-- Séparateur -->
+      <v-divider color="#e0e0e0" thickness="1" class="my-2"></v-divider>
+      
+      <!-- Nouveaux éléments dépliables -->
+      <!-- Modifiez la partie des éléments dépliables dans le template comme ceci : -->
+<v-list-group
+  v-for="(item, index) in infoItems"
+  :key="'info-'+index"
+  :value="item.title"
+>
+  <template v-slot:activator="{ props }">
+    <v-list-item v-bind="props">
+      <template v-slot:prepend>
+        <v-icon>{{ item.icon }}</v-icon>
+      </template>
+      <v-list-item-title>{{ item.title }}</v-list-item-title>
+      <template v-slot:append>
+        <v-icon>mdi-plus</v-icon>
+      </template>
+    </v-list-item>
+    <!-- Ligne horizontale sous chaque titre -->
+    <v-divider 
+      v-if="index < infoItems.length - 1" 
+      color="#e0e0e0" 
+      thickness="1" 
+      class="my-1"
+    ></v-divider>
+  </template>
+  
+  <v-list-item
+    v-for="(subItem, subIndex) in item.items"
+    :key="'subinfo-'+index+'-'+subIndex"
+    :to="subItem.route"
+    link
+    @click="closeDrawer"
+  >
+    <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+  </v-list-item>
+</v-list-group>
+    </v-list>
+  </v-card>
+</div>
       <!-- Troisième carte - Authentification -->
       <div class="auth-section">
         <!-- Titre placé avant la carte -->
@@ -297,6 +337,32 @@ const accountItems = [
   { title: 'Meine Rücksendungen', icon: 'mdi-undo-variant', route: '/returns' },
   { title: 'Informationen zur Rücksendungen', icon: 'mdi-information', route: '/return-info' },
   { title: 'Kontakteinstellungen', icon: 'mdi-message-settings', route: '/contact-settings' }
+]
+
+// Dans le script, ajoutez cette nouvelle propriété :
+const infoItems = [
+  {
+    title: 'Hilfe & Informationen',
+    icon: 'mdi-help-circle',
+    items: [
+      { title: 'FAQ', route: '/help/faq' },
+      { title: 'Versandinformationen', route: '/help/shipping' },
+      { title: 'Zahlungsmethoden', route: '/help/payment' },
+      { title: 'Datenschutz', route: '/help/privacy' },
+      { title: 'AGB', route: '/help/terms' }
+    ]
+  },
+  {
+    title: 'Mehr Über alpha med care',
+    icon: 'mdi-information',
+    items: [
+      { title: 'Über uns', route: '/about' },
+      { title: 'Karriere', route: '/career' },
+      { title: 'Standorte', route: '/locations' },
+      { title: 'Partner', route: '/partners' },
+      { title: 'Presse', route: '/press' }
+    ]
+  }
 ]
 
 const authItems = [
@@ -471,6 +537,40 @@ function closeDrawer() {
   font-weight: 500;
 }
 
+
+/* Ajoutez ces styles CSS : */
+.account-card .v-list-group__items .v-list-item {
+  padding-left: 36px;
+  min-height: 32px;
+}
+
+.account-card .v-list-item__append {
+  margin-left: 8px;
+}
+
+.account-card .v-list-group__items .v-list-item-title {
+  font-size: 0.8rem;
+}
+
+/* Animation pour l'icône plus/moins */
+.account-card .v-list-group--active .v-icon:last-child {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+/* Style personnalisé pour les séparateurs */
+.account-card .v-divider {
+  margin: 4px 16px;
+  opacity: 0.6;
+}
+
+/* Ou pour un style plus discret */
+.account-card .custom-divider {
+  border-color: rgba(0, 0, 0, 0.12);
+  border-width: 1px;
+  width: calc(100% - 32px);
+  margin: 4px 16px;
+}
 /* Styles pour la section d'authentification */
 .auth-section {
   margin-bottom: 12px;
