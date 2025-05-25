@@ -68,6 +68,19 @@
     "en": "Englisch",
     "fr": "Französisch"
   },
+  
+  "account": {
+  "myAccount": "Mein Konto",
+  "orders": "Meine Bestellungen",
+  "returns": "Meine Rücksendungen",
+  "returnInfo": "Informationen zur Rücksendungen",
+  "settings": "Kontakteinstellungen"
+},
+
+  "auth": {
+  "login": "Anmelden",
+  "register": "Registrieren"
+  },
 
   "footer": {
     "address": "Adresse",

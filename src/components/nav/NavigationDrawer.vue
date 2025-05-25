@@ -174,18 +174,33 @@
           <v-btn icon variant="text" aria-label="Instagram">
             <v-icon color="#e1306c">mdi-instagram</v-icon>
           </v-btn>
-          <v-btn icon variant="text" aria-label="LinkedIn">
-            <v-icon color="#0077b5">mdi-linkedin</v-icon>
-          </v-btn>
         </div>
       </v-card-title>
 
       <!-- Liens Anmelden et Registrieren -->
       <v-card-actions class="auth-links">
-        <v-btn variant="text" class="auth-link" to="/login">Anmelden</v-btn>
+        <v-btn variant="text" class="auth-link" to="/login">{{ $t('auth.login') }}</v-btn>
         <v-divider vertical></v-divider>
-        <v-btn variant="text" class="auth-link" to="/register">Registrieren</v-btn>
+        <v-btn variant="text" class="auth-link" to="/register">{{ $t('auth.register') }}</v-btn>
       </v-card-actions>
+    </v-card>
+
+    <!-- Troisième carte pour les options de compte -->
+    <v-card class="account-card" flat>
+      <v-list dense>
+        <v-list-item
+          v-for="(item, index) in accountItems"
+          :key="'account-'+index"
+          :to="item.route"
+          link
+          @click="closeDrawer"
+        >
+          <template v-slot:prepend>
+            <v-icon>{{ item.icon }}</v-icon>
+          </template>
+          <v-list-item-title>{{ $t(`account.${item.key}`) }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </v-card>
   </v-navigation-drawer>
 </template>
@@ -210,7 +225,7 @@ const updateWidth = () => (windowWidth.value = window.innerWidth)
 onMounted(() => window.addEventListener('resize', updateWidth))
 onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
-const drawerWidth = computed(() => (windowWidth.value < 600 ? windowWidth.value : 300))
+const drawerWidth = computed(() => (windowWidth.value < 600 ? windowWidth.value : 320))
 
 const menuCategories = [
   {
@@ -246,6 +261,14 @@ const menuCategories = [
   }
 ]
 
+const accountItems = [
+  { key: "myAccount", icon: "mdi-account", route: "/account" },
+  { key: "orders", icon: "mdi-package-variant", route: "/orders" },
+  { key: "returns", icon: "mdi-truck-return", route: "/returns" },
+  { key: "returnInfo", icon: "mdi-information", route: "/return-info" },
+  { key: "settings", icon: "mdi-account-cog", route: "/contact-settings" }
+]
+
 function closeDrawer() {
   drawer.value = false
 }
@@ -256,21 +279,32 @@ function closeDrawer() {
   background-color: #f5f7fa;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .menu-card {
   flex: 1;
   overflow-y: auto;
+  background-color: #ffffff;
+  border-radius: 0;
 }
 
 .social-card {
   border-top: 1px solid #e0e0e0;
-  padding: 16px 0;
+  padding: 12px 0;
+  background-color: #f8f9fa;
+}
+
+.account-card {
+  border-top: 1px solid #e0e0e0;
+  background-color: #ffffff;
 }
 
 .drawer-header {
-  border-bottom: 1px solid #ddd;
+  background-color: #f8f9fa;
+  padding: 12px 16px;
 }
+
 .drawer-header-content {
   display: flex;
   align-items: center;
@@ -278,18 +312,21 @@ function closeDrawer() {
 }
 
 .title {
-  margin-left: 8px;
-  font-weight: bold;
-  font-size: 1.2rem;
+  margin-left: 12px;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #333;
 }
 
 .close-btn {
   margin-left: auto;
+  color: #666;
 }
 
 /* Style pour aligner les icônes */
 .v-list-item {
   padding-left: 16px;
+  min-height: 48px;
 }
 
 .v-list-item__prepend {
@@ -311,32 +348,45 @@ function closeDrawer() {
 
 /* Styles pour la partie réseaux sociaux */
 .social-header {
-  padding: 8px 16px;
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
 }
 
 .social-icons {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  max-width: 240px;
 }
 
 .auth-links {
   display: flex;
   justify-content: center;
   padding: 8px 0;
+  margin-top: 4px;
 }
 
 .auth-link {
   flex: 1;
   text-align: center;
-  text-decoration: underline;
   color: #1976d2;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.v-divider {
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 599px) {
   .navigation-drawer {
     height: 100vh !important;
     top: 0 !important;
+  }
+  
+  .title {
+    font-size: 1.1rem;
   }
 }
 </style>
