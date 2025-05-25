@@ -3,6 +3,7 @@
     v-model="drawer"
     app
     temporary
+    absolute
     :width="drawerWidth"
     class="navigation-drawer"
     @click-outside="closeDrawer"
@@ -263,5 +264,12 @@ function closeDrawer() {
 
 .v-list-group--sub-group .v-list-item__prepend {
   margin-right: 24px;
+}
+
+@media (max-width: 599px) {
+  .navigation-drawer {
+    height: 100vh !important;
+    top: 0 !important;
+  }
 }
 </style>
