@@ -11,7 +11,7 @@
       <!-- Header Drawer -->
       <v-list-item class="drawer-header">
         <div class="drawer-header-content">
-          <v-icon size="36" color="#626363">mdi-chair-school</v-icon>
+          <v-icon size="36" color="#626363">mdi-menu-open</v-icon>
           <span class="title">{{ $t('app.title') }}</span>
           <v-btn
             icon
@@ -50,20 +50,86 @@
           </v-list-item>
         </template>
 
-        <v-list-item
-          v-for="(category, index) in menuCategories"
-          :key="index"
-          :to="{ name: category.route }"
-          link
-          @click="closeDrawer"
-        >
-          <template v-slot:prepend>
-            <v-icon>{{ category.icon }}</v-icon>
+        <!-- Sous-menu Inspections -->
+        <v-list-group value="Inspections" sub-group>
+          <template v-slot:activator="{ props }">
+            <v-list-item v-bind="props">
+              <template v-slot:prepend>
+                <v-icon>mdi-clipboard-check</v-icon>
+              </template>
+              <v-list-item-title>{{ $t('menu.categories.inspections') }}</v-list-item-title>
+            </v-list-item>
           </template>
-          <v-list-item-title>
-            {{ $t(`menu.categories.${category.key}`) }}
-          </v-list-item-title>
-        </v-list-item>
+          
+          <v-list-item
+            v-for="(item, index) in menuCategories[0].items"
+            :key="'inspections-'+index"
+            :to="item.route"
+            link
+            @click="closeDrawer"
+          >
+            <template v-slot:prepend>
+              <v-icon>{{ item.icon }}</v-icon>
+            </template>
+            <v-list-item-title>
+              {{ $t(`menu.items.${item.key}`) }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-group>
+
+        <!-- Sous-menu Calibration -->
+        <v-list-group value="Calibration" sub-group>
+          <template v-slot:activator="{ props }">
+            <v-list-item v-bind="props">
+              <template v-slot:prepend>
+                <v-icon>mdi-tune</v-icon>
+              </template>
+              <v-list-item-title>{{ $t('menu.categories.calibration') }}</v-list-item-title>
+            </v-list-item>
+          </template>
+          
+          <v-list-item
+            v-for="(item, index) in menuCategories[1].items"
+            :key="'calibration-'+index"
+            :to="item.route"
+            link
+            @click="closeDrawer"
+          >
+            <template v-slot:prepend>
+              <v-icon>{{ item.icon }}</v-icon>
+            </template>
+            <v-list-item-title>
+              {{ $t(`menu.items.${item.key}`) }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-group>
+
+        <!-- Sous-menu Maintenance -->
+        <v-list-group value="Maintenance" sub-group>
+          <template v-slot:activator="{ props }">
+            <v-list-item v-bind="props">
+              <template v-slot:prepend>
+                <v-icon>mdi-wrench</v-icon>
+              </template>
+              <v-list-item-title>{{ $t('menu.categories.maintenance') }}</v-list-item-title>
+            </v-list-item>
+          </template>
+          
+          <v-list-item
+            v-for="(item, index) in menuCategories[2].items"
+            :key="'maintenance-'+index"
+            :to="item.route"
+            link
+            @click="closeDrawer"
+          >
+            <template v-slot:prepend>
+              <v-icon>{{ item.icon }}</v-icon>
+            </template>
+            <v-list-item-title>
+              {{ $t(`menu.items.${item.key}`) }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-group>
       </v-list-group>
 
       <!-- Autres liens -->
@@ -115,10 +181,37 @@ onUnmounted(() => window.removeEventListener('resize', updateWidth))
 const drawerWidth = computed(() => (windowWidth.value < 600 ? windowWidth.value : 300))
 
 const menuCategories = [
-  { key: 'stk', route: 'stk', icon: 'mdi-medical-bag' },
-  { key: 'mtk', route: 'mtk', icon: 'mdi-stethoscope' },
-  { key: 'calibration', route: 'calibration', icon: 'mdi-tune' },
-  { key: 'maintenance', route: 'maintenance', icon: 'mdi-wrench' }
+  {
+    key: "inspections",
+    items: [
+      { key: "stk_inspection", icon: "mdi-car-brake-alert", route: "/services/stk" },
+      { key: "mtk_inspection", icon: "mdi-motorbike", route: "/services/mtk" },
+      { key: "stue_inspection", icon: "mdi-truck-check", route: "/services/stue" },
+      { key: "mtue_inspection", icon: "mdi-bus-alert", route: "/services/mtue" },
+      { key: "dguv_inspection", icon: "mdi-shield-check", route: "/services/dguv" },
+      { key: "general_inspection", icon: "mdi-clipboard-check", route: "/services/inspections" },
+      { key: "visual_inspection", icon: "mdi-eye-check", route: "/services/visual" }
+    ]
+  },
+  {
+    key: "calibration",
+    items: [
+      { key: "ergometer_calibration", icon: "mdi-bike", route: "/services/ergometer" },
+      { key: "thermometer_calibration", icon: "mdi-thermometer", route: "/services/thermometer" },
+      { key: "blood_pressure_calibration", icon: "mdi-heart-pulse", route: "/services/blood-pressure" }
+    ]
+  },
+  {
+    key: "maintenance",
+    items: [
+      { key: "repairs", icon: "mdi-tools", route: "/services/repairs" },
+      { key: "spare_parts", icon: "mdi-cog", route: "/services/parts" },
+      { key: "installation_service", icon: "mdi-wrench", route: "/services/installation" },
+      { key: "training", icon: "mdi-school", route: "/services/training" },
+      { key: "equipment_disposal", icon: "mdi-trash-can", route: "/services/disposal" },
+      { key: "regular_maintenance", icon: "mdi-calendar-check", route: "/services/maintenance" }
+    ]
+  }
 ]
 
 function closeDrawer() {
@@ -161,5 +254,14 @@ function closeDrawer() {
 
 .v-list-group__items .v-list-item {
   padding-left: 40px;
+}
+
+/* Styles pour les sous-menus */
+.v-list-group--sub-group .v-list-item {
+  padding-left: 56px;
+}
+
+.v-list-group--sub-group .v-list-item__prepend {
+  margin-right: 24px;
 }
 </style>
