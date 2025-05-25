@@ -7,32 +7,46 @@
     "services": "Dienstleistungen",
     "about": "Über uns",
     "contact": "Kontakt",
-    
+    "products": "Produkte",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+
     "categories": {
       "inspections": "Prüfungen & Kontrollen",
       "calibration": "Kalibrierungsdienstleistungen",
-      "maintenance": "Wartung & Service"
+      "maintenance": "Wartung & Service",
+      "sales": "Verkauf & Produkte",
+      "consulting": "Beratung & Schulung",
+      "stk": "Sicherheitstechnische Kontrolle (STK)",
+      "mtk": "Messtechnische Kontrolle (MTK)"
     },
-    
+
     "items": {
+      "stk": "Sicherheitstechnische Kontrolle (STK)",
+      "mtk": "Messtechnische Kontrolle (MTK)",
       "stk_inspection": "Sicherheitstechnische Kontrolle (STK)",
       "mtk_inspection": "Messtechnische Kontrolle (MTK)",
       "stue_inspection": "Sicherheitstechnische Überprüfung (STÜ)",
       "mtue_inspection": "Messtechnische Überprüfung (MTÜ)",
       "dguv_inspection": "DGUV-Prüfung",
-      "general_inspection": "Inspektion",
+      "general_inspection": "Allgemeine Inspektion",
       "visual_inspection": "Sichtprüfung",
-      
-      "ergometer_calibration": "Ergometer Kalibrierung",
-      "thermometer_calibration": "Thermometer Kalibrierung",
-      "blood_pressure_calibration": "Blutdruckmessgeräte Kalibrierung",
-      
+
+      "ergometer_calibration": "Ergometer-Kalibrierung",
+      "thermometer_calibration": "Thermometer-Kalibrierung",
+      "blood_pressure_calibration": "Blutdruckmessgeräte-Kalibrierung",
+      "ecg_calibration": "EKG-Geräte-Kalibrierung",
+      "ultrasound_calibration": "Ultraschallgeräte-Kalibrierung",
+
       "repairs": "Gerätereparaturen",
-      "spare_parts": "Ersatzteile",
+      "spare_parts": "Ersatzteile & Zubehör",
       "installation_service": "Installationsservice",
-      "training": "Benutzerschulung",
-      "equipment_disposal": "Geräteentsorgung",
-      "regular_maintenance": "Regelmäßige Wartung"
+      "training": "Benutzerschulung & Einweisung",
+      "equipment_disposal": "Altgeräteentsorgung",
+      "regular_maintenance": "Regelmäßige Wartung",
+      "emergency_service": "Notfall-Service"
     }
   },
 
@@ -53,5 +67,16 @@
     "de": "Deutsch",
     "en": "Englisch",
     "fr": "Französisch"
+  },
+
+  "footer": {
+    "address": "Adresse",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "social": "Folgen Sie uns",
+    "copyright": "© 2025 alpha med care GmbH. Alle Rechte vorbehalten.",
+    "terms": "AGB",
+    "privacy": "Datenschutzerklärung",
+    "imprint": "Impressum"
   }
 }
