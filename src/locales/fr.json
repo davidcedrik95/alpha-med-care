@@ -7,6 +7,7 @@
     "services": "Services",
     "about": "À propos",
     "contact": "Contact",
+    "products": "Produits",
     "categories": {
       "inspections": "Inspections & Contrôles",
       "calibration": "Services d'Étalonnage",
@@ -43,9 +44,50 @@
     "logo_subtext": "Spécialiste en équipements médicaux",
     "search": "Rechercher"
   },
+
   "language": {
     "de": "Allemand",
     "en": "Anglais",
     "fr": "Français"
-  }
+  },
+
+   "account": {
+    "title": "Mon compte",
+    "items": {
+      "my_account": "Mon compte",
+      "my_orders": "Mes commandes",
+      "my_returns": "Mes retours",
+      "return_info": "Informations sur les retours",
+      "contact_settings": "Paramètres de contact"
+    }
+  },
+  "info": {
+    "help": {
+      "title": "Aide & Informations",
+      "items": {
+        "faq": "FAQ",
+        "shipping": "Informations de livraison",
+        "payment": "Méthodes de paiement",
+        "privacy": "Confidentialité",
+        "terms": "CGV"
+      }
+    },
+    "about": {
+      "title": "En savoir plus sur alpha med care",
+      "items": {
+        "about_us": "À propos de nous",
+        "career": "Carrières",
+        "locations": "Nos implantations",
+        "partners": "Partenaires",
+        "press": "Presse"
+      }
+    }
+  },
+
+  "auth": {
+  "login": "Connexion",
+  "register": "Inscription",
+  "authentication": "Authentification"
+}
+
 }

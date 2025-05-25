@@ -278,6 +278,9 @@
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { defineProps, defineEmits } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 
 const props = defineProps({
   modelValue: Boolean
@@ -331,39 +334,40 @@ const menuCategories = [
   }
 ]
 
-const accountItems = [
-  { title: 'Mein Konto', icon: 'mdi-account', route: '/account' },
-  { title: 'Meine Bestellungen', icon: 'mdi-package-variant', route: '/orders' },
-  { title: 'Meine Rücksendungen', icon: 'mdi-undo-variant', route: '/returns' },
-  { title: 'Informationen zur Rücksendungen', icon: 'mdi-information', route: '/return-info' },
-  { title: 'Kontakteinstellungen', icon: 'mdi-message-settings', route: '/contact-settings' }
-]
 
-// Dans le script, ajoutez cette nouvelle propriété :
-const infoItems = [
+
+const accountItems = computed(() => [
+  { title: t('account.items.my_account'), icon: 'mdi-account', route: '/account' },
+  { title: t('account.items.my_orders'), icon: 'mdi-package-variant', route: '/orders' },
+  { title: t('account.items.my_returns'), icon: 'mdi-undo-variant', route: '/returns' },
+  { title: t('account.items.return_info'), icon: 'mdi-information', route: '/return-info' },
+  { title: t('account.items.contact_settings'), icon: 'mdi-message-settings', route: '/contact-settings' }
+])
+
+const infoItems = computed(() => [
   {
-    title: 'Hilfe & Informationen',
+    title: t('info.help.title'),
     icon: 'mdi-help-circle',
     items: [
-      { title: 'FAQ', route: '/help/faq' },
-      { title: 'Versandinformationen', route: '/help/shipping' },
-      { title: 'Zahlungsmethoden', route: '/help/payment' },
-      { title: 'Datenschutz', route: '/help/privacy' },
-      { title: 'AGB', route: '/help/terms' }
+      { title: t('info.help.items.faq'), route: '/help/faq' },
+      { title: t('info.help.items.shipping'), route: '/help/shipping' },
+      { title: t('info.help.items.payment'), route: '/help/payment' },
+      { title: t('info.help.items.privacy'), route: '/help/privacy' },
+      { title: t('info.help.items.terms'), route: '/help/terms' }
     ]
   },
   {
-    title: 'Mehr Über alpha med care',
+    title: t('info.about.title'),
     icon: 'mdi-information',
     items: [
-      { title: 'Über uns', route: '/about' },
-      { title: 'Karriere', route: '/career' },
-      { title: 'Standorte', route: '/locations' },
-      { title: 'Partner', route: '/partners' },
-      { title: 'Presse', route: '/press' }
+      { title: t('info.about.items.about_us'), route: '/about' },
+      { title: t('info.about.items.career'), route: '/career' },
+      { title: t('info.about.items.locations'), route: '/locations' },
+      { title: t('info.about.items.partners'), route: '/partners' },
+      { title: t('info.about.items.press'), route: '/press' }
     ]
   }
-]
+])
 
 const authItems = [
   { key: "login", icon: "mdi-login", route: "/login" },

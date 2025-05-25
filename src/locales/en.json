@@ -7,6 +7,7 @@
     "services": "Services",
     "about": "About us",
     "contact": "Contact",
+     "products": "Products",
     "categories": {
       "inspections": "Inspections & Controls",
       "calibration": "Calibration Services",
@@ -48,5 +49,53 @@
     "de": "German",
     "en": "English",
     "fr": "French"
+  },
+  "account": {
+  "title": "My Account",
+  "items": {
+    "my_account": "My Account",
+    "my_orders": "My Orders",
+    "my_returns": "My Returns",
+    "return_info": "Return Information",
+    "contact_settings": "Contact Settings"
   }
+},
+"info": {
+  "help": {
+    "title": "Help & Information",
+    "items": {
+      "faq": "FAQ",
+      "shipping": "Shipping Information",
+      "payment": "Payment Methods",
+      "privacy": "Privacy Policy",
+      "terms": "Terms and Conditions"
+    }
+  },
+  "about": {
+    "title": "More About alpha med care",
+    "items": {
+      "about_us": "About Us",
+      "career": "Careers",
+      "locations": "Locations",
+      "partners": "Partners",
+      "press": "Press"
+    }
+  }
+},
+"auth": {
+  "login": "Login",
+  "register": "Register",
+  "authentication": "Authentication"
+},
+"footer": {
+  "address": "Address",
+  "email": "Email",
+  "phone": "Phone",
+  "social": "Follow Us",
+  "copyright": "© 2025 alpha med care GmbH. All rights reserved.",
+  "terms": "Terms and Conditions",
+  "privacy": "Privacy Policy",
+  "imprint": "Imprint"
+}
+
 }

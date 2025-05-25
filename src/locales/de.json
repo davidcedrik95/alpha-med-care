@@ -70,13 +70,37 @@
   },
   
   "account": {
-  "title": "Mein Konto",
-  "myAccount": "Mein Konto",
-  "orders": "Meine Bestellungen",
-  "returns": "Meine Rücksendungen",
-  "returnInfo": "Informationen zur Rücksendungen",
-  "settings": "Kontakteinstellungen"
-},
+    "title": "Mein Konto",
+    "items": {
+      "my_account": "Mein Konto",
+      "my_orders": "Meine Bestellungen",
+      "my_returns": "Meine Rücksendungen",
+      "return_info": "Informationen zur Rücksendungen",
+      "contact_settings": "Kontakteinstellungen"
+    }
+  },
+  "info": {
+    "help": {
+      "title": "Hilfe & Informationen",
+      "items": {
+        "faq": "FAQ",
+        "shipping": "Versandinformationen",
+        "payment": "Zahlungsmethoden",
+        "privacy": "Datenschutz",
+        "terms": "AGB"
+      }
+    },
+    "about": {
+      "title": "Mehr Über alpha med care",
+      "items": {
+        "about_us": "Über uns",
+        "career": "Karriere",
+        "locations": "Standorte",
+        "partners": "Partner",
+        "press": "Presse"
+      }
+    }
+  },
 
   "auth": {
   "login": "Anmelden",
