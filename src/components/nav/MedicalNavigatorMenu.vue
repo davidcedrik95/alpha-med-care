@@ -11,13 +11,14 @@
         <v-btn variant="text" to="/" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.home') }}</v-btn>
 
         <!-- Mega-menu -->
-        <v-menu
+      <v-menu
           :open-on-hover="!isMobile && hoverEnabled"
           :close-on-content-click="false"
-          :transition="!isMobile ? 'slide-y-reverse-transition' : 'slide-y-transition'"
           v-model="isServicesMenuOpen"
           ref="servicesMenu"
           offset-y
+          content-class="mega-menu-wrapper"
+          :position-x="0"
         >
           <template v-slot:activator="{ props }">
             <v-btn
@@ -226,7 +227,6 @@ const menuCategories = [
 ]
 </script>
 
-
 <style scoped>
 .v-app-bar {
   background-color: rgba(13, 43, 107, 0.95) !important;
@@ -234,21 +234,16 @@ const menuCategories = [
   z-index: 999 !important;
   top: 56px !important;
   position: sticky !important;
-  overflow: visible !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .app-title {
   white-space: nowrap;
-  overflow: visible;
-  text-overflow: unset;
-  min-width: max-content;
   margin-right: 16px;
   font-size: 1.25rem;
   font-weight: 600;
   color: white !important;
-  letter-spacing: 0.5px;
 }
 
 /* Navigation buttons */
@@ -257,33 +252,15 @@ const menuCategories = [
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
-  letter-spacing: normal;
   color: white !important;
 }
 
 .nav-btn:hover,
 .nav-btn.router-link-active {
   color: #a0c4ff !important;
-  background-color: transparent !important;
 }
 
-.nav-btn.router-link-active::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 3px;
-  background-color: #a0c4ff;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.nav-btn.active-link {
-  color: #a0c4ff !important;
-}
-
+.nav-btn.router-link-active::after,
 .nav-btn.active-link::after {
   content: '';
   position: absolute;
@@ -296,24 +273,32 @@ const menuCategories = [
   border-radius: 2px;
 }
 
-/* Mega menu styles - version bleue avec texte et icônes blanches */
+.nav-btn.active-link {
+  color: #a0c4ff !important;
+}
+
+/* Mega menu styles */
 .mega-menu {
+  width: 100%;
   max-width: 1280px;
-  margin-top: 14px;
+  margin: 14px auto 0;
   background: rgba(13, 43, 107, 0.98) !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  animation: fadeInDown 0.3s ease-out;
   border-radius: 0 0 8px 8px;
-  color: white !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
 }
 
 .mega-menu-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
+}
+.mega-menu-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .close-button-wrapper {
@@ -325,7 +310,6 @@ const menuCategories = [
 
 .close-megamenu {
   background-color: rgba(255, 255, 255, 0.9);
-  transition: all 0.2s ease;
   color: #0d2b6b !important;
 }
 
@@ -337,7 +321,6 @@ const menuCategories = [
 .category-title {
   color: white !important;
   font-weight: 600;
-  opacity: 0.9;
 }
 
 .category-divider {
@@ -349,7 +332,7 @@ const menuCategories = [
   background-color: transparent !important;
 }
 
-/* Service items - version avec icônes blanches */
+/* Service items */
 .service-item {
   transition: all 0.2s ease;
   border-radius: 4px;
@@ -361,13 +344,8 @@ const menuCategories = [
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-.service-item:active {
-  transform: scale(0.98);
-}
-
 .service-item.router-link-active {
   background-color: rgba(255, 255, 255, 0.15) !important;
-  color: white !important;
 }
 
 .service-item .v-icon {
@@ -378,20 +356,6 @@ const menuCategories = [
 .service-item:hover .v-icon,
 .service-item.router-link-active .v-icon {
   opacity: 1;
-  color: white !important;
-}
-
-.service-item .v-list-item__prepend .v-icon {
-  transition: opacity 0.2s ease;
-}
-
-/* Chevron right icon */
-.service-item .v-list-item__append .v-icon {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-.service-item:hover .v-list-item__append .v-icon {
-  color: white !important;
 }
 
 /* Language selector */
@@ -404,7 +368,6 @@ const menuCategories = [
   padding: 8px 0;
   background-color: rgba(13, 43, 107, 0.98) !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
 }
 
 .language-item {
@@ -423,20 +386,7 @@ const menuCategories = [
 
 .flag-icon {
   border-radius: 2px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   object-fit: cover;
-}
-
-/* Animations */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
 }
 
 /* Responsive adjustments */
@@ -448,54 +398,33 @@ const menuCategories = [
   
   .app-title {
     font-size: 1.1rem;
-    margin-right: 12px;
   }
   
-  .mega-menu {
-    margin-top: 0;
+   .mega-menu {
+    position: static;
+    width: 100%;
+    margin: 0 auto;
     border-radius: 0;
-    background-color: rgba(13, 43, 107, 0.98) !important;
     border-left: none;
     border-right: none;
+  }
+  
+  .mega-menu-wrapper {
+    position: static;
   }
 }
 
 @media (max-width: 600px) {
   .app-title {
     font-size: 1rem;
-    margin-right: 8px;
   }
   
   .nav-btn {
-    padding-left: 8px;
-    padding-right: 8px;
     font-size: 0.9rem;
   }
   
   .mega-menu-container {
     padding: 0 8px;
   }
-  
-  .category-title {
-    font-size: 1.1rem;
-  }
-}
-
-/* Global transitions */
-.v-list-item {
-  transition: all 0.2s ease;
-}
-
-.v-btn:active {
-  transform: scale(0.98);
-}
-
-/* Active state for mobile */
-.v-app-bar-nav-icon {
-  color: white !important;
-}
-
-.v-app-bar-nav-icon:hover {
-  color: #a0c4ff !important;
 }
 </style>
