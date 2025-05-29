@@ -53,7 +53,7 @@
   "header": {
     "free_shipping": "Versandkostenfrei",
     "phone": "+49 (0)9666 188950",
-    "invoice": "Geschäftsrechnung",
+    "invoice": "Kauf auf Rechnung",
     "consultation": "Fachberatung",
     "search_placeholder": "Produkte suchen...",
     "wishlist": "Merkliste",
@@ -71,6 +71,14 @@
   
   "account": {
     "title": "Mein Konto",
+    "login": "Anmelden",
+    "or": "oder",
+    "register": "registrieren",
+    "overview": "Übersicht",
+    "profile": "Persönliches Profil",
+    "addresses": "Adressen",
+    "payment_methods": "Zahlungsarten",
+    "orders": "Bestellungen",
     "items": {
       "my_account": "Mein Konto",
       "my_orders": "Meine Bestellungen",
@@ -91,7 +99,7 @@
       }
     },
     "about": {
-      "title": "Mehr Über alpha med care",
+      "title": "Mehr Über alpha-med-care",
       "items": {
         "about_us": "Über uns",
         "career": "Karriere",
