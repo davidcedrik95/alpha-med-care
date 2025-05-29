@@ -6,8 +6,8 @@
       <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="toggleDrawer" />
       <NavigationDrawer v-model="mobileDrawer" class="custom-drawer"/>
       
-      <!-- Ajoutez cette ligne 
-      <BreadcrumbNavigation v-if="!isMobile" class="breadcrumb" />-->
+     
+      <BreadcrumbNavigation v-if="!isMobile" class="breadcrumb" />
       
       <v-main class="content">
         <router-view />
