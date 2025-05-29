@@ -52,6 +52,14 @@
   },
   "account": {
   "title": "My Account",
+  "login": "Login",
+  "or": "or",
+  "register": "register",
+  "overview": "Overview",
+  "profile": "Personal Profile",
+  "addresses": "Addresses",
+  "payment_methods": "Payment Methods",
+  "orders": "Orders",
   "items": {
     "my_account": "My Account",
     "my_orders": "My Orders",

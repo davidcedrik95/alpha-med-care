@@ -414,7 +414,9 @@ function closeDrawer() {
   background: linear-gradient(135deg, #0d2b6b 0%, #0a1942 100%);
   color: white;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  margin-top: 56px;
 }
+
 
 .drawer-header {
   background-color: rgba(13, 43, 107, 0.95);

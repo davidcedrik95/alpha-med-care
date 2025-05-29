@@ -66,31 +66,43 @@
           </button>
           
           <div class="dropdown-menu" v-if="accountMenuOpen" @click.stop>
-            <div class="account-header">
-              <h4>Mein Konto</h4>
+            <div class="mobile-menu-header">
+              <h4 class="account-title">{{ $t('account.title') }}</h4>
+              <hr>
+              <button class="close-menu" @click="closeAccountMenu" aria-label="Close menu">
+                <i class="mdi mdi-close"></i>
+              </button>
             </div>
+            
             <div class="login-section">
               <button class="login-button">{{ $t('account.login') }}</button>
               <div class="register-text">
-                {{ $t('account.or') }} <u>{{ $t('account.register') }}</u>
+                {{ $t('account.or') }} <u @click="navigateToRegister">{{ $t('account.register') }}</u>
               </div>
             </div>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="mdi mdi-view-dashboard"></i> {{ $t('account.overview') }}
-            </a>
-            <a href="#" class="dropdown-item">
-              <i class="mdi mdi-account-details"></i> {{ $t('account.profile') }}
-            </a>
-            <a href="#" class="dropdown-item">
-              <i class="mdi mdi-map-marker"></i> {{ $t('account.addresses') }}
-            </a>
-            <a href="#" class="dropdown-item">
-              <i class="mdi mdi-credit-card"></i> {{ $t('account.payment_methods') }}
-            </a>
-            <a href="#" class="dropdown-item">
-              <i class="mdi mdi-package-variant"></i> {{ $t('account.orders') }}
-            </a>
+             <hr>
+            <div class="mobile-menu-content">
+              <a href="#" class="dropdown-item">
+                <i class="mdi mdi-view-dashboard"></i> 
+                <span>{{ $t('account.overview') }}</span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="mdi mdi-account-details"></i> 
+                <span>{{ $t('account.profile') }}</span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="mdi mdi-map-marker"></i> 
+                <span>{{ $t('account.addresses') }}</span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="mdi mdi-credit-card"></i> 
+                <span>{{ $t('account.payment_methods') }}</span>
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="mdi mdi-package-variant"></i> 
+                <span>{{ $t('account.orders') }}</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -169,6 +181,12 @@ function toggleAccountMenu() {
 
 function closeAccountMenu() {
   accountMenuOpen.value = false
+}
+
+function navigateToRegister() {
+  // Implémentez la navigation vers la page d'inscription
+  closeAccountMenu()
+  // router.push('/register') // Si vous utilisez Vue Router
 }
 
 onMounted(() => {
@@ -336,6 +354,21 @@ onBeforeUnmount(() => {
   text-align: center;
 }
 
+.account-title {
+  margin: 10px;
+  margin-top: 5px;
+  color: #333;
+}
+
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  width: 90%;           /* ↪ réduit la largeur à 60% de l'écran */
+  margin: 20px auto;    /* ↪ 20px haut/bas, auto pour centrer horizontalement */
+}
+
 .account-header {
   padding: 12px 16px 8px;
   border-bottom: 1px solid #eee;
@@ -376,6 +409,106 @@ onBeforeUnmount(() => {
   background-color: #eee;
   margin: 8px 0;
 }
+
+.close-menu{
+  display: none;
+}
+
+/* Styles spécifiques mobile */
+@media (max-width: 768px) {
+
+  hr {
+   display: none;
+  }
+
+  .dropdown-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    overflow-y: auto;
+    background: #f8f9fa;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .mobile-menu-header h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .close-menu {
+    display: block; /* affiché en bloc */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .login-section {
+    padding: 20px 16px;
+    background: white;
+    margin: 8px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .login-button {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .register-text {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .mobile-menu-content {
+    padding: 8px 0;
+    background: white;
+    margin-top: 8px;
+  }
+
+  .dropdown-item {
+    padding: 16px;
+    font-size: 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .dropdown-item .mdi {
+    font-size: 24px;
+    width: 32px;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
 
 @media (max-width: 768px) {
   .link-item {

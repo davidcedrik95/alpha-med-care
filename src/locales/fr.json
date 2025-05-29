@@ -53,6 +53,14 @@
 
    "account": {
     "title": "Mon compte",
+    "login": "Connexion",
+    "or": "ou",
+    "register": "s'inscrire",
+    "overview": "Aperçu",
+    "profile": "Profil personnel",
+    "addresses": "Adresses",
+    "payment_methods": "Méthodes de paiement",
+    "orders": "Commandes",
     "items": {
       "my_account": "Mon compte",
       "my_orders": "Mes commandes",
