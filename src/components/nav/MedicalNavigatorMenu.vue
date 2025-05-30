@@ -58,13 +58,14 @@
                     <v-divider class="mb-3 category-divider" thickness="2" color="primary"></v-divider>
                     <v-list density="compact" class="pa-0 flex-grow-1 category-list">
                       <v-list-item
-                        v-for="(item, itemIndex) in category.items"
-                        :key="itemIndex"
-                        :title="$t(`menu.items.${item.key}`)"
-                        class="px-0 list-item service-item"
-                        :to="item.route"
-                        active-class="router-link-active"
-                      >
+                          v-for="(item, itemIndex) in category.items"
+                          :key="itemIndex"
+                          :title="$t(`menu.items.${item.key}`)"
+                          class="px-0 list-item service-item"
+                          :to="item.route"
+                          active-class="router-link-active"
+                          @click="navigateToService(item.route)"
+                        >
                         <template v-slot:prepend>
                           <v-icon :icon="item.icon" size="small" class="mr-2"></v-icon>
                         </template>
@@ -162,29 +163,23 @@ const changeLocale = (newLocale) => {
 }
 
 const navigateToService = (route) => {
-  router.push(route)
-  closeServicesMenu()
-}
+  closeServicesMenu();
+  router.push(route);
+};
 
 const closeServicesMenu = () => {
-  hoverEnabled.value = false
-  isServicesMenuOpen.value = false
-  
-  if (hoverTimeout) clearTimeout(hoverTimeout)
-  
-  hoverTimeout = setTimeout(() => {
-    hoverEnabled.value = true
-  }, 500)
-}
+  isServicesMenuOpen.value = false;
+  hoverEnabled.value = true;
+  if (hoverTimeout) clearTimeout(hoverTimeout);
+};
 
 const handleActivatorClick = () => {
   if (isMobile.value) {
-    isServicesMenuOpen.value = !isServicesMenuOpen.value
+    isServicesMenuOpen.value = !isServicesMenuOpen.value;
   } else if (hoverEnabled.value) {
-    isServicesMenuOpen.value = true
+    isServicesMenuOpen.value = true;
   }
-}
-
+};
 const emit = defineEmits(['toggle-drawer'])
 
 const toggleMobileMenu = () => {

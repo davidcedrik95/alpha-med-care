@@ -6,8 +6,7 @@
       <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="toggleDrawer" />
       <NavigationDrawer v-model="mobileDrawer" class="custom-drawer"/>
       
-     
-      <BreadcrumbNavigation v-if="!isMobile" class="breadcrumb" />
+      <BreadcrumbNavigation class="breadcrumb" />
       
       <v-main class="content">
         <router-view />
@@ -24,24 +23,10 @@ import NavigationDrawer from './components/nav/NavigationDrawer.vue'
 import BreadcrumbNavigation from './components/nav/BreadcrumbNavigation.vue'
 
 const mobileDrawer = ref(false)
-const isMobile = ref(false)
 
 const toggleDrawer = () => {
   mobileDrawer.value = !mobileDrawer.value
 }
-
-const checkIfMobile = () => {
-  isMobile.value = window.innerWidth < 960
-}
-
-onMounted(() => {
-  checkIfMobile()
-  window.addEventListener('resize', checkIfMobile)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkIfMobile)
-})
 </script>
 
 <style>
@@ -82,8 +67,19 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 960px) {
+  .content {
+    margin-top: 56px; /* Ajustez selon la hauteur de votre header mobile */
+  }
+  
+  .custom-drawer,
+  .v-navigation-drawer__scrim {
+    top: 56px !important;
+    height: calc(100vh - 56px) !important;
+  }
+  
+  .nav-bar,
   .breadcrumb {
-    display: none;
+    top: 56px;
   }
 }
 </style>

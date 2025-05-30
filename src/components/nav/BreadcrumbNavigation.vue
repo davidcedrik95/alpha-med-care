@@ -1,23 +1,25 @@
 <template>
-  <div class="breadcrumb-wrapper" v-if="!isMobile">
+  <div class="breadcrumb-wrapper">
     <div class="breadcrumb-content">
-      <v-breadcrumbs :items="breadcrumbItems" divider=">">
-        <template v-slot:item="{ item }">
-          <v-breadcrumbs-item
-            :to="item.to"
-            :disabled="item.disabled"
-            class="breadcrumb-item"
-          >
-            <v-icon v-if="item.icon" small class="mr-1">{{ item.icon }}</v-icon>
-            {{ item.text }}
-          </v-breadcrumbs-item>
-        </template>
-      </v-breadcrumbs>
+      <div class="breadcrumbs-container">
+        <v-breadcrumbs :items="breadcrumbItems" divider=">">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item
+              :to="item.to"
+              :disabled="item.disabled"
+              class="breadcrumb-item"
+            >
+              <v-icon v-if="item.icon" small class="mr-1">{{ item.icon }}</v-icon>
+              <span class="breadcrumb-text">{{ item.text }}</span>
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
 
-      <div class="current-context" v-if="currentContext">
-        <v-chip variant="outlined" color="primary">
-          {{ currentContext }}
-        </v-chip>
+        <div class="current-context" v-if="currentContext">
+          <v-chip variant="outlined" color="primary" small>
+            {{ currentContext }}
+          </v-chip>
+        </div>
       </div>
     </div>
   </div>
@@ -26,11 +28,8 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useDisplay } from 'vuetify'
 
 const route = useRoute()
-const { mobile } = useDisplay()
-const isMobile = computed(() => mobile.value)
 
 // Configuration des breadcrumbs de base
 const baseBreadcrumbs = [
@@ -95,41 +94,88 @@ function getCurrentContext(route) {
 .breadcrumb-wrapper {
   background-color: #f8f9fa;
   border-bottom: 1px solid #e0e0e0;
-  padding: 0 24px;
   position: sticky;
-  top: 64px; /* Position sous le header */
+  top: 64px;
   z-index: 900;
+  width: 100%;
 }
 
 .breadcrumb-content {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 8px 16px;
+}
+
+.breadcrumbs-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 0;
+  gap: 8px;
+  width: 100%;
+}
+
+.v-breadcrumbs {
+  padding: 0;
+  flex-grow: 1;
+  overflow-x: auto;
+  scrollbar-width: none; /* Pour Firefox */
+}
+
+.v-breadcrumbs::-webkit-scrollbar {
+  display: none; /* Pour Chrome/Safari */
 }
 
 .breadcrumb-item {
-  font-size: 0.875rem;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.breadcrumb-text {
+  white-space: nowrap;
 }
 
 .current-context {
-  margin-left: 16px;
+  flex-shrink: 0;
+  margin-left: 8px;
 }
 
-/* Adaptation pour les écrans très larges */
-@media (min-width: 1600px) {
+/* Styles pour mobile */
+@media (max-width: 960px) {
+  .breadcrumb-wrapper {
+    top: 56px;
+    padding: 0;
+  }
+  
   .breadcrumb-content {
-    padding: 8px 24px;
+    padding: 6px 12px;
+  }
+  
+  .breadcrumbs-container {
+    gap: 6px;
+  }
+  
+  .v-breadcrumbs {
+    flex-wrap: nowrap;
+  }
+  
+  .breadcrumb-item {
+    font-size: 0.75rem;
+  }
+  
+  .current-context {
+    margin-left: 6px;
+  }
+  
+  .v-chip {
+    font-size: 0.75rem;
+    height: 24px;
   }
 }
 
-/* Masquer complètement sur mobile */
-@media (max-width: 960px) {
-  .breadcrumb-wrapper {
-    display: none;
+/* Styles pour les très grands écrans */
+@media (min-width: 1600px) {
+  .breadcrumb-content {
+    padding: 8px 24px;
   }
 }
 </style>
