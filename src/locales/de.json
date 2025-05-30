@@ -24,8 +24,6 @@
     },
 
     "items": {
-      "stk": "Sicherheitstechnische Kontrolle (STK)",
-      "mtk": "Messtechnische Kontrolle (MTK)",
       "stk_inspection": "Sicherheitstechnische Kontrolle (STK)",
       "mtk_inspection": "Messtechnische Kontrolle (MTK)",
       "stue_inspection": "Sicherheitstechnische Überprüfung (STÜ)",
@@ -67,6 +65,25 @@
     "de": "Deutsch",
     "en": "Englisch",
     "fr": "Französisch"
+  },
+
+  "breadcrumbs": {
+    "short": {
+      "home": "Home",
+      "services": "Services",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "products": "Produkte",
+      "blog": "Blog",
+      "faq": "FAQ",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "stk": "STK-Prüfung",
+      "mtk": "MTK-Prüfung",
+      "account": "Konto",
+      "login": "Anmelden",
+      "register": "Registrieren"
+    }
   },
   
   "account": {

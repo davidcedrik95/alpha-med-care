@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref} from 'vue'
 import NavigationHeader from './components/nav/NavigationHeader.vue'
 import MedicalNavigatorMenu from './components/nav/MedicalNavigatorMenu.vue'
 import NavigationDrawer from './components/nav/NavigationDrawer.vue'
