@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import NavigationHeader from './components/nav/NavigationHeader.vue'
 import MedicalNavigatorMenu from './components/nav/MedicalNavigatorMenu.vue'
 import NavigationDrawer from './components/nav/NavigationDrawer.vue'
@@ -26,11 +26,32 @@ import NavigationFooter from './components/nav/NavigationFooter.vue'
 import BreadcrumbNavigation from './components/nav/BreadcrumbNavigation.vue'
 
 const mobileDrawer = ref(false)
+const screenWidth = ref(window.innerWidth)
+const mobileBreakpoint = 960 // Vuetify par défaut pour mobile/tablette
 
 const toggleDrawer = () => {
   mobileDrawer.value = !mobileDrawer.value
 }
+
+const handleResize = () => {
+  screenWidth.value = window.innerWidth
+  console.log(`Largeur actuelle de l'écran : ${screenWidth.value}px`)
+
+  // Tu peux aussi fermer automatiquement le drawer en dessous du seuil
+  if (screenWidth.value < mobileBreakpoint) {
+    mobileDrawer.value = false
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
+
 
 <style scoped>
 .layout-container {
