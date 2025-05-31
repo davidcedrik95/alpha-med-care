@@ -1,5 +1,6 @@
+<!-- components/nav/NavigationDrawer.vue -->
 <template>
- <v-navigation-drawer
+  <v-navigation-drawer
     v-model="drawer"
     app
     temporary
@@ -163,71 +164,70 @@
       </v-card>
 
       <!-- Deuxième carte - Compte utilisateur -->
-      <!-- Dans le template, modifiez la partie account-section comme ceci : -->
-<div class="account-section">
-  <!-- Titre placé avant la carte -->
-  <div class="section-header">
-    <h3>{{ $t('account.title') }}</h3>
-  </div>
-  
-  <!-- La carte elle-même -->
-  <v-card class="account-card" flat>
-    <v-list dense>
-      <v-list-item
-        v-for="(item, index) in accountItems"
-        :key="'account-'+index"
-        :to="item.route"
-        link
-        @click="closeDrawer"
-      >
-        <template v-slot:prepend>
-          <v-icon>{{ item.icon }}</v-icon>
-        </template>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item>
+      <div class="account-section">
+        <!-- Titre placé avant la carte -->
+        <div class="section-header">
+          <h3>{{ $t('account.title') }}</h3>
+        </div>
+        
+        <!-- La carte elle-même -->
+        <v-card class="account-card" flat>
+          <v-list dense>
+            <v-list-item
+              v-for="(item, index) in accountItems"
+              :key="'account-'+index"
+              :to="item.route"
+              link
+              @click="closeDrawer"
+            >
+              <template v-slot:prepend>
+                <v-icon>{{ item.icon }}</v-icon>
+              </template>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+            
+            <!-- Séparateur -->
+            <v-divider color="#e0e0e0" thickness="1" class="my-2"></v-divider>
+            
+            <!-- Nouveaux éléments dépliables -->
+            <v-list-group
+              v-for="(item, index) in infoItems"
+              :key="'info-'+index"
+              :value="item.title"
+            >
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props">
+                  <template v-slot:prepend>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </template>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  <template v-slot:append>
+                    <v-icon>mdi-plus</v-icon>
+                  </template>
+                </v-list-item>
+                <!-- Ligne horizontale sous chaque titre -->
+                <v-divider 
+                  v-if="index < infoItems.length - 1" 
+                  color="#e0e0e0" 
+                  thickness="1" 
+                  class="my-1"
+                ></v-divider>
+              </template>
+              
+              <v-list-item
+                v-for="(subItem, subIndex) in item.items"
+                :key="'subinfo-'+index+'-'+subIndex"
+                :to="subItem.route"
+                link
+                @click="closeDrawer"
+              >
+                <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list-group>
+          </v-list>
+        </v-card>
+      </div>
       
-      <!-- Séparateur -->
-      <v-divider color="#e0e0e0" thickness="1" class="my-2"></v-divider>
-      
-      <!-- Nouveaux éléments dépliables -->
-      <!-- Modifiez la partie des éléments dépliables dans le template comme ceci : -->
-<v-list-group
-  v-for="(item, index) in infoItems"
-  :key="'info-'+index"
-  :value="item.title"
->
-  <template v-slot:activator="{ props }">
-    <v-list-item v-bind="props">
-      <template v-slot:prepend>
-        <v-icon>{{ item.icon }}</v-icon>
-      </template>
-      <v-list-item-title>{{ item.title }}</v-list-item-title>
-      <template v-slot:append>
-        <v-icon>mdi-plus</v-icon>
-      </template>
-    </v-list-item>
-    <!-- Ligne horizontale sous chaque titre -->
-    <v-divider 
-      v-if="index < infoItems.length - 1" 
-      color="#e0e0e0" 
-      thickness="1" 
-      class="my-1"
-    ></v-divider>
-  </template>
-  
-  <v-list-item
-    v-for="(subItem, subIndex) in item.items"
-    :key="'subinfo-'+index+'-'+subIndex"
-    :to="subItem.route"
-    link
-    @click="closeDrawer"
-  >
-    <v-list-item-title>{{ subItem.title }}</v-list-item-title>
-  </v-list-item>
-</v-list-group>
-    </v-list>
-  </v-card>
-</div>
       <!-- Troisième carte - Authentification -->
       <div class="auth-section">
         <!-- Titre placé avant la carte -->
@@ -254,51 +254,6 @@
         </v-card>
       </div>
     </div>
-
-    <!-- Footer avec icônes réseaux sociaux -->
-    <footer class="social-footer">
-      <div class="social-links">
-        <v-btn 
-          icon 
-          variant="text" 
-          aria-label="Facebook"
-          class="social-icon"
-          color="white"
-        >
-          <v-icon size="24">mdi-facebook</v-icon>
-        </v-btn>
-        <v-btn 
-          icon 
-          variant="text" 
-          aria-label="Twitter"
-          class="social-icon"
-          color="white"
-        >
-          <v-icon size="24">mdi-twitter</v-icon>
-        </v-btn>
-        <v-btn 
-          icon 
-          variant="text" 
-          aria-label="LinkedIn"
-          class="social-icon"
-          color="white"
-        >
-          <v-icon size="24">mdi-linkedin</v-icon>
-        </v-btn>
-        <v-btn 
-          icon 
-          variant="text" 
-          aria-label="YouTube"
-          class="social-icon"
-          color="white"
-        >
-          <v-icon size="24">mdi-youtube</v-icon>
-        </v-btn>
-      </div>
-      <div class="copyright">
-          © {{ new Date().getFullYear() }} {{ $t('company.name') }}. {{ $t('company.copyright') }}
-      </div>
-    </footer>
   </v-navigation-drawer>
 </template>
 
@@ -415,6 +370,8 @@ function closeDrawer() {
   color: white;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   margin-top: 56px;
+  margin-bottom: 60px; /* Hauteur approximative de votre footer */
+  z-index: 101; /* Juste au-dessus du footer */
 }
 
 
@@ -551,49 +508,6 @@ function closeDrawer() {
   margin: 8px 16px !important;
 }
 
-/* Social Footer */
-.social-footer {
-  padding: 20px 0 12px;
-  background: rgba(13, 43, 107, 0.9);
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 12px;
-}
-
-.social-icon {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.social-icon:hover {
-  transform: translateY(-2px) scale(1.1);
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.social-icon .v-icon {
-  font-size: 20px;
-  color: white;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
-}
-
-.copyright {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 8px;
-  letter-spacing: 0.3px;
-}
 
 /* Responsive */
 @media (max-width: 599px) {
@@ -615,17 +529,5 @@ function closeDrawer() {
     padding: 0 12px !important;
   }
 
-  .social-links {
-    gap: 16px;
-  }
-
-  .social-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .social-icon .v-icon {
-    font-size: 18px;
-  }
 }
 </style>
