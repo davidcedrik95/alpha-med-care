@@ -37,49 +37,16 @@ const baseBreadcrumbs = [
   }
 ]
 
-
-
-
-
-const breadcrumbItems = computed(() => {
-  const items = [...baseBreadcrumbs]
-  const pathParts = route.path.split('/').filter(Boolean)
-  
-  let accumulatedPath = ''
-  
-  pathParts.forEach((part, index) => {
-    accumulatedPath += `/${part}`
-    
-    const translationKey = pathToTranslation[part] || part
-    const displayText = translationKey.startsWith('menu.') ? t(translationKey) : part
-    
-    items.push({
-      text: displayText,
-      to: accumulatedPath,
-      disabled: index === pathParts.length - 1,
-      icon: pathToIcon[part] || ''
-    })
-  })
-
-  return items
-})
-
 // Mappage complet des chemins aux clés de traduction
 const pathToTranslation = {
-  // Pages principales
-  'services': 'menu.services',
-  'about': 'menu.about',
-  'contact': 'menu.contact',
-  'products': 'menu.products',
-  
-  // Services spécifiques - priorité haute
+  // D'abord les items spécifiques
+  'general': 'menu.items.general_inspection',   // "Allgemeine Inspektion"
+  'visual': 'menu.items.visual_inspection',
   'stk': 'menu.items.stk_inspection',
   'mtk': 'menu.items.mtk_inspection',
   'stue': 'menu.items.stue_inspection',
   'mtue': 'menu.items.mtue_inspection',
   'dguv': 'menu.items.dguv_inspection',
-  'general': 'menu.items.general_inspection', // Corrigé pour pointer vers l'item
-  'visual': 'menu.items.visual_inspection', // Corrigé pour pointer vers l'item
   'ergometer': 'menu.items.ergometer_calibration',
   'thermometer': 'menu.items.thermometer_calibration',
   'blood-pressure': 'menu.items.blood_pressure_calibration',
@@ -90,12 +57,18 @@ const pathToTranslation = {
   'disposal': 'menu.items.equipment_disposal',
   'maintenance': 'menu.items.regular_maintenance',
   
-  // Catégories - priorité basse
-  'inspections': 'menu.categories.inspections',
+  // Ensuite les catégories seulement si nécessaire
+  'inspections': 'menu.items.general_inspection', // Affichera "Allgemeine Inspektion" pour /inspections
   'calibration': 'menu.categories.calibration',
-  'maintenance': 'menu.categories.maintenance'
+  
+  // Enfin les pages principales
+  'services': 'menu.services',
+  'about': 'menu.about',
+  'contact': 'menu.contact',
+  'products': 'menu.products'
 }
 
+// Mappage des icônes
 const pathToIcon = {
   'services': 'mdi-cog',
   'about': 'mdi-information',
@@ -122,6 +95,51 @@ const pathToIcon = {
   'maintenance': 'mdi-calendar-check'
 }
 
+// Mappage des chemins complets pour éviter les ambiguïtés
+const fullPathTranslations = {
+  '/services/inspections': 'menu.items.general_inspection',
+  '/services/visual': 'menu.items.visual_inspection',
+  // Ajoutez d'autres chemins complets si nécessaire
+}
+
+const breadcrumbItems = computed(() => {
+
+  console.log('Current path parts:', route.path.split('/').filter(Boolean));
+  console.log('Translation for general:', t('menu.items.general_inspection'));
+
+  const items = [...baseBreadcrumbs]
+  const pathParts = route.path.split('/').filter(Boolean)
+  
+  let accumulatedPath = ''
+  
+  pathParts.forEach((part, index) => {
+    accumulatedPath += `/${part}`
+    
+    // Nouvelle logique de résolution
+    let translationKey
+    if (index === pathParts.length - 1) {
+      // Pour le dernier élément, priorité absolue aux items spécifiques
+      translationKey = pathToTranslation[part] || part
+    } else {
+      // Pour les éléments intermédiaires, on prend la traduction générique
+      translationKey = pathToTranslation[part] || part
+    }
+    
+    const displayText = translationKey.startsWith('menu.') 
+      ? t(translationKey) 
+      : part
+    
+    items.push({
+      text: displayText,
+      to: accumulatedPath,
+      disabled: index === pathParts.length - 1,
+      icon: pathToIcon[part] || ''
+    })
+  })
+
+  return items
+})
+
 watch(route, (newRoute) => {
   updateBreadcrumbs(newRoute)
 }, { immediate: true })
@@ -135,8 +153,14 @@ function updateBreadcrumbs(route) {
   pathParts.forEach((part, index) => {
     accumulatedPath += `/${part}`
     
-    const translationKey = pathToTranslation[part] || part
-    const displayText = translationKey.startsWith('menu.') ? t(translationKey) : part
+    // Priorité aux traductions spécifiques
+    let translationKey = fullPathTranslations[accumulatedPath] || 
+                       pathToTranslation[part] || 
+                       part
+    
+    const displayText = translationKey.startsWith('menu.') 
+      ? t(translationKey) 
+      : part
     
     items.push({
       text: displayText,
