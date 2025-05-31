@@ -34,12 +34,18 @@
             </v-btn>
           </template>
 
-          <v-card 
-            :width="isMobile ? '100%' : '100vw'" 
-            class="mx-auto mega-menu" 
-            elevation="4"
-            :max-width="isMobile ? '100%' : '1280px'"
-          >
+ <v-card 
+        :width="isMobile ? '100%' : '100vw'"
+        class="mega-menu"
+        elevation="4"
+        :style="{
+            'max-width': isMobile ? '100%' : '1280px',
+            'margin': isMobile ? '0' : '14px auto 0',
+            'left': isMobile ? '0' : '50%',
+            'transform': isMobile ? 'none' : 'translateX(-50%)',
+            'position': isMobile ? 'static' : 'relative'
+        }"
+    >
             <div class="close-button-wrapper">
               <v-btn icon class="close-megamenu" @click.stop="closeServicesMenu">
                 <v-icon>mdi-close</v-icon>
@@ -284,19 +290,14 @@ const menuCategories = [
 
 /* Mega menu styles */
 .mega-menu {
-  width: 100%;
-  max-width: 1280px;
-  margin: 14px auto 0;
   background: rgba(13, 43, 107, 0.98) !important;
   border-radius: 0 0 8px 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
 }
 
-.mega-menu-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
+/* Pour le wrapper du menu */
+/* Pour le wrapper du menu */
 .mega-menu-wrapper {
   position: fixed;
   left: 0;
@@ -304,7 +305,26 @@ const menuCategories = [
   display: flex;
   justify-content: center;
   width: 100%;
+  overflow-x: hidden;
 }
+
+.mega-menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.mega-menu-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 
 .close-button-wrapper {
   position: absolute;
@@ -407,6 +427,8 @@ const menuCategories = [
   
    .mega-menu {
     position: static;
+    transform: none !important;
+    left: auto !important;
     width: 100%;
     margin: 0 auto;
     border-radius: 0;
