@@ -40,7 +40,6 @@ const baseBreadcrumbs = [
 // Mappage complet des chemins aux clés de traduction
 const pathToTranslation = {
   // D'abord les items spécifiques
-  'general': 'menu.items.general_inspection',   // "Allgemeine Inspektion"
   'visual': 'menu.items.visual_inspection',
   'stk': 'menu.items.stk_inspection',
   'mtk': 'menu.items.mtk_inspection',
