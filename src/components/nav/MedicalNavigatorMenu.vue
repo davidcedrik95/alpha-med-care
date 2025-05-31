@@ -204,7 +204,7 @@ const menuCategories = [
   {
     key: "calibration",
     items: [
-      { key: "ergometer_calibration", icon: "mdi-bike", route: "/services/ergometer" },
+      { key: "ergometer_calibration", icon: "mdi-run-fast", route: "/services/ergometer" },
       { key: "thermometer_calibration", icon: "mdi-thermometer", route: "/services/thermometer" },
       { key: "blood_pressure_calibration", icon: "mdi-heart-pulse", route: "/services/blood-pressure" }
     ]
