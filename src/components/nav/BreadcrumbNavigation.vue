@@ -20,157 +20,116 @@
 </template>
 
 <script setup>
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { computed } from 'vue'
 
 const route = useRoute()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
+// Configuration des mappings
+const pathConfig = {
+  translations: {
+    // Items spécifiques
+    'visual': 'menu.items.visual_inspection',
+    'stk': 'menu.items.stk_inspection',
+    'mtk': 'menu.items.mtk_inspection',
+    'stue': 'menu.items.stue_inspection',
+    'mtue': 'menu.items.mtue_inspection',
+    'dguv': 'menu.items.dguv_inspection',
+    'ergometer': 'menu.items.ergometer_calibration',
+    'thermometer': 'menu.items.thermometer_calibration',
+    'blood-pressure': 'menu.items.blood_pressure_calibration',
+    'repairs': 'menu.items.repairs',
+    'parts': 'menu.items.spare_parts',
+    'installation': 'menu.items.installation_service',
+    'training': 'menu.items.training',
+    'disposal': 'menu.items.equipment_disposal',
+    'maintenance': 'menu.items.regular_maintenance',
+    
+    // Catégories
+    'inspections': 'menu.items.general_inspection',
+    'calibration': 'menu.categories.calibration',
+    
+    // Pages principales
+    'services': 'menu.services',
+    'about': 'menu.about',
+    'contact': 'menu.contact',
+    'products': 'menu.products'
+  },
+  icons: {
+    'services': 'mdi-cog',
+    'about': 'mdi-information',
+    'contact': 'mdi-email',
+    'products': 'mdi-package-variant',
+    'inspections': 'mdi-clipboard-check',
+    'calibration': 'mdi-ruler',
+    'maintenance': 'mdi-wrench',
+    'stk': 'mdi-car-brake-alert',
+    'mtk': 'mdi-motorbike',
+    'stue': 'mdi-truck-check',
+    'mtue': 'mdi-bus-alert',
+    'dguv': 'mdi-shield-check',
+    'visual': 'mdi-eye-check',
+    'ergometer': 'mdi-run-fast',
+    'thermometer': 'mdi-thermometer',
+    'blood-pressure': 'mdi-heart-pulse',
+    'repairs': 'mdi-tools',
+    'parts': 'mdi-cog',
+    'installation': 'mdi-wrench',
+    'training': 'mdi-school',
+    'disposal': 'mdi-trash-can'
+  },
+  fullPaths: {
+    '/services/inspections': 'menu.items.general_inspection',
+    '/services/visual': 'menu.items.visual_inspection'
+  }
+}
+
+// Breadcrumb de base avec clés de traduction
 const baseBreadcrumbs = [
   { 
-    text: t('menu.home'),
+    text: 'menu.home',
     to: '/', 
     icon: 'mdi-home', 
     disabled: false 
   }
 ]
 
-// Mappage complet des chemins aux clés de traduction
-const pathToTranslation = {
-  // D'abord les items spécifiques
-  'visual': 'menu.items.visual_inspection',
-  'stk': 'menu.items.stk_inspection',
-  'mtk': 'menu.items.mtk_inspection',
-  'stue': 'menu.items.stue_inspection',
-  'mtue': 'menu.items.mtue_inspection',
-  'dguv': 'menu.items.dguv_inspection',
-  'ergometer': 'menu.items.ergometer_calibration',
-  'thermometer': 'menu.items.thermometer_calibration',
-  'blood-pressure': 'menu.items.blood_pressure_calibration',
-  'repairs': 'menu.items.repairs',
-  'parts': 'menu.items.spare_parts',
-  'installation': 'menu.items.installation_service',
-  'training': 'menu.items.training',
-  'disposal': 'menu.items.equipment_disposal',
-  'maintenance': 'menu.items.regular_maintenance',
-  
-  // Ensuite les catégories seulement si nécessaire
-  'inspections': 'menu.items.general_inspection', // Affichera "Allgemeine Inspektion" pour /inspections
-  'calibration': 'menu.categories.calibration',
-  
-  // Enfin les pages principales
-  'services': 'menu.services',
-  'about': 'menu.about',
-  'contact': 'menu.contact',
-  'products': 'menu.products'
-}
-
-// Mappage des icônes
-const pathToIcon = {
-  'services': 'mdi-cog',
-  'about': 'mdi-information',
-  'contact': 'mdi-email',
-  'products': 'mdi-package-variant',
-  'inspections': 'mdi-clipboard-check',
-  'calibration': 'mdi-ruler',
-  'maintenance': 'mdi-wrench',
-  'stk': 'mdi-car-brake-alert',
-  'mtk': 'mdi-motorbike',
-  'stue': 'mdi-truck-check',
-  'mtue': 'mdi-bus-alert',
-  'dguv': 'mdi-shield-check',
-  'general': 'mdi-clipboard-check',
-  'visual': 'mdi-eye-check',
-  'ergometer': 'mdi-run-fast',
-  'thermometer': 'mdi-thermometer',
-  'blood-pressure': 'mdi-heart-pulse',
-  'repairs': 'mdi-tools',
-  'parts': 'mdi-cog',
-  'installation': 'mdi-wrench',
-  'training': 'mdi-school',
-  'disposal': 'mdi-trash-can',
-  'maintenance': 'mdi-calendar-check'
-}
-
-// Mappage des chemins complets pour éviter les ambiguïtés
-const fullPathTranslations = {
-  '/services/inspections': 'menu.items.general_inspection',
-  '/services/visual': 'menu.items.visual_inspection',
-  // Ajoutez d'autres chemins complets si nécessaire
-}
+// Watcher pour les changements de langue
+watch(locale, () => {
+  // Force la réactivité lorsqu'on change la langue
+})
 
 const breadcrumbItems = computed(() => {
-
-  console.log('Current path parts:', route.path.split('/').filter(Boolean));
-  console.log('Translation for general:', t('menu.items.general_inspection'));
-
-  const items = [...baseBreadcrumbs]
-  const pathParts = route.path.split('/').filter(Boolean)
+  // Traduction des éléments de base
+  const items = baseBreadcrumbs.map(item => ({
+    ...item,
+    text: t(item.text)
+  }))
   
+  const pathParts = route.path.split('/').filter(Boolean)
   let accumulatedPath = ''
   
+  // Construction dynamique du breadcrumb
   pathParts.forEach((part, index) => {
     accumulatedPath += `/${part}`
     
-    // Nouvelle logique de résolution
-    let translationKey
-    if (index === pathParts.length - 1) {
-      // Pour le dernier élément, priorité absolue aux items spécifiques
-      translationKey = pathToTranslation[part] || part
-    } else {
-      // Pour les éléments intermédiaires, on prend la traduction générique
-      translationKey = pathToTranslation[part] || part
-    }
-    
-    const displayText = translationKey.startsWith('menu.') 
-      ? t(translationKey) 
-      : part
+    // Résolution de la traduction
+    const translationKey = pathConfig.fullPaths[accumulatedPath] || 
+                         pathConfig.translations[part] || 
+                         part
     
     items.push({
-      text: displayText,
+      text: translationKey.startsWith('menu.') ? t(translationKey) : part,
       to: accumulatedPath,
       disabled: index === pathParts.length - 1,
-      icon: pathToIcon[part] || ''
+      icon: pathConfig.icons[part] || ''
     })
   })
 
   return items
 })
-
-watch(route, (newRoute) => {
-  updateBreadcrumbs(newRoute)
-}, { immediate: true })
-
-function updateBreadcrumbs(route) {
-  const items = [...baseBreadcrumbs]
-  const pathParts = route.path.split('/').filter(Boolean)
-  
-  let accumulatedPath = ''
-  
-  pathParts.forEach((part, index) => {
-    accumulatedPath += `/${part}`
-    
-    // Priorité aux traductions spécifiques
-    let translationKey = fullPathTranslations[accumulatedPath] || 
-                       pathToTranslation[part] || 
-                       part
-    
-    const displayText = translationKey.startsWith('menu.') 
-      ? t(translationKey) 
-      : part
-    
-    items.push({
-      text: displayText,
-      to: accumulatedPath,
-      disabled: index === pathParts.length - 1,
-      icon: pathToIcon[part] || ''
-    })
-  })
-
-  breadcrumbItems.value = items
-}
 </script>
 
 <style scoped>
