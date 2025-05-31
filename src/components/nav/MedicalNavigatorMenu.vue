@@ -34,18 +34,18 @@
             </v-btn>
           </template>
 
- <v-card 
-        :width="isMobile ? '100%' : '100vw'"
-        class="mega-menu"
-        elevation="4"
-        :style="{
-            'max-width': isMobile ? '100%' : '1280px',
-            'margin': isMobile ? '0' : '14px auto 0',
-            'left': isMobile ? '0' : '50%',
-            'transform': isMobile ? 'none' : 'translateX(-50%)',
-            'position': isMobile ? 'static' : 'relative'
-        }"
-    >
+          <v-card 
+              :width="isMobile ? '100%' : '100vw'"
+              class="mega-menu"
+              elevation="4"
+              :style="{
+                  'max-width': isMobile ? '100%' : '1280px',
+                  'margin': isMobile ? '0' : '14px auto 0',
+                  'left': isMobile ? '0' : '50%',
+                  'transform': isMobile ? 'none' : 'translateX(-50%)',
+                  'position': isMobile ? 'static' : 'relative'
+              }"
+            >
             <div class="close-button-wrapper">
               <v-btn icon class="close-megamenu" @click.stop="closeServicesMenu">
                 <v-icon>mdi-close</v-icon>
