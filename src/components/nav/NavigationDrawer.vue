@@ -360,23 +360,25 @@ function closeDrawer() {
   drawer.value = false
 }
 </script>
+
+
 <style scoped>
 .navigation-drawer {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #0d2b6b; /* Bleu médical foncé principal */
-  background: linear-gradient(135deg, #0d2b6b 0%, #0a1942 100%);
-  color: white;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  color: #2c3e50;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   margin-top: 56px;
-  margin-bottom: 60px; /* Hauteur approximative de votre footer */
-  z-index: 101; /* Juste au-dessus du footer */
+  margin-bottom: 60px;
+  z-index: 101;
 }
 
-
+/* Top bar bleue */
 .drawer-header {
-  background-color: rgba(13, 43, 107, 0.95);
+  background: #0d2b6b;
+  background: linear-gradient(135deg, #0d2b6b 0%, #0a1942 100%);
   padding: 14px 16px;
   display: flex;
   align-items: center;
@@ -412,41 +414,42 @@ function closeDrawer() {
   opacity: 1;
 }
 
+/* Contenu clair */
 .drawer-content {
   flex: 1;
   overflow-y: auto;
   padding: 12px 8px;
+  background: #ffffff;
 }
 
-/* Styles pour toutes les cartes */
+/* Cartes */
 .menu-card,
 .account-card,
 .auth-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
+  background: #ffffff;
   border-radius: 10px;
   margin-bottom: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #eaeaea;
   overflow: hidden;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .menu-card:hover,
 .account-card:hover,
 .auth-card:hover {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Styles communs pour les listes */
+/* Listes */
 .v-list {
   background: transparent !important;
-  color: white !important;
+  color: #2c3e50 !important;
   padding: 4px 0 !important;
 }
 
 .v-list-item {
-  color: white !important;
+  color: #2c3e50 !important;
   min-height: 48px;
   padding: 0 16px !important;
 }
@@ -456,7 +459,7 @@ function closeDrawer() {
 }
 
 .v-list-item__prepend .v-icon {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #7f8c8d !important;
   opacity: 0.9;
 }
 
@@ -464,19 +467,19 @@ function closeDrawer() {
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.2px;
-  color: white !important;
+  color: #2c3e50 !important;
 }
 
 .v-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: #f8f9fa !important;
 }
 
 .v-list-item--active {
-  background-color: #1e88e5 !important;
-  color: white !important;
+  background-color: #e3f2fd !important;
+  color: #1976d2 !important;
 }
 
-/* Styles spécifiques pour les groupes */
+/* Groupes */
 .v-list-group__items .v-list-item {
   padding-left: 48px !important;
 }
@@ -485,29 +488,29 @@ function closeDrawer() {
   margin-right: 12px;
 }
 
-/* Section Header */
+/* En-têtes de section */
 .section-header {
-  background: linear-gradient(to right, rgba(13, 43, 107, 0.9), rgba(30, 136, 229, 0.4));
+  background: #f8f9fa;
   padding: 12px 16px;
   margin: 0 0 4px 0;
   border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .section-header h3 {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
-  color: white;
+  color: #2c3e50;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-/* Divider personnalisé */
+/* Séparateurs */
 .v-divider {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: #eaeaea !important;
   margin: 8px 16px !important;
 }
-
 
 /* Responsive */
 @media (max-width: 599px) {
@@ -528,6 +531,14 @@ function closeDrawer() {
     min-height: 44px;
     padding: 0 12px !important;
   }
+}
 
+/* Animations */
+.v-list-item {
+  transition: background-color 0.2s ease;
+}
+
+.v-icon {
+  transition: color 0.2s ease;
 }
 </style>
