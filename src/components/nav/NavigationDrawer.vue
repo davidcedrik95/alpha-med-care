@@ -31,8 +31,6 @@
       <!-- Première carte pour le menu principal -->
       <v-card class="menu-card" flat>
         <v-list dense nav>
-          <v-divider></v-divider>
-
           <!-- Menu principal -->
           <v-list-item
             :to="'/'"
@@ -44,6 +42,8 @@
             </template>
             <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
           </v-list-item>
+
+          <hr class="custom-divider">
 
           <!-- Menu déroulant Services -->
           <v-list-group value="Services">
@@ -67,20 +67,21 @@
                 </v-list-item>
               </template>
               
-              <v-list-item
-                v-for="(item, index) in menuCategories[0].items"
-                :key="'inspections-'+index"
-                :to="item.route"
-                link
-                @click="closeDrawer"
-              >
-                <template v-slot:prepend>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </template>
-                <v-list-item-title>
-                  {{ $t(`menu.items.${item.key}`) }}
-                </v-list-item-title>
-              </v-list-item>
+              <template v-for="(item, index) in menuCategories[0].items" :key="'inspections-'+index">
+                <v-list-item
+                  :to="item.route"
+                  link
+                  @click="closeDrawer"
+                >
+                  <template v-slot:prepend>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </template>
+                  <v-list-item-title>
+                    {{ $t(`menu.items.${item.key}`) }}
+                  </v-list-item-title>
+                </v-list-item>
+                <hr class="custom-divider submenu-divider" v-if="index < menuCategories[0].items.length - 1">
+              </template>
             </v-list-group>
 
             <!-- Sous-menu Calibration -->
@@ -94,20 +95,21 @@
                 </v-list-item>
               </template>
               
-              <v-list-item
-                v-for="(item, index) in menuCategories[1].items"
-                :key="'calibration-'+index"
-                :to="item.route"
-                link
-                @click="closeDrawer"
-              >
-                <template v-slot:prepend>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </template>
-                <v-list-item-title>
-                  {{ $t(`menu.items.${item.key}`) }}
-                </v-list-item-title>
-              </v-list-item>
+              <template v-for="(item, index) in menuCategories[1].items" :key="'calibration-'+index">
+                <v-list-item
+                  :to="item.route"
+                  link
+                  @click="closeDrawer"
+                >
+                  <template v-slot:prepend>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </template>
+                  <v-list-item-title>
+                    {{ $t(`menu.items.${item.key}`) }}
+                  </v-list-item-title>
+                </v-list-item>
+                <hr class="custom-divider submenu-divider" v-if="index < menuCategories[1].items.length - 1">
+              </template>
             </v-list-group>
 
             <!-- Sous-menu Maintenance -->
@@ -121,22 +123,25 @@
                 </v-list-item>
               </template>
               
-              <v-list-item
-                v-for="(item, index) in menuCategories[2].items"
-                :key="'maintenance-'+index"
-                :to="item.route"
-                link
-                @click="closeDrawer"
-              >
-                <template v-slot:prepend>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </template>
-                <v-list-item-title>
-                  {{ $t(`menu.items.${item.key}`) }}
-                </v-list-item-title>
-              </v-list-item>
+              <template v-for="(item, index) in menuCategories[2].items" :key="'maintenance-'+index">
+                <v-list-item
+                  :to="item.route"
+                  link
+                  @click="closeDrawer"
+                >
+                  <template v-slot:prepend>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </template>
+                  <v-list-item-title>
+                    {{ $t(`menu.items.${item.key}`) }}
+                  </v-list-item-title>
+                </v-list-item>
+                <hr class="custom-divider submenu-divider" v-if="index < menuCategories[2].items.length - 1">
+              </template>
             </v-list-group>
           </v-list-group>
+
+          <hr class="custom-divider">
 
           <!-- Autres liens -->
           <v-list-item
@@ -149,6 +154,8 @@
             </template>
             <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
           </v-list-item>
+
+          <hr class="custom-divider">
 
           <v-list-item
             :to="'/contact'"
@@ -173,21 +180,22 @@
         <!-- La carte elle-même -->
         <v-card class="account-card" flat>
           <v-list dense>
-            <v-list-item
-              v-for="(item, index) in accountItems"
-              :key="'account-'+index"
-              :to="item.route"
-              link
-              @click="closeDrawer"
-            >
-              <template v-slot:prepend>
-                <v-icon>{{ item.icon }}</v-icon>
-              </template>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
+            <template v-for="(item, index) in accountItems" :key="'account-'+index">
+              <v-list-item
+                :to="item.route"
+                link
+                @click="closeDrawer"
+              >
+                <template v-slot:prepend>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </template>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+              <hr class="custom-divider" v-if="index < accountItems.length - 1">
+            </template>
             
-            <!-- Séparateur -->
-            <v-divider color="#e0e0e0" thickness="1" class="my-2"></v-divider>
+            <!-- Séparateur principal -->
+            <hr class="custom-divider main-divider">
             
             <!-- Nouveaux éléments dépliables -->
             <v-list-group
@@ -206,23 +214,19 @@
                   </template>
                 </v-list-item>
                 <!-- Ligne horizontale sous chaque titre -->
-                <v-divider 
-                  v-if="index < infoItems.length - 1" 
-                  color="#e0e0e0" 
-                  thickness="1" 
-                  class="my-1"
-                ></v-divider>
+                <hr class="custom-divider" v-if="index < infoItems.length - 1">
               </template>
               
-              <v-list-item
-                v-for="(subItem, subIndex) in item.items"
-                :key="'subinfo-'+index+'-'+subIndex"
-                :to="subItem.route"
-                link
-                @click="closeDrawer"
-              >
-                <v-list-item-title>{{ subItem.title }}</v-list-item-title>
-              </v-list-item>
+              <template v-for="(subItem, subIndex) in item.items" :key="'subinfo-'+index+'-'+subIndex">
+                <v-list-item
+                  :to="subItem.route"
+                  link
+                  @click="closeDrawer"
+                >
+                  <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+                </v-list-item>
+                <hr class="custom-divider submenu-divider" v-if="subIndex < item.items.length - 1">
+              </template>
             </v-list-group>
           </v-list>
         </v-card>
@@ -238,18 +242,19 @@
         <!-- La carte elle-même -->
         <v-card class="auth-card" flat>
           <v-list dense>
-            <v-list-item
-              v-for="(item, index) in authItems"
-              :key="'auth-'+index"
-              :to="item.route"
-              link
-              @click="closeDrawer"
-            >
-              <template v-slot:prepend>
-                <v-icon>{{ item.icon }}</v-icon>
-              </template>
-              <v-list-item-title>{{ $t(`auth.${item.key}`) }}</v-list-item-title>
-            </v-list-item>
+            <template v-for="(item, index) in authItems" :key="'auth-'+index">
+              <v-list-item
+                :to="item.route"
+                link
+                @click="closeDrawer"
+              >
+                <template v-slot:prepend>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </template>
+                <v-list-item-title>{{ $t(`auth.${item.key}`) }}</v-list-item-title>
+              </v-list-item>
+              <hr class="custom-divider" v-if="index < authItems.length - 1">
+            </template>
           </v-list>
         </v-card>
       </div>
@@ -262,7 +267,6 @@ import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { defineProps, defineEmits } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-
 
 const props = defineProps({
   modelValue: Boolean
@@ -316,8 +320,6 @@ const menuCategories = [
   }
 ]
 
-
-
 const accountItems = computed(() => [
   { title: t('account.items.my_account'), icon: 'mdi-account', route: '/account' },
   { title: t('account.items.my_orders'), icon: 'mdi-package-variant', route: '/orders' },
@@ -360,7 +362,6 @@ function closeDrawer() {
   drawer.value = false
 }
 </script>
-
 
 <style scoped>
 .navigation-drawer {
@@ -505,10 +506,21 @@ function closeDrawer() {
   letter-spacing: 0.5px;
 }
 
-/* Séparateurs */
-.v-divider {
-  border-color: #eaeaea !important;
-  margin: 8px 16px !important;
+/* Séparateurs personnalisés */
+.custom-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+  margin: 4px 16px;
+}
+
+.main-divider {
+  margin: 8px 16px;
+}
+
+.submenu-divider {
+  margin-left: 48px;
+  margin-right: 16px;
 }
 
 /* Responsive */
@@ -529,6 +541,14 @@ function closeDrawer() {
   .v-list-item {
     min-height: 44px;
     padding: 0 12px !important;
+  }
+
+  .custom-divider {
+    margin: 4px 12px;
+  }
+  
+  .submenu-divider {
+    margin-left: 44px;
   }
 }
 

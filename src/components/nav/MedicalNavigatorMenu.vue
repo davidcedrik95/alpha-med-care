@@ -290,7 +290,7 @@ const menuCategories = [
 
 /* Mega menu styles */
 .mega-menu {
-  background: rgba(13, 43, 107, 0.98) !important;
+  background: rgba(12, 72, 129, 1) !important;
   border-radius: 0 0 8px 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1000;
@@ -323,7 +323,8 @@ const menuCategories = [
 
 .close-megamenu {
   background-color: rgba(255, 255, 255, 0.9);
-  color: #0d2b6b !important;
+  color: #0C4881F2!important;
+  
 }
 
 .close-megamenu:hover {
@@ -379,7 +380,7 @@ const menuCategories = [
 
 .language-list {
   padding: 8px 0;
-  background-color: rgba(13, 43, 107, 0.98) !important;
+   background-color: rgba(12, 72, 129, 0.95) !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
