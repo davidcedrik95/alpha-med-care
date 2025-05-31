@@ -12,7 +12,6 @@
     "faq": "FAQ",
     "imprint": "Impressum",
     "privacy": "Datenschutz",
-
     "categories": {
       "inspections": "Prüfungen & Kontrollen",
       "calibration": "Kalibrierungsdienstleistungen",
@@ -22,7 +21,6 @@
       "stk": "Sicherheitstechnische Kontrolle (STK)",
       "mtk": "Messtechnische Kontrolle (MTK)"
     },
-
     "items": {
       "stk_inspection": "Sicherheitstechnische Kontrolle (STK)",
       "mtk_inspection": "Messtechnische Kontrolle (MTK)",
@@ -31,13 +29,11 @@
       "dguv_inspection": "DGUV-Prüfung",
       "general_inspection": "Allgemeine Inspektion",
       "visual_inspection": "Sichtprüfung",
-
       "ergometer_calibration": "Ergometer-Kalibrierung",
       "thermometer_calibration": "Thermometer-Kalibrierung",
       "blood_pressure_calibration": "Blutdruckmessgeräte-Kalibrierung",
       "ecg_calibration": "EKG-Geräte-Kalibrierung",
       "ultrasound_calibration": "Ultraschallgeräte-Kalibrierung",
-
       "repairs": "Gerätereparaturen",
       "spare_parts": "Ersatzteile & Zubehör",
       "installation_service": "Installationsservice",
@@ -47,7 +43,6 @@
       "emergency_service": "Notfall-Service"
     }
   },
-
   "header": {
     "free_shipping": "Versandkostenfrei",
     "phone": "+49 (0)9666 188950",
@@ -60,13 +55,11 @@
     "logo_subtext": "Ihr Spezialist für Medizintechnik",
     "search": "Suchen"
   },
-
   "language": {
     "de": "Deutsch",
     "en": "Englisch",
     "fr": "Französisch"
   },
- 
   "account": {
     "title": "Mein Konto",
     "login": "Anmelden",
@@ -85,7 +78,6 @@
       "contact_settings": "Kontakteinstellungen"
     }
   },
-
   "cart": {
     "title": "Ihr Warenkorb",
     "empty": "Ihr Warenkorb ist leer",
@@ -99,7 +91,6 @@
     "coupon_placeholder": "Gutscheincode",
     "apply": "Anwenden"
   },
-
   "info": {
     "help": {
       "title": "Hilfe & Informationen",
@@ -122,28 +113,105 @@
       }
     }
   },
-
   "auth": {
-  "login": "Anmelden",
-  "register": "Registrieren",
-  "authentication": "Authentifizierung"
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "authentication": "Authentifizierung"
   },
-
   "footer": {
     "address": "Adresse",
     "email": "E-Mail",
     "phone": "Telefon",
     "social": "Folgen Sie uns",
-    "copyright": "© 2025 alpha med care GmbH. Alle Rechte vorbehalten.",
+    "copyright": "© {year} alpha med care GmbH. Alle Rechte vorbehalten.",
     "terms": "AGB",
     "privacy": "Datenschutzerklärung",
-    "imprint": "Impressum"
+    "imprint": "Impressum",
+    "sections": {
+      "company": {
+        "title": "Unternehmen",
+        "about": "Über uns",
+        "career": "Karriere",
+        "news": "Aktuelles",
+        "team": "Unser Team",
+        "quality": "Qualitätsmanagement"
+      },
+      "services": {
+        "title": "Dienstleistungen",
+        "inspections": "Prüfungen & Kontrollen",
+        "calibration": "Kalibrierungen",
+        "maintenance": "Wartungsservice",
+        "consulting": "Fachberatung",
+        "certification": "Zertifizierungen"
+      },
+      "resources": {
+        "title": "Ressourcen",
+        "blog": "Fachblog",
+        "guides": "Bedienungsanleitungen",
+        "videos": "Schulungsvideos",
+        "downloads": "Downloads",
+        "regulations": "Normen & Richtlinien"
+      },
+      "support": {
+        "title": "Support",
+        "contact": "Kontaktformular",
+        "faq": "Häufige Fragen",
+        "shipping": "Versandinfo",
+        "returns": "Retourenprozess",
+        "emergency": "Notdienst"
+      }
+    },
+    "newsletter": {
+      "title": "Fachnewsletter",
+      "description": "Bleiben Sie mit medizintechnischen Neuigkeiten und Sonderangeboten auf dem Laufenden.",
+      "placeholder": "Ihre geschäftliche E-Mail",
+      "subscribe": "Jetzt abonnieren",
+      "privacy_note": "Wir geben Ihre Daten nicht weiter. Sie können sich jederzeit abmelden.",
+      "success": "Vielen Dank für Ihre Anmeldung!",
+      "error": "Bitte geben Sie eine gültige Geschäftsemail ein"
+    },
+    "certifications": {
+      "title": "Zertifizierungen",
+      "iso13485": "ISO 13485:2016",
+      "iso9001": "ISO 9001:2015",
+      "mdr": "MDR 2017/745",
+      "ce": "CE-Kennzeichnung"
+    },
+    "payment_methods": {
+      "title": "Zahlungsarten",
+      "methods": [
+        "Rechnung (netto 30 Tage)",
+        "Kreditkarte",
+        "SEPA-Lastschrift",
+        "PayPal",
+        "Vorkasse"
+      ]
+    }
   },
-
   "company": {
     "name": "alpha-med-care GmbH",
-    "legal_name": "Medizinische Lösungen International",
+    "legal_name": "alpha-med-care Medizinische Lösungen International GmbH",
     "copyright": "Alle Rechte vorbehalten",
-    "slogan": "Innovation für Ihre Gesundheit"
+    "slogan": "Präzision in der Medizintechnik",
+    "details": {
+      "founded": "Gegründet 2010",
+      "employees": "50+ zertifizierte Techniker",
+      "locations": [
+        "Hauptsitz: Nürnberg",
+        "Niederlassung: München",
+        "Servicezentrum: Berlin"
+      ],
+      "quality": "TÜV-zertifiziert nach ISO 13485",
+      "vat": "DE123456789",
+      "commercial_register": "HRB 12345, Amtsgericht Nürnberg"
+    },
+    "mission": {
+      "title": "Unser Auftrag",
+      "content": "Wir garantieren die Sicherheit und Präzision medizinischer Geräte durch fachgerechte Wartung, Kalibrierung und Prüfungen gemäß aktueller Normen."
+    }
+  },
+  "seo": {
+    "keywords": "Medizintechnik, Geräteprüfung, STK, MTK, Kalibrierung, Medizingerätewartung, DGUV Prüfung",
+    "description": "alpha-med-care - Ihr spezialisierter Dienstleister für Sicherheitsprüfungen, Kalibrierungen und Wartung medizinischer Geräte in ganz Deutschland."
   }
 }
