@@ -10,7 +10,7 @@
               class="breadcrumb-item"
             >
               <v-icon v-if="item.icon" small class="mr-1">{{ item.icon }}</v-icon>
-              <span class="breadcrumb-text">{{ displayText(item) }}</span>
+              <span class="breadcrumb-text">{{ item.text }}</span>
             </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
@@ -20,126 +20,106 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
 
 const route = useRoute()
 const { t } = useI18n()
 
-// Base breadcrumbs configuration
 const baseBreadcrumbs = [
   { 
-    text: 'menu.home',
-    path: 'home', 
+    text: t('menu.home'),
     to: '/', 
     icon: 'mdi-home', 
     disabled: false 
   }
 ]
 
-const breadcrumbItems = ref([...baseBreadcrumbs])
-const currentContext = ref('')
 
-// Path to translation mapping with hierarchy support
-const pathTranslations = {
-  // Main menu items
-  'services': { 
-    full: 'menu.services',
-    context: 'menu.categories.inspections'
-  },
-  'about': { 
-    full: 'menu.about'
-  },
-  'contact': { 
-    full: 'menu.contact'
-  },
-  'products': { 
-    full: 'menu.products',
-    context: 'menu.products'
-  },
-  'blog': { 
-    full: 'menu.blog'
-  },
-  'faq': { 
-    full: 'menu.faq'
-  },
-  'imprint': { 
-    full: 'menu.imprint'
-  },
-  'privacy': { 
-    full: 'menu.privacy'
-  },
-  
-  // Account related
-  'account': { 
-    full: 'account.title',
-    context: 'account.title',
-    items: {
-      'login': { full: 'auth.login' },
-      'register': { full: 'auth.register' },
-      'profile': { full: 'account.profile' },
-      'orders': { full: 'account.items.my_orders' }
-    }
-  },
-  
-  // Services categories
-  'categories': {
-    full: 'menu.categories.inspections'
-  },
-  'stue_inspection': { 
-    full: 'menu.items.stue_inspection'
-  },
 
-  'calibration': {
-    full: 'menu.categories.calibration'
-  },
-  'maintenance': {
-    full: 'menu.categories.maintenance'
-  },
-  'sales': {
-    full: 'menu.categories.sales'
-  },
-  'consulting': {
-    full: 'menu.categories.consulting'
-  },
+
+
+const breadcrumbItems = computed(() => {
+  const items = [...baseBreadcrumbs]
+  const pathParts = route.path.split('/').filter(Boolean)
   
-  // Inspection items
-  'stk_inspection': { 
-    full: 'menu.items.stk_inspection'
-  },
-  'mtk_inspection': { 
-    full: 'menu.items.mtk_inspection'
-  },
-  'stue_inspection': { 
-    full: 'menu.items.stue_inspection'
-  },
-  'mtue_inspection': { 
-    full: 'menu.items.mtue_inspection'
-  },
-  'dguv_inspection': { 
-    full: 'menu.items.dguv_inspection'
-  },
-  'general_inspection': { 
-    full: 'menu.items.general_inspection'
-  },
+  let accumulatedPath = ''
   
+  pathParts.forEach((part, index) => {
+    accumulatedPath += `/${part}`
+    
+    const translationKey = pathToTranslation[part] || part
+    const displayText = translationKey.startsWith('menu.') ? t(translationKey) : part
+    
+    items.push({
+      text: displayText,
+      to: accumulatedPath,
+      disabled: index === pathParts.length - 1,
+      icon: pathToIcon[part] || ''
+    })
+  })
+
+  return items
+})
+
+// Mappage complet des chemins aux clés de traduction
+const pathToTranslation = {
+  // Pages principales
+  'services': 'menu.services',
+  'about': 'menu.about',
+  'contact': 'menu.contact',
+  'products': 'menu.products',
   
-  // Calibration items
-  'ergometer_calibration': { 
-    full: 'menu.items.ergometer_calibration'
-  },
-  'thermometer_calibration': { 
-    full: 'menu.items.thermometer_calibration'
-  },
+  // Services spécifiques - priorité haute
+  'stk': 'menu.items.stk_inspection',
+  'mtk': 'menu.items.mtk_inspection',
+  'stue': 'menu.items.stue_inspection',
+  'mtue': 'menu.items.mtue_inspection',
+  'dguv': 'menu.items.dguv_inspection',
+  'general': 'menu.items.general_inspection', // Corrigé pour pointer vers l'item
+  'visual': 'menu.items.visual_inspection', // Corrigé pour pointer vers l'item
+  'ergometer': 'menu.items.ergometer_calibration',
+  'thermometer': 'menu.items.thermometer_calibration',
+  'blood-pressure': 'menu.items.blood_pressure_calibration',
+  'repairs': 'menu.items.repairs',
+  'parts': 'menu.items.spare_parts',
+  'installation': 'menu.items.installation_service',
+  'training': 'menu.items.training',
+  'disposal': 'menu.items.equipment_disposal',
+  'maintenance': 'menu.items.regular_maintenance',
   
-  // Maintenance items
-  'repairs': { 
-    full: 'menu.items.repairs'
-  },
-  'training': { 
-    full: 'menu.items.training'
-  }
+  // Catégories - priorité basse
+  'inspections': 'menu.categories.inspections',
+  'calibration': 'menu.categories.calibration',
+  'maintenance': 'menu.categories.maintenance'
+}
+
+const pathToIcon = {
+  'services': 'mdi-cog',
+  'about': 'mdi-information',
+  'contact': 'mdi-email',
+  'products': 'mdi-package-variant',
+  'inspections': 'mdi-clipboard-check',
+  'calibration': 'mdi-ruler',
+  'maintenance': 'mdi-wrench',
+  'stk': 'mdi-car-brake-alert',
+  'mtk': 'mdi-motorbike',
+  'stue': 'mdi-truck-check',
+  'mtue': 'mdi-bus-alert',
+  'dguv': 'mdi-shield-check',
+  'general': 'mdi-clipboard-check',
+  'visual': 'mdi-eye-check',
+  'ergometer': 'mdi-run-fast',
+  'thermometer': 'mdi-thermometer',
+  'blood-pressure': 'mdi-heart-pulse',
+  'repairs': 'mdi-tools',
+  'parts': 'mdi-cog',
+  'installation': 'mdi-wrench',
+  'training': 'mdi-school',
+  'disposal': 'mdi-trash-can',
+  'maintenance': 'mdi-calendar-check'
 }
 
 watch(route, (newRoute) => {
@@ -154,139 +134,19 @@ function updateBreadcrumbs(route) {
   
   pathParts.forEach((part, index) => {
     accumulatedPath += `/${part}`
-    let translation = findTranslation(part, index, pathParts)
+    
+    const translationKey = pathToTranslation[part] || part
+    const displayText = translationKey.startsWith('menu.') ? t(translationKey) : part
     
     items.push({
-      text: translation.full || part,
-      path: part,
+      text: displayText,
       to: accumulatedPath,
       disabled: index === pathParts.length - 1,
-      icon: getIconForPath(part)
+      icon: pathToIcon[part] || ''
     })
   })
 
   breadcrumbItems.value = items
-  currentContext.value = getCurrentContext(route)
-}
-
-function displayText(item) {
-  return t(item.text) || formatBreadcrumbText(item.path)
-}
-
-function formatBreadcrumbText(text) {
-  return text.split('-').map(word => 
-    word.charAt(0).toUpperCase() + word.slice(1)
-  ).join(' ')
-}
-
-function getIconForPath(path) {
-  const icons = {
-    // Main menu
-    'services': 'mdi-cog',
-    'about': 'mdi-information',
-    'contact': 'mdi-email',
-    'products': 'mdi-package-variant',
-    'blog': 'mdi-post',
-    'faq': 'mdi-help-circle',
-    
-    // Account
-    'account': 'mdi-account',
-    'login': 'mdi-login',
-    'register': 'mdi-account-plus',
-    'profile': 'mdi-account-details',
-    'orders': 'mdi-clipboard-list',
-    
-    // Services
-    'stk': 'mdi-car-brake-alert',
-    'mtk': 'mdi-motorbike',
-    'inspections': 'mdi-clipboard-check',
-    'calibration': 'mdi-ruler',
-    'maintenance': 'mdi-wrench',
-    'sales': 'mdi-cart',
-    'consulting': 'mdi-school',
-    
-    // Specific services
-    'stk_inspection': 'mdi-car-brake-alert',
-    'mtk_inspection': 'mdi-motorbike',
-    'ergometer_calibration': 'mdi-run-fast',
-    'thermometer_calibration': 'mdi-thermometer',
-    'repairs': 'mdi-tools',
-    'training': 'mdi-teach'
-  }
-  return icons[path] || ''
-}
-
-function findTranslation(part, index, pathParts) {
-  // 1. Check exact match
-  if (pathTranslations[part]) {
-    return pathTranslations[part]
-  }
-
-  // 2. Check if part is in any nested items
-  if (index > 0) {
-    const parent = pathParts[index-1]
-    if (pathTranslations[parent]?.items?.[part]) {
-      return pathTranslations[parent].items[part]
-    }
-  }
-
-  // 3. Check for common suffixes
-  const suffixes = ['_inspection', '_calibration', '_service']
-  for (const suffix of suffixes) {
-    if (part.endsWith(suffix)) {
-      const base = part.replace(suffix, '')
-      if (pathTranslations[base]) {
-        return pathTranslations[base]
-      }
-    }
-  }
-
-  // 4. Try to find partial matches (like "inspections" matching "categories.inspections")
-  for (const key in pathTranslations) {
-    if (key.includes(part) || part.includes(key)) {
-      const translation = pathTranslations[key]
-      if (translation.full && translation.full.includes(part)) {
-        return translation
-      }
-    }
-  }
-
-  return { full: part } // fallback
-}
-
-function getCurrentContext(route) {
-  const pathParts = route.path.split('/').filter(Boolean)
-  
-  // First try to get context from the last path part
-  if (pathParts.length > 0) {
-    const lastPart = pathParts[pathParts.length - 1]
-    const translation = pathTranslations[lastPart]
-    if (translation && translation.context) {
-      return t(translation.context)
-    }
-  }
-  
-  // Then try to get context from parent paths
-  for (let i = pathParts.length - 1; i >= 0; i--) {
-    const part = pathParts[i]
-    const translation = pathTranslations[part]
-    if (translation && translation.context) {
-      return t(translation.context)
-    }
-  }
-  
-  // Fallback to specific route patterns
-  if (route.path.startsWith('/services')) {
-    return t('menu.categories.inspections')
-  }
-  if (route.path.startsWith('/products')) {
-    return t('menu.products')
-  }
-  if (route.path.startsWith('/account')) {
-    return t('account.title')
-  }
-  
-  return ''
 }
 </script>
 
@@ -295,7 +155,7 @@ function getCurrentContext(route) {
   background-color: #f8f9fa;
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
-  top: 64px;
+  top: 112px;
   z-index: 900;
   width: 100%;
 }

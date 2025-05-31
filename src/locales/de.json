@@ -66,26 +66,7 @@
     "en": "Englisch",
     "fr": "Französisch"
   },
-
-  "breadcrumbs": {
-    "short": {
-      "home": "Home",
-      "services": "Services",
-      "about": "Über uns",
-      "contact": "Kontakt",
-      "products": "Produkte",
-      "blog": "Blog",
-      "faq": "FAQ",
-      "imprint": "Impressum",
-      "privacy": "Datenschutz",
-      "stk": "STK-Prüfung",
-      "mtk": "MTK-Prüfung",
-      "account": "Konto",
-      "login": "Anmelden",
-      "register": "Registrieren"
-    }
-  },
-  
+ 
   "account": {
     "title": "Mein Konto",
     "login": "Anmelden",
