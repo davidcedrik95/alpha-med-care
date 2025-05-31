@@ -232,7 +232,7 @@ const menuCategories = [
 <style scoped>
 
 .v-app-bar {
-  background-color: rgba(13, 43, 107, 0.95) !important;
+  background-color: rgba(12, 72, 129, 0.95) !important;
   color: white !important;
   z-index: 999 !important;
   top: 56px !important;
@@ -406,7 +406,7 @@ const menuCategories = [
 @media (max-width: 960px) {
   .v-app-bar {
     top: 0 !important;
-    background-color: rgba(13, 43, 107, 0.98) !important;
+   background-color: rgba(12, 72, 129, 0.95) !important;
   }
   
   .app-title {

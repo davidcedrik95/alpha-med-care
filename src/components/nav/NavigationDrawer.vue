@@ -377,8 +377,7 @@ function closeDrawer() {
 
 /* Top bar bleue */
 .drawer-header {
-  background: #0d2b6b;
-  background: linear-gradient(135deg, #0d2b6b 0%, #0a1942 100%);
+  background-color: #0C4881F2 !important;
   padding: 14px 16px;
   display: flex;
   align-items: center;

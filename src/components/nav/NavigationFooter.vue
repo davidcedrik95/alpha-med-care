@@ -52,7 +52,7 @@ const { t } = useI18n()
 <style scoped>
 .social-footer {
   padding: 20px 0 12px;
-  background: rgba(13, 43, 107, 0.9);
+  background-color: rgba(12, 72, 129, 0.95) !important;
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
