@@ -68,6 +68,22 @@
     "contact_settings": "Contact Settings"
   }
 },
+
+ "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "request_quote": "Request a Quote",
+    "save_cart": "Save Cart",
+    "coupon_placeholder": "Coupon code",
+    "apply": "Apply"
+  },
+
+
 "info": {
   "help": {
     "title": "Help & Information",

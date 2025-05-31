@@ -297,7 +297,7 @@ const menuCategories = [
 }
 
 /* Pour le wrapper du menu */
-/* Pour le wrapper du menu */
+
 .mega-menu-wrapper {
   position: fixed;
   left: 0;
@@ -313,18 +313,6 @@ const menuCategories = [
   margin: 0 auto;
   padding: 0 16px;
 }
-
-.mega-menu-wrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
 
 .close-button-wrapper {
   position: absolute;

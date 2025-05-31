@@ -69,6 +69,22 @@
       "contact_settings": "Paramètres de contact"
     }
   },
+  "cart": {
+    "title": "Votre Panier",
+    "empty": "Votre panier est vide",
+    "continue_shopping": "Continuer vos achats",
+    "subtotal": "Sous-total",
+    "discount": "Réduction",
+    "total": "Total",
+    "checkout": "Passer la commande",
+    "request_quote": "Demander un devis",
+    "save_cart": "Sauvegarder le panier",
+    "coupon_placeholder": "Code promo",
+    "apply": "Appliquer"
+  },
+
+
+
   "info": {
     "help": {
       "title": "Aide & Informations",

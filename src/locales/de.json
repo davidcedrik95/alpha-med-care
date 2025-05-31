@@ -85,6 +85,21 @@
       "contact_settings": "Kontakteinstellungen"
     }
   },
+
+  "cart": {
+    "title": "Ihr Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "continue_shopping": "Einkaufen fortsetzen",
+    "subtotal": "Zwischensumme",
+    "discount": "Rabatt",
+    "total": "Gesamtbetrag",
+    "checkout": "Zur Kasse gehen",
+    "request_quote": "Angebot anfordern",
+    "save_cart": "Warenkorb speichern",
+    "coupon_placeholder": "Gutscheincode",
+    "apply": "Anwenden"
+  },
+
   "info": {
     "help": {
       "title": "Hilfe & Informationen",

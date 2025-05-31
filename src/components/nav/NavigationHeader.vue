@@ -106,11 +106,17 @@
           </div>
         </div>
 
-        <a href="#" class="link-item cart-link" :aria-label="$t('header.cart')">
+        <!-- Lien panier -->
+        <a href="#" class="link-item cart-link" 
+          :aria-label="$t('header.cart')" 
+          @click.prevent="toggleCart">
           <i class="mdi mdi-cart"></i>
           <span class="link-text hide-on-mobile">{{ $t('header.cart') }}</span>
-          <span class="cart-badge" aria-hidden="true">0</span>
+          <span class="cart-badge" aria-hidden="true">{{ cartItems.length }}</span>
         </a>
+  
+        <!-- Composant panier -->
+        <SideCart />
       </nav>
 
       <!-- Icône de recherche mobile -->
@@ -143,12 +149,24 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, computed, onBeforeUnmount } from 'vue'
+import { useCartStore } from '@/stores/cart'
+import SideCart from './SideCart.vue'
 
 const searchQuery = ref('')
 const searchExpanded = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
 const accountMenuOpen = ref(false)
+
+// Utilisation du store Pinia
+const cartStore = useCartStore()
+
+const cartItems = computed(() => cartStore.items)
+const cartOpen = computed(() => cartStore.cartOpen)
+
+function toggleCart() {
+  cartStore.toggleCart()
+}
 
 function updateIsMobile() {
   const mobileNow = window.innerWidth <= 768
@@ -184,9 +202,7 @@ function closeAccountMenu() {
 }
 
 function navigateToRegister() {
-  // Implémentez la navigation vers la page d'inscription
   closeAccountMenu()
-  // router.push('/register') // Si vous utilisez Vue Router
 }
 
 onMounted(() => {
@@ -203,6 +219,7 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', () => {})
 })
 </script>
+
 
 <style scoped>
 /* Reset basique */
