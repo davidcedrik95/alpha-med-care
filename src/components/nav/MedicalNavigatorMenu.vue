@@ -1,10 +1,11 @@
 <template>
   <v-app-bar>
     <v-container class="d-flex align-center">
-      <!-- Logo / Titre du site -->
-      <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
-   
-      <v-spacer></v-spacer>
+        <!-- Logo / Titre du site -->
+        <div class="title-container">
+            <v-toolbar-title class="app-title flex-shrink-0" >{{ $t('app.title') }}</v-toolbar-title>
+        </div>
+        <v-spacer></v-spacer>
 
       <!-- Menu principal -->
       <v-toolbar-items class="hidden-sm-and-down">
@@ -223,6 +224,7 @@ const menuCategories = [
 </script>
 
 <style scoped>
+
 .v-app-bar {
   background-color: rgba(13, 43, 107, 0.95) !important;
   color: white !important;
@@ -233,13 +235,21 @@ const menuCategories = [
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.title-container {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+
 .app-title {
-  white-space: nowrap;
-  margin-right: 16px;
   font-size: 1.25rem;
   font-weight: 600;
   color: white !important;
+  white-space: nowrap;
+  padding-right: 16px; /* Espacement constant */
+  margin-right: auto; /* Pousse le reste à droite */
 }
+
 
 /* Navigation buttons */
 .nav-btn {
@@ -392,7 +402,7 @@ const menuCategories = [
   }
   
   .app-title {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Taille légèrement réduite */
   }
   
    .mega-menu {
@@ -407,13 +417,19 @@ const menuCategories = [
   .mega-menu-wrapper {
     position: static;
   }
+
+  .v-container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
 }
 
 @media (max-width: 600px) {
   .app-title {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Taille encore plus petite */
+   
+    
   }
-  
   .nav-btn {
     font-size: 0.9rem;
   }
@@ -422,4 +438,6 @@ const menuCategories = [
     padding: 0 8px;
   }
 }
+
+
 </style>
