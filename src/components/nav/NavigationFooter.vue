@@ -46,7 +46,7 @@
             <li><a href="/emergency">Notdienst</a></li>
           </ul>
           
-          <h4 class="footer-subtitle">Zahlungsarten</h4>
+          <h4 class="footer-title">Zahlungsarten</h4>
            <div class="payment-methods">
                 <div class="payment-icon">
                     <img src="/images/payment/visa.png" alt="Visa" title="Visa">
@@ -62,7 +62,7 @@
                 </div>
                
                 </div>
-        </div>
+          </div>
 
         <!-- Colonne Informations -->
         <div class="footer-column">
@@ -73,8 +73,26 @@
             <li><a href="/imprint">Impressum</a></li>
             <li><a href="/returns">Widerrufsrecht</a></li>
           </ul>
+
+           <h4 class="footer-title">Versand</h4>
+           <div class="payment-methods">
+                <div class="shipping-icon">
+                    <img src="/images/shipping/dhl.png" alt="DHL" title="DHL">
+                </div>
+                <div class="dpd-icon">
+                    <img src="/images/shipping/dpd.png" alt="dpd" title="dpd">
+                </div>
+                <div class="payment-icon">
+                    <img src="/images/payment/sepa.png" alt="SEPA Überweisung" title="SEPA Überweisung">
+                </div>
+                <div class="payment-icon">
+                    <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung">
+                </div>
+               
+                </div>
         </div>
 
+      
         <!-- Colonne Produits & Newsletter -->
         <div class="footer-column">
           <h4 class="footer-title">Produkte</h4>
@@ -247,6 +265,43 @@ export default {
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
+
+
+.shipping-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shipping-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+ 
+}
+
+
+.dpd-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpd-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+   border-radius: 5px;
+}
+
+
+
 
 .payment-icon:hover img {
   opacity: 1;
