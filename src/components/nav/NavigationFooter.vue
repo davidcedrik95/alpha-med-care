@@ -75,20 +75,17 @@
           </ul>
 
            <h4 class="footer-title">Versand</h4>
-           <div class="payment-methods">
+           <div class="shipping-methods">
                 <div class="shipping-icon">
                     <img src="/images/shipping/dhl.png" alt="DHL" title="DHL">
                 </div>
                 <div class="dpd-icon">
                     <img src="/images/shipping/dpd.png" alt="dpd" title="dpd">
                 </div>
-                <div class="payment-icon">
-                    <img src="/images/payment/sepa.png" alt="SEPA Überweisung" title="SEPA Überweisung">
+                <div class="db-icon">
+                    <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker">
                 </div>
-                <div class="payment-icon">
-                    <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung">
-                </div>
-               
+              
                 </div>
         </div>
 
@@ -267,6 +264,15 @@ export default {
 }
 
 
+/** Shipping */
+.shipping-methods {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
 .shipping-icon {
   width: 80px;
   height: 80px;
@@ -299,6 +305,24 @@ export default {
   transition: opacity 0.3s ease;
    border-radius: 5px;
 }
+
+
+.db-icon {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.db-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
 
 
 
