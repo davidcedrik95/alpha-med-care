@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "alpha med care GmbH"
+    "title": "alpha-med-sales"
   },
   "menu": {
     "home": "Accueil",
@@ -115,7 +115,7 @@
 },
 
  "company": {
-    "name": "alpha-med-care SAS",
+    "name": "alpha-med-sales",
     "legal_name": "Solutions Médicales Internationales",
     "copyright": "Tous droits réservés",
     "slogan": "Innovation pour votre santé"

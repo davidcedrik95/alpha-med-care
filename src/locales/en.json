@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "alpha med care GmbH"
+    "title": "alpha-med-sales"
   },
   "menu": {
     "home": "Home",
@@ -123,7 +123,7 @@
 },
 
 "company": {
-    "name": "alpha-med-scare Inc.",
+    "name": "alpha-med-sales",
     "legal_name": "Medical Solutions International Corporation",
     "copyright": "All rights reserved",
     "slogan": "Innovating for your health"

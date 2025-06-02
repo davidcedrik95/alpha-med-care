@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "alpha med care GmbH"
+    "title": "alpha-med-sales"
   },
   "menu": {
     "home": "Startseite",
@@ -189,7 +189,7 @@
     }
   },
   "company": {
-    "name": "alpha-med-care GmbH",
+    "name": "alpha-med-sales",
     "legal_name": "alpha-med-care Medizinische Lösungen International GmbH",
     "copyright": "Alle Rechte vorbehalten",
     "slogan": "Präzision in der Medizintechnik",
