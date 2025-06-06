@@ -91,7 +91,7 @@
               hide-details
               aria-label="E-Mail für Newsletter"
             ></v-text-field>
-            <v-btn color="primary" small class="mt-2" aria-label="Newsletter anmelden">Anmelden</v-btn>
+            <v-btn color="primary" small class="mt-2" aria-label="Newsletter anmelden"> <i class="mdi mdi-send-outline"></i> anmelden</v-btn>
           </div>
         </div>
       </div>
