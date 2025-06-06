@@ -188,23 +188,25 @@ export default {
 .certification-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
+  gap: 1rem;
+  perspective: 500px;
 }
 
 .certification-img {
-  height: 40px;
+  height: 50px;
   width: auto;
-  max-width: 80px;
+  max-width: 85px;
   background: white;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-  transition: transform 0.2s ease;
-  object-fit: contain;
+  padding: 0.6rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .certification-img:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px) rotateX(10deg);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
 /* Social icons */
