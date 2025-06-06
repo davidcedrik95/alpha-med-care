@@ -12,8 +12,8 @@
             <li><a href="/news" aria-label="News">News</a></li>
           </ul>
           
-          <h4 class="footer-subtitle">Zertifizierungen</h4>
-          <div class="icon-group">
+          <h4 class="footer-title">Zertifizierungen</h4>
+          <div class="certification-group">
             <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
             <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
             <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
@@ -29,8 +29,8 @@
             <li><a href="/maintenance" aria-label="Wartung">Wartung</a></li>
           </ul>
           
-          <h4 class="footer-subtitle">Social Media</h4>
-          <div class="icon-group social-icons">
+          <h4 class="footer-title">Social Media</h4>
+          <div class="social-icons-group">
             <a href="#" class="social-icon" aria-label="Facebook"><v-icon>mdi-facebook</v-icon></a>
             <a href="#" class="social-icon" aria-label="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
             <a href="#" class="social-icon" aria-label="Instagram"><v-icon>mdi-instagram</v-icon></a>
@@ -47,11 +47,11 @@
           </ul>
           
           <h4 class="footer-title">Zahlungsarten</h4>
-          <div class="icon-group payment-methods">
+          <div class="payment-methods-group">
             <img src="/images/payment/visa.png" alt="Visa" title="Visa" loading="lazy">
             <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
-            <img src="/images/payment/sepa.png" alt="SEPA Überweisung" title="SEPA Überweisung" loading="lazy">
-            <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+            <img src="/images/payment/SEPA.png" alt="SEPA Überweisung" title="SEPA Überweisung" loading="lazy">
+            <img src="/images/payment/sofortueberweisung.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
           </div>
         </div>
 
@@ -66,7 +66,7 @@
           </ul>
 
           <h4 class="footer-title">Versand</h4>
-          <div class="icon-group shipping-methods">
+          <div class="shipping-methods-group">
             <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
             <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
             <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
@@ -82,8 +82,8 @@
             <li><a href="/specials" aria-label="Angebote">Angebote</a></li>
           </ul>
           
-          <h4 class="footer-subtitle">{{ $t('footer.newsletter.title') }}</h4>
-          <div class="newsletter">
+          <h4 class="footer-title">{{ $t('footer.newsletter.title') }}</h4>
+          <div class="newsletter-group">
             <v-text-field 
               placeholder="Ihre E-Mail" 
               dense 
@@ -123,14 +123,13 @@ export default {
 }
 
 .social-footer {
-  background-color: var(--footer-bg-color);
-  color: var(--footer-text-color);
+  color: white;
   padding: 2.5rem 0 1.25rem;
-  background-color: rgba(209, 207, 207, 0.7);
+  background-color: rgba(110, 110, 110, 0.377);
 }
 
 .footer-content {
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -139,7 +138,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  padding: 0 1rem;
   margin-bottom: 2rem;
 }
 
@@ -153,7 +151,7 @@ export default {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--footer-text-color);
+  color: rgb(53, 51, 51);
   border-bottom: 2px solid var(--footer-border-color);
   padding-bottom: 0.5rem;
 }
@@ -161,7 +159,7 @@ export default {
 .footer-subtitle {
   font-size: 1rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgb(36, 34, 34);
   margin: 1.5rem 0 0.5rem;
 }
 
@@ -175,7 +173,7 @@ export default {
 }
 
 .footer-links a {
-  color: var(--footer-link-color);
+  color: black;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s ease;
@@ -186,8 +184,8 @@ export default {
   text-decoration: underline;
 }
 
-/* Styles communs pour les groupes d'icônes */
-.icon-group {
+/* Certification logos */
+.certification-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -195,59 +193,127 @@ export default {
 }
 
 .certification-img {
-  height: 50px;
+  height: 40px;
   width: auto;
-  max-width: 100px;
+  max-width: 80px;
   background: white;
   padding: 0.25rem;
   border-radius: 0.25rem;
   transition: transform 0.2s ease;
+  object-fit: contain;
 }
 
 .certification-img:hover {
   transform: scale(1.05);
 }
 
-.social-icons {
-  gap: 1rem;
+/* Social icons */
+.social-icons-group {
+  display: flex;
+  gap: 1.5rem;
+  perspective: 500px;
 }
 
 .social-icon {
-  color: var(--footer-text-color);
-  transition: all 0.2s ease;
+  font-size: 1.8rem;
+  color: white;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .social-icon:hover {
-  color: var(--footer-link-hover);
-  transform: translateY(-0.125rem);
+  transform: translateY(-5px) rotateX(20deg);
+  text-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
-/* Styles pour les méthodes de paiement et livraison */
-.payment-methods img,
-.shipping-methods img {
-  height: 1.5rem;
+/* Effet de "levitation" */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.social-icon:hover {
+  animation: float 2s ease-in-out infinite;
+}
+/* Payment methods */
+.payment-methods-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  background: rgba(255,255,255,0.1);
+  padding: 0.8rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.3);
+}
+
+.payment-methods-group img {
+  height: 25px;
   width: auto;
-  opacity: var(--footer-icon-opacity);
-  transition: opacity 0.3s ease;
-  /*filter: brightness(0) invert(1);*/
+  max-width: 55px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  filter: sepia(0.2) contrast(1.1);
 }
 
-.shipping-methods img {
-  filter: none;
-  height: 2rem;
-}
-
-.payment-methods img:hover,
-.shipping-methods img:hover {
+.payment-methods-group img:hover {
   opacity: 1;
+  filter: sepia(0) contrast(1.2);
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Shipping methods */
+.shipping-methods-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.shipping-methods-group img {
+  height: 35px;
+  width: auto;
+  max-width: 75px;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shipping-methods-group img:hover {
+  transform: scale(1.1);
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Newsletter */
-.newsletter {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: 100%;
+.newsletter-group {
+  max-width: 280px;
+}
+
+.newsletter-group .v-text-field {
+  background: transparent;
+  color: rgb(34, 33, 33);
+}
+
+.newsletter-group .v-text-field fieldset {
+  border-color: rgba(51, 49, 49, 0.3);
+  transition: border-color 0.3s ease;
+}
+
+.newsletter-group .v-text-field:hover fieldset {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-group .v-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.newsletter-group .v-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.02);
 }
 
 /* Footer bottom */
@@ -260,7 +326,7 @@ export default {
 
 .copyright {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(43, 42, 42, 0.6);
 }
 
 /* Responsive */
@@ -268,6 +334,10 @@ export default {
   .footer-main {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+  }
+  
+  .footer-column {
+    margin-bottom: 1rem;
   }
 }
 
@@ -277,12 +347,14 @@ export default {
     gap: 1.5rem;
   }
   
-  .footer-column {
-    margin-bottom: 1rem;
-  }
-  
   .footer-subtitle {
     margin-top: 1rem;
+  }
+  
+  .certification-group,
+  .payment-methods-group,
+  .shipping-methods-group {
+    justify-content: center;
   }
 }
 </style>
