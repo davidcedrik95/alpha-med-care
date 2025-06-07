@@ -53,10 +53,11 @@
               
               <h4 class="footer-title">Zahlungsarten</h4>
               <div class="payment-methods-group">
-                <img src="/images/payment/visa.png" alt="Visa" title="Visa | MasterCard" loading="lazy">
-                <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
-                <img src="/images/payment/SEPA.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
-                <img src="/images/payment/sofortueberweisung.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+                  <img src="/images/payment/visa.png" alt="Visa" title="Visa" loading="lazy">
+                  <img src="/images/payment/mastercard.png" alt="Mastercard" title="Mastercard" loading="lazy">
+                  <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
+                  <img src="/images/payment/sepa.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
+                  <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
               </div>
 
               <h4 class="footer-title">Versand</h4>
@@ -98,18 +99,18 @@
               
               <h4 class="footer-title">Zertifizierungen</h4>
               <div class="certification-group">
-                <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
-                <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
-                <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
+                <img src="/images/certifications/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
+                <img src="/images/certifications/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
+                <img src="/images/certifications/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
               </div>
               
               <h4 class="footer-title">Mobile App</h4>
               <div class="app-download-group">
                 <a href="#" aria-label="Download auf dem App Store">
-                  <img src="/images/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
+                  <img src="/images/apps/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
                 </a>
                 <a href="#" aria-label="Download bei Google Play">
-                  <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
+                  <img src="/images/apps/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
                 </a>
               </div>
             </div>

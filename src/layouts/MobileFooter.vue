@@ -25,6 +25,7 @@
             <img src="/images/payment/mastercard.png" alt="Mastercard" loading="lazy">
             <img src="/images/payment/paypal.png" alt="PayPal" loading="lazy">
             <img src="/images/payment/sepa.png" alt="SEPA" loading="lazy">
+            <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
           </div>
         </div>
       </div>
@@ -33,9 +34,10 @@
     <div class="mobile-essentials">
       <div class="essentials-group">
         <div class="certifications">
-          <img src="/images/certifications/iso-13485.png" alt="ISO 13485" loading="lazy">
-          <img src="/images/certifications/tuv-certified.png" alt="TÜV Certified" loading="lazy">
-          <img src="/images/certifications/dguv-certified.png" alt="DGUV Certified" loading="lazy">
+            <img src="/images/certifications/iso-13485.png" alt="ISO 13485" loading="lazy">
+            <img src="/images/certifications/tuv-certified.png" alt="TÜV Certified" loading="lazy">
+            <img src="/images/certifications/dguv-certified.png" alt="DGUV Certified" loading="lazy">
+            
         </div>
         
         <div class="app-download">
