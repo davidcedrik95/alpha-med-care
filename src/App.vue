@@ -1,15 +1,16 @@
 <template>
   <v-app>
-    <NavigationHeader class="header" />
-    
-    <div class="layout-container">
+    <div class="sticky-header-group">
+      <NavigationHeader class="header" />
       <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="toggleDrawer" />
-      <NavigationDrawer v-model="mobileDrawer" class="custom-drawer"/>
-      
       <BreadcrumbNavigation class="breadcrumb" />
+    </div>
+    
+    <div class="app-container">
+      <NavigationDrawer v-model="mobileDrawer" />
       
-      <v-main class="content">
-        <router-view class="router-view-content" />
+      <v-main class="main-content">
+        <router-view class="page-content" />
       </v-main>
     </div>
 
@@ -27,7 +28,7 @@ import BreadcrumbNavigation from './components/nav/BreadcrumbNavigation.vue'
 
 const mobileDrawer = ref(false)
 const screenWidth = ref(window.innerWidth)
-const mobileBreakpoint = 960 // Vuetify par défaut pour mobile/tablette
+const mobileBreakpoint = 960
 
 const toggleDrawer = () => {
   mobileDrawer.value = !mobileDrawer.value
@@ -35,9 +36,6 @@ const toggleDrawer = () => {
 
 const handleResize = () => {
   screenWidth.value = window.innerWidth
-  console.log(`Largeur actuelle de l'écran : ${screenWidth.value}px`)
-
-  // Tu peux aussi fermer automatiquement le drawer en dessous du seuil
   if (screenWidth.value < mobileBreakpoint) {
     mobileDrawer.value = false
   }
@@ -52,20 +50,53 @@ onUnmounted(() => {
 })
 </script>
 
-
 <style scoped>
-.layout-container {
+.sticky-header-group {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header {
+  position: static; /* Plus besoin de fixed car le groupe entier est sticky */
+}
+
+.nav-bar {
+  position: static; /* Pareil ici */
+  top: auto;
+}
+
+.breadcrumb {
+  position: static; /* Pareil ici */
+  top: auto;
+}
+
+.app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Utilise toute la hauteur de la vue */
+  min-height: 100vh;
+  /* Supprimez le padding-top car les éléments sont maintenant dans le groupe sticky */
 }
 
-.content {
-  flex: 1; /* Prend tout l'espace disponible */
-  padding-bottom: 60px; /* Espace pour le footer */
+.main-content {
+  flex: 1;
+  padding: 0;
 }
 
-.router-view-content {
-  min-height: calc(100vh - 200px); /* Ajustez selon vos besoins */
+.page-content {
+  min-height: calc(100vh - 180px);
+  padding: 16px;
+}
+
+@media (max-width: 960px) {
+  .page-content {
+    min-height: calc(100vh - 172px);
+  }
+}
+
+@media (max-width: 600px) {
+  .page-content {
+    min-height: calc(100vh - 124px);
+  }
 }
 </style>

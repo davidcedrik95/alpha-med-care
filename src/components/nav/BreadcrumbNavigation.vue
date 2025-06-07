@@ -136,8 +136,6 @@ const breadcrumbItems = computed(() => {
 .breadcrumb-wrapper {
   background-color: #f8f9fa;
   border-bottom: 1px solid #e0e0e0;
-  position: sticky;
-  top: 112px;
   z-index: 900;
   width: 100%;
 }

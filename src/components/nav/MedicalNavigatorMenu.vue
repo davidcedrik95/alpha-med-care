@@ -235,7 +235,7 @@ const menuCategories = [
   background-color: rgba(12, 72, 129, 0.95) !important;
   color: white !important;
   z-index: 999 !important;
-  top: 56px !important;
+  
   position: sticky !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);

@@ -1,6 +1,6 @@
 <template>
-  <footer class="social-footer">
-    <div class="footer-content">
+  <footer class="footer-wrapper">
+    <div class="footer-container">
       <!-- Première rangée - Contenu principal -->
       <div class="footer-main">
         <!-- Colonne Entreprise -->
@@ -61,7 +61,6 @@
             <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
             <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
           </div>
-
         </div>
 
         <!-- Colonne Informations -->
@@ -86,7 +85,7 @@
 
         <!-- Colonne Produits & Newsletter -->
         <div class="footer-column">
-          <h4 class="footer-title">{{ $t('footer.products') }}</h4>
+          <h4 class="footer-title">Produkte</h4>
           <ul class="footer-links">
             <li><a href="/products" aria-label="Alle Produkte">Alle Produkte</a></li>
             <li><a href="/new" aria-label="Neuheiten">Neuheiten</a></li>
@@ -103,10 +102,10 @@
           <h4 class="footer-title">Mobile App</h4>
           <div class="app-download-group">
             <a href="#" aria-label="Download auf dem App Store">
-              <img src="/images/app-store.png" alt="App Store" class="app-download-img"  title="Jetzt im Google Play Store herunterladen" loading="lazy">
+              <img src="/images/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
             </a>
             <a href="#" aria-label="Download bei Google Play">
-              <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt im Google Play herunterladen" loading="lazy">
+              <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
             </a>
           </div>
         </div>
@@ -115,37 +114,28 @@
       <!-- Deuxième rangée - Copyright -->
       <div class="footer-bottom">
         <div class="copyright">
-          © {{ new Date().getFullYear() }} {{ $t('company.name') }} | Alle Rechte vorbehalten
+          © {{ new Date().getFullYear() }} Company Name | Alle Rechte vorbehalten
         </div>
       </div>
     </div>
   </footer>
 </template>
 
-
 <style scoped>
-:root {
-  --footer-bg-color: rgba(12, 72, 129, 0.95);
-  --footer-text-color: white;
-  --footer-link-color: rgba(255, 255, 255, 0.7);
-  --footer-link-hover: white;
-  --footer-border-color: rgba(255, 255, 255, 0.2);
-  --footer-icon-opacity: 0.8;
-}
-
-.social-footer {
-  color: white;
-  padding: 2.5rem 0 1.25rem;
+/* Structure principale */
+.footer-wrapper {
   background-color: rgba(165, 165, 165, 0.377);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  color: #333;
 }
 
-.footer-content {
+.footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 2.5rem 1rem 1.25rem;
 }
 
+/* Colonnes et contenu */
 .footer-main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -159,6 +149,7 @@
   gap: 1.5rem;
 }
 
+/* Titres */
 .footer-title {
   font-size: 1.1rem;
   font-weight: 600;
@@ -217,32 +208,7 @@
   width: 100%;
 }
 
-/* Certification logos */
-.certification-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  perspective: 500px;
-}
-
-.certification-img {
-  height: 50px;
-  width: auto;
-  max-width: 85px;
-  background: white;
-  padding: 0.6rem;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.certification-img:hover {
-  transform: translateY(-8px) rotateX(10deg);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-}
-
-/* Social icons */
+/* Groupes d'icônes et images */
 .social-icons-group {
   display: flex;
   gap: 1.5rem;
@@ -251,17 +217,16 @@
 
 .social-icon {
   font-size: 1.8rem;
-  color: #3a7bd5;
+  color: #353638;
   transition: all 0.3s ease;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .social-icon:hover {
   transform: translateY(-5px) rotateX(20deg);
-  color: #00d2ff;
+  color: #3a7bd5;
 }
 
-/* Payment methods */
 .payment-methods-group {
   display: flex;
   flex-wrap: wrap;
@@ -269,24 +234,17 @@
   background: rgba(87, 86, 86, 0.1);
   padding: 0.8rem;
   border-radius: 12px;
-  border: 1px dashed rgba(255,255,255,0.3);
 }
 
-.payment-methods-group img {
-  height: 25px;
-  width: auto;
+.payment-methods-group img,
+.shipping-methods-group img,
+.certification-img {
+  height: auto;
+  max-height: 35px;
   max-width: 55px;
-  opacity: 0.9;
   transition: all 0.3s ease;
   filter: sepia(0.2) contrast(1.1);
 }
-
-.payment-methods-group img:hover {
-  opacity: 1;
-  filter: sepia(0) contrast(1.2);
-  transform: scale(1.05) rotate(-2deg);
-}
-
 
 /* Shipping methods */
 .shipping-methods-group {
@@ -296,14 +254,9 @@
 }
 
 .shipping-methods-group img {
-  height: 35px;
-  width: auto;
-  max-width: 75px;
   padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
   border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .shipping-methods-group img:hover {
@@ -313,38 +266,21 @@
 }
 
 
-/* Newsletter */
-.newsletter-group {
-  max-width: 280px;
+.certification-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.newsletter-group .v-text-field {
+.certification-img {
   background: white;
-  color: #333;
+  padding: 0.6rem;
   border-radius: 6px;
 }
 
-.newsletter-group .v-text-field fieldset {
-  border-color: rgba(51, 49, 49, 0.3);
-  transition: border-color 0.3s ease;
-}
-
-.newsletter-group .v-text-field:hover fieldset {
-  border-color: #3a7bd5;
-}
-
-.newsletter-group .v-btn {
-  background: linear-gradient(to right, #3a7bd5, #00d2ff);
-  border: none;
-  color: white;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-.newsletter-group .v-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.certification-img:hover {
+  transform: translateY(-8px) rotateX(10deg);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
 /* App Download Buttons */
@@ -370,18 +306,17 @@
   filter: brightness(1.05);
 }
 
-/* Footer bottom */
+/* Pied de page bas */
 .footer-bottom {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--footer-border-color);
+  border-top: 1px solid rgba(51, 51, 51, 0.2);
   text-align: center;
 }
 
 .copyright {
   font-size: 0.8rem;
-  color: rgba(43, 42, 42, 0.8);
-  letter-spacing: 0.5px;
+  color: #333;
 }
 
 /* Responsive */
@@ -394,52 +329,16 @@
 @media (max-width: 768px) {
   .footer-main {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
   }
   
-  .footer-column {
-    margin-bottom: 1rem;
-  }
-
   .app-download-group {
     flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .app-download-img {
-    height: 40px;
-    max-width: 120px;
   }
 }
 
 @media (max-width: 480px) {
   .footer-main {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
-  
-  .footer-title {
-    font-size: 1rem;
-  }
-  
-  .certification-group,
-  .payment-methods-group,
-  .shipping-methods-group {
-    justify-content: center;
-  }
-
-  .app-download-group {
-    justify-content: center;
-  }
-}
-
-/* Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-.social-icon:hover {
-  animation: float 1.5s ease-in-out infinite;
 }
 </style>
