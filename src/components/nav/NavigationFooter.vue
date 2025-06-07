@@ -142,15 +142,54 @@ export default {
   components: {
     MobileFooter
   },
-  data() {
-    return {
-      companyName: 'Company Name',
-      isMobile: false,
-      mobileSections: [
-        // [Vos sections mobiles comme avant]
-      ]
-    }
-  },
+  // Dans Footer.vue
+data() {
+  return {
+    companyName: 'Company Name',
+    isMobile: false,
+    mobileSections: [
+      {
+        title: 'Unternehmen',
+        links: [
+          { text: 'Über uns', url: '/about' },
+          { text: 'Karriere', url: '/careers' },
+          { text: 'News', url: '/news' }
+        ]
+      },
+      {
+        title: 'Umwelt',
+        links: [
+          { text: 'Umweltschutz', url: '/umweltschutz' },
+          { text: 'Recycling', url: '/recycling' }
+        ]
+      },
+      {
+        title: 'Support',
+        links: [
+          { text: 'Kontakt', url: '/contact' },
+          { text: 'FAQ', url: '/faq' }
+        ]
+      },
+      {
+        title: 'Informationen',
+        links: [
+          { text: 'AGB', url: '/terms' },
+          { text: 'Datenschutz', url: '/privacy' }
+        ]
+      },
+      {
+        title: 'Social Media',
+        social: true, // Active l'affichage des icônes sociales
+        links: []
+      },
+      {
+        title: 'Zahlungsarten',
+        payment: true, // Active l'affichage des méthodes de paiement
+        links: []
+      }
+    ]
+  }
+},
   created() {
     this.checkMobile()
     window.addEventListener('resize', this.checkMobile)
