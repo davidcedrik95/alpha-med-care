@@ -1,10 +1,9 @@
 <template>
   <v-app>
-    <!-- Le drawer doit être après le header dans le DOM mais avec un z-index plus élevé -->
+    <!-- Le drawer doit être au même niveau que le header group -->
     <NavigationDrawer v-model="mobileDrawer" />
     
-    <!-- Réduisez le z-index du header group -->
-    <div class="sticky-header-group" :style="{ zIndex: mobileDrawer ? 1000 : 1100 }">
+    <div class="sticky-header-group">
       <NavigationHeader class="header" />
       <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="toggleDrawer" />
       <BreadcrumbNavigation class="breadcrumb" />

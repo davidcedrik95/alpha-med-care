@@ -370,15 +370,18 @@ function closeDrawer() {
 
 <style scoped>
 .navigation-drawer {
-  display: flex;
-  flex-direction: column;
-  height: 100vh !important;
+  position: fixed !important;
   top: 0 !important;
-  margin-top: 0 !important;
+  left: 0 !important;
+  height: 100vh !important;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
   z-index: 1200;
-  background: #ffffff;
-  color: #2c3e50;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-drawer.v-navigation-drawer--active {
+  transform: translateX(0);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .drawer-header {
