@@ -1,125 +1,170 @@
+<!-- Footer.vue -->
 <template>
-  <footer class="footer-wrapper">
-    <div class="footer-container">
-      <!-- Première rangée - Contenu principal -->
-      <div class="footer-main">
-        <!-- Colonne Entreprise -->
-        <div class="footer-column">
-          <h4 class="footer-title">Unternehmen</h4>
-          <ul class="footer-links">
-            <li><a href="/about" aria-label="Über uns">Über uns</a></li>
-            <li><a href="/careers" aria-label="Karriere">Karriere</a></li>
-            <li><a href="/news" aria-label="News">News</a></li>
-          </ul>
-          
-          <h4 class="footer-title">Umwelt</h4>
-          <ul class="footer-links">
-            <li><a href="/umweltschutz" aria-label="Umweltschutz">Umweltschutz</a></li>
-            <li><a href="/recycling" aria-label="Recycling">Recycling</a></li>
-            <li><a href="/nachhaltigkeit" aria-label="Nachhaltigkeit">Nachhaltigkeit</a></li>
-            <li><a href="/altbatterie-entsorgung" aria-label="Altbatterie-Entsorgung">Altbatterie-Entsorgung</a></li>
-          </ul>
-        </div>
+  <div>
+    <!-- Version Desktop -->
+    <footer class="desktop-footer" v-if="!isMobile">
+      <div class="footer-wrapper">
+        <div class="footer-container">
+          <!-- Première rangée - Contenu principal -->
+          <div class="footer-main">
+            <!-- Colonne Entreprise -->
+            <div class="footer-column">
+              <h4 class="footer-title">Unternehmen</h4>
+              <ul class="footer-links">
+                <li><a href="/about" aria-label="Über uns">Über uns</a></li>
+                <li><a href="/careers" aria-label="Karriere">Karriere</a></li>
+                <li><a href="/news" aria-label="News">News</a></li>
+              </ul>
+              
+              <h4 class="footer-title">Umwelt</h4>
+              <ul class="footer-links">
+                <li><a href="/umweltschutz" aria-label="Umweltschutz">Umweltschutz</a></li>
+                <li><a href="/recycling" aria-label="Recycling">Recycling</a></li>
+                <li><a href="/nachhaltigkeit" aria-label="Nachhaltigkeit">Nachhaltigkeit</a></li>
+                <li><a href="/altbatterie-entsorgung" aria-label="Altbatterie-Entsorgung">Altbatterie-Entsorgung</a></li>
+              </ul>
+            </div>
 
-        <!-- Colonne Services -->
-        <div class="footer-column">
-          <h4 class="footer-title">Dienstleistungen</h4>
-          <ul class="footer-links">
-            <li><a href="/inspections" aria-label="Prüfungen">Prüfungen</a></li>
-            <li><a href="/calibration" aria-label="Kalibrierung">Kalibrierung</a></li>
-            <li><a href="/maintenance" aria-label="Wartung">Wartung</a></li>
-          </ul>
-          
-          <h4 class="footer-title">Social Media</h4>
-          <div class="social-icons-group">
-            <a href="#" class="social-icon" aria-label="Facebook"><v-icon>mdi-facebook</v-icon></a>
-            <a href="#" class="social-icon" aria-label="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
-            <a href="#" class="social-icon" aria-label="Instagram"><v-icon>mdi-instagram</v-icon></a>
+            <!-- Colonne Services -->
+            <div class="footer-column">
+              <h4 class="footer-title">Dienstleistungen</h4>
+              <ul class="footer-links">
+                <li><a href="/inspections" aria-label="Prüfungen">Prüfungen</a></li>
+                <li><a href="/calibration" aria-label="Kalibrierung">Kalibrierung</a></li>
+                <li><a href="/maintenance" aria-label="Wartung">Wartung</a></li>
+              </ul>
+              
+              <h4 class="footer-title">Social Media</h4>
+              <div class="social-icons-group">
+                <a href="#" class="social-icon" aria-label="Facebook"><v-icon>mdi-facebook</v-icon></a>
+                <a href="#" class="social-icon" aria-label="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><v-icon>mdi-instagram</v-icon></a>
+              </div>
+            </div>
+
+            <!-- Colonne Support -->
+            <div class="footer-column">
+              <h4 class="footer-title">Support</h4>
+              <ul class="footer-links">
+                <li><a href="/contact" aria-label="Kontakt">Kontakt</a></li>
+                <li><a href="/faq" aria-label="FAQ">FAQ</a></li>
+                <li><a href="/emergency" aria-label="Notdienst">Notdienst</a></li>
+              </ul>
+              
+              <h4 class="footer-title">Zahlungsarten</h4>
+              <div class="payment-methods-group">
+                <img src="/images/payment/visa.png" alt="Visa" title="Visa | MasterCard" loading="lazy">
+                <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
+                <img src="/images/payment/SEPA.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
+                <img src="/images/payment/sofortueberweisung.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+              </div>
+
+              <h4 class="footer-title">Versand</h4>
+              <div class="shipping-methods-group">
+                <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
+                <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
+                <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy" style="max-width: 80px;">
+              </div>
+            </div>
+
+            <!-- Colonne Informations -->
+            <div class="footer-column">
+              <h4 class="footer-title">Informationen</h4>
+              <ul class="footer-links">
+                <li><a href="/terms" aria-label="AGB">AGB</a></li>
+                <li><a href="/privacy" aria-label="Datenschutz">Datenschutz</a></li>
+                <li><a href="/imprint" aria-label="Impressum">Impressum</a></li>
+                <li><a href="/returns" aria-label="Widerrufsrecht">Widerrufsrecht</a></li>
+              </ul>
+
+              <h4 class="footer-title">Konto</h4>
+              <ul class="footer-links">
+                <li><a href="/mein-konto" aria-label="Mein Konto">Mein Konto</a></li>
+                <li><a href="/login" aria-label="Anmelden/Login">Anmelden/Login</a></li>
+                <li><a href="/passwort-vergessen" aria-label="Passwort vergessen">Passwort vergessen</a></li>
+                <li><a href="/haendler-login" aria-label="Händler-Login">Händler-Login</a></li>
+                <li><a href="/ruecksendungen" aria-label="Rücksendungen">Rücksendungen</a></li>
+              </ul>
+            </div>
+
+            <!-- Colonne Produits & Newsletter -->
+            <div class="footer-column">
+              <h4 class="footer-title">Produkte</h4>
+              <ul class="footer-links">
+                <li><a href="/products" aria-label="Alle Produkte">Alle Produkte</a></li>
+                <li><a href="/new" aria-label="Neuheiten">Neuheiten</a></li>
+                <li><a href="/specials" aria-label="Angebote">Angebote</a></li>
+              </ul>
+              
+              <h4 class="footer-title">Zertifizierungen</h4>
+              <div class="certification-group">
+                <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
+                <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
+                <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
+              </div>
+              
+              <h4 class="footer-title">Mobile App</h4>
+              <div class="app-download-group">
+                <a href="#" aria-label="Download auf dem App Store">
+                  <img src="/images/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
+                </a>
+                <a href="#" aria-label="Download bei Google Play">
+                  <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Colonne Support -->
-        <div class="footer-column">
-          <h4 class="footer-title">Support</h4>
-          <ul class="footer-links">
-            <li><a href="/contact" aria-label="Kontakt">Kontakt</a></li>
-            <li><a href="/faq" aria-label="FAQ">FAQ</a></li>
-            <li><a href="/emergency" aria-label="Notdienst">Notdienst</a></li>
-          </ul>
-          
-          <h4 class="footer-title">Zahlungsarten</h4>
-          <div class="payment-methods-group">
-            <img src="/images/payment/visa.png" alt="Visa" title="Visa | MasterCard" loading="lazy">
-            <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
-            <img src="/images/payment/SEPA.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
-            <img src="/images/payment/sofortueberweisung.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
-          </div>
-
-          <h4 class="footer-title">Versand</h4>
-          <div class="shipping-methods-group">
-            <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
-            <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
-            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy" style="max-width: 80px;">
-          </div>
-        </div>
-
-        <!-- Colonne Informations -->
-        <div class="footer-column">
-          <h4 class="footer-title">Informationen</h4>
-          <ul class="footer-links">
-            <li><a href="/terms" aria-label="AGB">AGB</a></li>
-            <li><a href="/privacy" aria-label="Datenschutz">Datenschutz</a></li>
-            <li><a href="/imprint" aria-label="Impressum">Impressum</a></li>
-            <li><a href="/returns" aria-label="Widerrufsrecht">Widerrufsrecht</a></li>
-          </ul>
-
-          <h4 class="footer-title">Konto</h4>
-          <ul class="footer-links">
-            <li><a href="/mein-konto" aria-label="Mein Konto">Mein Konto</a></li>
-            <li><a href="/login" aria-label="Anmelden/Login">Anmelden/Login</a></li>
-            <li><a href="/passwort-vergessen" aria-label="Passwort vergessen">Passwort vergessen</a></li>
-            <li><a href="/haendler-login" aria-label="Händler-Login">Händler-Login</a></li>
-            <li><a href="/ruecksendungen" aria-label="Rücksendungen">Rücksendungen</a></li>
-          </ul>
-        </div>
-
-        <!-- Colonne Produits & Newsletter -->
-        <div class="footer-column">
-          <h4 class="footer-title">Produkte</h4>
-          <ul class="footer-links">
-            <li><a href="/products" aria-label="Alle Produkte">Alle Produkte</a></li>
-            <li><a href="/new" aria-label="Neuheiten">Neuheiten</a></li>
-            <li><a href="/specials" aria-label="Angebote">Angebote</a></li>
-          </ul>
-          
-          <h4 class="footer-title">Zertifizierungen</h4>
-          <div class="certification-group">
-            <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy" >
-            <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
-            <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
-          </div>
-          
-          <h4 class="footer-title">Mobile App</h4>
-          <div class="app-download-group">
-            <a href="#" aria-label="Download auf dem App Store">
-              <img src="/images/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
-            </a>
-            <a href="#" aria-label="Download bei Google Play">
-              <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
-            </a>
+          <!-- Deuxième rangée - Copyright -->
+          <div class="footer-bottom">
+            <div class="copyright">
+              © {{ new Date().getFullYear() }} {{ companyName }} | Alle Rechte vorbehalten
+            </div>
           </div>
         </div>
       </div>
+    </footer>
 
-      <!-- Deuxième rangée - Copyright -->
-      <div class="footer-bottom">
-        <div class="copyright">
-          © {{ new Date().getFullYear() }} Company Name | Alle Rechte vorbehalten
-        </div>
-      </div>
-    </div>
-  </footer>
+    <!-- Version Mobile -->
+    <MobileFooter 
+      v-else
+      :company-name="companyName"
+      :sections="mobileSections"
+      :initially-open="['Informationen']"
+    />
+  </div>
 </template>
+
+<script>
+import MobileFooter from '@/layouts/MobileFooter.vue'  // Chemodifiéifié
+
+export default {
+  components: {
+    MobileFooter
+  },
+  data() {
+    return {
+      companyName: 'Company Name',
+      isMobile: false,
+      mobileSections: [
+        // [Vos sections mobiles comme avant]
+      ]
+    }
+  },
+  created() {
+    this.checkMobile()
+    window.addEventListener('resize', this.checkMobile)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkMobile)
+  },
+  methods: {
+    checkMobile() {
+      this.isMobile = window.innerWidth < 1024
+    }
+  }
+}
+</script>
 
 <style scoped>
 /* Structure principale */
@@ -264,7 +309,6 @@
   background: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
 
 .certification-group {
   display: flex;
