@@ -49,9 +49,9 @@
           
           <h4 class="footer-title">Zahlungsarten</h4>
           <div class="payment-methods-group">
-            <img src="/images/payment/visa.png" alt="Visa" title="Visa" loading="lazy">
+            <img src="/images/payment/visa.png" alt="Visa" title="Visa | MasterCard" loading="lazy">
             <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
-            <img src="/images/payment/SEPA.png" alt="SEPA Überweisung" title="SEPA Überweisung" loading="lazy">
+            <img src="/images/payment/SEPA.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
             <img src="/images/payment/sofortueberweisung.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
           </div>
         </div>
