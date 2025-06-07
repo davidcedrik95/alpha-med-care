@@ -54,6 +54,14 @@
             <img src="/images/payment/SEPA.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
             <img src="/images/payment/sofortueberweisung.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
           </div>
+
+          <h4 class="footer-title">Versand</h4>
+          <div class="shipping-methods-group">
+            <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
+            <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
+            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
+          </div>
+
         </div>
 
         <!-- Colonne Informations -->
@@ -279,6 +287,7 @@
   transform: scale(1.05) rotate(-2deg);
 }
 
+
 /* Shipping methods */
 .shipping-methods-group {
   display: flex;
@@ -302,6 +311,7 @@
   background: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Newsletter */
 .newsletter-group {
