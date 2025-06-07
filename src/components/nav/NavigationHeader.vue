@@ -2,22 +2,26 @@
   <header class="top-bar">
     <!-- Barre supérieure (cachée sur mobile) -->
     <div class="top-bar-upper">
-      <div class="top-bar-left">
-        <span class="hide-on-mobile">
-          <i class="mdi mdi-truck"></i> {{ $t('header.free_shipping') }}
-        </span>
-        <span class="hide-on-mobile">
-          <i class="mdi mdi-phone"></i> {{ $t('header.phone') }}
-        </span>
-      </div>
-      <div class="top-bar-right">
-        <span class="hide-on-mobile">
-          <i class="mdi mdi-file-document"></i> {{ $t('header.invoice') }}
-        </span>
-        <span class="hide-on-mobile">
-          <i class="mdi mdi-headset"></i> {{ $t('header.consultation') }}
-        </span>
-      </div>
+        <div class="top-bar-left">
+          <span class="hide-on-mobile">
+            <i class="mdi mdi-truck"></i> {{ $t('header.free_shipping') }} **
+          </span>
+          <span class="hide-on-mobile price-info">
+            <i class="mdi mdi-currency-eur"></i> {{ $t('header.prices_incl_vat') }} *
+            <span class="tooltip">Inklusive Mehrwertsteuer</span>
+          </span>
+          <span class="hide-on-mobile">
+            <i class="mdi mdi-phone"></i> {{ $t('header.phone') }}
+          </span>
+        </div>
+        <div class="top-bar-right">
+          <span class="hide-on-mobile">
+            <i class="mdi mdi-file-document"></i> {{ $t('header.invoice') }}
+          </span>
+          <span class="hide-on-mobile">
+            <i class="mdi mdi-headset"></i> {{ $t('header.consultation') }}
+          </span>
+        </div>
     </div>
 
     <!-- Barre inférieure -->
@@ -262,6 +266,32 @@ onBeforeUnmount(() => {
   .hide-on-mobile {
     display: none !important;
   }
+}
+
+.price-info {
+  position: relative;
+}
+
+.price-info .tooltip {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.price-info:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Barre inférieure */

@@ -12,12 +12,13 @@
             <li><a href="/news" aria-label="News">News</a></li>
           </ul>
           
-          <h4 class="footer-title">Zertifizierungen</h4>
-          <div class="certification-group">
-            <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
-            <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
-            <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
-          </div>
+          <h4 class="footer-title">Umwelt</h4>
+          <ul class="footer-links">
+            <li><a href="/umweltschutz" aria-label="Umweltschutz">Umweltschutz</a></li>
+            <li><a href="/recycling" aria-label="Recycling">Recycling</a></li>
+            <li><a href="/nachhaltigkeit" aria-label="Nachhaltigkeit">Nachhaltigkeit</a></li>
+            <li><a href="/altbatterie-entsorgung" aria-label="Altbatterie-Entsorgung">Altbatterie-Entsorgung</a></li>
+          </ul>
         </div>
 
         <!-- Colonne Services -->
@@ -65,12 +66,14 @@
             <li><a href="/returns" aria-label="Widerrufsrecht">Widerrufsrecht</a></li>
           </ul>
 
-          <h4 class="footer-title">Versand</h4>
-          <div class="shipping-methods-group">
-            <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
-            <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
-            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
-          </div>
+          <h4 class="footer-title">Konto</h4>
+          <ul class="footer-links">
+            <li><a href="/mein-konto" aria-label="Mein Konto">Mein Konto</a></li>
+            <li><a href="/login" aria-label="Anmelden/Login">Anmelden/Login</a></li>
+            <li><a href="/passwort-vergessen" aria-label="Passwort vergessen">Passwort vergessen</a></li>
+            <li><a href="/haendler-login" aria-label="Händler-Login">Händler-Login</a></li>
+            <li><a href="/ruecksendungen" aria-label="Rücksendungen">Rücksendungen</a></li>
+          </ul>
         </div>
 
         <!-- Colonne Produits & Newsletter -->
@@ -82,16 +85,21 @@
             <li><a href="/specials" aria-label="Angebote">Angebote</a></li>
           </ul>
           
-          <h4 class="footer-title">{{ $t('footer.newsletter.title') }}</h4>
-          <div class="newsletter-group">
-            <v-text-field 
-              placeholder="Ihre E-Mail" 
-              dense 
-              outlined
-              hide-details
-              aria-label="E-Mail für Newsletter"
-            ></v-text-field>
-            <v-btn color="primary" small class="mt-2" aria-label="Newsletter anmelden"> <i class="mdi mdi-send-outline"></i> anmelden</v-btn>
+          <h4 class="footer-title">Zertifizierungen</h4>
+          <div class="certification-group">
+            <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
+            <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
+            <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
+          </div>
+          
+          <h4 class="footer-title">Mobile App</h4>
+          <div class="app-download-group">
+            <a href="#" aria-label="Download auf dem App Store">
+              <img src="/images/app-store.png" alt="App Store" class="app-download-img"  title="Jetzt im Google Play Store herunterladen" loading="lazy">
+            </a>
+            <a href="#" aria-label="Download bei Google Play">
+              <img src="/images/google-play.jpg" alt="Google Play" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
+            </a>
           </div>
         </div>
       </div>
@@ -106,11 +114,6 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'AppFooter'
-}
-</script>
 
 <style scoped>
 :root {
@@ -126,6 +129,7 @@ export default {
   color: white;
   padding: 2.5rem 0 1.25rem;
   background-color: rgba(110, 110, 110, 0.377);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .footer-content {
@@ -144,7 +148,7 @@ export default {
 .footer-column {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .footer-title {
@@ -154,13 +158,17 @@ export default {
   color: rgb(53, 51, 51);
   border-bottom: 2px solid var(--footer-border-color);
   padding-bottom: 0.5rem;
+  position: relative;
 }
 
-.footer-subtitle {
-  font-size: 1rem;
-  font-weight: 500;
-  color: rgb(36, 34, 34);
-  margin: 1.5rem 0 0.5rem;
+.footer-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #3a7bd5;
 }
 
 .footer-links {
@@ -169,19 +177,36 @@ export default {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .footer-links a {
   color: black;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
 }
 
 .footer-links a:hover {
-  color: var(--footer-link-hover);
-  text-decoration: underline;
+  color: #3a7bd5;
+  transform: translateX(5px);
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #3a7bd5;
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
 }
 
 /* Certification logos */
@@ -218,25 +243,16 @@ export default {
 
 .social-icon {
   font-size: 1.8rem;
-  color: white;
+  color: #3a7bd5;
   transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .social-icon:hover {
   transform: translateY(-5px) rotateX(20deg);
-  text-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  color: #00d2ff;
 }
 
-/* Effet de "levitation" */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.social-icon:hover {
-  animation: float 2s ease-in-out infinite;
-}
 /* Payment methods */
 .payment-methods-group {
   display: flex;
@@ -293,8 +309,9 @@ export default {
 }
 
 .newsletter-group .v-text-field {
-  background: transparent;
-  color: rgb(34, 33, 33);
+  background: white;
+  color: #333;
+  border-radius: 6px;
 }
 
 .newsletter-group .v-text-field fieldset {
@@ -303,35 +320,67 @@ export default {
 }
 
 .newsletter-group .v-text-field:hover fieldset {
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: #3a7bd5;
 }
 
 .newsletter-group .v-btn {
-  background: transparent;
-  border: 1px solid white;
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  border: none;
   color: white;
   transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .newsletter-group .v-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* App Download Buttons */
+.app-download-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.app-download-img {
+  height: 45px;
+  width: auto;
+  max-width: 150px;
+  border-radius: 7px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-download-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  filter: brightness(1.05);
 }
 
 /* Footer bottom */
 .footer-bottom {
   margin-top: 2rem;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--footer-border-color);
   text-align: center;
 }
 
 .copyright {
-  font-size: 0.75rem;
-  color: rgba(43, 42, 42, 0.6);
+  font-size: 0.8rem;
+  color: rgba(43, 42, 42, 0.8);
+  letter-spacing: 0.5px;
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+  .footer-main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .footer-main {
     grid-template-columns: repeat(2, 1fr);
@@ -341,6 +390,16 @@ export default {
   .footer-column {
     margin-bottom: 1rem;
   }
+
+  .app-download-group {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .app-download-img {
+    height: 40px;
+    max-width: 120px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -349,8 +408,8 @@ export default {
     gap: 1.5rem;
   }
   
-  .footer-subtitle {
-    margin-top: 1rem;
+  .footer-title {
+    font-size: 1rem;
   }
   
   .certification-group,
@@ -358,5 +417,19 @@ export default {
   .shipping-methods-group {
     justify-content: center;
   }
+
+  .app-download-group {
+    justify-content: center;
+  }
+}
+
+/* Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.social-icon:hover {
+  animation: float 1.5s ease-in-out infinite;
 }
 </style>

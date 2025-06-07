@@ -44,11 +44,12 @@
     }
   },
   "header": {
-    "free_shipping": "Versandkostenfrei",
     "phone": "+49 (0)9666 188950",
     "invoice": "Kauf auf Rechnung",
     "consultation": "Fachberatung",
     "search_placeholder": "Produkte suchen...",
+    "prices_incl_vat": "Alle Preise in Euro inkl. gesetzliche MwSt. und zzgl. Versandkosten",
+    "free_shipping": "Gratisversand ab 149€",
     "wishlist": "Merkliste",
     "account": "Mein Konto",
     "cart": "Warenkorb",
