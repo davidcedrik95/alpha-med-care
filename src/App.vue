@@ -1,14 +1,16 @@
 <template>
   <v-app>
-    <div class="sticky-header-group">
+    <!-- Le drawer doit être après le header dans le DOM mais avec un z-index plus élevé -->
+    <NavigationDrawer v-model="mobileDrawer" />
+    
+    <!-- Réduisez le z-index du header group -->
+    <div class="sticky-header-group" :style="{ zIndex: mobileDrawer ? 1000 : 1100 }">
       <NavigationHeader class="header" />
       <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="toggleDrawer" />
       <BreadcrumbNavigation class="breadcrumb" />
     </div>
     
     <div class="app-container">
-      <NavigationDrawer v-model="mobileDrawer" />
-      
       <v-main class="main-content">
         <router-view class="page-content" />
       </v-main>
@@ -54,20 +56,21 @@ onUnmounted(() => {
 .sticky-header-group {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1000; /* Valeur par défaut */
+  transition: z-index 0.3s ease;
 }
 
 .header {
-  position: static; /* Plus besoin de fixed car le groupe entier est sticky */
+  position: static;
 }
 
 .nav-bar {
-  position: static; /* Pareil ici */
+  position: static;
   top: auto;
 }
 
 .breadcrumb {
-  position: static; /* Pareil ici */
+  position: static;
   top: auto;
 }
 
@@ -75,7 +78,6 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Supprimez le padding-top car les éléments sont maintenant dans le groupe sticky */
 }
 
 .main-content {

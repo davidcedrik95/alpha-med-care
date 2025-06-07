@@ -1,4 +1,3 @@
-<!-- components/nav/NavigationDrawer.vue -->
 <template>
   <v-navigation-drawer
     v-model="drawer"
@@ -285,10 +284,12 @@ onMounted(() => window.addEventListener('resize', updateWidth))
 onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
 const drawerWidth = computed(() => {
-  if (windowWidth.value < 600) return windowWidth.value // Mobile
-  if (windowWidth.value >= 768 && windowWidth.value <= 1024) return 400 // iPad
-  return 300 // Desktop par défaut
-})
+  if (windowWidth.value < 600) return windowWidth.value;
+  if (windowWidth.value >= 768 && windowWidth.value <= 1024) {
+    return Math.min(windowWidth.value * 0.6, 450);
+  }
+  return 350;
+});
 
 const menuCategories = [
   {
@@ -371,25 +372,22 @@ function closeDrawer() {
 .navigation-drawer {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  z-index: 1200;
   background: #ffffff;
   color: #2c3e50;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 56px;
-  margin-bottom: 60px;
-  z-index: 101;
 }
 
-/* Top bar bleue */
 .drawer-header {
   background-color: #0C4881F2 !important;
   padding: 14px 16px;
+  padding-top: calc(14px + env(safe-area-inset-top));
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  position: sticky;
-  top: 0;
-  z-index: 2;
 }
 
 .drawer-header-content {
@@ -418,7 +416,6 @@ function closeDrawer() {
   opacity: 1;
 }
 
-/* Contenu clair */
 .drawer-content {
   flex: 1;
   overflow-y: auto;
@@ -426,7 +423,6 @@ function closeDrawer() {
   background: #ffffff;
 }
 
-/* Cartes */
 .menu-card,
 .account-card,
 .auth-card {
@@ -439,13 +435,6 @@ function closeDrawer() {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.menu-card:hover,
-.account-card:hover,
-.auth-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Listes */
 .v-list {
   background: transparent !important;
   color: #2c3e50 !important;
@@ -483,16 +472,10 @@ function closeDrawer() {
   color: #1976d2 !important;
 }
 
-/* Groupes */
 .v-list-group__items .v-list-item {
   padding-left: 48px !important;
 }
 
-.v-list-group__items .v-list-item__prepend {
-  margin-right: 12px;
-}
-
-/* En-têtes de section */
 .section-header {
   background: #f8f9fa;
   padding: 12px 16px;
@@ -510,7 +493,6 @@ function closeDrawer() {
   letter-spacing: 0.5px;
 }
 
-/* Séparateurs personnalisés */
 .custom-divider {
   border: none;
   height: 1px;
@@ -527,27 +509,17 @@ function closeDrawer() {
   margin-right: 16px;
 }
 
-/* Ajoutez ce style */
 .v-list-group--active .v-list-group__items {
-  max-height: 1000px !important; /* Empêche le clipping des éléments */
+  max-height: 1000px !important;
 }
 
 .v-list-group__items {
   transition: max-height 0.5s ease-in-out;
 }
 
-.custom-divider {
-  border: none;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.12); /* Légèrement plus visible */
-  margin: 6px 24px; /* Plus d'espace sur iPad */
-}
-
-/* Styles spécifiques iPad */
 @media (min-width: 768px) and (max-width: 1024px) {
   .navigation-drawer {
     width: 400px !important;
-    margin-top: 64px;
   }
 
   .v-list-item {
@@ -596,35 +568,7 @@ function closeDrawer() {
   }
 }
 
-/* Pour iPad en mode portrait */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .navigation-drawer {
-    width: 380px !important;
-  }
-}
-
-/* Pour iPad Pro 12.9" */
-@media (min-width: 1024px) and (max-width: 1366px) {
-  .navigation-drawer {
-    width: 350px !important;
-  }
-}
-
-/* Responsive */
 @media (max-width: 599px) {
-  .navigation-drawer {
-    height: 100vh !important;
-    top: 0 !important;
-  }
-
-  .drawer-header {
-    padding: 12px;
-  }
-
-  .title {
-    font-size: 1.1rem;
-  }
-
   .v-list-item {
     min-height: 44px;
     padding: 0 12px !important;
@@ -639,7 +583,6 @@ function closeDrawer() {
   }
 }
 
-/* Animations */
 .v-list-item {
   transition: background-color 0.2s ease;
 }
