@@ -2,6 +2,13 @@
   "app": {
     "title": "alpha-med-sales"
   },
+
+  "construction": {
+      "title": "Site under construction",
+      "message": "We are actively working on this site",
+      "click": "Click to continue"
+    },
+    
   "menu": {
     "home": "Home",
     "services": "Services",

@@ -1,26 +1,80 @@
 <template>
+
+     <div class="construction-banner">
+      ⚠️   <h3>{{ $t('construction.title') }}</h3>
+    </div>
+
   <div class="home-view">
-    <h4>Accueil</h4>
-    <p>Team Besprechung</p>
-    
-    <!-- Contenu de démonstration pour tester le défilement -->
-    <div v-for="n in 20" :key="n" class="demo-content">
-      Paragraphe de démonstration {{ n }}
+    <div v-if="showOverlay" class="construction-overlay" @click="showOverlay = false">
+      <div class="overlay-content">
+        <div class="construction-icon">🚧</div>
+        <h3>{{ $t('construction.title') }}</h3>
+        <p>{{ $t('construction.message') }}</p>
+        <p><small>{{ $t('construction.click') }}</small></p>
+      </div>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      showOverlay: true
+    }
+  }
+}
+</script>
+
 <style scoped>
-.home-view {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.construction-banner {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
 }
 
-.demo-content {
-  padding: 15px;
-  margin: 10px 0;
-  background: #f9f9f9;
-  border-radius: 4px;
+.construction-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s;
+  cursor: pointer;
+}
+
+.overlay-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  animation: slideUp 0.5s;
+}
+
+.construction-icon {
+  font-size: 50px;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 </style>
