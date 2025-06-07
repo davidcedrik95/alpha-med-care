@@ -1,45 +1,123 @@
-<!-- Footer.vue -->
 <template>
   <div>
     <!-- Version Desktop -->
     <footer class="desktop-footer" v-if="!isMobile">
       <div class="footer-wrapper">
         <div class="footer-container">
-          <!-- Première rangée - Contenu principal -->
-          <div class="footer-main">
-            <!-- Colonne Entreprise -->
-            <div class="footer-column">
-              <h4 class="footer-title">Unternehmen</h4>
-              <ul class="footer-links">
-                <li><a href="/about" aria-label="Über uns">Über uns</a></li>
-                <li><a href="/careers" aria-label="Karriere">Karriere</a></li>
-                <li><a href="/news" aria-label="News">News</a></li>
-                <li><a href="/locations" aria-label="Standorte">Standorte</a></li>
-                <li><a href="/partners" aria-label="Partner">Partner</a></li>
-              </ul>
-              
-              <h4 class="footer-title">Umwelt</h4>
-              <ul class="footer-links">
-                <li><a href="/umweltschutz" aria-label="Umweltschutz">Umweltschutz</a></li>
-                <li><a href="/recycling" aria-label="Recycling">Recycling</a></li>
-                <li><a href="/nachhaltigkeit" aria-label="Nachhaltigkeit">Nachhaltigkeit</a></li>
-                <li><a href="/altbatterie-entsorgung" aria-label="Altbatterie-Entsorgung">Altbatterie-Entsorgung</a></li>
-                <li><a href="/co2-neutral" aria-label="CO2-Neutralität">CO2-Neutralität</a></li>
-              </ul>
-            </div>
+          <!-- Première rangée - Colonnes avec liens -->
+        <!-- Dans la partie "Première rangée - Colonnes avec liens" -->
+<div class="footer-main">
+  <!-- Colonne Entreprise -->
+  <div class="footer-column">
+    <h4 class="footer-title">Unternehmen</h4>
+    <ul class="footer-links">
+      <li><a href="/about" aria-label="Über uns">Über uns</a></li>
+      <li><a href="/careers" aria-label="Karriere">Karriere</a></li>
+      <li><a href="/news" aria-label="News">News</a></li>
+      <li><a href="/locations" aria-label="Standorte">Standorte</a></li>
+      <li><a href="/partners" aria-label="Partner">Partner</a></li>
+    </ul>
+  </div>
 
-            <!-- Colonne Services -->
-            <div class="footer-column">
-              <h4 class="footer-title">Dienstleistungen</h4>
-              <ul class="footer-links">
-                <li><a href="/inspections" aria-label="Prüfungen">Prüfungen</a></li>
-                <li><a href="/calibration" aria-label="Kalibrierung">Kalibrierung</a></li>
-                <li><a href="/maintenance" aria-label="Wartung">Wartung</a></li>
-                <li><a href="/training" aria-label="Schulungen">Schulungen</a></li>
-                <li><a href="/consulting" aria-label="Beratung">Beratung</a></li>
-                <li><a href="/leasing" aria-label="Leasing">Leasing</a></li>
-              </ul>
-              
+  <!-- Colonne Services -->
+  <div class="footer-column">
+    <h4 class="footer-title">Dienstleistungen</h4>
+    <ul class="footer-links">
+      <li><a href="/inspections" aria-label="Prüfungen">Prüfungen</a></li>
+      <li><a href="/calibration" aria-label="Kalibrierung">Kalibrierung</a></li>
+      <li><a href="/maintenance" aria-label="Wartung">Wartung</a></li>
+      <li><a href="/training" aria-label="Schulungen">Schulungen</a></li>
+      <li><a href="/consulting" aria-label="Beratung">Beratung</a></li>
+      <li><a href="/leasing" aria-label="Leasing">Leasing</a></li>
+    </ul>
+  </div>
+
+  <!-- Colonne Support -->
+  <div class="footer-column">
+    <h4 class="footer-title">Support</h4>
+    <ul class="footer-links">
+      <li><a href="/contact" aria-label="Kontakt">Kontakt</a></li>
+      <li><a href="/faq" aria-label="FAQ">FAQ</a></li>
+      <li><a href="/emergency" aria-label="Notdienst">Notdienst</a></li>
+      <li><a href="/support-hotline" aria-label="Support Hotline">Support Hotline</a></li>
+      <li><a href="/live-chat" aria-label="Live Chat">Live Chat</a></li>
+      <li><a href="/service-center" aria-label="Service Center">Service Center</a></li>
+    </ul>
+  </div>
+
+  <!-- Colonne Produits -->
+  <div class="footer-column">
+    <h4 class="footer-title">Produkte</h4>
+    <ul class="footer-links">
+      <li><a href="/products" aria-label="Alle Produkte">Alle Produkte</a></li>
+      <li><a href="/new" aria-label="Neuheiten">Neuheiten</a></li>
+      <li><a href="/specials" aria-label="Angebote">Angebote</a></li>
+      <li><a href="/top-seller" aria-label="Bestseller">Bestseller</a></li>
+      <li><a href="/sale" aria-label="Sale">Sale</a></li>
+      <li><a href="/gebrauchtgeraete" aria-label="Gebrauchtgeräte">Gebrauchtgeräte</a></li>
+    </ul>
+  </div>
+
+  <!-- Colonne Informations -->
+  <div class="footer-column">
+    <h4 class="footer-title">Informationen</h4>
+    <ul class="footer-links">
+      <li><a href="/terms" aria-label="AGB">AGB</a></li>
+      <li><a href="/privacy" aria-label="Datenschutz">Datenschutz</a></li>
+      <li><a href="/imprint" aria-label="Impressum">Impressum</a></li>
+      <li><a href="/returns" aria-label="Widerrufsrecht">Widerrufsrecht</a></li>
+      <li><a href="/cookies" aria-label="Cookie-Richtlinien">Cookie-Richtlinien</a></li>
+      <li><a href="/compliance" aria-label="Compliance">Compliance</a></li>
+      <li><a href="/quality" aria-label="Qualitätsmanagement">Qualitätsmanagement</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Nouvelle section pour les titres horizontaux -->
+<div class="footer-horizontal-section">
+  <div class="footer-horizontal-column">
+    <h4 class="footer-title">Umwelt</h4>
+    <ul class="footer-links">
+      <li><a href="/umweltschutz" aria-label="Umweltschutz">Umweltschutz</a></li>
+      <li><a href="/recycling" aria-label="Recycling">Recycling</a></li>
+      <li><a href="/nachhaltigkeit" aria-label="Nachhaltigkeit">Nachhaltigkeit</a></li>
+      <li><a href="/altbatterie-entsorgung" aria-label="Altbatterie-Entsorgung">Altbatterie-Entsorgung</a></li>
+      <li><a href="/co2-neutral" aria-label="CO2-Neutralität">CO2-Neutralität</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-horizontal-column">
+    <h4 class="footer-title">Öffnungszeiten</h4>
+    <div class="opening-hours">
+      <p>Mo-Fr: 8:00 - 18:00</p>
+      <p>Sa: 9:00 - 14:00</p>
+      <p>Notdienst: 24/7</p>
+    </div>
+  </div>
+
+  <div class="footer-horizontal-column">
+    <h4 class="footer-title">Konto</h4>
+    <ul class="footer-links">
+      <li><a href="/mein-konto" aria-label="Mein Konto">Mein Konto</a></li>
+      <li><a href="/login" aria-label="Anmelden/Login">Anmelden/Login</a></li>
+      <li><a href="/passwort-vergessen" aria-label="Passwort vergessen">Passwort vergessen</a></li>
+      <li><a href="/haendler-login" aria-label="Händler-Login">Händler-Login</a></li>
+      <li><a href="/ruecksendungen" aria-label="Rücksendungen">Rücksendungen</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-horizontal-column">
+    <h4 class="footer-title">Newsletter</h4>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Ihre E-Mail-Adresse" aria-label="Newsletter Anmeldung">
+      <button class="newsletter-button">Anmelden</button>
+    </div>
+  </div>
+</div>
+
+          <!-- Deuxième rangée - Colonnes avec images -->
+          <div class="footer-images-section">
+            <div class="footer-images-column">
               <h4 class="footer-title">Social Media</h4>
               <div class="social-icons-group">
                 <div class="social-icons-row">
@@ -54,114 +132,58 @@
                 </div>
               </div>
 
-              <h4 class="footer-title">Newsletter</h4>
-              <div class="newsletter-form">
-                <input type="email" placeholder="Ihre E-Mail-Adresse" aria-label="Newsletter Anmeldung">
-                <button class="newsletter-button">Anmelden</button>
-              </div>
             </div>
 
-            <!-- Colonne Support -->
-            <div class="footer-column">
-              <h4 class="footer-title">Support</h4>
-              <ul class="footer-links">
-                <li><a href="/contact" aria-label="Kontakt">Kontakt</a></li>
-                <li><a href="/faq" aria-label="FAQ">FAQ</a></li>
-                <li><a href="/emergency" aria-label="Notdienst">Notdienst</a></li>
-                <li><a href="/support-hotline" aria-label="Support Hotline">Support Hotline</a></li>
-                <li><a href="/live-chat" aria-label="Live Chat">Live Chat</a></li>
-                <li><a href="/service-center" aria-label="Service Center">Service Center</a></li>
-              </ul>
-              
+            <div class="footer-images-column">
               <h4 class="footer-title">Zahlungsarten</h4>
               <div class="payment-methods-group">
-                  <img src="/images/payment/visa.png" alt="Visa" title="Visa" loading="lazy">
-                  <img src="/images/payment/mastercard.png" alt="Mastercard" title="Mastercard" loading="lazy">
-                  <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
-                  <img src="/images/payment/sepa.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
-                  <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
-                  <img src="/images/payment/klarna.png" alt="Klarna" title="Klarna" loading="lazy">
-                  
+                <img src="/images/payment/visa.png" alt="Visa" title="Visa" loading="lazy">
+                <img src="/images/payment/mastercard.png" alt="Mastercard" title="Mastercard" loading="lazy">
+                <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
+                <img src="/images/payment/sepa.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
+                <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+                <img src="/images/payment/klarna.png" alt="Klarna" title="Klarna" loading="lazy">
               </div>
+            </div>
 
+            <div class="footer-images-column">
               <h4 class="footer-title">Versand</h4>
               <div class="shipping-methods-group">
-                <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy" >
+                <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
                 <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
-                 <img src="/images/shipping/hermes.png" alt="Hermes" title="Hermes" loading="lazy" >
-                <img src="/images/shipping/ups.png" alt="UPS" title="UPS" loading="lazy" >
-                <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy" >
-               
+                <img src="/images/shipping/hermes.png" alt="Hermes" title="Hermes" loading="lazy">
+                <img src="/images/shipping/ups.png" alt="UPS" title="UPS" loading="lazy">
+                <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
               </div>
             </div>
 
-            <!-- Colonne Informations -->
-            <div class="footer-column">
-              <h4 class="footer-title">Informationen</h4>
-              <ul class="footer-links">
-                <li><a href="/terms" aria-label="AGB">AGB</a></li>
-                <li><a href="/privacy" aria-label="Datenschutz">Datenschutz</a></li>
-                <li><a href="/imprint" aria-label="Impressum">Impressum</a></li>
-                <li><a href="/returns" aria-label="Widerrufsrecht">Widerrufsrecht</a></li>
-                <li><a href="/cookies" aria-label="Cookie-Richtlinien">Cookie-Richtlinien</a></li>
-                <li><a href="/compliance" aria-label="Compliance">Compliance</a></li>
-                <li><a href="/quality" aria-label="Qualitätsmanagement">Qualitätsmanagement</a></li>
-              </ul>
-
-              <h4 class="footer-title">Konto</h4>
-              <ul class="footer-links">
-                <li><a href="/mein-konto" aria-label="Mein Konto">Mein Konto</a></li>
-                <li><a href="/login" aria-label="Anmelden/Login">Anmelden/Login</a></li>
-                <li><a href="/passwort-vergessen" aria-label="Passwort vergessen">Passwort vergessen</a></li>
-                <li><a href="/haendler-login" aria-label="Händler-Login">Händler-Login</a></li>
-                <li><a href="/ruecksendungen" aria-label="Rücksendungen">Rücksendungen</a></li>
-                <li><a href="/bestellverlauf" aria-label="Bestellverlauf">Bestellverlauf</a></li>
-                <li><a href="/wunschliste" aria-label="Wunschliste">Wunschliste</a></li>
-              </ul>
-            </div>
-
-            <!-- Colonne Produits & Newsletter -->
-            <div class="footer-column">
-              <h4 class="footer-title">Produkte</h4>
-              <ul class="footer-links">
-                <li><a href="/products" aria-label="Alle Produkte">Alle Produkte</a></li>
-                <li><a href="/new" aria-label="Neuheiten">Neuheiten</a></li>
-                <li><a href="/specials" aria-label="Angebote">Angebote</a></li>
-                <li><a href="/top-seller" aria-label="Bestseller">Bestseller</a></li>
-                <li><a href="/sale" aria-label="Sale">Sale</a></li>
-                <li><a href="/gebrauchtgeraete" aria-label="Gebrauchtgeräte">Gebrauchtgeräte</a></li>
-              </ul>
-              
+            <div class="footer-images-column">
               <h4 class="footer-title">Zertifizierungen</h4>
               <div class="certification-group">
                 <img src="/images/certifications/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
                 <img src="/images/certifications/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
                 <img src="/images/certifications/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
-                 <img src="/images/certifications/iso-9001.png" alt="ISO 9001" class="certification-img" loading="lazy" >
-               
-              </div>
-              
-              <h4 class="footer-title">Mobile App</h4>
-              <div class="app-download-group">
-                <a href="#" aria-label="Download auf dem App Store">
-                  <img src="/images/apps/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
-                </a>
-                <a href="#" aria-label="Download bei Google Play">
-                  <img src="/images/apps/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
-                </a>
-               
-              </div>
-
-              <h4 class="footer-title">Öffnungszeiten</h4>
-              <div class="opening-hours">
-                <p>Mo-Fr: 8:00 - 18:00</p>
-                <p>Sa: 9:00 - 14:00</p>
-                <p>Notdienst: 24/7</p>
+                <img src="/images/certifications/iso-9001.png" alt="ISO 9001" class="certification-img" loading="lazy">
               </div>
             </div>
+
+            <div class="footer-images-column">
+                <h4 class="footer-title">Mobile App</h4>
+                <div class="app-download-group">
+                    <a href="#" aria-label="Download auf dem App Store">
+                      <img src="/images/apps/app-store.png" alt="App Store" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
+                    </a>
+                    <a href="#" aria-label="Download bei Google Play">
+                      <img src="/images/apps/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt bei Google Play herunterladen" loading="lazy">
+                    </a>
+                </div>
+            </div>
+           
+
+           
           </div>
 
-          <!-- Deuxième rangée - Copyright -->
+          <!-- Troisième rangée - Copyright -->
           <div class="footer-bottom">
             <div class="copyright">
               © {{ new Date().getFullYear() }} {{ companyName }} | Alle Rechte vorbehalten
@@ -289,6 +311,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 /* Structure principale */
 .footer-wrapper {
@@ -311,17 +334,26 @@ export default {
   margin-bottom: 2rem;
 }
 
-.footer-column {
+.footer-images-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+.footer-column, .footer-images-column {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* Titres */
+/* Assurez-vous que tous les titres ont la même apparence */
 .footer-title {
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: rgb(53, 51, 51);
   border-bottom: 2px solid var(--footer-border-color);
   padding-bottom: 0.5rem;
@@ -374,6 +406,42 @@ export default {
 
 .footer-links a:hover::after {
   width: 100%;
+}
+
+.footer-horizontal-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+.footer-horizontal-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Assurez-vous que les titres sont alignés */
+.footer-horizontal-column .footer-title {
+  margin-bottom: 1rem;
+}
+
+/* Ajustez les styles pour les éléments spécifiques */
+.footer-horizontal-column .opening-hours {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-horizontal-column .opening-hours p {
+  margin: 0.3rem 0;
+}
+
+.footer-horizontal-column .newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /* Groupes d'icônes et images */
@@ -593,7 +661,7 @@ export default {
 
 /* Responsive */
 @media (max-width: 992px) {
-  .footer-main {
+  .footer-main, .footer-images-section {
     grid-template-columns: repeat(3, 1fr);
   }
   
@@ -603,7 +671,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .footer-main {
+  .footer-main, .footer-images-section {
     grid-template-columns: repeat(2, 1fr);
   }
   
@@ -617,7 +685,7 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .footer-main {
+  .footer-main, .footer-images-section {
     grid-template-columns: 1fr;
   }
   
