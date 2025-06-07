@@ -284,7 +284,11 @@ const updateWidth = () => (windowWidth.value = window.innerWidth)
 onMounted(() => window.addEventListener('resize', updateWidth))
 onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
-const drawerWidth = computed(() => (windowWidth.value < 600 ? windowWidth.value : 300))
+const drawerWidth = computed(() => {
+  if (windowWidth.value < 600) return windowWidth.value // Mobile
+  if (windowWidth.value >= 768 && windowWidth.value <= 1024) return 400 // iPad
+  return 300 // Desktop par défaut
+})
 
 const menuCategories = [
   {
@@ -521,6 +525,89 @@ function closeDrawer() {
 .submenu-divider {
   margin-left: 48px;
   margin-right: 16px;
+}
+
+/* Ajoutez ce style */
+.v-list-group--active .v-list-group__items {
+  max-height: 1000px !important; /* Empêche le clipping des éléments */
+}
+
+.v-list-group__items {
+  transition: max-height 0.5s ease-in-out;
+}
+
+.custom-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12); /* Légèrement plus visible */
+  margin: 6px 24px; /* Plus d'espace sur iPad */
+}
+
+/* Styles spécifiques iPad */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navigation-drawer {
+    width: 400px !important;
+    margin-top: 64px;
+  }
+
+  .v-list-item {
+    min-height: 52px;
+  }
+
+  .v-list-item-title {
+    font-size: 1rem;
+  }
+
+  .v-icon {
+    font-size: 1.4rem;
+  }
+
+  .v-list-group__items .v-list-item {
+    padding-left: 56px !important;
+  }
+
+  .section-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .drawer-header {
+    padding: 16px 20px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .drawer-content {
+    padding: 16px 12px;
+  }
+
+  .custom-divider {
+    margin: 8px 28px;
+  }
+  
+  .submenu-divider {
+    margin-left: 56px;
+    margin-right: 28px;
+  }
+  
+  .main-divider {
+    margin: 12px 28px;
+  }
+}
+
+/* Pour iPad en mode portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .navigation-drawer {
+    width: 380px !important;
+  }
+}
+
+/* Pour iPad Pro 12.9" */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .navigation-drawer {
+    width: 350px !important;
+  }
 }
 
 /* Responsive */
