@@ -98,7 +98,7 @@
               <img src="/images/app-store.png" alt="App Store" class="app-download-img"  title="Jetzt im Google Play Store herunterladen" loading="lazy">
             </a>
             <a href="#" aria-label="Download bei Google Play">
-              <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt im App Store herunterladen" loading="lazy">
+              <img src="/images/google-play.png" alt="Google Play" class="app-download-img" title="Jetzt im Google Play herunterladen" loading="lazy">
             </a>
           </div>
         </div>
