@@ -59,7 +59,7 @@
           <div class="shipping-methods-group">
             <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
             <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
-            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
+            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy" style="max-width: 80px;">
           </div>
         </div>
 
@@ -94,7 +94,7 @@
           
           <h4 class="footer-title">Zertifizierungen</h4>
           <div class="certification-group">
-            <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy">
+            <img src="/images/iso-13485.png" alt="ISO 13485" class="certification-img" loading="lazy" >
             <img src="/images/tuv-certified.png" alt="TÜV Certified" class="certification-img" loading="lazy">
             <img src="/images/dguv-certified.png" alt="dguv Certified" class="certification-img" loading="lazy">
           </div>
