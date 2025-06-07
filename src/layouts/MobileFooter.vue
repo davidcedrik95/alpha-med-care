@@ -46,6 +46,7 @@
             <img src="/images/certifications/iso-13485.png" alt="ISO 13485" loading="lazy">
             <img src="/images/certifications/tuv-certified.png" alt="TÜV Certified" loading="lazy">
             <img src="/images/certifications/dguv-certified.png" alt="DGUV Certified" loading="lazy">
+             <img src="/images/certifications/iso-9001.png" alt="ISO 9001" class="certification-img" loading="lazy" >
             
         </div>
         
