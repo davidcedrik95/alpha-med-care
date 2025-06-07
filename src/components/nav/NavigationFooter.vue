@@ -128,7 +128,7 @@
 .social-footer {
   color: white;
   padding: 2.5rem 0 1.25rem;
-  background-color: rgba(110, 110, 110, 0.377);
+  background-color: rgba(165, 165, 165, 0.377);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -258,7 +258,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  background: rgba(255,255,255,0.1);
+  background: rgba(87, 86, 86, 0.1);
   padding: 0.8rem;
   border-radius: 12px;
   border: 1px dashed rgba(255,255,255,0.3);
