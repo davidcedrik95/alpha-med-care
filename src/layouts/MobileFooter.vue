@@ -193,7 +193,7 @@ export default {
 }
 
 .mobile-badges img {
-  height: 40px;
+  height: 60px;
   width: auto;
   max-width: 100px;
   object-fit: contain;
