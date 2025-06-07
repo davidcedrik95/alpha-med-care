@@ -8,26 +8,35 @@
           <span class="toggle-icon">{{ isOpen(section.title) ? '−' : '+' }}</span>
         </button>
         <div class="section-content" v-if="isOpen(section.title)">
-          <ul v-if="section.links && section.links.length">
-            <li v-for="(link, index) in section.links" :key="index">
-              <a :href="link.url" :aria-label="link.text">{{ link.text }}</a>
-            </li>
-          </ul>
-          
-          <div v-if="section.social" class="social-icons">
-            <a href="#" aria-label="Facebook"><v-icon>mdi-facebook</v-icon></a>
-            <a href="#" aria-label="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
-            <a href="#" aria-label="Instagram"><v-icon>mdi-instagram</v-icon></a>
-          </div>
-          
-          <div v-if="section.payment" class="payment-methods">
-            <img src="/images/payment/visa.png" alt="Visa" loading="lazy">
-            <img src="/images/payment/mastercard.png" alt="Mastercard" loading="lazy">
-            <img src="/images/payment/paypal.png" alt="PayPal" loading="lazy">
-            <img src="/images/payment/sepa.png" alt="SEPA" loading="lazy">
-            <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
-          </div>
-        </div>
+  <ul v-if="section.links && section.links.length">
+    <li v-for="(link, index) in section.links" :key="index">
+      <a :href="link.url" :aria-label="link.text">{{ link.text }}</a>
+    </li>
+  </ul>
+  
+  <div v-if="section.social" class="social-icons">
+    <a href="#" aria-label="Facebook"><v-icon>mdi-facebook</v-icon></a>
+    <a href="#" aria-label="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
+    <a href="#" aria-label="Instagram"><v-icon>mdi-instagram</v-icon></a>
+    <a href="#" aria-label="WhatsApp"><v-icon>mdi-whatsapp</v-icon></a>
+  </div>
+  
+  <div v-if="section.payment" class="payment-methods">
+    <img src="/images/payment/visa.png" alt="Visa" loading="lazy">
+    <img src="/images/payment/mastercard.png" alt="Mastercard" loading="lazy">
+    <img src="/images/payment/paypal.png" alt="PayPal" loading="lazy">
+    <img src="/images/payment/sepa.png" alt="SEPA" loading="lazy">
+    <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+  </div>
+  
+  <div v-if="section.shipping" class="shipping-methods">
+    <img src="/images/shipping/dhl.png" alt="DHL" loading="lazy">
+    <img src="/images/shipping/dpd.png" alt="DPD" loading="lazy">
+    <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" loading="lazy">
+    <img src="/images/shipping/ups.png" alt="UPS" loading="lazy">
+    <img src="/images/shipping/hermes.png" alt="Hermes" loading="lazy">
+  </div>
+</div>
       </div>
     </div>
 
@@ -235,6 +244,32 @@ export default {
 .payment-methods img:hover {
   transform: scale(1.1);
 }
+
+
+.shipping-methods {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 0 0;
+  align-items: center;
+}
+
+.shipping-methods img {
+  height: 30px;
+  width: auto;
+  max-width: 60px;
+  object-fit: contain;
+  background: white;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.shipping-methods img:hover {
+  transform: scale(1.1);
+}
+
 
 .mobile-essentials {
   background: rgba(0,0,0,0.03);
