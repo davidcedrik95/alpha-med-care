@@ -1,17 +1,17 @@
 <template>
   <header class="top-bar">
-    <!-- Barre supérieure (cachée sur mobile) -->
+    <!-- Top bar (hidden on mobile) -->
     <div class="top-bar-upper">
         <div class="top-bar-left">
           <span class="hide-on-mobile">
-            <i class="mdi mdi-truck"></i> {{ $t('header.free_shipping') }} **
+            <i class="mdi mdi-truck"></i> {{ $t('header.free_shipping') }}
           </span>
           <span class="hide-on-mobile price-info">
-            <i class="mdi mdi-currency-eur"></i> {{ $t('header.prices_incl_vat') }} *
-            <span class="tooltip">Inklusive Mehrwertsteuer</span>
+            <i class="mdi mdi-currency-eur"></i> {{ $t('header.prices_incl_vat') }}
+            <span class="tooltip">{{ $t('header.prices_incl_vat_tooltip') }}</span>
           </span>
           <span class="hide-on-mobile">
-            <i class="mdi mdi-phone"></i> {{ $t('header.phone') }}
+            <i class="mdi mdi-phone"></i> {{ $t('header.phone_label') }}: {{ $t('header.phone') }}
           </span>
         </div>
         <div class="top-bar-right">
@@ -24,16 +24,16 @@
         </div>
     </div>
 
-    <!-- Barre inférieure -->
+    <!-- Bottom bar -->
     <div class="top-bar-lower">
       <div class="logo-section">
-        <a href="/" class="logo-link" aria-label="Logo">
+        <a href="/" class="logo-link" :aria-label="$t('app.title')">
           <img src="/images/logo.png" :alt="$t('app.title')" />
         </a>
         <div class="logo-subtext hide-on-mobile">{{ $t('header.logo_subtext') }}</div>
       </div>
 
-      <!-- Recherche desktop -->
+      <!-- Desktop search -->
       <form 
         class="search-bar desktop-search" 
         role="search" 
@@ -43,7 +43,7 @@
         <input 
           type="search"
           :placeholder="$t('header.search_placeholder')"
-          aria-label="Search field"
+          :aria-label="$t('header.search_placeholder')"
           autocomplete="off"
           spellcheck="false"
           v-model="searchQuery"
@@ -51,13 +51,13 @@
           @blur="searchExpanded = false"
           v-if="!isMobile"
         />
-        <button type="submit" aria-label="Search">
+        <button type="submit" :aria-label="$t('header.search')">
           <i class="mdi mdi-magnify"></i>
         </button>
       </form>
 
-      <!-- Icônes -->
-      <nav class="top-bar-links" aria-label="Secondary navigation">
+      <!-- Icons -->
+      <nav class="top-bar-links" :aria-label="$t('menu.categories.sales')">
         <a href="#" class="link-item" :aria-label="$t('header.wishlist')">
           <i class="mdi mdi-heart"></i>
           <span class="link-text hide-on-mobile">{{ $t('header.wishlist') }}</span>
@@ -73,7 +73,7 @@
             <div class="mobile-menu-header">
               <h4 class="account-title">{{ $t('account.title') }}</h4>
               <hr>
-              <button class="close-menu" @click="closeAccountMenu" aria-label="Close menu">
+              <button class="close-menu" @click="closeAccountMenu" :aria-label="$t('menu.close')">
                 <i class="mdi mdi-close"></i>
               </button>
             </div>
@@ -110,7 +110,7 @@
           </div>
         </div>
 
-        <!-- Lien panier -->
+        <!-- Cart link -->
         <a href="#" class="link-item cart-link" 
           :aria-label="$t('header.cart')" 
           @click.prevent="toggleCart">
@@ -119,32 +119,32 @@
           <span class="cart-badge" aria-hidden="true">{{ cartItems.length }}</span>
         </a>
   
-        <!-- Composant panier -->
+        <!-- Cart component -->
         <SideCart />
       </nav>
 
-      <!-- Icône de recherche mobile -->
-      <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile" aria-label="Toggle search">
+      <!-- Mobile search icon -->
+      <button class="mobile-search-icon" @click="toggleSearch" v-if="isMobile" :aria-label="$t('header.search')">
         <i class="mdi mdi-magnify"></i>
       </button>
     </div>
 
-    <!-- Recherche mobile -->
+    <!-- Mobile search -->
     <div class="mobile-search-container" v-if="isMobile && searchExpanded">
       <form class="mobile-search-bar" role="search" @submit.prevent="performSearch">
         <input 
           type="search"
           :placeholder="$t('header.search_placeholder')"
-          aria-label="Search field"
+          :aria-label="$t('header.search_placeholder')"
           autocomplete="off"
           spellcheck="false"
           v-model="searchQuery"
           autofocus
         />
-        <button type="button" class="close-search" @click="closeSearch" aria-label="Close search">
+        <button type="button" class="close-search" @click="closeSearch" :aria-label="$t('menu.close')">
           <i class="mdi mdi-close"></i>
         </button>
-        <button type="submit" aria-label="Search">
+        <button type="submit" :aria-label="$t('header.search')">
           <i class="mdi mdi-magnify"></i>
         </button>
       </form>
@@ -162,7 +162,7 @@ const searchExpanded = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
 const accountMenuOpen = ref(false)
 
-// Utilisation du store Pinia
+// Using Pinia store
 const cartStore = useCartStore()
 
 const cartItems = computed(() => cartStore.items)
@@ -192,7 +192,7 @@ function closeSearch() {
 
 function performSearch() {
   if (searchQuery.value.trim() === '') return
-  alert(`Recherche lancée : ${searchQuery.value}`)
+  alert(`${$t('header.search')}: ${searchQuery.value}`)
   searchExpanded.value = false
   searchQuery.value = ''
 }

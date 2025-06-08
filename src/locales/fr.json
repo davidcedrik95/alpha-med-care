@@ -165,6 +165,10 @@
       "ssl": "Chiffrement SSL"
     },
     "sections": {
+      "social": {
+        "title": "Réseaux sociaux",
+        "follow_us": "Suivez-nous"
+      },
       "company": {
         "title": "Entreprise",
         "about": "À propos",

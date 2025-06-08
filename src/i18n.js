@@ -16,7 +16,15 @@ const i18n = createI18n({
   locale: savedLocale,
   fallbackLocale: 'en',
   messages,
-  silentTranslationWarn: true // Optionnel: supprime les avertissements pour les traductions manquantes
+  silentTranslationWarn: true,
+  // Add global injection to make $t reactive
+  globalInjection: true
 })
+
+// Helper function to update locale
+export function setI18nLanguage(i18n, locale) {
+  i18n.global.locale.value = locale
+  localStorage.setItem('userLocale', locale)
+}
 
 export default i18n

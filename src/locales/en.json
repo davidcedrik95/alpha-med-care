@@ -13,6 +13,7 @@
     "about": "About Us",
     "contact": "Contact",
     "products": "Products",
+    "close": "Close menu",
     "blog": "Blog",
     "faq": "FAQ",
     "imprint": "Legal Notice",
@@ -68,7 +69,9 @@
     "account": "My Account",
     "cart": "Shopping Cart",
     "logo_subtext": "Your Specialist for Medical Technology",
-    "search": "Search"
+    "search": "Search",
+    "prices_incl_vat_tooltip": "Including VAT"
+
   },
   "language": {
     "de": "German",
@@ -165,6 +168,10 @@
       "ssl": "SSL Encryption"
     },
     "sections": {
+      "social": {
+        "title": "Social Media",
+        "follow_us": "Follow us"
+      },
       "company": {
         "title": "Company",
         "about": "About Us",

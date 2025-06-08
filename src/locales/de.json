@@ -173,6 +173,11 @@
       "ssl": "SSL Verschlüsselung"
     },
     "sections": {
+       "social": {
+        "title": "Social Media",
+        "follow_us": "Folgen Sie uns"
+      },
+
       "company": {
         "title": "Unternehmen",
         "about": "Über uns",

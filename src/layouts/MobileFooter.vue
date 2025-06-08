@@ -1,40 +1,39 @@
 <template>
-  <footer class="mobile-footer">
+  <footer v-if="showFooter" class="mobile-footer" :key="footerKey">
     <div class="footer-sections">
-      <!-- Sections accordéon -->
-      <div class="footer-section" v-for="section in sections" :key="section.title">
-        <button class="section-header" @click="toggleSection(section.title)">
-          <h3>{{ section.title }}</h3>
-          <span class="toggle-icon">{{ isOpen(section.title) ? '−' : '+' }}</span>
+      <div class="footer-section" v-for="section in sections" :key="section.key">
+        <button class="section-header" @click="toggleSection(section.key)">
+          <h3>{{ $t(section.title) }}</h3>
+          <span class="toggle-icon">{{ isOpen(section.key) ? '−' : '+' }}</span>
         </button>
-        <div class="section-content" v-if="isOpen(section.title)">
+        <div class="section-content" v-if="isOpen(section.key)">
           <ul v-if="section.links && section.links.length">
             <li v-for="(link, index) in section.links" :key="index">
-              <a :href="link.url" :aria-label="link.text">{{ link.text }}</a>
+              <a :href="link.url" :aria-label="$t(link.text)">{{ $t(link.text) }}</a>
             </li>
           </ul>
           
           <div v-if="section.social" class="social-icons">
-            <a href="#" aria-label="Facebook"><v-icon>mdi-facebook</v-icon></a>
-            <a href="#" aria-label="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
-            <a href="#" aria-label="Instagram"><v-icon>mdi-instagram</v-icon></a>
-            <a href="#" aria-label="WhatsApp"><v-icon>mdi-whatsapp</v-icon></a>
+            <a href="#" :aria-label="$t('social.facebook')"><v-icon>mdi-facebook</v-icon></a>
+            <a href="#" :aria-label="$t('social.linkedin')"><v-icon>mdi-linkedin</v-icon></a>
+            <a href="#" :aria-label="$t('social.instagram')"><v-icon>mdi-instagram</v-icon></a>
+            <a href="#" :aria-label="$t('social.whatsapp')"><v-icon>mdi-whatsapp</v-icon></a>
           </div>
           
           <div v-if="section.payment" class="payment-methods">
-            <img src="/images/payment/visa.png" alt="Visa" loading="lazy">
-            <img src="/images/payment/mastercard.png" alt="Mastercard" loading="lazy">
-            <img src="/images/payment/paypal.png" alt="PayPal" loading="lazy">
-            <img src="/images/payment/sepa.png" alt="SEPA" loading="lazy">
-            <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+            <img src="/images/payment/visa.png" :alt="$t('footer.payment_methods.visa')" loading="lazy">
+            <img src="/images/payment/mastercard.png" :alt="$t('footer.payment_methods.mastercard')" loading="lazy">
+            <img src="/images/payment/paypal.png" :alt="$t('footer.payment_methods.paypal')" loading="lazy">
+            <img src="/images/payment/sepa.png" :alt="$t('footer.payment_methods.sepa')" loading="lazy">
+            <img src="/images/payment/sofort.png" :alt="$t('footer.payment_methods.sofort')" loading="lazy">
           </div>
           
           <div v-if="section.shipping" class="shipping-methods">
-            <img src="/images/shipping/dhl.png" alt="DHL" loading="lazy">
-            <img src="/images/shipping/dpd.png" alt="DPD" loading="lazy">
-            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" loading="lazy">
-            <img src="/images/shipping/ups.png" alt="UPS" loading="lazy">
-            <img src="/images/shipping/hermes.png" alt="Hermes" loading="lazy">
+            <img src="/images/shipping/dhl.png" :alt="$t('footer.shipping.dhl')" loading="lazy">
+            <img src="/images/shipping/dpd.png" :alt="$t('footer.shipping.dpd')" loading="lazy">
+            <img src="/images/shipping/db_schenk.svg" :alt="$t('footer.shipping.db_schenker')" loading="lazy">
+            <img src="/images/shipping/ups.png" :alt="$t('footer.shipping.ups')" loading="lazy">
+            <img src="/images/shipping/hermes.png" :alt="$t('footer.shipping.hermes')" loading="lazy">
           </div>
         </div>
       </div>
@@ -43,89 +42,131 @@
     <div class="mobile-essentials">
       <div class="essentials-group">
         <div class="certifications">
-            <img src="/images/certifications/iso-13485.png" alt="ISO 13485" loading="lazy">
-            <img src="/images/certifications/tuv-certified.png" alt="TÜV Certified" loading="lazy">
-            <img src="/images/certifications/dguv-certified.png" alt="DGUV Certified" loading="lazy">
-            <img src="/images/certifications/iso-9001.png" alt="ISO 9001" class="certification-img" loading="lazy">
+            <img src="/images/certifications/iso-13485.png" :alt="$t('footer.certifications.iso13485')" loading="lazy">
+            <img src="/images/certifications/tuv-certified.png" :alt="$t('footer.certifications.tuv')" loading="lazy">
+            <img src="/images/certifications/dguv-certified.png" :alt="$t('footer.certifications.dguv')" loading="lazy">
+            <img src="/images/certifications/iso-9001.png" :alt="$t('footer.certifications.iso9001')" loading="lazy">
         </div>
         
         <div class="app-download">
-          <h4>alpha med care App herunterladen</h4>
+          <h4>{{ $t('footer.mobile_app.title') }}</h4>
           <div class="app-buttons">
-            <a href="#" aria-label="App Store">
-              <img src="/images/apps/app-store.png" alt="App Store" loading="lazy">
+            <a href="#" :aria-label="$t('footer.mobile_app.app_store')">
+              <img src="/images/apps/app-store.png" :alt="$t('footer.mobile_app.app_store')" loading="lazy">
             </a>
-            <a href="#" aria-label="Google Play">
-              <img src="/images/apps/google-play.png" alt="Google Play" loading="lazy">
+            <a href="#" :aria-label="$t('footer.mobile_app.google_play')">
+              <img src="/images/apps/google-play.png" :alt="$t('footer.mobile_app.google_play')" loading="lazy">
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Badges section added here -->
     <div class="mobile-badges">
-      <img src="/images/badges/trusted-shops.png" alt="Trusted Shops" loading="lazy">
-      <img src="/images/badges/safe-shopping.png" alt="Sicheres Einkaufen" loading="lazy">
-      <img src="/images/badges/ssl-secured.png" alt="SSL Verschlüsselung" loading="lazy">
+      <img src="/images/badges/trusted-shops.png" :alt="$t('footer.badges.trusted_shops')" loading="lazy">
+      <img src="/images/badges/safe-shopping.png" :alt="$t('footer.badges.safe_shopping')" loading="lazy">
+      <img src="/images/badges/ssl-secured.png" :alt="$t('footer.badges.ssl')" loading="lazy">
     </div>
 
     <div class="mobile-copyright">
-      © {{ new Date().getFullYear() }} {{ companyName }} | Alle Rechte vorbehalten
+      {{ $t('footer.copyright', { year: new Date().getFullYear(), company: companyName }) }}
     </div>
   </footer>
 </template>
 
 <script>
+import { ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 export default {
   props: {
     companyName: {
       type: String,
-      default: 'Company Name'
-    },
-    sections: {
-      type: Array,
-      required: true,
-      default: () => [
-        {
-          title: 'Unternehmen',
-          links: [
-            { text: 'Über uns', url: '/about' },
-            { text: 'Karriere', url: '/careers' }
-          ]
-        },
-        {
-          title: 'Social Media',
-          social: true,
-          links: []
-        },
-        {
-          title: 'Zahlungsarten', 
-          payment: true,
-          links: []
-        }
-      ]
+      default: 'alpha med care GmbH'
     },
     initiallyOpen: {
       type: Array,
-      default: () => ['Informationen']
+      default: () => ['information']
     }
   },
-  data() {
-    return {
-      openSections: this.initiallyOpen
-    }
-  },
-  methods: {
-    toggleSection(title) {
-      if (this.isOpen(title)) {
-        this.openSections = this.openSections.filter(t => t !== title)
-      } else {
-        this.openSections.push(title)
+  setup(props) {
+    const { locale } = useI18n()
+    const openSections = ref(props.initiallyOpen)
+    const footerKey = ref(0)
+    const showFooter = ref(true)
+
+    watch(locale, () => {
+      // Force le re-rendu du composant
+      showFooter.value = false
+      footerKey.value++
+      setTimeout(() => showFooter.value = true, 50)
+    })
+
+    const sections = ref([
+      {
+        key: 'company',
+        title: 'footer.sections.company.title',
+        links: [
+          { text: 'footer.sections.company.about', url: '/about' },
+          { text: 'footer.sections.company.career', url: '/careers' },
+          { text: 'footer.sections.company.team', url: '/team' },
+          { text: 'footer.sections.company.quality', url: '/quality' }
+        ]
+      },
+      {
+        key: 'services',
+        title: 'footer.sections.services.title',
+        links: [
+          { text: 'footer.sections.services.inspections', url: '/services/inspections' },
+          { text: 'footer.sections.services.calibration', url: '/services/calibration' },
+          { text: 'footer.sections.services.maintenance', url: '/services/maintenance' }
+        ]
+      },
+      {
+        key: 'support',
+        title: 'footer.sections.support.title',
+        links: [
+          { text: 'footer.sections.support.contact', url: '/contact' },
+          { text: 'footer.sections.support.faq', url: '/faq' },
+          { text: 'footer.sections.support.shipping', url: '/shipping' }
+        ]
+      },
+      {
+        key: 'social',
+        title: 'footer.sections.social.title',
+        social: true
+      },
+      {
+        key: 'payment',
+        title: 'footer.payment_methods.title',
+        payment: true
+      },
+      {
+        key: 'shipping',
+        title: 'footer.shipping.title',
+        shipping: true
       }
-    },
-    isOpen(title) {
-      return this.openSections.includes(title)
+    ])
+
+    const toggleSection = (key) => {
+      if (isOpen(key)) {
+        openSections.value = openSections.value.filter(t => t !== key)
+      } else {
+        openSections.value.push(key)
+      }
+    }
+
+    const isOpen = (key) => {
+      return openSections.value.includes(key)
+    }
+
+    return {
+      sections,
+      openSections,
+      footerKey,
+      showFooter,
+      toggleSection,
+      isOpen
     }
   }
 }
@@ -278,7 +319,6 @@ export default {
   transform: scale(1.1);
 }
 
-
 .shipping-methods {
   display: flex;
   gap: 12px;
@@ -302,7 +342,6 @@ export default {
 .shipping-methods img:hover {
   transform: scale(1.1);
 }
-
 
 .mobile-essentials {
   background: rgba(0,0,0,0.03);
@@ -362,15 +401,6 @@ export default {
 
 .app-buttons img:hover {
   transform: scale(1.05);
-}
-
-.mobile-copyright {
-  text-align: center;
-  padding: 16px 0 0;
-  color: #666;
-  font-size: 12px;
-  border-top: 1px solid #e0e0e0;
-  margin-top: 16px;
 }
 
 /* Animations */
