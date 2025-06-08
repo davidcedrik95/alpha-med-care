@@ -9,6 +9,7 @@
   },
 
   "menu": {
+
     "home": "Startseite",
     "services": "Dienstleistungen",
     "about": "Über uns",
@@ -18,9 +19,14 @@
     "faq": "FAQ",
     "imprint": "Impressum",
     "privacy": "Datenschutz",
+ 
+ 
+    "terms": "AGB",
+   
+    "cookies": "Cookies",
     "categories": {
       "inspections": "Prüfungen & Kontrollen",
-      "calibration": "Kalibrierungsdienstleistungen",
+      "calibration": "Kalibrierungen",
       "maintenance": "Wartung & Service",
       "sales": "Verkauf & Produkte",
       "consulting": "Beratung & Schulung",
@@ -28,6 +34,13 @@
       "mtk": "Messtechnische Kontrolle (MTK)"
     },
     "items": {
+      "new": "Neuheiten",
+      "specials": "Sonderangebote",
+      "top_seller": "Bestseller",
+      "sale": "Sale",
+      "used_equipment": "Gebrauchtgeräte",
+
+      "leasing": "Leasing",
       "stk_inspection": "Sicherheitstechnische Kontrolle (STK)",
       "mtk_inspection": "Messtechnische Kontrolle (MTK)",
       "stue_inspection": "Sicherheitstechnische Überprüfung (STÜ)",
@@ -50,6 +63,7 @@
     }
   },
   "header": {
+    "phone_label": "Hotline",
     "phone": "+49 (0)9666 188950",
     "invoice": "Kauf auf Rechnung",
     "consultation": "Fachberatung",
@@ -70,6 +84,7 @@
   "account": {
     "title": "Mein Konto",
     "login": "Anmelden",
+  
     "or": "oder",
     "register": "registrieren",
     "overview": "Übersicht",
@@ -78,6 +93,8 @@
     "payment_methods": "Zahlungsarten",
     "orders": "Bestellungen",
     "items": {
+      "forgot_password": "Passwort vergessen",
+      "dealer_login": "Händler-Login",
       "my_account": "Mein Konto",
       "my_orders": "Meine Bestellungen",
       "my_returns": "Meine Rücksendungen",
@@ -125,6 +142,7 @@
     "register": "Registrieren",
     "authentication": "Authentifizierung"
   },
+
   "footer": {
     "address": "Adresse",
     "email": "E-Mail",
@@ -135,6 +153,25 @@
     "privacy": "Datenschutzerklärung",
     "imprint": "Impressum",
     "products": "Produkte",
+    "opening_hours": {
+      "title": "Öffnungszeiten",
+      "weekdays": "Mo-Fr: 8:00 - 18:00",
+      "saturday": "Sa: 9:00 - 14:00",
+      "emergency": "Notdienst: 24/7"
+    },
+    "mobile_app": {
+      "title": "Mobile App",
+      "app_store": "Jetzt im App Store herunterladen",
+      "google_play": "Jetzt bei Google Play herunterladen"
+    },
+    "shipping": {
+      "title": "Versand"
+    },
+    "badges": {
+      "trusted_shops": "Trusted Shops Gütesiegel",
+      "safe_shopping": "Sicheres Einkaufen",
+      "ssl": "SSL Verschlüsselung"
+    },
     "sections": {
       "company": {
         "title": "Unternehmen",
@@ -142,7 +179,10 @@
         "career": "Karriere",
         "news": "Aktuelles",
         "team": "Unser Team",
-        "quality": "Qualitätsmanagement"
+        "quality": "Qualitätsmanagement",
+        "partners": "Partner",
+        "compliance": "Compliance",
+        "locations": "Standorte"
       },
       "services": {
         "title": "Dienstleistungen",
@@ -150,15 +190,9 @@
         "calibration": "Kalibrierungen",
         "maintenance": "Wartungsservice",
         "consulting": "Fachberatung",
-        "certification": "Zertifizierungen"
-      },
-      "resources": {
-        "title": "Ressourcen",
-        "blog": "Fachblog",
-        "guides": "Bedienungsanleitungen",
-        "videos": "Schulungsvideos",
-        "downloads": "Downloads",
-        "regulations": "Normen & Richtlinien"
+        "certification": "Zertifizierungen",
+        "training": "Schulungen",
+        "leasing": "Leasing"
       },
       "support": {
         "title": "Support",
@@ -166,7 +200,27 @@
         "faq": "Häufige Fragen",
         "shipping": "Versandinfo",
         "returns": "Retourenprozess",
-        "emergency": "Notdienst"
+        "emergency": "Notdienst",
+        "live_chat": "Live Chat",
+        "service_center": "Service Center",
+        "hotline": "Hotline"
+      },
+      "resources": {
+        "title": "Ressourcen",
+        "blog": "Fachblog",
+        "guides": "Bedienungsanleitungen",
+        "videos": "Schulungsvideos",
+        "downloads": "Downloads",
+        "regulations": "Normen & Richtlinien",
+        "cookies": "Cookies"
+      },
+      "environment": {
+        "title": "Umwelt",
+        "protection": "Umweltschutz",
+        "recycling": "Recycling",
+        "sustainability": "Nachhaltigkeit",
+        "battery_disposal": "Altbatterie-Entsorgung",
+        "co2_neutral": "CO2-Neutralität"
       }
     },
     "newsletter": {
@@ -183,7 +237,9 @@
       "iso13485": "ISO 13485:2016",
       "iso9001": "ISO 9001:2015",
       "mdr": "MDR 2017/745",
-      "ce": "CE-Kennzeichnung"
+      "ce": "CE-Kennzeichnung",
+      "tuv": "TÜV Certified",
+      "dguv": "DGUV Certified"
     },
     "payment_methods": {
       "title": "Zahlungsarten",
@@ -196,9 +252,10 @@
       ]
     }
   },
+
   "company": {
-    "name": "alpha-med-sales",
-    "legal_name": "alpha-med-care Medizinische Lösungen International GmbH",
+    "name": "alpha med care GmbH",
+    "legal_name": "alpha-med-care GmbH",
     "copyright": "Alle Rechte vorbehalten",
     "slogan": "Präzision in der Medizintechnik",
     "details": {
@@ -217,7 +274,17 @@
       "title": "Unser Auftrag",
       "content": "Wir garantieren die Sicherheit und Präzision medizinischer Geräte durch fachgerechte Wartung, Kalibrierung und Prüfungen gemäß aktueller Normen."
     }
+   
   },
+  "social": {
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "youtube": "YouTube",
+    "whatsapp": "WhatsApp"
+  },
+
   "seo": {
     "keywords": "Medizintechnik, Geräteprüfung, STK, MTK, Kalibrierung, Medizingerätewartung, DGUV Prüfung",
     "description": "alpha-med-care - Ihr spezialisierter Dienstleister für Sicherheitsprüfungen, Kalibrierungen und Wartung medizinischer Geräte in ganz Deutschland."

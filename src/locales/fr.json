@@ -2,62 +2,80 @@
   "app": {
     "title": "alpha med care GmbH"
   },
-
-   "construction": {
-      "title": "Site en construction",
-      "message": "Nous travaillons activement sur ce site",
-      "click": "Cliquez pour continuer"
-    },
+  "construction": {
+    "title": "Site en construction",
+    "message": "Nous travaillons activement sur ce site",
+    "click": "Cliquez pour continuer"
+  },
   "menu": {
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
     "contact": "Contact",
     "products": "Produits",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "imprint": "Mentions légales",
+    "privacy": "Protection des données",
+    "terms": "CGV",
+    "cookies": "Cookies",
     "categories": {
-      "inspections": "Inspections & Contrôles",
-      "calibration": "Services d'Étalonnage",
-      "maintenance": "Maintenance & Service"
+      "inspections": "Vérifications & contrôles",
+      "calibration": "Étalonnages",
+      "maintenance": "Maintenance & service",
+      "sales": "Vente & produits",
+      "consulting": "Conseil & formation",
+      "stk": "Contrôle de sécurité technique (STK)",
+      "mtk": "Contrôle métrologique (MTK)"
     },
     "items": {
-      "stk_inspection": "Contrôle Technique de Sécurité (STK)",
-      "mtk_inspection": "Contrôle Technique de Mesure (MTK)",
-      "stue_inspection": "Vérification Technique de Sécurité (STÜ)",
-      "mtue_inspection": "Vérification Technique de Mesure (MTÜ)",
-      "dguv_inspection": "Contrôle DGUV",
-      "general_inspection": "Inspection Générale",
-      "visual_inspection": "Inspection Visuelle",
-      "ergometer_calibration": "Étalonnage d'Ergomètre",
-      "thermometer_calibration": "Étalonnage de Thermomètre",
-      "blood_pressure_calibration": "Étalonnage de Tensioomètre",
-      "repairs": "Réparations d'Appareils",
-      "spare_parts": "Pièces Détachées",
-      "installation_service": "Service d'Installation",
-      "training": "Formation Utilisateur",
-      "equipment_disposal": "Élimination d'Équipement",
-      "regular_maintenance": "Maintenance Régulière"
+      "new": "Nouveautés",
+      "specials": "Offres spéciales",
+      "top_seller": "Meilleures ventes",
+      "sale": "Soldes",
+      "used_equipment": "Équipement d'occasion",
+      "leasing": "Location",
+      "stk_inspection": "Contrôle de sécurité technique (STK)",
+      "mtk_inspection": "Contrôle métrologique (MTK)",
+      "stue_inspection": "Vérification de sécurité technique (STÜ)",
+      "mtue_inspection": "Vérification métrologique (MTÜ)",
+      "dguv_inspection": "Vérification DGUV",
+      "general_inspection": "Inspection générale",
+      "visual_inspection": "Inspection visuelle",
+      "ergometer_calibration": "Étalonnage ergomètre",
+      "thermometer_calibration": "Étalonnage thermomètre",
+      "blood_pressure_calibration": "Étalonnage tensiomètre",
+      "ecg_calibration": "Étalonnage ECG",
+      "ultrasound_calibration": "Étalonnage échographe",
+      "repairs": "Réparations",
+      "spare_parts": "Pièces détachées & accessoires",
+      "installation_service": "Service d'installation",
+      "training": "Formation utilisateur",
+      "equipment_disposal": "Recyclage d'équipement",
+      "regular_maintenance": "Maintenance régulière",
+      "emergency_service": "Service d'urgence"
     }
   },
   "header": {
-    "free_shipping": "Livraison gratuite",
+    "phone_label": "Hotline",
     "phone": "+49 (0)9666 188950",
-    "invoice": "Facture professionnelle",
-    "consultation": "Conseil d'expert",
+    "invoice": "Achat sur facture",
+    "consultation": "Conseil technique",
     "search_placeholder": "Rechercher des produits...",
+    "prices_incl_vat": "Tous prix en euros TTC, hors frais de livraison",
+    "free_shipping": "Livraison gratuite à partir de 149€",
     "wishlist": "Liste de souhaits",
     "account": "Mon compte",
     "cart": "Panier",
-    "logo_subtext": "Spécialiste en équipements médicaux",
+    "logo_subtext": "Votre spécialiste en technologie médicale",
     "search": "Rechercher"
   },
-
   "language": {
     "de": "Allemand",
     "en": "Anglais",
     "fr": "Français"
   },
-
-   "account": {
+  "account": {
     "title": "Mon compte",
     "login": "Connexion",
     "or": "ou",
@@ -65,9 +83,11 @@
     "overview": "Aperçu",
     "profile": "Profil personnel",
     "addresses": "Adresses",
-    "payment_methods": "Méthodes de paiement",
+    "payment_methods": "Moyens de paiement",
     "orders": "Commandes",
     "items": {
+      "forgot_password": "Mot de passe oublié",
+      "dealer_login": "Espace revendeur",
       "my_account": "Mon compte",
       "my_orders": "Mes commandes",
       "my_returns": "Mes retours",
@@ -76,55 +96,186 @@
     }
   },
   "cart": {
-    "title": "Votre Panier",
+    "title": "Votre panier",
     "empty": "Votre panier est vide",
     "continue_shopping": "Continuer vos achats",
     "subtotal": "Sous-total",
-    "discount": "Réduction",
+    "discount": "Remise",
     "total": "Total",
-    "checkout": "Passer la commande",
+    "checkout": "Passer commande",
     "request_quote": "Demander un devis",
     "save_cart": "Sauvegarder le panier",
     "coupon_placeholder": "Code promo",
     "apply": "Appliquer"
   },
-
-
-
   "info": {
     "help": {
-      "title": "Aide & Informations",
+      "title": "Aide & informations",
       "items": {
         "faq": "FAQ",
         "shipping": "Informations de livraison",
-        "payment": "Méthodes de paiement",
-        "privacy": "Confidentialité",
+        "payment": "Modes de paiement",
+        "privacy": "Protection des données",
         "terms": "CGV"
       }
     },
     "about": {
-      "title": "En savoir plus sur alpha med care",
+      "title": "En savoir plus sur alpha-med-care",
       "items": {
-        "about_us": "À propos de nous",
+        "about_us": "À propos",
         "career": "Carrières",
-        "locations": "Nos implantations",
+        "locations": "Implantations",
         "partners": "Partenaires",
         "press": "Presse"
       }
     }
   },
-
   "auth": {
-  "login": "Connexion",
-  "register": "Inscription",
-  "authentication": "Authentification"
-},
-
- "company": {
-    "name": "alpha med care SARL",
-    "legal_name": "Solutions Médicales Internationales",
+    "login": "Connexion",
+    "register": "Inscription",
+    "authentication": "Authentification"
+  },
+  "footer": {
+    "address": "Adresse",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "social": "Suivez-nous",
+    "copyright": "© {year} alpha med care GmbH. Tous droits réservés.",
+    "terms": "CGV",
+    "privacy": "Politique de confidentialité",
+    "imprint": "Mentions légales",
+    "products": "Produits",
+    "opening_hours": {
+      "title": "Heures d'ouverture",
+      "weekdays": "Lun-Ven: 8h00 - 18h00",
+      "saturday": "Sam: 9h00 - 14h00",
+      "emergency": "Service d'urgence: 24/7"
+    },
+    "mobile_app": {
+      "title": "Application mobile",
+      "app_store": "Télécharger sur l'App Store",
+      "google_play": "Télécharger sur Google Play"
+    },
+    "shipping": {
+      "title": "Livraison"
+    },
+    "badges": {
+      "trusted_shops": "Label Trusted Shops",
+      "safe_shopping": "Achat sécurisé",
+      "ssl": "Chiffrement SSL"
+    },
+    "sections": {
+      "company": {
+        "title": "Entreprise",
+        "about": "À propos",
+        "career": "Carrières",
+        "news": "Actualités",
+        "team": "Notre équipe",
+        "quality": "Gestion qualité",
+        "partners": "Partenaires",
+        "compliance": "Conformité",
+        "locations": "Implantations"
+      },
+      "services": {
+        "title": "Services",
+        "inspections": "Vérifications & contrôles",
+        "calibration": "Étalonnages",
+        "maintenance": "Service de maintenance",
+        "consulting": "Conseil technique",
+        "certification": "Certifications",
+        "training": "Formations",
+        "leasing": "Location"
+      },
+      "support": {
+        "title": "Support",
+        "contact": "Formulaire de contact",
+        "faq": "Questions fréquentes",
+        "shipping": "Infos livraison",
+        "returns": "Processus de retour",
+        "emergency": "Service d'urgence",
+        "live_chat": "Chat en direct",
+        "service_center": "Centre de service",
+        "hotline": "Hotline"
+      },
+      "resources": {
+        "title": "Ressources",
+        "blog": "Blog technique",
+        "guides": "Manuels d'utilisation",
+        "videos": "Vidéos de formation",
+        "downloads": "Téléchargements",
+        "regulations": "Normes & directives",
+        "cookies": "Cookies"
+      },
+      "environment": {
+        "title": "Environnement",
+        "protection": "Protection environnementale",
+        "recycling": "Recyclage",
+        "sustainability": "Durabilité",
+        "battery_disposal": "Recyclage de batteries",
+        "co2_neutral": "Neutralité CO2"
+      }
+    },
+    "newsletter": {
+      "title": "Lettre d'information technique",
+      "description": "Restez informé des nouveautés en technologie médicale et des offres spéciales.",
+      "placeholder": "Votre email professionnel",
+      "subscribe": "S'abonner maintenant",
+      "privacy_note": "Nous ne partageons pas vos données. Vous pouvez vous désabonner à tout moment.",
+      "success": "Merci pour votre inscription !",
+      "error": "Veuillez saisir un email professionnel valide"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "iso13485": "ISO 13485:2016",
+      "iso9001": "ISO 9001:2015",
+      "mdr": "MDR 2017/745",
+      "ce": "Marquage CE",
+      "tuv": "Certifié TÜV",
+      "dguv": "Certifié DGUV"
+    },
+    "payment_methods": {
+      "title": "Modes de paiement",
+      "methods": [
+        "Facture (net 30 jours)",
+        "Carte de crédit",
+        "Prélèvement SEPA",
+        "PayPal",
+        "Paiement anticipé"
+      ]
+    }
+  },
+  "company": {
+    "name": "alpha med care GmbH",
+    "legal_name": "alpha-med-care GmbH",
     "copyright": "Tous droits réservés",
-    "slogan": "Innovation pour votre santé"
+    "slogan": "Précision en technologie médicale",
+    "details": {
+      "founded": "Fondé en 2010",
+      "employees": "50+ techniciens certifiés",
+      "locations": [
+        "Siège social : Nuremberg",
+        "Succursale : Munich",
+        "Centre de service : Berlin"
+      ],
+      "quality": "Certifié TÜV selon ISO 13485",
+      "vat": "DE123456789",
+      "commercial_register": "HRB 12345, Tribunal de Nuremberg"
+    },
+    "mission": {
+      "title": "Notre mission",
+      "content": "Nous garantissons la sécurité et la précision des équipements médicaux grâce à une maintenance, un étalonnage et des contrôles appropriés conformes aux normes en vigueur."
+    }
+  },
+  "social": {
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "youtube": "YouTube",
+    "whatsapp": "WhatsApp"
+  },
+  "seo": {
+    "keywords": "Technologie médicale, Vérification d'équipement, STK, MTK, Étalonnage, Maintenance d'équipement médical, Vérification DGUV",
+    "description": "alpha-med-care - Votre prestataire spécialisé pour les contrôles de sécurité, les étalonnages et la maintenance d'équipements médicaux dans toute l'Allemagne."
   }
-
 }
