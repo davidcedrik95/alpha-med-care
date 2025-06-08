@@ -402,7 +402,7 @@ function closeDrawer() {
 
 .title {
   font-weight: 600;
-  font-size: 0.5rem;
+  font-size: 1.5rem;
   color: white;
   flex-grow: 1;
 }
