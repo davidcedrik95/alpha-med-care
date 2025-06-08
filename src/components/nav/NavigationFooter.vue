@@ -649,7 +649,7 @@ export default {
 }
 
 .footer-badges img {
-  height: 40px;
+  height: 50px;
   width: auto;
   max-width: 120px;
   transition: transform 0.3s ease;
