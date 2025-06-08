@@ -402,10 +402,9 @@ function closeDrawer() {
 
 .title {
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 0.5rem;
   color: white;
   flex-grow: 1;
-  letter-spacing: 0.5px;
 }
 
 .close-btn {

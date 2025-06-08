@@ -50,7 +50,7 @@
         </div>
         
         <div class="app-download">
-          <h4>Unsere App</h4>
+          <h4>alpha med care App herunterladen</h4>
           <div class="app-buttons">
             <a href="#" aria-label="App Store">
               <img src="/images/apps/app-store.png" alt="App Store" loading="lazy">

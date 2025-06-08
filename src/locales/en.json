@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "alpha-med-sales"
+    "title": "alpha med care GmbH"
   },
 
   "construction": {
@@ -8,7 +8,7 @@
       "message": "We are actively working on this site",
       "click": "Click to continue"
     },
-    
+
   "menu": {
     "home": "Home",
     "services": "Services",
@@ -130,7 +130,7 @@
 },
 
 "company": {
-    "name": "alpha-med-sales",
+    "name": "alpha med care LLC",
     "legal_name": "Medical Solutions International Corporation",
     "copyright": "All rights reserved",
     "slogan": "Innovating for your health"
