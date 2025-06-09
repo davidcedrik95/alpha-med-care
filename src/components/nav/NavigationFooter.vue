@@ -15,6 +15,7 @@
                 <li><a href="/news" :aria-label="$t('footer.sections.company.news')">{{ $t('footer.sections.company.news') }}</a></li>
                 <li><a href="/locations" :aria-label="$t('company.details.locations[0]')">{{ $t('company.details.locations[0]') }}</a></li>
                 <li><a href="/partners" :aria-label="$t('footer.sections.company.partners')">{{ $t('footer.sections.company.partners') }}</a></li>
+              
               </ul>
             </div>
 

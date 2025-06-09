@@ -110,7 +110,8 @@ export default {
           { text: 'footer.sections.company.about', url: '/about' },
           { text: 'footer.sections.company.career', url: '/careers' },
           { text: 'footer.sections.company.team', url: '/team' },
-          { text: 'footer.sections.company.quality', url: '/quality' }
+          { text: 'footer.sections.company.quality', url: '/quality' },
+          { text: 'footer.certifications.title', url: '/certifications' }
         ]
       },
       {
