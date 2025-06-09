@@ -175,6 +175,7 @@ onUnmounted(() => {
   opacity: 0.9;
   transition: all 0.3s ease;
   border-radius: 5px;
+  border: solid 1px #9a9a9b;
 
   
 }
