@@ -29,70 +29,83 @@
         elevation="4"
       >
         <v-icon>{{ action.icon }}</v-icon>
+        <v-tooltip
+          activator="parent"
+          location="left"
+          transition="slide-x-reverse-transition"
+        >
+          {{ action.label }}
+        </v-tooltip>
       </v-btn>
     </v-fab-transition>
   </div>
-<!-- Bouton pour monter progressivement (up) -->
-<v-fab-transition>
-  <v-btn
-    fab
-    dark
-    fixed
-    bottom
-    right
-    @mousedown="startContinuousScroll('up')"
-    @mouseup="stopContinuousScroll"
-    @mouseleave="stopContinuousScroll"
-    @touchstart="startContinuousScroll('up')"
-    @touchend="stopContinuousScroll"
-    class="scroll-btn up"
-    aria-label="Remonter progressivement"
-    size="x-small"
-    elevation="4"
-  >
-    <v-icon>mdi-chevron-up</v-icon>
-  </v-btn>
-</v-fab-transition>
 
-<!-- Bouton d'actions flottant principal (au milieu) -->
-<v-fab-transition>
-   <v-btn
-    fab
-    dark
-    fixed
-    bottom
-    right
-    @click="toggleActionButtons"
-    class="action-main-btn"
-    aria-label="Actions rapides"
-    size="x-small"
-    elevation="4"
-  >
-    <v-icon>{{ isActionsOpen ? 'mdi-close' : 'mdi-plus' }}</v-icon>
-  </v-btn>
-</v-fab-transition>
+  <!-- Bouton pour monter progressivement (up) -->
+  <v-fab-transition>
+    <v-btn
+      fab
+      dark
+      fixed
+      bottom
+      right
+      @mousedown="startContinuousScroll('up')"
+      @mouseup="stopContinuousScroll"
+      @mouseleave="stopContinuousScroll"
+      @touchstart="startContinuousScroll('up')"
+      @touchend="stopContinuousScroll"
+      class="scroll-btn up"
+      aria-label="Remonter progressivement"
+      size="x-small"
+      elevation="4"
+    >
+      <v-icon>mdi-chevron-up</v-icon>
+      <v-tooltip activator="parent" location="left">Remonter</v-tooltip>
+    </v-btn>
+  </v-fab-transition>
 
-<!-- Bouton pour descendre progressivement (down) -->
-<v-fab-transition>
-  <v-btn
-    fab
-    dark
-    fixed
-    bottom
-    right
-    @mousedown="startContinuousScroll('down')"
-    @mouseup="stopContinuousScroll"
-    @mouseleave="stopContinuousScroll"
-    @touchstart="startContinuousScroll('down')"
-    @touchend="stopContinuousScroll"
-    class="scroll-btn down"
-    aria-label="Descendre progressivement"
-    size="x-small"
-    elevation="4"
-  >
-    <v-icon>mdi-chevron-down</v-icon>
-  </v-btn>
-</v-fab-transition>
+  <!-- Bouton d'actions flottant principal (au milieu) -->
+  <v-fab-transition>
+    <v-btn
+      fab
+      dark
+      fixed
+      bottom
+      right
+      @click="toggleActionButtons"
+      class="action-main-btn"
+      aria-label="Actions rapides"
+      size="x-small"
+      elevation="4"
+    >
+      <v-icon>{{ isActionsOpen ? 'mdi-close' : 'mdi-plus' }}</v-icon>
+      <v-tooltip activator="parent" location="left">
+        {{ isActionsOpen ? 'Fermer' : 'Actions rapides' }}
+      </v-tooltip>
+    </v-btn>
+  </v-fab-transition>
+
+  <!-- Bouton pour descendre progressivement (down) -->
+  <v-fab-transition>
+    <v-btn
+      fab
+      dark
+      fixed
+      bottom
+      right
+      @mousedown="startContinuousScroll('down')"
+      @mouseup="stopContinuousScroll"
+      @mouseleave="stopContinuousScroll"
+      @touchstart="startContinuousScroll('down')"
+      @touchend="stopContinuousScroll"
+      class="scroll-btn down"
+      aria-label="Descendre progressivement"
+      size="x-small"
+      elevation="4"
+    >
+      <v-icon>mdi-chevron-down</v-icon>
+      <v-tooltip activator="parent" location="left">Descendre</v-tooltip>
+    </v-btn>
+  </v-fab-transition>
 
     <NavigationFooter ref="footer" />
   </v-app>
@@ -171,9 +184,9 @@ const isActionsOpen = ref(false)
 
 const actions = ref([
   { icon: 'mdi-email', color: 'red-darken-1', label: 'Email', action: 'email' },
-  { icon: 'mdi-phone', color: 'green-darken-1', label: 'Contact', action: 'phone' },
-  { icon: 'mdi-cart', color: 'blue-darken-1', label: 'Achat', action: 'cart' },
-  { icon: 'mdi mdi-heart', color: 'purple-darken-1', label: 'Partage', action: 'share' }
+  { icon: 'mdi-phone', color: 'green-darken-1', label: 'Beratung', action: 'phone' },
+  { icon: 'mdi-cart', color: 'blue-darken-1', label: 'Warenkorb', action: 'cart' },
+  { icon: 'mdi mdi-heart', color: 'purple-darken-1', label: 'Merkliste', action: 'merkliste'}
 ])
 
 const toggleActionButtons = () => {
@@ -287,36 +300,63 @@ onUnmounted(() => {
 }
 
 .action-main-btn:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
-/* Conteneur des boutons secondaires */
+/* Nouveau design pour le conteneur des boutons secondaires */
 .action-buttons-container {
   position: fixed;
-  bottom: 80px;
-  right: 50px;
+  bottom: 90px;
+  right: 60px;
   width: 0;
   height: 0;
-  z-index: 9998; /* Juste en dessous du bouton principal */
+  z-index: 9998;
+  pointer-events: none;
 }
 
-
-/* Boutons secondaires */
+/* Boutons secondaires améliorés */
 .action-btn {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   bottom: 0;
   right: 0;
   opacity: 0;
   pointer-events: none;
+  transform: scale(0.5) translate(0, 0);
   transform-origin: center;
-  margin: 8px; /* Ajoute une marge supplémentaire */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border: 2px solid white;
+}
+
+.action-btn:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
+  z-index: 9999;
 }
 
 .action-buttons-container.open .action-btn {
+  opacity: 1;
   pointer-events: auto;
+  transform: scale(1);
+  width: 55px; /* Taille augmentée à l'ouverture */
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* Style pour les tooltips des boutons d'action */
+.v-tooltip__content {
+  background: rgba(0, 0, 0, 0.8) !important;
+  font-size: 0.8rem !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+}
+
+/* Animation plus douce pour les tooltips */
+.slide-x-reverse-transition-enter-active,
+.slide-x-reverse-transition-leave-active {
+  transition: all 0.3s ease !important;
 }
 
 /* Responsive */
@@ -375,6 +415,12 @@ onUnmounted(() => {
   .action-btn {
     width: 36px;
     height: 36px;
+  }
+
+  /* Ajustement des tooltips pour mobile */
+  .v-tooltip__content {
+    font-size: 0.7rem !important;
+    padding: 6px 10px !important;
   }
 }
 </style>
