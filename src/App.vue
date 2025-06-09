@@ -62,7 +62,6 @@
     fixed
     bottom
     right
-    color="teal-darken-2"
     @click="toggleActionButtons"
     class="action-main-btn"
     aria-label="Actions rapides"
@@ -283,6 +282,8 @@ onUnmounted(() => {
   height: 40px;
   z-index: 9999; /* Au-dessus de tout */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 5px;
+  border: solid 1px #9a9a9b;
 }
 
 .action-main-btn:hover {
