@@ -125,11 +125,11 @@ export default {
       ],
       featuredBrands: [
         { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
-        { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.proxomed.com/' },
-        { name: 'ergoline-logo', logo: '/images/partners/ergoline-logo.png', url: 'https://physiomed.de/' },
+        { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.amersports.com/' },
+        { name: 'ergoline', logo: '/images/partners/ergoline-logo.png', url: 'https://www.ergoline.com/de/' },
         { name: 'FREI AG', logo: '/images/partners/frei-ag-logo.png', url: 'https://www.frei-ag.de/' },
-        { name: 'hp-cosmos-logo', logo: '/images/partners/hp-cosmos-logo.png', url: 'https://www.precor.com/' },
-        { name: 'MOTOmed', logo: '/images/partners/star-trac-logo.png', url: 'https://www.motomed.com/' }
+        { name: 'hp-cosmos', logo: '/images/partners/hp-cosmos-logo.png', url: 'https://www.hpcosmos.com/' },
+        { name: 'star-trac', logo: '/images/partners/star-trac-logo.png', url: 'https://www.motomed.com/' }
       ],
       testimonials: [
         {
