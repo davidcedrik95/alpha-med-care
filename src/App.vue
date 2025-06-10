@@ -14,98 +14,98 @@
       </v-main>
     </div>
 
-   <!-- Boutons d'actions secondaires -->
-  <div class="action-buttons-container" :class="{ 'open': isActionsOpen }">
-    <v-fab-transition v-for="(action, index) in actions" :key="index">
+    <!-- Boutons d'actions secondaires -->
+    <div class="action-buttons-container" :class="{ 'open': isActionsOpen }">
+      <v-fab-transition v-for="(action, index) in actions" :key="index">
+        <v-btn
+          fab
+          dark
+          :color="action.color"
+          @click="handleActionClick(action)"
+          class="action-btn"
+          :style="getActionButtonStyle(index)"
+          :aria-label="action.label"
+          size="x-small"
+          elevation="4"
+        >
+          <v-icon>{{ action.icon }}</v-icon>
+          <v-tooltip
+            activator="parent"
+            location="left"
+            transition="slide-x-reverse-transition"
+          >
+            {{ action.label }}
+          </v-tooltip>
+        </v-btn>
+      </v-fab-transition>
+    </div>
+
+    <!-- Bouton pour monter progressivement (up) -->
+    <v-fab-transition>
       <v-btn
         fab
         dark
-        :color="action.color"
-        @click="handleActionClick(action)"
-        class="action-btn"
-        :style="getActionButtonStyle(index)"
-        :aria-label="action.label"
+        fixed
+        bottom
+        right
+        @mousedown="startContinuousScroll('up')"
+        @mouseup="stopContinuousScroll"
+        @mouseleave="stopContinuousScroll"
+        @touchstart="startContinuousScroll('up')"
+        @touchend="stopContinuousScroll"
+        class="scroll-btn up"
+        aria-label="Remonter progressivement"
         size="x-small"
         elevation="4"
       >
-        <v-icon>{{ action.icon }}</v-icon>
-        <v-tooltip
-          activator="parent"
-          location="left"
-          transition="slide-x-reverse-transition"
-        >
-          {{ action.label }}
+        <v-icon>mdi-chevron-up</v-icon>
+        <v-tooltip activator="parent" location="left">Remonter</v-tooltip>
+      </v-btn>
+    </v-fab-transition>
+
+    <!-- Bouton d'actions flottant principal (au milieu) -->
+    <v-fab-transition>
+      <v-btn
+        fab
+        dark
+        fixed
+        bottom
+        right
+        @click="toggleActionButtons"
+        class="action-main-btn"
+        aria-label="Actions rapides"
+        size="x-small"
+        elevation="4"
+      >
+        <v-icon>{{ isActionsOpen ? 'mdi-close' : 'mdi-plus' }}</v-icon>
+        <v-tooltip activator="parent" location="left">
+          {{ isActionsOpen ? 'Fermer' : 'Actions rapides' }}
         </v-tooltip>
       </v-btn>
     </v-fab-transition>
-  </div>
 
-  <!-- Bouton pour monter progressivement (up) -->
-  <v-fab-transition>
-    <v-btn
-      fab
-      dark
-      fixed
-      bottom
-      right
-      @mousedown="startContinuousScroll('up')"
-      @mouseup="stopContinuousScroll"
-      @mouseleave="stopContinuousScroll"
-      @touchstart="startContinuousScroll('up')"
-      @touchend="stopContinuousScroll"
-      class="scroll-btn up"
-      aria-label="Remonter progressivement"
-      size="x-small"
-      elevation="4"
-    >
-      <v-icon>mdi-chevron-up</v-icon>
-      <v-tooltip activator="parent" location="left">Remonter</v-tooltip>
-    </v-btn>
-  </v-fab-transition>
-
-  <!-- Bouton d'actions flottant principal (au milieu) -->
-  <v-fab-transition>
-    <v-btn
-      fab
-      dark
-      fixed
-      bottom
-      right
-      @click="toggleActionButtons"
-      class="action-main-btn"
-      aria-label="Actions rapides"
-      size="x-small"
-      elevation="4"
-    >
-      <v-icon>{{ isActionsOpen ? 'mdi-close' : 'mdi-plus' }}</v-icon>
-      <v-tooltip activator="parent" location="left">
-        {{ isActionsOpen ? 'Fermer' : 'Actions rapides' }}
-      </v-tooltip>
-    </v-btn>
-  </v-fab-transition>
-
-  <!-- Bouton pour descendre progressivement (down) -->
-  <v-fab-transition>
-    <v-btn
-      fab
-      dark
-      fixed
-      bottom
-      right
-      @mousedown="startContinuousScroll('down')"
-      @mouseup="stopContinuousScroll"
-      @mouseleave="stopContinuousScroll"
-      @touchstart="startContinuousScroll('down')"
-      @touchend="stopContinuousScroll"
-      class="scroll-btn down"
-      aria-label="Descendre progressivement"
-      size="x-small"
-      elevation="4"
-    >
-      <v-icon>mdi-chevron-down</v-icon>
-      <v-tooltip activator="parent" location="left">Descendre</v-tooltip>
-    </v-btn>
-  </v-fab-transition>
+    <!-- Bouton pour descendre progressivement (down) -->
+    <v-fab-transition>
+      <v-btn
+        fab
+        dark
+        fixed
+        bottom
+        right
+        @mousedown="startContinuousScroll('down')"
+        @mouseup="stopContinuousScroll"
+        @mouseleave="stopContinuousScroll"
+        @touchstart="startContinuousScroll('down')"
+        @touchend="stopContinuousScroll"
+        class="scroll-btn down"
+        aria-label="Descendre progressivement"
+        size="x-small"
+        elevation="4"
+      >
+        <v-icon>mdi-chevron-down</v-icon>
+        <v-tooltip activator="parent" location="left">Descendre</v-tooltip>
+      </v-btn>
+    </v-fab-transition>
 
     <NavigationFooter ref="footer" />
   </v-app>
@@ -201,18 +201,13 @@ const handleActionClick = (action) => {
 const getActionButtonStyle = (index) => {
   if (!isActionsOpen.value) return {}
   
-  const totalButtons = actions.value.length
-  const startAngle = -160 // Commence à 120° à gauche
-  const endAngle = -70 // Termine à 60° à gauche
-  const angle = startAngle + (index * (endAngle - startAngle) / (totalButtons - 1))
-  const radius = 120 // Augmentez ce rayon pour plus d'espace
-  
-  // Calcul des positions avec un peu plus d'espace
-  const x = Math.cos(angle * Math.PI / 180) * radius
-  const y = Math.sin(angle * Math.PI / 180) * radius - 20 // Ajustez ce décalage vertical
+  // Espacement vertical entre les boutons
+  const verticalSpacing = 60
+  // Position Y (plus haut pour chaque bouton)
+  const y = -((index + 1) * verticalSpacing)
   
   return {
-    transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
+    transform: `translateY(${y}px)`,
     opacity: 1,
     transition: `all 0.3s ease ${index * 0.1}s`,
     position: 'absolute'
@@ -260,7 +255,7 @@ onUnmounted(() => {
   right: 24px;
   width: 40px;
   height: 40px;
-  z-index: 9997; /* Sous les boutons d'action */
+  z-index: 9997;
   opacity: 0.9;
   transition: all 0.3s ease;
   border-radius: 5px;
@@ -272,7 +267,7 @@ onUnmounted(() => {
 }
 
 .scroll-btn.up {
-  bottom: 104px; /* Position au-dessus du bouton descendant */
+  bottom: 104px;
 }
 
 .scroll-btn:active {
@@ -286,63 +281,64 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
 }
 
-/* Bouton principal */
+/* Bouton principal - positionné entre up et down */
 .action-main-btn {
   position: fixed;
   bottom: 64px;
   right: 24px;
   width: 40px;
   height: 40px;
-  z-index: 9999; /* Au-dessus de tout */
+  z-index: 9999;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 5px;
   border: solid 1px #9a9a9b;
 }
 
 .action-main-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
-/* Nouveau design pour le conteneur des boutons secondaires */
+/* Conteneur des boutons secondaires */
 .action-buttons-container {
   position: fixed;
-  bottom: 90px;
-  right: 60px;
-  width: 0;
-  height: 0;
+  bottom: 120px;
+  right: 24px;
+  width: 40px;
+  height: auto;
   z-index: 9998;
   pointer-events: none;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 12px;
 }
 
-/* Boutons secondaires améliorés */
+/* Boutons secondaires */
 .action-btn {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  bottom: 0;
-  right: 0;
+  position: relative;
+  width: 40px;
+  height: 40px;
   opacity: 0;
   pointer-events: none;
-  transform: scale(0.5) translate(0, 0);
-  transform-origin: center;
+  transform: translateY(20px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  border: 2px solid white;
-}
-
-.action-btn:hover {
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
-  z-index: 9999;
+  margin-bottom: 8px;
 }
 
 .action-buttons-container.open .action-btn {
   opacity: 1;
   pointer-events: auto;
-  transform: scale(1);
+  transform: translateY(0);
   width: 55px; /* Taille augmentée à l'ouverture */
   height: 35px;
   border-radius: 50%;
+}
+
+.action-btn:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
+  z-index: 9999;
 }
 
 /* Style pour les tooltips des boutons d'action */
@@ -365,20 +361,16 @@ onUnmounted(() => {
     min-height: calc(100vh - 172px);
   }
   
- .scroll-btn {
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-  
-  .action-main-btn,
-  .action-buttons-container {
-     bottom: 70px;
-    right: 40px;
+  .scroll-btn.up {
+    bottom: 90px;
   }
   
   .action-main-btn {
-    width: 48px;
-    height: 48px;
+    bottom: 50px;
+  }
+  
+  .action-buttons-container {
+    bottom: 100px;
   }
 }
 
@@ -398,18 +390,19 @@ onUnmounted(() => {
   }
   
   .scroll-btn.up {
-    bottom: 64px;
-  }
-  
-  .action-main-btn,
-  .action-buttons-container {
-    right: 16px;
-    bottom: 16px;
+    bottom: 72px;
   }
   
   .action-main-btn {
     width: 40px;
     height: 40px;
+    bottom: 44px;
+    right: 16px;
+  }
+  
+  .action-buttons-container {
+    bottom: 90px;
+    right: 16px;
   }
   
   .action-btn {
