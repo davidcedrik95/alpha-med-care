@@ -20,19 +20,20 @@
         <div class="section-title">
           <h2>Dienstleistungen/Service</h2>
         </div>
-        <div class="services-grid">
-          <div class="service-card" v-for="service in services" :key="service.title">
-            <div class="service-image-container">
-              <img :src="service.image" :alt="service.title" class="service-image">
-            </div>
-            <div class="service-content">
-              <h3>{{ service.title }}</h3>
-              <p>{{ service.description }}</p>
-              <a href="#" class="service-link">
-                <span>Mehr erfahren</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
+        <!-- Dans le template, modifier la structure des cartes de service -->
+        <div class="service-card" v-for="service in services" :key="service.title">
+          <div class="service-image-container">
+            <img :src="service.image" :alt="service.title" class="service-image">
+          </div>
+          <div class="service-content">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+          </div>
+          <div class="service-footer">
+            <a href="#" class="service-link">
+              <span>Mehr erfahren</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -251,6 +252,7 @@ export default {
 }
 
 /* Services Section */
+/* Services Section */
 .services-section {
   padding: 80px 0;
   background-color: #fff;
@@ -294,7 +296,7 @@ export default {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -308,18 +310,28 @@ export default {
   border: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
+  /* Supprimer height: 100% pour permettre l'alignement naturel */
 }
 
 .service-image-container {
-  height: 240px;
+  height: 200px;
   overflow: hidden;
+  flex-shrink: 0; /* Empêche la réduction de la hauteur de l'image */
 }
 
-.service-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+.service-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-footer {
+  padding: 15px 25px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  /* Supprimer margin-top: auto */
+  flex-shrink: 0; /* Empêche la réduction du footer */
 }
 
 .service-card:hover .service-image {
@@ -356,11 +368,12 @@ export default {
 
 .service-content p {
   color: #666;
-  margin: 0 0 20px 0;
+  margin: 0;
   line-height: 1.6;
-  flex-grow: 1;
   text-align: left;
 }
+
+
 
 .service-link {
   display: inline-flex;
@@ -369,7 +382,7 @@ export default {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  margin-top: 15px;
+  font-size: 0.95rem;
 }
 
 .service-link span {
@@ -378,6 +391,7 @@ export default {
 
 .service-link i {
   transition: transform 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .service-link:hover {
@@ -387,6 +401,58 @@ export default {
 .service-link:hover i {
   transform: translateX(5px);
 }
+
+/* Responsive Styles for Services */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 0;
+  }
+  
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .section-title h2::before,
+  .section-title h2::after {
+    width: 30px;
+  }
+  
+  .section-title h2::before {
+    left: -40px;
+  }
+  
+  .section-title h2::after {
+    right: -40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .service-image-container {
+    height: 180px;
+  }
+  
+  .section-title h2 {
+    font-size: 1.5rem;
+    padding: 0 10px;
+  }
+  
+  .section-title h2::before,
+  .section-title h2::after {
+    display: none;
+  }
+}
+
 
 /* Brands Section */
 .brands-section {
