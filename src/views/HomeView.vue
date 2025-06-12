@@ -139,7 +139,7 @@ export default {
         },
         {
           title: 'Notdienst',
-          image: '/images/services/medical-equipment-technician.png',
+          image: '/images/services/notdienst.png',
           description: '24/7 Notdienst für kritische medizinische Geräte und Systeme'
         }
       ],
@@ -254,7 +254,7 @@ export default {
 }
 
 /* Services Section */
-/* Services Section */
+
 .services-section {
   padding: 80px 0;
   background-color: #fff;
