@@ -13,23 +13,22 @@
         </div>
       </div>
     </section>
-
-    <!-- Services Overview -->
-    <section id="services" class="services-section">
-      <div class="container">
-        <h2>Unsere Dienstleistungen</h2>
-        <div class="services-grid">
-          <div class="service-card" v-for="service in services" :key="service.title">
-            <div class="service-icon">
-              <i :class="service.icon"></i>
-            </div>
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
-            <a href="#" class="btn btn-outline">Mehr erfahren</a>
-          </div>
+<!-- Services Section - Style comme schupp.shop -->
+<section id="services" class="services-section">
+  <div class="container">
+    <h2>Unsere Dienstleistungen</h2>
+    <div class="services-grid">
+      <div class="service-card" v-for="service in services" :key="service.title">
+        <div class="service-icon">
+          <i :class="service.icon"></i>
         </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        <a href="#" class="service-link">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- Featured Brands -->
     <section class="brands-section">
@@ -105,22 +104,22 @@ export default {
         {
           title: 'Prüfungen',
           icon: 'fas fa-clipboard-check',
-          description: 'STK, MTK, STÜ, MTÜ, DGUV-Prüfungen und mehr für Ihre medizinischen Geräte',
+          description: 'STK, MTK, STÜ, MTÜ, DGUV-Prüfungen und mehr für Ihre medizinischen Geräte'
         },
         {
           title: 'Kalibrieren',
           icon: 'fas fa-tachometer-alt',
-          description: 'Präzise Kalibrierung von Ergometern, Thermometern und Blutdruckmessgeräten',
+          description: 'Präzise Kalibrierung von Ergometern, Thermometern und Blutdruckmessgeräten'
         },
         {
           title: 'Service & Wartung',
           icon: 'fas fa-tools',
-          description: 'Reparaturen, Ersatzteile und regelmäßige Wartung gemäß MPBetreibV',
+          description: 'Reparaturen, Ersatzteile und regelmäßige Wartung gemäß MPBetreibV'
         },
         {
           title: 'Installationsservice',
           icon: 'fas fa-cogs',
-          description: 'Fachgerechte Installation, Einweisung und Entsorgung von Altgeräten',
+          description: 'Fachgerechte Installation, Einweisung und Entsorgung von Altgeräten'
         }
       ],
       featuredBrands: [
@@ -157,9 +156,16 @@ export default {
 </script>
 
 <style scoped>
-/* Gardez le même style que précédemment */
+/* Global Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Banner */
 .hero-banner {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/logo.png');
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-banner.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -212,63 +218,125 @@ export default {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Services Section - Modifié */
+/* Services Section - Style comme schupp.shop */
 .services-section {
   padding: 80px 0;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
 .services-section h2 {
   text-align: center;
   margin-bottom: 50px;
   color: #333;
+  font-size: 2rem;
+  position: relative;
+}
+
+.services-section h2:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #0056b3;
+  margin: 15px auto 0;
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .service-card {
-  background: white;
-  padding: 30px;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
   text-align: center;
-  transition: transform 0.3s ease;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 86, 179, 0.1);
+  border-color: rgba(0, 86, 179, 0.2);
 }
 
 .service-icon {
-  font-size: 2.5rem;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 86, 179, 0.1);
+  border-radius: 50%;
   color: #0056b3;
-  margin-bottom: 20px;
+  font-size: 30px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  background: #0056b3;
+  color: #fff;
 }
 
 .service-card h3 {
   margin-bottom: 15px;
   color: #333;
+  font-size: 1.3rem;
 }
 
 .service-card p {
   color: #666;
   margin-bottom: 20px;
+  line-height: 1.6;
 }
 
-.btn-outline {
-  border: 2px solid #0056b3;
+.service-link {
   color: #0056b3;
-  background: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
 }
 
-.btn-outline:hover {
-  background-color: #0056b3;
-  color: white;
+.service-link i {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
 }
 
+.service-link:hover {
+  color: #003d7a;
+}
+
+.service-link:hover i {
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .service-card {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Brands Section */
 .brands-section {
   padding: 80px 0;
   text-align: center;
@@ -304,6 +372,7 @@ export default {
   opacity: 1;
 }
 
+/* Shop Preview */
 .shop-preview {
   padding: 80px 0;
   background-color: #0056b3;
@@ -356,6 +425,7 @@ export default {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Testimonials */
 .testimonials-section {
   padding: 80px 0;
   background-color: #f9f9f9;
@@ -402,10 +472,11 @@ export default {
   font-size: 0.9rem;
 }
 
+/* Contact CTA */
 .contact-cta {
   padding: 80px 0;
   text-align: center;
-  background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 86, 179, 0.9)), url('/images/logo.png');
+  background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 86, 179, 0.9)), url('/images/cta-bg.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -420,12 +491,7 @@ export default {
   font-size: 1.1rem;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
+/* Responsive Styles */
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: 2rem;
@@ -442,6 +508,21 @@ export default {
   
   .testimonial {
     min-width: 280px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .service-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
