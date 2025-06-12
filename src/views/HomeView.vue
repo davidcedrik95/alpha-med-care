@@ -129,7 +129,7 @@ export default {
         },
         {
           title: 'Installationsservice',
-          image: '/images/services/medical-equipment-technician.png',
+          image: '/images/services/installation.png',
           description: 'Fachgerechte Installation, Einweisung und Entsorgung von Altgeräten'
         },
         {
