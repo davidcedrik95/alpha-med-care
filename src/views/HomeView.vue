@@ -13,22 +13,22 @@
         </div>
       </div>
     </section>
-<!-- Services Section - Style comme schupp.shop -->
-<section id="services" class="services-section">
-  <div class="container">
-    <h2>Unsere Dienstleistungen</h2>
-    <div class="services-grid">
-      <div class="service-card" v-for="service in services" :key="service.title">
-        <div class="service-icon">
-          <i :class="service.icon"></i>
+    <!-- Services Section - Style comme schupp.shop -->
+   <section id="services" class="services-section">
+    <div class="container">
+      <h2>Dienstleistungen/Service</h2>
+      <div class="services-grid">
+        <div class="service-card" v-for="service in services" :key="service.title">
+          <img :src="service.image" :alt="service.title" class="service-image">
+          <div class="service-content">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <a href="#" class="service-link">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.description }}</p>
-        <a href="#" class="service-link">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
     <!-- Featured Brands -->
     <section class="brands-section">
@@ -100,25 +100,25 @@ export default {
   name: 'HomeView',
   data() {
     return {
-      services: [
+       services: [
         {
           title: 'Prüfungen',
-          icon: 'fas fa-clipboard-check',
-          description: 'STK, MTK, STÜ, MTÜ, DGUV-Prüfungen und mehr für Ihre medizinischen Geräte'
+          image: '/images/services/medical-equipment-technician.png',
+          description: 'Prüfungen und mehr für Ihre medizinischen Geräte'
         },
         {
           title: 'Kalibrieren',
-          icon: 'fas fa-tachometer-alt',
+          image: '/images/services/medical-equipment-technician.png',
           description: 'Präzise Kalibrierung von Ergometern, Thermometern und Blutdruckmessgeräten'
         },
         {
           title: 'Service & Wartung',
-          icon: 'fas fa-tools',
+          image: '/images/services/medical-equipment-technician.png',
           description: 'Reparaturen, Ersatzteile und regelmäßige Wartung gemäß MPBetreibV'
         },
         {
           title: 'Installationsservice',
-          icon: 'fas fa-cogs',
+          image: '/images/services/medical-equipment-technician.png',
           description: 'Fachgerechte Installation, Einweisung und Entsorgung von Altgeräten'
         }
       ],
@@ -218,7 +218,6 @@ export default {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Services Section - Modifié */
 /* Services Section - Style comme schupp.shop */
 .services-section {
   padding: 80px 0;
@@ -245,56 +244,59 @@ export default {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .service-card {
   background: #fff;
-  border-radius: 8px;
-  padding: 40px 30px;
-  text-align: center;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 86, 179, 0.1);
-  border-color: rgba(0, 86, 179, 0.2);
-}
-
-.service-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 25px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 86, 179, 0.1);
-  border-radius: 50%;
-  color: #0056b3;
-  font-size: 30px;
-  transition: all 0.3s ease;
+  flex-direction: column;
 }
 
-.service-card:hover .service-icon {
-  background: #0056b3;
-  color: #fff;
+.service-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
-.service-card h3 {
-  margin-bottom: 15px;
+.service-content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-content h3 {
+  margin: 0 0 15px 10px;
   color: #333;
   font-size: 1.3rem;
+  text-align: left;
+  position: relative;
 }
 
-.service-card p {
+.service-content h3::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 5px;
+  bottom: 5px;
+  width: 4px;
+  background-color: #0056b3;
+  border-radius: 2px;
+}
+
+.service-content p {
   color: #666;
-  margin-bottom: 20px;
+  margin: 0 0 20px 10px;
   line-height: 1.6;
+  flex-grow: 1;
+  text-align: left;
 }
 
 .service-link {
@@ -304,6 +306,9 @@ export default {
   display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
+  justify-content: flex-start;
+  padding-left: 10px;
+  margin-top: auto;
 }
 
 .service-link i {
@@ -325,8 +330,8 @@ export default {
     gap: 20px;
   }
   
-  .service-card {
-    padding: 30px 20px;
+  .service-image {
+    height: 150px;
   }
 }
 
