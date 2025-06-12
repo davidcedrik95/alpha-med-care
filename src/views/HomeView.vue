@@ -134,7 +134,7 @@ export default {
         },
         {
           title: 'Schulungen',
-          image: '/images/services/medical-equipment-technician.png',
+          image: '/images/services/schulung.png',
           description: 'Fachschulungen für Ihr Personal im Umgang mit medizinischen Geräten'
         },
         {
@@ -143,6 +143,7 @@ export default {
           description: '24/7 Notdienst für kritische medizinische Geräte und Systeme'
         }
       ],
+
       featuredBrands: [
         { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
         { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.amersports.com/' },
