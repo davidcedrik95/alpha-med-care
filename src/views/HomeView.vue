@@ -172,6 +172,8 @@ export default {
   }
 }
 </script>
+
+
 <style scoped>
 /* Global Styles */
 .container {
@@ -292,7 +294,7 @@ export default {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
 }
