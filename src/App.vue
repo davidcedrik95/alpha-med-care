@@ -256,15 +256,19 @@ onUnmounted(() => {
   padding: 16px;
 }
 
+/* Boutons de défilement */
 .scroll-btn {
   position: fixed;
   right: 24px;
-  width: 40px;
-  height: 40px;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important; /* Ajouté pour plus de cohérence */
+  padding: 0 !important;
   z-index: 9997;
   opacity: 0.9;
   transition: all 0.3s ease;
-  border-radius: 5px;
+  border-radius: 50%;
   border: solid 1px #9a9a9b;
 }
 
@@ -287,15 +291,19 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
 }
 
+/* Bouton principal (+) */
 .action-main-btn {
   position: fixed;
   bottom: 64px;
   right: 24px;
-  width: 40px;
-  height: 40px;
+  width: 40px !important;      /* Même taille que les autres boutons */
+  height: 40px !important;     /* Même taille que les autres boutons */
+  min-width: 40px !important;
+  min-height: 40px !important; /* Ajouté pour plus de cohérence */
+  padding: 0 !important;
   z-index: 9999;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 5px;
+  border-radius: 50%;
   border: solid 1px #9a9a9b;
 }
 
@@ -318,25 +326,29 @@ onUnmounted(() => {
   gap: 12px;
 }
 
+/* Boutons d'action secondaires */
 .action-btn {
   position: relative;
-  width: 40px;
-  height: 40px;
+   width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important; /* Ajouté pour plus de cohérence */
+  padding: 0 !important;
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   margin-bottom: 8px;
+  border-radius: 50%;
 }
-
 .action-buttons-container.open .action-btn {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  width: 55px;
-  height: 35px;
-  border-radius: 50%;
+   width: 40px; /* Changé de 55px pour garder la même taille */
+  height: 40px; /* Changé de 35px pour garder la même taille */
+  border-radius: 50%; /* S'assurer que cela reste circulaire */
 }
 
 .action-btn:hover {
