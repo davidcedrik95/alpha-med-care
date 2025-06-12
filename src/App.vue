@@ -40,8 +40,8 @@
       </v-fab-transition>
     </div>
 
-    <!-- Bouton pour monter progressivement (up) -->
-    <v-fab-transition>
+    <!-- Bouton pour monter progressivement (up) - Desktop seulement -->
+    <v-fab-transition v-if="!isMobile">
       <v-btn
         fab
         dark
@@ -84,8 +84,8 @@
       </v-btn>
     </v-fab-transition>
 
-    <!-- Bouton pour descendre progressivement (down) -->
-    <v-fab-transition>
+    <!-- Bouton pour descendre progressivement (down) - Desktop seulement -->
+    <v-fab-transition v-if="!isMobile">
       <v-btn
         fab
         dark
@@ -122,6 +122,7 @@ import BreadcrumbNavigation from './components/nav/BreadcrumbNavigation.vue'
 const mobileDrawer = ref(false)
 const screenWidth = ref(window.innerWidth)
 const mobileBreakpoint = 960
+const isMobile = ref(window.innerWidth < 600)
 const footer = ref(null)
 
 // Gestion du défilement continu
@@ -174,6 +175,7 @@ const toggleDrawer = () => {
 
 const handleResize = () => {
   screenWidth.value = window.innerWidth
+  isMobile.value = screenWidth.value < 600
   if (screenWidth.value < mobileBreakpoint) {
     mobileDrawer.value = false
   }
@@ -331,7 +333,7 @@ onUnmounted(() => {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  width: 55px; /* Taille augmentée à l'ouverture */
+   width: 55px; /* Taille augmentée à l'ouverture */
   height: 35px;
   border-radius: 50%;
 }
@@ -379,29 +381,15 @@ onUnmounted(() => {
     min-height: calc(100vh - 124px);
   }
   
-  .scroll-btn {
-    right: 16px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .scroll-btn.down {
-    bottom: 16px;
-  }
-  
-  .scroll-btn.up {
-    bottom: 72px;
-  }
-  
   .action-main-btn {
+    bottom: 16px !important;
+    right: 16px;
     width: 40px;
     height: 40px;
-    bottom: 44px;
-    right: 16px;
   }
   
   .action-buttons-container {
-    bottom: 90px;
+    bottom: 70px !important;
     right: 16px;
   }
   
@@ -415,5 +403,7 @@ onUnmounted(() => {
     font-size: 0.7rem !important;
     padding: 6px 10px !important;
   }
+
+  
 }
 </style>
