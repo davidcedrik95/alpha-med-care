@@ -41,29 +41,31 @@
     </div>
 
     <!-- Bouton pour monter progressivement (up) - Desktop seulement -->
-    <v-fab-transition v-if="!isMobile">
-      <v-btn
-        fab
-        dark
-        fixed
-        bottom
-        right
-        @mousedown="startContinuousScroll('up')"
-        @mouseup="stopContinuousScroll"
-        @mouseleave="stopContinuousScroll"
-        @touchstart="startContinuousScroll('up')"
-        @touchend="stopContinuousScroll"
-        class="scroll-btn up"
-        aria-label="Remonter progressivement"
-        size="x-small"
-        elevation="4"
-      >
-        <v-icon>mdi-chevron-up</v-icon>
-        <v-tooltip activator="parent" location="left">Remonter</v-tooltip>
-      </v-btn>
-    </v-fab-transition>
+    <template v-if="isDesktop">
+      <v-fab-transition>
+        <v-btn
+          fab
+          dark
+          fixed
+          bottom
+          right
+          @mousedown="startContinuousScroll('up')"
+          @mouseup="stopContinuousScroll"
+          @mouseleave="stopContinuousScroll"
+          @touchstart="startContinuousScroll('up')"
+          @touchend="stopContinuousScroll"
+          class="scroll-btn up"
+          aria-label="Remonter progressivement"
+          size="x-small"
+          elevation="4"
+        >
+          <v-icon>mdi-chevron-up</v-icon>
+          <v-tooltip activator="parent" location="left">Remonter</v-tooltip>
+        </v-btn>
+      </v-fab-transition>
+    </template>
 
-    <!-- Bouton d'actions flottant principal (au milieu) -->
+    <!-- Bouton d'actions flottant principal -->
     <v-fab-transition>
       <v-btn
         fab
@@ -85,27 +87,29 @@
     </v-fab-transition>
 
     <!-- Bouton pour descendre progressivement (down) - Desktop seulement -->
-    <v-fab-transition v-if="!isMobile">
-      <v-btn
-        fab
-        dark
-        fixed
-        bottom
-        right
-        @mousedown="startContinuousScroll('down')"
-        @mouseup="stopContinuousScroll"
-        @mouseleave="stopContinuousScroll"
-        @touchstart="startContinuousScroll('down')"
-        @touchend="stopContinuousScroll"
-        class="scroll-btn down"
-        aria-label="Descendre progressivement"
-        size="x-small"
-        elevation="4"
-      >
-        <v-icon>mdi-chevron-down</v-icon>
-        <v-tooltip activator="parent" location="left">Descendre</v-tooltip>
-      </v-btn>
-    </v-fab-transition>
+    <template v-if="isDesktop">
+      <v-fab-transition>
+        <v-btn
+          fab
+          dark
+          fixed
+          bottom
+          right
+          @mousedown="startContinuousScroll('down')"
+          @mouseup="stopContinuousScroll"
+          @mouseleave="stopContinuousScroll"
+          @touchstart="startContinuousScroll('down')"
+          @touchend="stopContinuousScroll"
+          class="scroll-btn down"
+          aria-label="Descendre progressivement"
+          size="x-small"
+          elevation="4"
+        >
+          <v-icon>mdi-chevron-down</v-icon>
+          <v-tooltip activator="parent" location="left">Descendre</v-tooltip>
+        </v-btn>
+      </v-fab-transition>
+    </template>
 
     <NavigationFooter ref="footer" />
   </v-app>
@@ -122,8 +126,19 @@ import BreadcrumbNavigation from './components/nav/BreadcrumbNavigation.vue'
 const mobileDrawer = ref(false)
 const screenWidth = ref(window.innerWidth)
 const mobileBreakpoint = 960
-const isMobile = ref(window.innerWidth < 600)
 const footer = ref(null)
+
+// Détection d'appareil
+const isDesktop = ref(false)
+const isTablet = ref(false)
+const isMobile = ref(false)
+
+const updateDeviceDetection = () => {
+  const width = window.innerWidth
+  isMobile.value = width < 768  // Mobile: <768px
+  isTablet.value = width >= 768 && width < 1024  // Tablette: 768-1023px
+  isDesktop.value = width >= 1024  // Desktop: ≥1024px
+}
 
 // Gestion du défilement continu
 let scrollInterval = null
@@ -149,24 +164,18 @@ const startContinuousScroll = (direction) => {
     }
   }
 
-  scrollInterval = setInterval(scrollStep, 16) // ~60fps
-
-  // Accélération progressive
+  scrollInterval = setInterval(scrollStep, 16)
   accelerationInterval = setInterval(() => {
     scrollSpeed = Math.min(scrollSpeed + accelerationRate, maxSpeed)
   }, accelerationDelay)
 }
 
 const stopContinuousScroll = () => {
-  if (scrollInterval) {
-    clearInterval(scrollInterval)
-    scrollInterval = null
-  }
-  if (accelerationInterval) {
-    clearInterval(accelerationInterval)
-    accelerationInterval = null
-  }
-  scrollSpeed = 8 // Réinitialiser la vitesse
+  if (scrollInterval) clearInterval(scrollInterval)
+  if (accelerationInterval) clearInterval(accelerationInterval)
+  scrollSpeed = 8
+  scrollInterval = null
+  accelerationInterval = null
 }
 
 const toggleDrawer = () => {
@@ -175,7 +184,7 @@ const toggleDrawer = () => {
 
 const handleResize = () => {
   screenWidth.value = window.innerWidth
-  isMobile.value = screenWidth.value < 600
+  updateDeviceDetection()
   if (screenWidth.value < mobileBreakpoint) {
     mobileDrawer.value = false
   }
@@ -183,12 +192,11 @@ const handleResize = () => {
 
 // Actions flottantes
 const isActionsOpen = ref(false)
-
 const actions = ref([
   { icon: 'mdi-email', color: 'red-darken-1', label: 'Email', action: 'email' },
   { icon: 'mdi-phone', color: 'green-darken-1', label: 'Beratung', action: 'phone' },
   { icon: 'mdi-cart', color: 'blue-darken-1', label: 'Warenkorb', action: 'cart' },
-  { icon: 'mdi mdi-heart', color: 'purple-darken-1', label: 'Merkliste', action: 'merkliste'}
+  { icon: 'mdi-heart', color: 'purple-darken-1', label: 'Merkliste', action: 'merkliste'}
 ])
 
 const toggleActionButtons = () => {
@@ -202,12 +210,8 @@ const handleActionClick = (action) => {
 
 const getActionButtonStyle = (index) => {
   if (!isActionsOpen.value) return {}
-  
-  // Espacement vertical entre les boutons
   const verticalSpacing = 60
-  // Position Y (plus haut pour chaque bouton)
   const y = -((index + 1) * verticalSpacing)
-  
   return {
     transform: `translateY(${y}px)`,
     opacity: 1,
@@ -217,6 +221,7 @@ const getActionButtonStyle = (index) => {
 }
 
 onMounted(() => {
+  updateDeviceDetection()
   window.addEventListener('resize', handleResize)
 })
 
@@ -251,7 +256,6 @@ onUnmounted(() => {
   padding: 16px;
 }
 
-/* Boutons de défilement */
 .scroll-btn {
   position: fixed;
   right: 24px;
@@ -283,7 +287,6 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
 }
 
-/* Bouton principal - positionné entre up et down */
 .action-main-btn {
   position: fixed;
   bottom: 64px;
@@ -301,7 +304,6 @@ onUnmounted(() => {
   box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
-/* Conteneur des boutons secondaires */
 .action-buttons-container {
   position: fixed;
   bottom: 120px;
@@ -316,7 +318,6 @@ onUnmounted(() => {
   gap: 12px;
 }
 
-/* Boutons secondaires */
 .action-btn {
   position: relative;
   width: 40px;
@@ -333,7 +334,7 @@ onUnmounted(() => {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-   width: 55px; /* Taille augmentée à l'ouverture */
+  width: 55px;
   height: 35px;
   border-radius: 50%;
 }
@@ -343,7 +344,6 @@ onUnmounted(() => {
   z-index: 9999;
 }
 
-/* Style pour les tooltips des boutons d'action */
 .v-tooltip__content {
   background: rgba(0, 0, 0, 0.8) !important;
   font-size: 0.8rem !important;
@@ -351,32 +351,35 @@ onUnmounted(() => {
   border-radius: 4px !important;
 }
 
-/* Animation plus douce pour les tooltips */
 .slide-x-reverse-transition-enter-active,
 .slide-x-reverse-transition-leave-active {
   transition: all 0.3s ease !important;
 }
 
-/* Responsive */
-@media (max-width: 960px) {
+/* Styles pour tablette (768px-1023px) */
+@media (max-width: 1023px) {
+  .scroll-btn.up,
+  .scroll-btn.down {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  
   .page-content {
     min-height: calc(100vh - 172px);
   }
   
-  .scroll-btn.up {
-    bottom: 90px;
-  }
-  
   .action-main-btn {
-    bottom: 50px;
+    bottom: 24px !important;
   }
   
   .action-buttons-container {
-    bottom: 100px;
+    bottom: 90px !important;
   }
 }
 
-@media (max-width: 600px) {
+/* Styles pour mobile (<768px) */
+@media (max-width: 767px) {
   .page-content {
     min-height: calc(100vh - 124px);
   }
@@ -384,8 +387,6 @@ onUnmounted(() => {
   .action-main-btn {
     bottom: 16px !important;
     right: 16px;
-    width: 40px;
-    height: 40px;
   }
   
   .action-buttons-container {
@@ -398,12 +399,9 @@ onUnmounted(() => {
     height: 36px;
   }
 
-  /* Ajustement des tooltips pour mobile */
   .v-tooltip__content {
     font-size: 0.7rem !important;
     padding: 6px 10px !important;
   }
-
-  
 }
 </style>
