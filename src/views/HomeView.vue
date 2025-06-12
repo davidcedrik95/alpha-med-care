@@ -15,29 +15,31 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Dienstleistungen/Service</h2>
+ 
+<section id="services" class="services-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Dienstleistungen/Service</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" v-for="service in services" :key="service.title">
+        <div class="service-image-container">
+          <img :src="service.image" :alt="service.title" class="service-image">
         </div>
-        <!-- Dans le template, modifier la structure des cartes de service -->
-        <div class="service-card" v-for="service in services" :key="service.title">
-          <div class="service-image-container">
-            <img :src="service.image" :alt="service.title" class="service-image">
-          </div>
-          <div class="service-content">
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
-          </div>
-          <div class="service-footer">
-            <a href="#" class="service-link">
-              <span>Mehr erfahren</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
+        <div class="service-content">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+        <div class="service-footer">
+          <a href="#" class="service-link">
+            <span>Mehr erfahren</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- Featured Brands -->
     <section class="brands-section">
@@ -295,10 +297,8 @@ export default {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .service-card {
@@ -310,28 +310,36 @@ export default {
   border: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
-  /* Supprimer height: 100% pour permettre l'alignement naturel */
 }
+
 
 .service-image-container {
   height: 200px;
   overflow: hidden;
-  flex-shrink: 0; /* Empêche la réduction de la hauteur de l'image */
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image {
+  transform: scale(1.05);
 }
 
 .service-content {
   padding: 25px;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .service-footer {
   padding: 15px 25px;
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
-  /* Supprimer margin-top: auto */
-  flex-shrink: 0; /* Empêche la réduction du footer */
 }
 
 .service-card:hover .service-image {
