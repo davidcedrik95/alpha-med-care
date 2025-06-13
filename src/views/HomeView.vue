@@ -15,31 +15,30 @@
     </section>
 
     <!-- Services Section -->
- 
-<section id="services" class="services-section">
-  <div class="container">
-    <div class="section-title">
-      <h2>Dienstleistungen/Service</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card" v-for="service in services" :key="service.title">
-        <div class="service-image-container">
-          <img :src="service.image" :alt="service.title" class="service-image">
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Dienstleistungen/Service</h2>
         </div>
-        <div class="service-content">
-          <h3>{{ service.title }}</h3>
-          <p>{{ service.description }}</p>
-        </div>
-        <div class="service-footer">
-          <a href="#" class="service-link">
-            <span>Mehr erfahren</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
+        <div class="services-grid">
+          <div class="service-card" v-for="service in services" :key="service.title">
+            <div class="service-image-container">
+              <img :src="service.image" :alt="service.title" class="service-image">
+            </div>
+            <div class="service-content">
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+            </div>
+            <div class="service-footer">
+              <a href="#" class="service-link">
+                <span>Mehr erfahren</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Featured Brands -->
     <section class="brands-section">
@@ -93,6 +92,33 @@
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Häufig gestellte Fragen</h2>
+        </div>
+        <div class="faq-container">
+          <div 
+            class="faq-item" 
+            v-for="(faq, index) in faqs" 
+            :key="index"
+            :class="{ 'active': activeFaqIndex === index }"
+          >
+            <div class="faq-question" @click="toggleFaq(index)">
+              <h3>{{ faq.question }}</h3>
+              <i class="fas" :class="activeFaqIndex === index ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </div>
+            <transition name="fade">
+              <div class="faq-answer" v-show="activeFaqIndex === index">
+                <p>{{ faq.answer }}</p>
+              </div>
+            </transition>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact CTA -->
     <section class="contact-cta">
       <div class="container">
@@ -111,6 +137,7 @@ export default {
   name: 'HomeView',
   data() {
     return {
+      activeFaqIndex: null,
       services: [
         {
           title: 'Prüfungen',
@@ -143,7 +170,6 @@ export default {
           description: '24/7 Notdienst für kritische medizinische Geräte und Systeme'
         }
       ],
-
       featuredBrands: [
         { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
         { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.amersports.com/' },
@@ -171,12 +197,34 @@ export default {
           position: "Sportwissenschaftler",
           company: "Medizinisches Trainingszentrum Berlin"
         }
+      ],
+      faqs: [
+        { 
+          question: 'Wie oft müssen medizinische Geräte geprüft werden?', 
+          answer: 'Die Prüffrequenz hängt vom Gerätetyp und den gesetzlichen Vorgaben ab. In der Regel sind jährliche Prüfungen erforderlich, bei hochriskanten Geräten können kürzere Intervalle notwendig sein.' 
+        },
+        { 
+          question: 'Welche Geräte können Sie kalibrieren?', 
+          answer: 'Wir kalibrieren eine Vielzahl medizinischer Geräte, einschließlich Ergometer, Blutdruckmessgeräte, Thermometer und andere diagnostische Geräte gemäß den Herstellerangaben und medizinischen Standards.' 
+        },
+        { 
+          question: 'Bieten Sie Notdienst für defekte Geräte an?', 
+          answer: 'Ja, wir bieten einen 24/7 Notdienst für kritische medizinische Geräte an, um Ausfallzeiten zu minimieren und die Patientensicherheit zu gewährleisten.' 
+        },
+        { 
+          question: 'Können Sie uns bei der Schulung unseres Personals unterstützen?', 
+          answer: 'Absolut. Wir bieten maßgeschneiderte Schulungen für medizinisches Personal im Umgang mit verschiedenen Geräten an, einschließlich Sicherheitsunterweisungen und Bedienungstrainings.' 
+        }
       ]
+    }
+  },
+  methods: {
+    toggleFaq(index) {
+      this.activeFaqIndex = this.activeFaqIndex === index ? null : index;
     }
   }
 }
 </script>
-
 
 <style scoped>
 /* Global Styles */
@@ -255,7 +303,6 @@ export default {
 }
 
 /* Services Section */
-
 .services-section {
   padding: 80px 0;
   background-color: #fff;
@@ -304,7 +351,6 @@ export default {
 
 .service-card {
   background: #fff;
-
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -312,7 +358,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 
 .service-image-container {
   height: 200px;
@@ -343,17 +388,6 @@ export default {
   border-top: 1px solid #e9ecef;
 }
 
-.service-card:hover .service-image {
-  transform: scale(1.05);
-}
-
-.service-content {
-  padding: 25px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .service-content h3 {
   margin: 0 0 15px 0;
   color: #333;
@@ -382,8 +416,6 @@ export default {
   text-align: left;
 }
 
-
-
 .service-link {
   display: inline-flex;
   align-items: center;
@@ -410,58 +442,6 @@ export default {
 .service-link:hover i {
   transform: translateX(5px);
 }
-
-/* Responsive Styles for Services */
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .services-section {
-    padding: 60px 0;
-  }
-  
-  .section-title h2 {
-    font-size: 1.8rem;
-  }
-  
-  .section-title h2::before,
-  .section-title h2::after {
-    width: 30px;
-  }
-  
-  .section-title h2::before {
-    left: -40px;
-  }
-  
-  .section-title h2::after {
-    right: -40px;
-  }
-}
-
-@media (max-width: 576px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .service-image-container {
-    height: 180px;
-  }
-  
-  .section-title h2 {
-    font-size: 1.5rem;
-    padding: 0 10px;
-  }
-  
-  .section-title h2::before,
-  .section-title h2::after {
-    display: none;
-  }
-}
-
 
 /* Brands Section */
 .brands-section {
@@ -617,6 +597,88 @@ export default {
   font-size: 0.9rem;
 }
 
+/* FAQ Section */
+.faq-section {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: #f1f5ff;
+}
+
+.faq-question h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0056b3;
+  font-weight: 600;
+  flex: 1;
+}
+
+.faq-question i {
+  color: #0056b3;
+  transition: transform 0.3s ease;
+  margin-left: 15px;
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 0 20px 20px 20px;
+  max-height: 500px;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer p {
+  padding: 0 0 20px 0;
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Transition animations */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 /* Contact CTA */
 .contact-cta {
   padding: 100px 0;
@@ -720,6 +782,14 @@ export default {
   
   .section-title h2::after {
     right: -30px;
+  }
+  
+  .faq-question {
+    padding: 15px;
+  }
+  
+  .faq-question h3 {
+    font-size: 1rem;
   }
 }
 </style>
