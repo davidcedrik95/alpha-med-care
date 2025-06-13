@@ -114,12 +114,12 @@ export default {
       services: [
         {
           title: 'Prüfungen',
-          image: '/images/services/medical-equipment-technician.png',
+          image: '/images/services/manufacturing.jpg',
           description: 'Prüfungen und mehr für Ihre medizinischen Geräte'
         },
         {
           title: 'Kalibrieren',
-          image: '/images/services/medical-equipment-technician.png',
+          image: '/images/services/kalibrierung.jpg',
           description: 'Präzise Kalibrierung von Ergometern, Thermometern und Blutdruckmessgeräten'
         },
         {
