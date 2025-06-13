@@ -202,37 +202,38 @@ export default {
         { name: 'star-trac', logo: '/images/partners/star-trac-logo.png', url: 'https://www.motomed.com/' }
       ],
       testimonials: [
-        {
-          quote: "Die regelmäßigen Prüfungen durch Alpha-Med-Care geben uns die Sicherheit, dass unsere Geräte stets einsatzbereit und sicher sind. Der Service ist hervorragend und die Techniker sehr kompetent. Wir können Alpha-Med-Care nur wärmstens empfehlen.",
-          city: "Heidelberg",
-          rating: 5
-        },
-        {
-          quote: "Schneller Service, kompetente Beratung und zuverlässige Termine - genau das, was wir für unseren Praxisbetrieb benötigen. Die Zusammenarbeit mit Alpha-Med-Care ist stets professionell und unkompliziert.",
-          city: "München",
-          rating: 4.5
-        },
-        {
-          quote: "Die Kalibrierung unserer Ergometer durch Alpha-Med-Care war präzise und professionell. Sehr zufrieden mit dem Service! Die Geräte laufen seit der Wartung einwandfrei und die Dokumentation war lückenlos.",
-          city: "Berlin",
-          rating: 5
-        },
-        {
-          quote: "Unser Langzeitpartner für Gerätewartung. Immer pünktlich und mit exzellenter Fachkenntnis. Die Mitarbeiter von Alpha-Med-Care kennen unsere Geräte inzwischen besser als wir selbst und erkennen Probleme oft bevor sie entstehen.",
-          city: "Hamburg",
-          rating: 4.5
-        },
-        {
-          quote: "Die Schulungen für unser Personal waren äußerst hilfreich und praxisnah gestaltet. Die Schulungsunterlagen sind übersichtlich und die Trainer konnten alle Fragen kompetent beantworten. Sehr empfehlenswert!",
-          city: "Stuttgart",
-          rating: 5
-        },
-        {
-          quote: "24h Notdienst hat uns schon mehrfach aus der Patsche geholfen. Absolute Empfehlung! Als wir nachts einen Defekt an unserem wichtigsten Therapiegerät hatten, war innerhalb von 2 Stunden ein Techniker vor Ort.",
-          city: "Köln",
-          rating: 5
-        }
-      ],
+  {
+    quote: "Ausgezeichneter Service - unsere Geräte dank Alpha-Med-Care immer einsatzbereit. Hocheffiziente Techniker.",
+    city: "Heidelberg",
+    rating: 5
+  },
+  {
+    quote: "Schnell, kompetent und zuverlässig. Der perfekte Partner für unsere Praxis.",
+    city: "München",
+    rating: 4.5
+  },
+  {
+    quote: "Präzise Kalibrierung unserer Ergometer. Einwandfreie Ergebnisse und Dokumentation.",
+    city: "Berlin",
+    rating: 5
+  },
+  {
+    quote: "Vorbeugende Wartung auf höchstem Niveau. Probleme werden frühzeitig erkannt.",
+    city: "Hamburg",
+    rating: 4.5
+  },
+  {
+    quote: "Praktische Schulungen für unser Team. Klare Unterlagen und kompetente Trainer.",
+    city: "Stuttgart",
+    rating: 5
+  },
+  {
+    quote: "Notdienst reagierte innerhalb von 2 Stunden bei kritischem Defekt. Unbezahlbar!",
+    city: "Köln",
+    rating: 5
+  }
+]
+     ,
       faqs: [
         { 
           question: 'Wie oft müssen medizinische Geräte geprüft werden?', 
