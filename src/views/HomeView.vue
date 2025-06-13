@@ -77,17 +77,38 @@
     <!-- Testimonials -->
     <section class="testimonials-section">
       <div class="container">
-        <h2>Was unsere Kunden sagen</h2>
-        <div class="testimonials-slider">
-          <div class="testimonial" v-for="testimonial in testimonials" :key="testimonial.name">
-            <div class="testimonial-content">
-              <p>"{{ testimonial.quote }}"</p>
-              <div class="testimonial-author">
-                <strong>{{ testimonial.name }}</strong>
-                <span>{{ testimonial.position }}, {{ testimonial.company }}</span>
+        <div class="section-title">
+          <h2>Was unsere Kunden sagen</h2>
+        </div>
+        <div class="testimonials-wrapper">
+          <button class="carousel-button prev" @click="prevTestimonial" :disabled="currentTestimonialIndex === 0">
+            <i class="mdi mdi-chevron-left"></i>
+          </button>
+          
+          <div class="testimonials-container">
+            <div class="testimonials-track" ref="track" :style="trackStyle">
+              <div class="testimonial" 
+                   v-for="(testimonial, index) in testimonials" 
+                   :key="index">
+                <div class="testimonial-content">
+                  <div class="rating-stars">
+                    <i v-for="star in 5" :key="star" 
+                       class="mdi" 
+                       :class="getStarClass(star, testimonial.rating)"
+                       :style="{ color: star <= testimonial.rating || (star - 0.5 <= testimonial.rating) ? '#FFD700' : '#ddd' }"></i>
+                  </div>
+                  <p class="full-quote">"{{ testimonial.quote }}"</p>
+                  <div class="testimonial-author">
+                    <span>{{ testimonial.city }}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          
+          <button class="carousel-button next" @click="nextTestimonial" :disabled="currentTestimonialIndex >= maxTestimonials">
+            <i class="mdi mdi-chevron-right"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -107,7 +128,7 @@
           >
             <div class="faq-question" @click="toggleFaq(index)">
               <h3>{{ faq.question }}</h3>
-              <i class="fas" :class="activeFaqIndex === index ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              <i class="mdi" :class="activeFaqIndex === index ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
             </div>
             <transition name="fade">
               <div class="faq-answer" v-show="activeFaqIndex === index">
@@ -138,6 +159,8 @@ export default {
   data() {
     return {
       activeFaqIndex: null,
+      currentTestimonialIndex: 0,
+      testimonialWidth: 350, // Largeur fixe de chaque témoignage
       services: [
         {
           title: 'Prüfungen',
@@ -180,54 +203,107 @@ export default {
       ],
       testimonials: [
         {
-          quote: "Die regelmäßigen Prüfungen durch Alpha-Med-Care geben uns die Sicherheit, dass unsere Geräte stets einsatzbereit und sicher sind.",
-          name: "Dr. Michael Bauer",
-          position: "Leitender Arzt",
-          company: "Reha-Zentrum Heidelberg"
+          quote: "Die regelmäßigen Prüfungen durch Alpha-Med-Care geben uns die Sicherheit, dass unsere Geräte stets einsatzbereit und sicher sind. Der Service ist hervorragend und die Techniker sehr kompetent. Wir können Alpha-Med-Care nur wärmstens empfehlen.",
+          city: "Heidelberg",
+          rating: 5
         },
         {
-          quote: "Schneller Service, kompetente Beratung und zuverlässige Termine - genau das, was wir für unseren Praxisbetrieb benötigen.",
-          name: "Sabine Müller",
-          position: "Praxisleitung",
-          company: "Physiotherapie Müller"
+          quote: "Schneller Service, kompetente Beratung und zuverlässige Termine - genau das, was wir für unseren Praxisbetrieb benötigen. Die Zusammenarbeit mit Alpha-Med-Care ist stets professionell und unkompliziert.",
+          city: "München",
+          rating: 4.5
         },
         {
-          quote: "Die Kalibrierung unserer Ergometer durch Alpha-Med-Care war präzise und professionell. Sehr zufrieden mit dem Service!",
-          name: "Thomas Weber",
-          position: "Sportwissenschaftler",
-          company: "Medizinisches Trainingszentrum Berlin"
+          quote: "Die Kalibrierung unserer Ergometer durch Alpha-Med-Care war präzise und professionell. Sehr zufrieden mit dem Service! Die Geräte laufen seit der Wartung einwandfrei und die Dokumentation war lückenlos.",
+          city: "Berlin",
+          rating: 5
+        },
+        {
+          quote: "Unser Langzeitpartner für Gerätewartung. Immer pünktlich und mit exzellenter Fachkenntnis. Die Mitarbeiter von Alpha-Med-Care kennen unsere Geräte inzwischen besser als wir selbst und erkennen Probleme oft bevor sie entstehen.",
+          city: "Hamburg",
+          rating: 4.5
+        },
+        {
+          quote: "Die Schulungen für unser Personal waren äußerst hilfreich und praxisnah gestaltet. Die Schulungsunterlagen sind übersichtlich und die Trainer konnten alle Fragen kompetent beantworten. Sehr empfehlenswert!",
+          city: "Stuttgart",
+          rating: 5
+        },
+        {
+          quote: "24h Notdienst hat uns schon mehrfach aus der Patsche geholfen. Absolute Empfehlung! Als wir nachts einen Defekt an unserem wichtigsten Therapiegerät hatten, war innerhalb von 2 Stunden ein Techniker vor Ort.",
+          city: "Köln",
+          rating: 5
         }
       ],
       faqs: [
         { 
           question: 'Wie oft müssen medizinische Geräte geprüft werden?', 
-          answer: 'Die Prüffrequenz hängt vom Gerätetyp und den gesetzlichen Vorgaben ab. In der Regel sind jährliche Prüfungen erforderlich, bei hochriskanten Geräten können kürzere Intervalle notwendig sein.' 
+          answer: 'Die Prüffrequenz hängt vom Gerätetyp und den gesetzlichen Vorgaben ab. In der Regel sind jährliche Prüfungen erforderlich, bei hochriskanten Geräten können kürzere Intervalle notwendig sein. Wir beraten Sie gerne zu den für Ihre Geräte geltenden Vorschriften.' 
         },
         { 
           question: 'Welche Geräte können Sie kalibrieren?', 
-          answer: 'Wir kalibrieren eine Vielzahl medizinischer Geräte, einschließlich Ergometer, Blutdruckmessgeräte, Thermometer und andere diagnostische Geräte gemäß den Herstellerangaben und medizinischen Standards.' 
+          answer: 'Wir kalibrieren eine Vielzahl medizinischer Geräte, einschließlich Ergometer, Blutdruckmessgeräte, Thermometer und andere diagnostische Geräte gemäß den Herstellerangaben und medizinischen Standards. Unser Team ist für die Kalibrierung aller gängigen medizinischen Trainings- und Therapiegeräte zertifiziert.' 
         },
         { 
           question: 'Bieten Sie Notdienst für defekte Geräte an?', 
-          answer: 'Ja, wir bieten einen 24/7 Notdienst für kritische medizinische Geräte an, um Ausfallzeiten zu minimieren und die Patientensicherheit zu gewährleisten.' 
+          answer: 'Ja, wir bieten einen 24/7 Notdienst für kritische medizinische Geräte an, um Ausfallzeiten zu minimieren und die Patientensicherheit zu gewährleisten. Unser Notdienst ist innerhalb von maximal 4 Stunden vor Ort, in dringenden Fällen auch schneller.' 
         },
         { 
           question: 'Können Sie uns bei der Schulung unseres Personals unterstützen?', 
-          answer: 'Absolut. Wir bieten maßgeschneiderte Schulungen für medizinisches Personal im Umgang mit verschiedenen Geräten an, einschließlich Sicherheitsunterweisungen und Bedienungstrainings.' 
+          answer: 'Absolut. Wir bieten maßgeschneiderte Schulungen für medizinisches Personal im Umgang mit verschiedenen Geräten an, einschließlich Sicherheitsunterweisungen und Bedienungstrainings. Die Schulungen können bei Ihnen vor Ort oder in unseren Schulungsräumen stattfinden.' 
         }
       ]
+    }
+  },
+  computed: {
+    maxTestimonials() {
+      return Math.max(0, this.testimonials.length - this.visibleTestimonials);
+    },
+    visibleTestimonials() {
+      // Nombre de témoignages visibles en fonction de la largeur de l'écran
+      return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+    },
+    trackStyle() {
+      return {
+        transform: `translateX(-${this.currentTestimonialIndex * (100 / this.visibleTestimonials)}%)`
+      };
     }
   },
   methods: {
     toggleFaq(index) {
       this.activeFaqIndex = this.activeFaqIndex === index ? null : index;
+    },
+    nextTestimonial() {
+      if (this.currentTestimonialIndex < this.maxTestimonials) {
+        this.currentTestimonialIndex++;
+      }
+    },
+    prevTestimonial() {
+      if (this.currentTestimonialIndex > 0) {
+        this.currentTestimonialIndex--;
+      }
+    },
+    getStarClass(star, rating) {
+      if (star <= rating) return 'mdi-star';
+      if (star - 0.5 <= rating) return 'mdi-star-half-full';
+      return 'mdi-star-outline';
+    },
+    handleResize() {
+      // Réinitialise l'index quand la taille de l'écran change
+      if (this.currentTestimonialIndex > this.maxTestimonials) {
+        this.currentTestimonialIndex = Math.max(0, this.maxTestimonials);
+      }
     }
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   }
 }
 </script>
 
 <style scoped>
-/* Global Styles */
+/* Base Styles */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -265,7 +341,6 @@ export default {
   margin-top: 40px;
 }
 
-/* Button styles */
 .btn {
   padding: 12px 30px;
   border-radius: 30px;
@@ -346,7 +421,7 @@ export default {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 10px;
+  gap: 30px;
 }
 
 .service-card {
@@ -357,6 +432,7 @@ export default {
   border: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
 }
 
 .service-image-container {
@@ -543,58 +619,145 @@ export default {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Testimonials */
+/* Testimonials Section */
 .testimonials-section {
   padding: 80px 0;
   background-color: #fff;
-  text-align: center;
+  overflow: hidden;
 }
 
-.testimonials-section h2 {
-  margin-bottom: 50px;
-  color: #333;
-  font-size: 2rem;
+.testimonials-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.testimonials-slider {
+.testimonials-container {
+  overflow: hidden;
+  padding: 0 60px; /* Espace pour les boutons */
+}
+
+.testimonials-track {
   display: flex;
-  gap: 30px;
-  overflow-x: auto;
-  padding: 20px 0;
-  scroll-snap-type: x mandatory;
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .testimonial {
-  min-width: 350px;
+  flex: 0 0 calc(100% / 3);
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.testimonial-content {
   background: white;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: start;
+  height: 100%;
 }
 
-.testimonial-content p {
-  font-style: italic;
-  margin-bottom: 20px;
+.full-quote {
+  white-space: normal;
+  margin-bottom: 15px;
+  text-align: center;
   color: #555;
+  font-style: italic;
   line-height: 1.6;
-  text-align: left;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #0056b3;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-button:hover {
+  background: #003d7a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: translateY(-50%);
+}
+
+.carousel-button.prev {
+  left: 0;
+}
+
+.carousel-button.next {
+  right: 0;
+}
+
+.carousel-button i {
+  font-size: 24px;
+}
+
+.rating-stars {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
 }
 
 .testimonial-author {
   display: flex;
   flex-direction: column;
-  text-align: left;
-}
-
-.testimonial-author strong {
-  color: #333;
-  font-size: 1.1rem;
-}
-
-.testimonial-author span {
+  text-align: center;
+  margin-top: 15px;
+  font-style: italic;
   color: #666;
   font-size: 0.9rem;
+}
+
+.section-title {
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.section-title h2 {
+  color: #333;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0 20px;
+  position: relative;
+  background-color: #fff;
+}
+
+.section-title h2::before,
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 2px;
+  background-color: #0056b3;
+}
+
+.section-title h2::before {
+  left: -60px;
+}
+
+.section-title h2::after {
+  right: -60px;
 }
 
 /* FAQ Section */
@@ -671,14 +834,6 @@ export default {
   line-height: 1.6;
 }
 
-/* Transition animations */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
 /* Contact CTA */
 .contact-cta {
   padding: 100px 0;
@@ -702,6 +857,14 @@ export default {
   margin-right: auto;
 }
 
+/* Transition animations */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .services-grid {
@@ -710,6 +873,10 @@ export default {
   
   .shop-content {
     gap: 30px;
+  }
+
+  .testimonial {
+    flex: 0 0 50%; /* 2 témoignages visibles */
   }
 }
 
@@ -731,10 +898,6 @@ export default {
     margin-top: 30px;
   }
   
-  .testimonial {
-    min-width: 280px;
-  }
-  
   .section-title h2::before,
   .section-title h2::after {
     width: 30px;
@@ -746,6 +909,19 @@ export default {
   
   .section-title h2::after {
     right: -40px;
+  }
+
+  .testimonial {
+    flex: 0 0 100%; /* 1 témoignage visible */
+  }
+  
+  .carousel-button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .carousel-button i {
+    font-size: 18px;
   }
 }
 
