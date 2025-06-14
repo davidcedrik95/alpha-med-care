@@ -54,7 +54,7 @@
   </div>
   <br><br>
   <div class="scroll-indicator" @click="scrollToNextSection" >
-    <i class="mdi mdi-chevron-down" ></i>
+    <i class="mdi mdi-chevron-double-down" ></i>
   </div>
 </section>
 
