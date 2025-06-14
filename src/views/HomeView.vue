@@ -19,6 +19,7 @@
             <i class="fas fa-phone-alt"></i>
             <span>Kontakt aufnehmen</span>
           </a>
+          
         </div>
         
         <div class="trust-badges">
