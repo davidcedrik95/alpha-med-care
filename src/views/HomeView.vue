@@ -1,18 +1,62 @@
 <template>
   <div class="home-view">
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Alpha-Med-Care - Ihr Partner für medizinische Geräte & Dienstleistungen</h1>
-          <p>Prüfungen, Kalibrierungen, Service und mehr für medizinische Trainings- und Therapiegeräte</p>
-          <div class="cta-buttons">
-            <a href="#services" class="btn btn-primary">Unsere Dienstleistungen</a>
-            <a href="#shop" class="btn btn-secondary">Zum Online-Shop</a>
+
+<!-- Hero Banner Moderne -->
+<section class="hero-banner">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="tagline">Präzision & Expertise</div>
+        <h1>Medizintechnik auf <span class="highlight">Höchstniveau</span></h1>
+        <p class="hero-description">Alpha-Med-Care bietet umfassende Lösungen für Prüfung, Kalibrierung und Wartung medizinischer Geräte - für optimale Patientensicherheit und Geräteleistung.</p>
+        
+        <div class="cta-buttons">
+          <a href="#services" class="btn btn-primary">
+            <span>Unsere Services</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="tel:+49123456789" class="btn btn-secondary">
+            <i class="fas fa-phone-alt"></i>
+            <span>Kontakt aufnehmen</span>
+          </a>
+        </div>
+        
+        <div class="trust-badges">
+          <div class="badge">
+            <i class="fas fa-check-circle"></i>
+            <span>Zertifizierte Experten</span>
+          </div>
+          <div class="badge">
+            <i class="fas fa-shield-alt"></i>
+            <span>MPBetreibV konform</span>
           </div>
         </div>
       </div>
-    </section>
+      
+      <div class="hero-visual">
+        <div class="image-container">
+          <img src="/images/shop/products2.png" alt="Medizinische Geräte" class="main-image">
+          <img src="/images/logo.png" alt="Alpha-Med-Care Logo" class="floating-logo">
+          
+          <div class="stats-card">
+            <div class="stat-item">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Jahre Erfahrung</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Zufriedene Kunden</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="scroll-indicator" @click="scrollToNextSection">
+    <i class="mdi mdi-chevron-down"></i>
+  </div>
+</section>
 
     <!-- Services Section -->
     <section id="services" class="services-section">
@@ -234,6 +278,18 @@ export default {
           src: '/images/shop/products3.png',
           alt: 'Produktauswahl 3'
         },
+        {
+          src: '/images/shop/products4.png',
+          alt: 'Produktauswahl 4'
+        },
+         {
+          src: '/images/shop/products5.png',
+          alt: 'Produktauswahl 5'
+        },
+        {
+          src: '/images/shop/products6.png',
+          alt: 'Produktauswahl 6'
+        },
        
       ],
       testimonials: [
@@ -350,6 +406,15 @@ export default {
     resetCarouselInterval() {
       clearInterval(this.carouselInterval);
       this.startCarousel();
+    },
+
+    scrollToNextSection() {
+      const nextSection = document.querySelector('.hero-banner').nextElementSibling;
+      if (nextSection) {
+        nextSection.scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      }
     }
   },
   mounted() {
@@ -370,61 +435,108 @@ export default {
   margin: 0 auto;
   padding: 0 20px;
 }
-
-/* Hero Banner */
+/* Modern Hero Styles */
 .hero-banner {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-banner.jpg');
-  background-size: cover;
-  background-position: center;
+  padding: 80px 0 40px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9f0f5 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-text {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.tagline {
+  display: inline-block;
+  background-color: #0056b3;
   color: white;
-  padding: 120px 0;
-  text-align: center;
-}
-
-.hero-content h1 {
-  font-size: 2.5rem;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 20px;
-  font-weight: 700;
-  text-transform: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.hero-content p {
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.highlight {
+  color: #0056b3;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: rgba(0, 86, 179, 0.2);
+  z-index: -1;
+}
+
+.hero-description {
   font-size: 1.2rem;
+  line-height: 1.6;
+  color: #555;
   margin-bottom: 30px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 90%;
 }
 
 .cta-buttons {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
+  gap: 15px;
+  margin-bottom: 40px;
 }
 
 .btn {
-  padding: 12px 30px;
-  border-radius: 30px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  border: none;
-  cursor: pointer;
   font-size: 1rem;
+}
+
+.btn i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+  transform: translateX(3px);
 }
 
 .btn-primary {
   background-color: #0056b3;
   color: white;
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: #003d7a;
+  background-color: #004494;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
 }
 
 .btn-secondary {
@@ -434,11 +546,138 @@ export default {
 }
 
 .btn-secondary:hover {
-  background-color: #f8f9fa;
+  background-color: #f0f6ff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn-secondary i {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 20px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.badge i {
+  color: #0056b3;
+  font-size: 1.1rem;
+}
+
+/* Hero Visual */
+.hero-visual {
+  flex: 1;
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: perspective(1000px) rotateY(-10deg);
+  transition: transform 0.5s ease;
+}
+
+.hero-visual:hover .main-image {
+  transform: perspective(1000px) rotateY(-5deg);
+}
+
+.floating-logo {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 120px;
+  height: auto;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.stats-card {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 30px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0056b3;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-indicator i {
+  font-size: 2rem;
+  color: #0056b3;
+  animation: bounce 2s infinite;
+  transition: all 0.3s ease;
+  
+}
+
+.scroll-indicator:hover i {
+  color: #003d7a;
+  transform: scale(1.1);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
 /* Services Section */
 .services-section {
   padding: 80px 0;
