@@ -43,7 +43,10 @@
     <!-- Featured Brands -->
     <section class="brands-section">
       <div class="container">
-        <h2>Unsere Markenpartner</h2>
+        <div class="section-title">
+           <h2>Unsere Markenpartner</h2>
+        </div>
+       
         <p>Wir arbeiten mit führenden Herstellern medizinischer Geräte zusammen</p>
         <div class="brands-grid">
           <a v-for="brand in featuredBrands" :key="brand.name" :href="brand.url" target="_blank" rel="noopener">
@@ -114,33 +117,28 @@
     </section>
 
     <!-- FAQ Section -->
-<section class="faq-section py-12">
-  <v-container>
-    <div class="section-header text-center mb-12">
-      <h2 class="section-title text-h3 font-weight-bold">{{ $t('faq_title') }}</h2>
-    </div>
-    
-    <v-row justify="center">
-      <v-col cols="12" md="8">
-        <v-expansion-panels variant="accordion" class="elevation-2">
-          <v-expansion-panel
-            v-for="(faq, index) in faqs"
-            :key="index"
-            class="mb-2"
-          >
-            <v-expansion-panel-title expand-icon="mdi-chevron-down">
-              <v-icon color="accent" start>mdi-help-circle</v-icon>
-              {{ $t(faq.question) }}
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              {{ $t(faq.answer) }}
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-col>
-    </v-row>
-  </v-container>
-</section>
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Häufig gestellte Fragen</h2>
+        </div>
+        <div class="faq-container">
+          <div class="faq-item" 
+               v-for="(faq, index) in faqs" 
+               :key="index"
+               :class="{ active: activeFaqIndex === index }"
+               @click="toggleFaq(index)">
+            <div class="faq-question">
+              <h3>{{ faq.question }}</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Contact CTA -->
     <section class="contact-cta">
@@ -162,7 +160,7 @@ export default {
     return {
       activeFaqIndex: null,
       currentTestimonialIndex: 0,
-      testimonialWidth: 350, // Largeur fixe de chaque témoignage
+      testimonialWidth: 350,
       services: [
         {
           title: 'Prüfungen',
@@ -204,38 +202,37 @@ export default {
         { name: 'star-trac', logo: '/images/partners/star-trac-logo.png', url: 'https://www.motomed.com/' }
       ],
       testimonials: [
-  {
-    quote: "Ausgezeichneter Service - unsere Geräte dank Alpha-Med-Care immer einsatzbereit. Hocheffiziente Techniker.",
-    city: "Heidelberg",
-    rating: 5
-  },
-  {
-    quote: "Schnell, kompetent und zuverlässig. Der perfekte Partner für unsere Praxis.",
-    city: "München",
-    rating: 4.5
-  },
-  {
-    quote: "Präzise Kalibrierung unserer Ergometer. Einwandfreie Ergebnisse und Dokumentation.",
-    city: "Berlin",
-    rating: 5
-  },
-  {
-    quote: "Vorbeugende Wartung auf höchstem Niveau. Probleme werden frühzeitig erkannt.",
-    city: "Hamburg",
-    rating: 4.5
-  },
-  {
-    quote: "Praktische Schulungen für unser Team. Klare Unterlagen und kompetente Trainer.",
-    city: "Stuttgart",
-    rating: 5
-  },
-  {
-    quote: "Notdienst reagierte innerhalb von 2 Stunden bei kritischem Defekt. Unbezahlbar!",
-    city: "Köln",
-    rating: 5
-  }
-]
-     ,
+        {
+          quote: "Ausgezeichneter Service - unsere Geräte dank Alpha-Med-Care immer einsatzbereit. Hocheffiziente Techniker.",
+          city: "Heidelberg",
+          rating: 5
+        },
+        {
+          quote: "Schnell, kompetent und zuverlässig. Der perfekte Partner für unsere Praxis.",
+          city: "München",
+          rating: 4.5
+        },
+        {
+          quote: "Präzise Kalibrierung unserer Ergometer. Einwandfreie Ergebnisse und Dokumentation.",
+          city: "Berlin",
+          rating: 5
+        },
+        {
+          quote: "Vorbeugende Wartung auf höchstem Niveau. Probleme werden frühzeitig erkannt.",
+          city: "Hamburg",
+          rating: 4.5
+        },
+        {
+          quote: "Praktische Schulungen für unser Team. Klare Unterlagen und kompetente Trainer.",
+          city: "Stuttgart",
+          rating: 5
+        },
+        {
+          quote: "Notdienst reagierte innerhalb von 2 Stunden bei kritischem Defekt. Unbezahlbar!",
+          city: "Köln",
+          rating: 5
+        }
+      ],
       faqs: [
         { 
           question: 'Wie oft müssen medizinische Geräte geprüft werden?', 
@@ -261,7 +258,6 @@ export default {
       return Math.max(0, this.testimonials.length - this.visibleTestimonials);
     },
     visibleTestimonials() {
-      // Nombre de témoignages visibles en fonction de la largeur de l'écran
       return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
     },
     trackStyle() {
@@ -290,7 +286,6 @@ export default {
       return 'mdi-star-outline';
     },
     handleResize() {
-      // Réinitialise l'index quand la taille de l'écran change
       if (this.currentTestimonialIndex > this.maxTestimonials) {
         this.currentTestimonialIndex = Math.max(0, this.maxTestimonials);
       }
@@ -327,6 +322,7 @@ export default {
   font-size: 2.5rem;
   margin-bottom: 20px;
   font-weight: 700;
+  text-transform: none;
 }
 
 .hero-content p {
@@ -391,14 +387,13 @@ export default {
   text-align: center;
   position: relative;
 }
-
 .section-title h2 {
   color: #333;
   font-size: 2rem;
-  text-transform: capitalize;
+  text-transform: none;
   font-weight: 700;
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 60px; /* Espacement accru entre texte et traits */
   position: relative;
   background-color: #fff;
 }
@@ -408,17 +403,17 @@ export default {
   content: '';
   position: absolute;
   top: 50%;
-  width: 50px;
+  width: 80px; /* Longueur importante des traits */
   height: 2px;
   background-color: #0056b3;
 }
 
 .section-title h2::before {
-  left: -60px;
+  left: calc(0px - 80px + 20px); /* Positionnement précis */
 }
 
 .section-title h2::after {
-  right: -60px;
+  right: calc(0px - 80px + 20px); /* Positionnement précis */
 }
 
 .services-grid {
@@ -465,6 +460,7 @@ export default {
   padding: 15px 25px;
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
+  border: #bbb7b7 solid 1px;
 }
 
 .service-content h3 {
@@ -475,6 +471,7 @@ export default {
   font-weight: 600;
   position: relative;
   padding-left: 15px;
+  text-transform: none;
 }
 
 .service-content h3::before {
@@ -533,6 +530,7 @@ export default {
   margin-bottom: 15px;
   color: #333;
   font-size: 2rem;
+  text-transform: none;
 }
 
 .brands-section p {
@@ -551,7 +549,7 @@ export default {
 }
 
 .brand-logo {
-  max-width: 100%;
+  max-width: 60%;
   height: auto;
   max-height: 80px;
   filter: grayscale(100%);
@@ -584,6 +582,7 @@ export default {
 .shop-text h2 {
   margin-bottom: 20px;
   font-size: 2rem;
+  text-transform: none;
 }
 
 .shop-text p {
@@ -637,7 +636,7 @@ export default {
 
 .testimonials-container {
   overflow: hidden;
-  padding: 0 60px; /* Espace pour les boutons */
+  padding: 0 60px;
 }
 
 .testimonials-track {
@@ -654,10 +653,13 @@ export default {
 
 .testimonial-content {
   background: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   height: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
 }
 
 .full-quote {
@@ -667,6 +669,7 @@ export default {
   color: #555;
   font-style: italic;
   line-height: 1.6;
+  flex-grow: 1;
 }
 
 .carousel-button {
@@ -728,41 +731,6 @@ export default {
   font-size: 0.9rem;
 }
 
-.section-title {
-  margin-bottom: 50px;
-  text-align: center;
-  position: relative;
-}
-
-.section-title h2 {
-  color: #333;
-  font-size: 2rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: inline-block;
-  padding: 0 20px;
-  position: relative;
-  background-color: #fff;
-}
-
-.section-title h2::before,
-.section-title h2::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 50px;
-  height: 2px;
-  background-color: #0056b3;
-}
-
-.section-title h2::before {
-  left: -60px;
-}
-
-.section-title h2::after {
-  right: -60px;
-}
-
 /* FAQ Section */
 .faq-section {
   padding: 80px 0;
@@ -806,6 +774,7 @@ export default {
   color: #0056b3;
   font-weight: 600;
   flex: 1;
+  text-transform: none;
 }
 
 .faq-question i {
@@ -850,6 +819,7 @@ export default {
 .contact-cta h2 {
   margin-bottom: 20px;
   font-size: 2rem;
+  text-transform: none;
 }
 
 .contact-cta p {
@@ -879,7 +849,11 @@ export default {
   }
 
   .testimonial {
-    flex: 0 0 50%; /* 2 témoignages visibles */
+    flex: 0 0 50%;
+  }
+
+  .testimonial-content {
+    min-height: 280px;
   }
 }
 
@@ -915,7 +889,11 @@ export default {
   }
 
   .testimonial {
-    flex: 0 0 100%; /* 1 témoignage visible */
+    flex: 0 0 100%;
+  }
+
+  .testimonial-content {
+    min-height: auto;
   }
   
   .carousel-button {
