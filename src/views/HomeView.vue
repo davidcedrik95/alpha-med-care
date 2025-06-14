@@ -52,9 +52,9 @@
       </div>
     </div>
   </div>
-  <br>
-  <div class="scroll-indicator" @click="scrollToNextSection">
-    <i class="mdi mdi-chevron-down"></i>
+  <br><br>
+  <div class="scroll-indicator" @click="scrollToNextSection" >
+    <i class="mdi mdi-chevron-down" ></i>
   </div>
 </section>
 

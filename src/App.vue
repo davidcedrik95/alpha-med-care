@@ -196,7 +196,8 @@ const actions = ref([
   { icon: 'mdi-email', color: 'red-darken-1', label: 'Email', action: 'email' },
   { icon: 'mdi-phone', color: 'green-darken-1', label: 'Beratung', action: 'phone' },
   { icon: 'mdi-cart', color: 'blue-darken-1', label: 'Warenkorb', action: 'cart' },
-  { icon: 'mdi-heart', color: 'purple-darken-1', label: 'Merkliste', action: 'merkliste'}
+  { icon: 'mdi-heart', color: 'purple-darken-1', label: 'Merkliste', action: 'merkliste'},
+  { icon: 'mdi-cart-arrow-down', color: 'grey darken-4', label: 'Online Shop', action: 'shop'}
 ])
 
 const toggleActionButtons = () => {
