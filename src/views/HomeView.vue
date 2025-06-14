@@ -66,7 +66,7 @@
               <li><i class="fas fa-check"></i> Schnelle Lieferung</li>
               <li><i class="fas fa-check"></i> Kompetenter Service</li>
             </ul>
-            <a href="#" class="btn btn-primary">Jetzt einkaufen</a>
+            <a href="#" class="btn btn-primary btn-shop">Jetzt einkaufen</a>
           </div>
           <div class="shop-image-carousel">
             <div class="carousel-container">
@@ -87,7 +87,7 @@
                   :key="index" 
                   @click="goToShopImage(index)"
                   :class="{ active: currentShopImageIndex === index }"
-                ></button>
+               ></button>
               </div>
             </div>
           </div>
@@ -234,10 +234,7 @@ export default {
           src: '/images/shop/products3.png',
           alt: 'Produktauswahl 3'
         },
-        {
-          src: '/images/shop/products4.png',
-          alt: 'Produktauswahl 4'
-        }
+       
       ],
       testimonials: [
         {
@@ -650,6 +647,10 @@ export default {
   font-size: 1.1rem;
   line-height: 1.6;
 }
+
+.btn-shop{
+  border: solid 1px #ffff;
+} 
 
 .feature-list {
   list-style: none;
