@@ -46,8 +46,6 @@
         <div class="section-title">
            <h2>Unsere Markenpartner</h2>
         </div>
-       
-        <p>Wir arbeiten mit führenden Herstellern medizinischer Geräte zusammen</p>
         <div class="brands-grid">
           <a v-for="brand in featuredBrands" :key="brand.name" :href="brand.url" target="_blank" rel="noopener">
             <img :src="brand.logo" :alt="brand.name" class="brand-logo">
@@ -393,7 +391,7 @@ export default {
   text-transform: none;
   font-weight: 700;
   display: inline-block;
-  padding: 0 60px; /* Espacement accru entre texte et traits */
+  padding: 0 80px; /* Augmenté l'espacement */
   position: relative;
   background-color: #fff;
 }
@@ -403,17 +401,17 @@ export default {
   content: '';
   position: absolute;
   top: 50%;
-  width: 80px; /* Longueur importante des traits */
+  width: 150px; /* Longueur très importante des traits */
   height: 2px;
   background-color: #0056b3;
 }
 
 .section-title h2::before {
-  left: calc(0px - 80px + 20px); /* Positionnement précis */
+  left: -150px; /* Positionnement précis */
 }
 
 .section-title h2::after {
-  right: calc(0px - 80px + 20px); /* Positionnement précis */
+  right: -150px; /* Positionnement précis */
 }
 
 .services-grid {
@@ -527,16 +525,10 @@ export default {
 }
 
 .brands-section h2 {
-  margin-bottom: 15px;
+  margin-bottom: 40px; /* Augmenté la marge pour compenser la suppression du texte */
   color: #333;
   font-size: 2rem;
   text-transform: none;
-}
-
-.brands-section p {
-  color: #666;
-  margin-bottom: 40px;
-  font-size: 1.1rem;
 }
 
 .brands-grid {
@@ -877,15 +869,15 @@ export default {
   
   .section-title h2::before,
   .section-title h2::after {
-    width: 30px;
+    width: 60px;
   }
   
   .section-title h2::before {
-    left: -40px;
+    left: -70px;
   }
   
   .section-title h2::after {
-    right: -40px;
+    right: -70px;
   }
 
   .testimonial {
@@ -913,6 +905,7 @@ export default {
   
   .section-title h2 {
     font-size: 1.5rem;
+    padding: 0 40px;
   }
   
   .hero-content h1 {
@@ -930,15 +923,15 @@ export default {
   
   .section-title h2::before,
   .section-title h2::after {
-    width: 20px;
+    width: 30px;
   }
   
   .section-title h2::before {
-    left: -30px;
+    left: -40px;
   }
   
   .section-title h2::after {
-    right: -30px;
+    right: -40px;
   }
   
   .faq-question {
