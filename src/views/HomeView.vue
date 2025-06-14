@@ -114,31 +114,33 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Häufig gestellte Fragen</h2>
-        </div>
-        <div class="faq-container">
-          <div 
-            class="faq-item" 
-            v-for="(faq, index) in faqs" 
+<section class="faq-section py-12">
+  <v-container>
+    <div class="section-header text-center mb-12">
+      <h2 class="section-title text-h3 font-weight-bold">{{ $t('faq_title') }}</h2>
+    </div>
+    
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <v-expansion-panels variant="accordion" class="elevation-2">
+          <v-expansion-panel
+            v-for="(faq, index) in faqs"
             :key="index"
-            :class="{ 'active': activeFaqIndex === index }"
+            class="mb-2"
           >
-            <div class="faq-question" @click="toggleFaq(index)">
-              <h3>{{ faq.question }}</h3>
-              <i class="mdi" :class="activeFaqIndex === index ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
-            </div>
-            <transition name="fade">
-              <div class="faq-answer" v-show="activeFaqIndex === index">
-                <p>{{ faq.answer }}</p>
-              </div>
-            </transition>
-          </div>
-        </div>
-      </div>
-    </section>
+            <v-expansion-panel-title expand-icon="mdi-chevron-down">
+              <v-icon color="accent" start>mdi-help-circle</v-icon>
+              {{ $t(faq.question) }}
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              {{ $t(faq.answer) }}
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+    </v-row>
+  </v-container>
+</section>
 
     <!-- Contact CTA -->
     <section class="contact-cta">
@@ -393,7 +395,7 @@ export default {
 .section-title h2 {
   color: #333;
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 700;
   display: inline-block;
   padding: 0 20px;
