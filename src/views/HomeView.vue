@@ -54,7 +54,7 @@
       </div>
     </section>
 
-    <!-- Shop Preview -->
+    <!-- Shop Preview with Carousel -->
     <section id="shop" class="shop-preview">
       <div class="container">
         <div class="shop-content">
@@ -68,8 +68,28 @@
             </ul>
             <a href="#" class="btn btn-primary">Jetzt einkaufen</a>
           </div>
-          <div class="shop-image">
-            <img src="/images/logo.png" alt="Online-Shop Vorschau">
+          <div class="shop-image-carousel">
+            <div class="carousel-container">
+              <div class="carousel-track" :style="carouselTrackStyle">
+                <div class="carousel-slide" v-for="(image, index) in shopImages" :key="index">
+                  <img :src="image.src" :alt="image.alt" class="carousel-image">
+                </div>
+              </div>
+              <button class="carousel-button prev" @click="prevShopImage">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="carousel-button next" @click="nextShopImage">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div class="carousel-indicators">
+                <button 
+                  v-for="(image, index) in shopImages" 
+                  :key="index" 
+                  @click="goToShopImage(index)"
+                  :class="{ active: currentShopImageIndex === index }"
+                ></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -159,6 +179,8 @@ export default {
       activeFaqIndex: null,
       currentTestimonialIndex: 0,
       testimonialWidth: 350,
+      currentShopImageIndex: 0,
+      carouselInterval: null,
       services: [
         {
           title: 'Prüfungen',
@@ -198,6 +220,24 @@ export default {
         { name: 'FREI AG', logo: '/images/partners/frei-ag-logo.png', url: 'https://www.frei-ag.de/' },
         { name: 'hp-cosmos', logo: '/images/partners/hp-cosmos-logo.png', url: 'https://www.hpcosmos.com/' },
         { name: 'star-trac', logo: '/images/partners/star-trac-logo.png', url: 'https://www.motomed.com/' }
+      ],
+      shopImages: [
+        {
+          src: '/images/shop/products1.png',
+          alt: 'Produktauswahl 1'
+        },
+        {
+          src: '/images/shop/products2.png',
+          alt: 'Produktauswahl 2'
+        },
+        {
+          src: '/images/shop/products3.png',
+          alt: 'Produktauswahl 3'
+        },
+        {
+          src: '/images/shop/products4.png',
+          alt: 'Produktauswahl 4'
+        }
       ],
       testimonials: [
         {
@@ -262,6 +302,11 @@ export default {
       return {
         transform: `translateX(-${this.currentTestimonialIndex * (100 / this.visibleTestimonials)}%)`
       };
+    },
+    carouselTrackStyle() {
+      return {
+        transform: `translateX(-${this.currentShopImageIndex * 100}%)`
+      }
     }
   },
   methods: {
@@ -287,13 +332,36 @@ export default {
       if (this.currentTestimonialIndex > this.maxTestimonials) {
         this.currentTestimonialIndex = Math.max(0, this.maxTestimonials);
       }
+    },
+    nextShopImage() {
+      this.currentShopImageIndex = (this.currentShopImageIndex + 1) % this.shopImages.length;
+      this.resetCarouselInterval();
+    },
+    prevShopImage() {
+      this.currentShopImageIndex = (this.currentShopImageIndex - 1 + this.shopImages.length) % this.shopImages.length;
+      this.resetCarouselInterval();
+    },
+    goToShopImage(index) {
+      this.currentShopImageIndex = index;
+      this.resetCarouselInterval();
+    },
+    startCarousel() {
+      this.carouselInterval = setInterval(() => {
+        this.nextShopImage();
+      }, 5000); // Change image every 5 seconds
+    },
+    resetCarouselInterval() {
+      clearInterval(this.carouselInterval);
+      this.startCarousel();
     }
   },
   mounted() {
     window.addEventListener('resize', this.handleResize);
+    this.startCarousel();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize);
+    clearInterval(this.carouselInterval);
   }
 }
 </script>
@@ -601,16 +669,102 @@ export default {
   color: #4CAF50;
 }
 
-.shop-image {
+/* Shop Preview Carousel */
+.shop-image-carousel {
   flex: 1;
-  text-align: center;
-}
-
-.shop-image img {
-  max-width: 100%;
-  max-height: 400px;
+  position: relative;
+  overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px; /* Ajout d'une largeur maximale */
+  margin: 0 auto; /* Centrer le carrousel */
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Réduit de 300px à 250px */
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  
+  box-sizing: border-box;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Changé de 'cover' à 'contain' pour voir l'image entière */
+  object-position: center;
+  border-radius: 4px;
+  
+}
+
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #0056b3;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.carousel-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-button.prev {
+  left: 15px;
+}
+
+.carousel-button.next {
+  right: 15px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicators button.active {
+  background-color: white;
+  transform: scale(1.2);
 }
 
 /* Testimonials Section */
@@ -654,6 +808,16 @@ export default {
   flex-direction: column;
 }
 
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 15px;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+}
+
 .full-quote {
   white-space: normal;
   margin-bottom: 15px;
@@ -663,6 +827,7 @@ export default {
   line-height: 1.6;
   flex-grow: 1;
 }
+
 
 .carousel-button {
   position: absolute;
@@ -713,15 +878,7 @@ export default {
   gap: 3px;
 }
 
-.testimonial-author {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 15px;
-  font-style: italic;
-  color: #666;
-  font-size: 0.9rem;
-}
+
 
 /* FAQ Section */
 .faq-section {
@@ -847,6 +1004,10 @@ export default {
   .testimonial-content {
     min-height: 280px;
   }
+
+  .carousel-container {
+    height: 350px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -861,10 +1022,6 @@ export default {
   
   .shop-content {
     flex-direction: column;
-  }
-  
-  .shop-image {
-    margin-top: 30px;
   }
   
   .section-title h2::before,
@@ -895,6 +1052,11 @@ export default {
   
   .carousel-button i {
     font-size: 18px;
+  }
+
+  .carousel-indicators button {
+    width: 8px;
+    height: 8px;
   }
 }
 
@@ -941,5 +1103,9 @@ export default {
   .faq-question h3 {
     font-size: 1rem;
   }
+
+  .carousel-container {
+    height: 250px;
+  }
 }
-</style>
+</style> 
