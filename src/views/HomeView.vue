@@ -138,43 +138,45 @@
     </section>
 
     <!-- Testimonials Mobile Optimisé -->
-    <section class="testimonials-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Kundenstimmen</h2>
-        </div>
-        <div class="testimonials-wrapper">
-          <div class="testimonials-container">
-            <div class="testimonials-track" ref="track" :style="trackStyle">
-              <div class="testimonial" 
-                   v-for="(testimonial, index) in testimonials" 
-                   :key="index">
-                <div class="testimonial-content">
-                  <div class="rating-stars">
-                    <i v-for="star in 5" :key="star" 
-                       class="mdi" 
-                       :class="getStarClass(star, testimonial.rating)"
-                       :style="{ color: star <= testimonial.rating || (star - 0.5 <= testimonial.rating) ? '#FFD700' : '#ddd' }"></i>
-                  </div>
-                  <p class="full-quote">"{{ testimonial.quote }}"</p>
-                  <div class="testimonial-author">
-                    <span>{{ testimonial.city }}</span>
-                  </div>
-                </div>
+  <!-- Testimonials Section -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Was unsere Kunden sagen</h2>
+    </div>
+    <div class="testimonials-wrapper">
+      <div class="testimonials-container">
+        <div class="testimonials-track" ref="track" :style="trackStyle">
+          <div class="testimonial" 
+               v-for="(testimonial, index) in testimonials" 
+               :key="index">
+            <div class="testimonial-content">
+              <div class="rating-stars">
+                <i v-for="star in 5" :key="star" 
+                   class="mdi" 
+                   :class="getStarClass(star, testimonial.rating)"
+                   :style="{ color: star <= testimonial.rating || (star - 0.5 <= testimonial.rating) ? '#FFD700' : '#ddd' }"></i>
+              </div>
+              <p class="full-quote">"{{ testimonial.quote }}"</p>
+              <div class="testimonial-author">
+                <span>{{ testimonial.city }}</span>
               </div>
             </div>
           </div>
-          <div class="testimonial-controls">
-            <button class="carousel-button prev" @click="prevTestimonial" :disabled="currentTestimonialIndex === 0">
-              <i class="mdi mdi-chevron-left"></i>
-            </button>
-            <button class="carousel-button next" @click="nextTestimonial" :disabled="currentTestimonialIndex >= maxTestimonials">
-              <i class="mdi mdi-chevron-right"></i>
-            </button>
-          </div>
         </div>
       </div>
-    </section>
+      
+      <div class="testimonial-controls">
+        <button class="carousel-button prev" @click="prevTestimonial" :disabled="currentTestimonialIndex === 0">
+          <i class="mdi mdi-chevron-left"></i>
+        </button>
+        <button class="carousel-button next" @click="nextTestimonial" :disabled="currentTestimonialIndex >= maxTestimonials">
+          <i class="mdi mdi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- FAQ Section Mobile Optimisé -->
     <section class="faq-section">
@@ -361,6 +363,11 @@ export default {
     }
   },
   methods: {
+
+   goToTestimonial(index) {
+      this.currentTestimonialIndex = index;
+    },
+
     toggleFaq(index) {
       this.activeFaqIndex = this.activeFaqIndex === index ? null : index;
     },
@@ -433,18 +440,93 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-/* Base Mobile-First Styles */
+/* ==================== */
+/* BASE STYLES          */
+/* ==================== */
 .container {
-  width: 100%;
-  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 
-/* Hero Banner Mobile Optimisé */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn i {
+  transition: transform 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #0056b3;
+  border: 2px solid #0056b3;
+}
+
+.btn-secondary:hover {
+  background-color: #f0f6ff;
+  transform: translateY(-2px);
+}
+
+.section-title {
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.section-title h2 {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0 80px;
+  position: relative;
+  background-color: #fff;
+}
+
+.section-title h2::before,
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 150px;
+  height: 2px;
+  background-color: #0056b3;
+}
+
+.section-title h2::before {
+  left: -150px;
+}
+
+.section-title h2::after {
+  right: -150px;
+}
+
+/* ==================== */
+/* HERO BANNER          */
+/* ==================== */
 .hero-banner {
-  padding: 40px 0 30px;
+  padding: 80px 0 40px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9f0f5 100%);
   position: relative;
   overflow: hidden;
@@ -452,33 +534,34 @@ export default {
 
 .hero-content {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  gap: 50px;
 }
 
 .hero-text {
-  order: 2;
-  text-align: center;
+  flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
 .tagline {
   display: inline-block;
   background-color: #0056b3;
   color: white;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .hero-text h1 {
-  font-size: 1.8rem;
+  font-size: 3rem;
   font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 15px;
+  line-height: 1.2;
+  margin-bottom: 20px;
   color: #333;
 }
 
@@ -491,138 +574,94 @@ export default {
 .highlight::after {
   content: '';
   position: absolute;
-  bottom: 3px;
+  bottom: 5px;
   left: 0;
   width: 100%;
-  height: 6px;
+  height: 8px;
   background-color: rgba(0, 86, 179, 0.2);
   z-index: -1;
 }
 
 .hero-description {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  line-height: 1.6;
   color: #555;
-  margin-bottom: 25px;
-  max-width: 100%;
+  margin-bottom: 30px;
+  max-width: 90%;
 }
 
 .cta-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 30px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.btn i {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-}
-
-.btn-primary {
-  background-color: #0056b3;
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
-}
-
-.btn-primary:hover {
-  background-color: #004494;
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background-color: white;
-  color: #0056b3;
-  border: 2px solid #0056b3;
-}
-
-.btn-secondary:hover {
-  background-color: #f0f6ff;
-}
-
-.btn-secondary i {
-  margin-right: 8px;
-  margin-left: 0;
+  gap: 15px;
+  margin-bottom: 40px;
 }
 
 .trust-badges {
   display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .badge {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 0.9rem;
   color: #555;
-  white-space: nowrap;
 }
 
 .badge i {
   color: #0056b3;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
-/* Hero Visual Mobile */
 .hero-visual {
-  order: 1;
+  flex: 1;
   position: relative;
-  margin-bottom: 20px;
 }
 
 .image-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin-left: auto;
 }
 
 .main-image {
   width: 100%;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: perspective(1000px) rotateY(-10deg);
+  transition: transform 0.5s ease;
+}
+
+.hero-visual:hover .main-image {
+  transform: perspective(1000px) rotateY(-5deg);
 }
 
 .floating-logo {
   position: absolute;
-  top: -15px;
-  right: -10px;
-  width: 80px;
+  top: -20px;
+  right: -20px;
+  width: 120px;
   height: auto;
   background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: float 6s ease-in-out infinite;
 }
 
 .stats-card {
   position: absolute;
-  bottom: -20px;
-  left: 10px;
+  bottom: -30px;
+  left: -30px;
   background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 .stat-item {
@@ -630,105 +669,84 @@ export default {
 }
 
 .stat-number {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #0056b3;
   line-height: 1;
 }
 
 .stat-label {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #666;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
-/* Scroll Indicator */
 .scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
+  z-index: 10;
 }
 
 .scroll-indicator i {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #0056b3;
   animation: bounce 2s infinite;
+  transition: all 0.3s ease;
+}
+
+.scroll-indicator:hover i {
+  color: #003d7a;
+  transform: scale(1.1);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-8px);
-  }
-  60% {
-    transform: translateY(-4px);
-  }
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }
 
-/* Services Section Mobile Optimisé */
+/* ==================== */
+/* SERVICES SECTION     */
+/* ==================== */
 .services-section {
-  padding: 50px 0;
+  padding: 80px 0;
   background-color: #fff;
-}
-
-.section-title {
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.section-title h2 {
-  color: #333;
-  font-size: 1.5rem;
-  font-weight: 700;
-  position: relative;
-  display: inline-block;
-  padding: 0 20px;
-}
-
-.section-title h2::before,
-.section-title h2::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 30px;
-  height: 2px;
-  background-color: #0056b3;
-}
-
-.section-title h2::before {
-  left: -30px;
-}
-
-.section-title h2::after {
-  right: -30px;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .service-card {
   background: #fff;
-  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 1px solid #eee;
-}
-
-.service-card.expanded {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
 }
 
 .service-image-container {
-  height: 160px;
+  height: 200px;
   overflow: hidden;
   position: relative;
+  background-color: #f5f5f5;
 }
 
 .service-image {
@@ -739,20 +757,22 @@ export default {
 }
 
 .service-card:hover .service-image {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .service-content {
-  padding: 15px;
+  padding: 25px;
+  flex-grow: 1;
 }
 
 .service-content h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  text-align: left;
   font-weight: 600;
   position: relative;
-  padding-left: 12px;
+  padding-left: 15px;
 }
 
 .service-content h3::before {
@@ -761,7 +781,7 @@ export default {
   left: 0;
   top: 5px;
   bottom: 5px;
-  width: 3px;
+  width: 4px;
   background-color: #0056b3;
   border-radius: 2px;
 }
@@ -769,14 +789,15 @@ export default {
 .service-content p {
   color: #666;
   margin: 0;
-  line-height: 1.5;
-  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: left;
 }
 
 .service-footer {
-  padding: 12px 15px;
+  padding: 15px 25px;
   background-color: #f8f9fa;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #e9ecef;
+  border: #bbb7b7 solid 1px;
 }
 
 .service-link {
@@ -786,16 +807,11 @@ export default {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .service-link span {
-  margin-right: 6px;
-}
-
-.service-link i {
-  transition: transform 0.3s ease;
-  font-size: 0.8rem;
+  margin-right: 8px;
 }
 
 .service-link:hover {
@@ -803,38 +819,34 @@ export default {
 }
 
 .service-link:hover i {
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
-/* Brands Section Mobile Optimisé */
+/* ==================== */
+/* BRANDS SECTION       */
+/* ==================== */
 .brands-section {
-  padding: 50px 0;
+  padding: 80px 0;
+  text-align: center;
   background-color: #f9f9f9;
-}
-
-.brands-section h2 {
-  margin-bottom: 30px;
-  color: #333;
-  font-size: 1.5rem;
 }
 
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px;
   align-items: center;
-  padding: 0 10px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .brand-logo {
-  max-width: 80%;
+  max-width: 60%;
   height: auto;
-  max-height: 50px;
+  max-height: 80px;
   filter: grayscale(100%);
   opacity: 0.7;
   transition: all 0.3s ease;
-  margin: 0 auto;
-  display: block;
 }
 
 .brand-logo:hover {
@@ -842,91 +854,72 @@ export default {
   opacity: 1;
 }
 
-/* Shop Preview Mobile Optimisé */
+/* ==================== */
+/* SHOP PREVIEW         */
+/* ==================== */
 .shop-preview {
-  padding: 50px 0;
+  padding: 80px 0;
   background-color: #0056b3;
   color: white;
 }
 
 .shop-content {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  gap: 50px;
 }
 
 .shop-text {
-  text-align: center;
+  flex: 1;
 }
 
 .shop-text h2 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-size: 2rem;
 }
 
 .shop-text p {
-  margin-bottom: 20px;
-  font-size: 1rem;
-  line-height: 1.5;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.btn-shop {
+  border: solid 1px #ffff;
 }
 
 .feature-list {
   list-style: none;
   padding: 0;
-  margin-bottom: 25px;
-  text-align: left;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 30px;
 }
 
 .feature-list li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
 }
 
 .feature-list i {
   margin-right: 10px;
   color: #4CAF50;
-  font-size: 0.9rem;
 }
 
-.btn-shop {
-  display: inline-block;
-  background-color: white;
-  color: #0056b3;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.btn-shop:hover {
-  background-color: #f0f6ff;
-  transform: translateY(-2px);
-}
-
-/* Shop Carousel Mobile */
 .shop-image-carousel {
-  order: -1;
+  flex: 1;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  max-width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
   margin: 0 auto;
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -947,17 +940,18 @@ export default {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  border-radius: 4px;
 }
 
 .carousel-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
   color: #0056b3;
   border: none;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -968,31 +962,31 @@ export default {
 }
 
 .carousel-button:hover {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .carousel-button.prev {
-  left: 10px;
+  left: 15px;
 }
 
 .carousel-button.next {
-  right: 10px;
+  right: 15px;
 }
 
 .carousel-indicators {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   z-index: 10;
 }
 
 .carousel-indicators button {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
@@ -1006,72 +1000,82 @@ export default {
   transform: scale(1.2);
 }
 
-/* Testimonials Mobile Optimisé */
+/* ==================== */
+/* TESTIMONIALS         */
+/* ==================== */
+
+
+/* Testimonials Section */
 .testimonials-section {
-  padding: 50px 0;
+  padding: 80px 0;
   background-color: #fff;
-  overflow: hidden;
 }
 
 .testimonials-wrapper {
   position: relative;
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .testimonials-container {
   overflow: hidden;
   padding: 0 15px;
+  margin-bottom: 20px;
 }
 
 .testimonials-track {
   display: flex;
   transition: transform 0.5s ease;
-  will-change: transform;
 }
 
 .testimonial {
-  flex: 0 0 100%;
-  padding: 0 10px;
+  flex: 0 0 calc(100% / 3);
+  padding: 0 15px;
   box-sizing: border-box;
 }
 
 .testimonial-content {
   background: white;
-  padding: 20px;
+  padding: 25px;
   border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   height: 100%;
-  min-height: 200px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
+}
+
+.rating-stars {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.full-quote {
+  margin-bottom: 15px;
+  text-align: center;
+  color: #555;
+  font-style: italic;
+  line-height: 1.6;
+  flex-grow: 1;
 }
 
 .testimonial-author {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
   font-style: italic;
   color: #666;
-  font-size: 0.85rem;
-}
-
-.full-quote {
-  white-space: normal;
-  margin-bottom: 15px;
-  text-align: center;
-  color: #555;
-  font-style: italic;
-  line-height: 1.5;
-  flex-grow: 1;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .testimonial-controls {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   margin-top: 20px;
 }
 
@@ -1092,8 +1096,9 @@ export default {
   transition: all 0.3s ease;
 }
 
-.carousel-button:hover {
+.carousel-button:hover:not(:disabled) {
   background: #003d7a;
+  transform: scale(1.1);
 }
 
 .carousel-button:disabled {
@@ -1101,44 +1106,56 @@ export default {
   cursor: not-allowed;
 }
 
-.carousel-button i {
-  font-size: 20px;
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .testimonial {
+    flex: 0 0 50%;
+  }
 }
 
-.rating-stars {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 2px;
+@media (max-width: 768px) {
+  .testimonial {
+    flex: 0 0 100%;
+  }
+  
+  .testimonial-controls {
+    gap: 40px;
+  }
+  
+  .carousel-button {
+    width: 36px;
+    height: 36px;
+  }
 }
 
-/* FAQ Section Mobile Optimisé */
+/* ==================== */
+/* FAQ SECTION          */
+/* ==================== */
 .faq-section {
-  padding: 50px 0;
+  padding: 80px 0;
   background-color: #f8f9fa;
 }
 
 .faq-container {
-  max-width: 100%;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .faq-item {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
   transition: all 0.3s ease;
 }
 
 .faq-item.active {
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .faq-question {
-  padding: 15px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1152,7 +1169,7 @@ export default {
 
 .faq-question h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #0056b3;
   font-weight: 600;
   flex: 1;
@@ -1161,19 +1178,18 @@ export default {
 .faq-question i {
   color: #0056b3;
   transition: transform 0.3s ease;
-  margin-left: 10px;
-  font-size: 0.9rem;
+  margin-left: 15px;
 }
 
 .faq-answer {
-  padding: 0 15px;
+  padding: 0 20px;
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 .faq-item.active .faq-answer {
-  padding: 0 15px 15px 15px;
+  padding: 0 20px 20px 20px;
   max-height: 500px;
 }
 
@@ -1182,16 +1198,17 @@ export default {
 }
 
 .faq-answer p {
-  padding: 0 0 15px 0;
+  padding: 0 0 20px 0;
   margin: 0;
   color: #555;
-  line-height: 1.5;
-  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-/* Contact CTA Mobile Optimisé */
+/* ==================== */
+/* CONTACT CTA          */
+/* ==================== */
 .contact-cta {
-  padding: 60px 0;
+  padding: 100px 0;
   text-align: center;
   background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 86, 179, 0.9)), url('/images/cta-bg.jpg');
   background-size: cover;
@@ -1200,127 +1217,115 @@ export default {
 }
 
 .contact-cta h2 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-size: 2rem;
 }
 
 .contact-cta p {
-  margin-bottom: 25px;
-  font-size: 1rem;
-  max-width: 100%;
-  padding: 0 20px;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Tablet Styles */
-@media (min-width: 768px) {
-  .container {
-    padding: 0 20px;
-  }
-  
-  .hero-banner {
-    padding: 60px 0 40px;
-  }
-  
-  .hero-text h1 {
-    font-size: 2.2rem;
-  }
-  
-  .hero-description {
-    font-size: 1.1rem;
-  }
-  
-  .cta-buttons {
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .btn {
-    width: auto;
-    padding: 12px 25px;
-  }
-  
+/* ==================== */
+/* RESPONSIVE STYLES    */
+/* ==================== */
+@media (max-width: 1024px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .brands-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
   .shop-content {
-    flex-direction: row;
-    align-items: center;
+    gap: 30px;
   }
-  
-  .shop-text {
-    text-align: left;
-    flex: 1;
-  }
-  
-  .shop-image-carousel {
-    order: 0;
-    flex: 1;
-  }
-  
-  .feature-list {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  
+
   .testimonial {
     flex: 0 0 50%;
   }
-  
+
   .carousel-container {
-    height: 280px;
+    height: 300px;
   }
 }
 
-/* Desktop Styles */
-@media (min-width: 1024px) {
+@media (max-width: 768px) {
   .hero-content {
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .hero-text {
-    order: 0;
-    text-align: left;
-    flex: 1;
-  }
-  
-  .hero-visual {
-    order: 1;
-    flex: 1;
+    flex-direction: column;
   }
   
   .hero-text h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-description {
-    max-width: 90%;
-    margin-left: 0;
+    font-size: 2rem;
   }
   
   .cta-buttons {
-    justify-content: flex-start;
+    flex-direction: column;
+    gap: 15px;
   }
   
+  .section-title h2::before,
+  .section-title h2::after {
+    width: 60px;
+  }
+  
+  .section-title h2::before {
+    left: -70px;
+  }
+  
+  .section-title h2::after {
+    right: -70px;
+  }
+
+  .testimonial {
+    flex: 0 0 100%;
+  }
+  
+  .carousel-button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .carousel-button i {
+    font-size: 18px;
+  }
+
+  .carousel-indicators button {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
   .services-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title h2 {
+    font-size: 1.5rem;
+    padding: 0 40px;
   }
   
   .brands-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
   
-  .testimonial {
-    flex: 0 0 calc(100% / 3);
+  .section-title h2::before,
+  .section-title h2::after {
+    width: 30px;
+  }
+  
+  .section-title h2::before {
+    left: -40px;
+  }
+  
+  .section-title h2::after {
+    right: -40px;
   }
   
   .carousel-container {
-    height: 320px;
+    height: 250px;
   }
 }
 </style>
