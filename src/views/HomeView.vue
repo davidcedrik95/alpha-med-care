@@ -104,10 +104,19 @@
         <h2>Online-Shop</h2>
         <p>Qualitätsprodukte für medizinische Einrichtungen</p>
         <ul class="feature-list">
-          <li><i class="fas fa-check"></i> Professionelle Beratung</li>
-          <li><i class="fas fa-check"></i> Schnelle Lieferung</li>
-          <li><i class="fas fa-check"></i> Kompetenter Service</li>
-        </ul>
+  <li>
+    <span class="feature-icon"><i class="fas fa-check"></i></span>
+    <span class="feature-text">Professionelle Beratung</span>
+  </li>
+  <li>
+    <span class="feature-icon"><i class="fas fa-check"></i></span>
+    <span class="feature-text">Schnelle Lieferung</span>
+  </li>
+  <li>
+    <span class="feature-icon"><i class="fas fa-check"></i></span>
+    <span class="feature-text">Kompetenter Service</span>
+  </li>
+</ul>
       </div>
       
       <div class="shop-image-carousel">
@@ -888,23 +897,60 @@ export default {
 .btn-shop {
   border: solid 1px #ffff;
 }
-
 .feature-list {
   list-style: none;
   padding: 0;
-  margin-bottom: 30px;
+  margin: 0 0 30px 0;
+  text-align: left;
 }
 
 .feature-list li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
+  gap: 10px;
   font-size: 1.1rem;
 }
 
-.feature-list i {
-  margin-right: 10px;
+.feature-icon {
   color: #4CAF50;
+  min-width: 20px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.feature-text {
+  flex: 1;
+}
+
+/* Styles spécifiques pour mobile */
+@media (max-width: 768px) {
+  .feature-list {
+    text-align: center;
+    margin: 0 auto 25px;
+    max-width: 300px;
+  }
+  
+  .feature-list li {
+    justify-content: center;
+    text-align: left;
+    gap: 12px;
+  }
+  
+  .feature-icon {
+    font-size: 1rem;
+  }
+  
+  .feature-text {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-list li {
+    font-size: 1rem;
+    gap: 10px;
+  }
 }
 
 .shop-image-carousel {
@@ -1030,10 +1076,6 @@ export default {
     width: fit-content;
   }
   
-  .feature-list {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
   
   .carousel-container {
     height: 250px;
