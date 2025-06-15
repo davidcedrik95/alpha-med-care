@@ -97,47 +97,48 @@
     </section>
 
     <!-- Shop Preview Mobile Optimisé -->
-    <section id="shop" class="shop-preview">
-      <div class="container">
-        <div class="shop-content">
-          <div class="shop-text">
-            <h2>Online-Shop</h2>
-            <p>Qualitätsprodukte für medizinische Einrichtungen</p>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i> Professionelle Beratung</li>
-              <li><i class="fas fa-check"></i> Schnelle Lieferung</li>
-              <li><i class="fas fa-check"></i> Kompetenter Service</li>
-            </ul>
-            <a href="#" class="btn btn-primary btn-shop">Zum Shop</a>
-          </div>
-          <div class="shop-image-carousel">
-            <div class="carousel-container">
-              <div class="carousel-track" :style="carouselTrackStyle">
-                <div class="carousel-slide" v-for="(image, index) in shopImages" :key="index">
-                  <img :src="image.src" :alt="image.alt" class="carousel-image">
-                </div>
-              </div>
-              <button class="carousel-button prev" @click="prevShopImage">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button class="carousel-button next" @click="nextShopImage">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-              <div class="carousel-indicators">
-                <button 
-                  v-for="(image, index) in shopImages" 
-                  :key="index" 
-                  @click="goToShopImage(index)"
-                  :class="{ active: currentShopImageIndex === index }"
-                ></button>
-              </div>
+<section id="shop" class="shop-preview">
+  <div class="container">
+    <div class="shop-content">
+      <div class="shop-text">
+        <h2>Online-Shop</h2>
+        <p>Qualitätsprodukte für medizinische Einrichtungen</p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check"></i> Professionelle Beratung</li>
+          <li><i class="fas fa-check"></i> Schnelle Lieferung</li>
+          <li><i class="fas fa-check"></i> Kompetenter Service</li>
+        </ul>
+      </div>
+      
+      <div class="shop-image-carousel">
+        <div class="carousel-container">
+          <div class="carousel-track" :style="carouselTrackStyle">
+            <div class="carousel-slide" v-for="(image, index) in shopImages" :key="index">
+              <img :src="image.src" :alt="image.alt" class="carousel-image">
             </div>
+          </div>
+          <button class="carousel-button prev" @click="prevShopImage">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-button next" @click="nextShopImage">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <div class="carousel-indicators">
+            <button 
+              v-for="(image, index) in shopImages" 
+              :key="index" 
+              @click="goToShopImage(index)"
+              :class="{ active: currentShopImageIndex === index }"
+            ></button>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Testimonials Mobile Optimisé -->
+      
+      <a href="#" class="btn btn-primary btn-shop mobile-shop-btn">Zum Shop</a>
+    </div>
+  </div>
+</section>
+   
   <!-- Testimonials Section -->
 <section class="testimonials-section">
   <div class="container">
@@ -998,6 +999,64 @@ export default {
 .carousel-indicators button.active {
   background-color: white;
   transform: scale(1.2);
+}
+
+/* Shop Preview Mobile Styles */
+@media (max-width: 768px) {
+  .shop-preview {
+    padding: 60px 0;
+  }
+  
+  .shop-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .shop-text {
+    order: 1;
+    text-align: center;
+  }
+  
+  .shop-image-carousel {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .mobile-shop-btn {
+    order: 3;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  
+  .feature-list {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-text h2 {
+    font-size: 1.8rem;
+  }
+  
+  .shop-text p {
+    font-size: 1rem;
+  }
+  
+  .feature-list li {
+    font-size: 1rem;
+    justify-content: center;
+  }
+  
+  .carousel-container {
+    height: 200px;
+  }
 }
 
 /* ==================== */
