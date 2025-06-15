@@ -1,72 +1,69 @@
 <template>
   <div class="home-view">
-
-<!-- Hero Banner Moderne -->
-<section class="hero-banner">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="tagline">Präzision & Expertise</div>
-        <h1>Medizintechnik auf <span class="highlight">Höchstniveau</span></h1>
-        <p class="hero-description">Alpha-Med-Care bietet umfassende Lösungen für Prüfung, Kalibrierung und Wartung medizinischer Geräte - für optimale Patientensicherheit und Geräteleistung.</p>
-        
-        <div class="cta-buttons">
-          <a href="#services" class="btn btn-primary">
-            <span>Unsere Services</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-          <a href="tel:+49123456789" class="btn btn-secondary">
-            <i class="fas fa-phone-alt"></i>
-            <span>Kontakt aufnehmen</span>
-          </a>
-          
-        </div>
-        
-        <div class="trust-badges">
-          <div class="badge">
-            <i class="fas fa-check-circle"></i>
-            <span>Zertifizierte Experten</span>
+    <!-- Hero Banner Mobile Optimisé -->
+    <section class="hero-banner">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="tagline">Präzision & Expertise</div>
+            <h1>Medizintechnik auf <span class="highlight">Höchstniveau</span></h1>
+            <p class="hero-description">Alpha-Med-Care bietet umfassende Lösungen für Prüfung, Kalibrierung und Wartung medizinischer Geräte.</p>
+            
+            <div class="cta-buttons">
+              <a href="#services" class="btn btn-primary">
+                <span>Unsere Services</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="tel:+49123456789" class="btn btn-secondary">
+                <i class="fas fa-phone-alt"></i>
+                <span>Anrufen</span>
+              </a>
+            </div>
+            
+            <div class="trust-badges">
+              <div class="badge">
+                <i class="fas fa-check-circle"></i>
+                <span>Zertifiziert</span>
+              </div>
+              <div class="badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>MPBetreibV</span>
+              </div>
+            </div>
           </div>
-          <div class="badge">
-            <i class="fas fa-shield-alt"></i>
-            <span>MPBetreibV konform</span>
+          
+          <div class="hero-visual">
+            <div class="image-container">
+              <img src="/images/shop/products2.png" alt="Medizinische Geräte" class="main-image">
+              <img src="/images/logo.png" alt="Alpha-Med-Care Logo" class="floating-logo">
+              
+              <div class="stats-card">
+                <div class="stat-item">
+                  <div class="stat-number">15+</div>
+                  <div class="stat-label">Jahre</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">500+</div>
+                  <div class="stat-label">Kunden</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-      <div class="hero-visual">
-        <div class="image-container">
-          <img src="/images/shop/products2.png" alt="Medizinische Geräte" class="main-image">
-          <img src="/images/logo.png" alt="Alpha-Med-Care Logo" class="floating-logo">
-          
-          <div class="stats-card">
-            <div class="stat-item">
-              <div class="stat-number">15+</div>
-              <div class="stat-label">Jahre Erfahrung</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">500+</div>
-              <div class="stat-label">Zufriedene Kunden</div>
-            </div>
-          </div>
-        </div>
+      <div class="scroll-indicator" @click="scrollToNextSection">
+        <i class="mdi mdi-chevron-double-down"></i>
       </div>
-    </div>
-  </div>
-  <br><br>
-  <div class="scroll-indicator" @click="scrollToNextSection" >
-    <i class="mdi mdi-chevron-double-down" ></i>
-  </div>
-</section>
+    </section>
 
-    <!-- Services Section -->
+    <!-- Services Section Mobile Optimisé -->
     <section id="services" class="services-section">
       <div class="container">
         <div class="section-title">
-          <h2>Dienstleistungen/Service</h2>
+          <h2>Dienstleistungen</h2>
         </div>
         <div class="services-grid">
-          <div class="service-card" v-for="service in services" :key="service.title">
+          <div class="service-card" v-for="service in services" :key="service.title" @click="toggleServiceCard($event)">
             <div class="service-image-container">
               <img :src="service.image" :alt="service.title" class="service-image">
             </div>
@@ -76,7 +73,7 @@
             </div>
             <div class="service-footer">
               <a href="#" class="service-link">
-                <span>Mehr erfahren</span>
+                <span>Details</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
             </div>
@@ -85,11 +82,11 @@
       </div>
     </section>
 
-    <!-- Featured Brands -->
+    <!-- Featured Brands Mobile Optimisé -->
     <section class="brands-section">
       <div class="container">
         <div class="section-title">
-           <h2>Unsere Markenpartner</h2>
+          <h2>Markenpartner</h2>
         </div>
         <div class="brands-grid">
           <a v-for="brand in featuredBrands" :key="brand.name" :href="brand.url" target="_blank" rel="noopener">
@@ -99,19 +96,19 @@
       </div>
     </section>
 
-    <!-- Shop Preview with Carousel -->
+    <!-- Shop Preview Mobile Optimisé -->
     <section id="shop" class="shop-preview">
       <div class="container">
         <div class="shop-content">
           <div class="shop-text">
-            <h2>Entdecken Sie unseren Online-Shop</h2>
-            <p>Qualitätsprodukte von Top-Herstellern für medizinische Einrichtungen, Reha-Zentren und Therapeuten</p>
+            <h2>Online-Shop</h2>
+            <p>Qualitätsprodukte für medizinische Einrichtungen</p>
             <ul class="feature-list">
               <li><i class="fas fa-check"></i> Professionelle Beratung</li>
               <li><i class="fas fa-check"></i> Schnelle Lieferung</li>
               <li><i class="fas fa-check"></i> Kompetenter Service</li>
             </ul>
-            <a href="#" class="btn btn-primary btn-shop">Jetzt einkaufen</a>
+            <a href="#" class="btn btn-primary btn-shop">Zum Shop</a>
           </div>
           <div class="shop-image-carousel">
             <div class="carousel-container">
@@ -132,7 +129,7 @@
                   :key="index" 
                   @click="goToShopImage(index)"
                   :class="{ active: currentShopImageIndex === index }"
-               ></button>
+                ></button>
               </div>
             </div>
           </div>
@@ -140,17 +137,13 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- Testimonials Mobile Optimisé -->
     <section class="testimonials-section">
       <div class="container">
         <div class="section-title">
-          <h2>Was unsere Kunden sagen</h2>
+          <h2>Kundenstimmen</h2>
         </div>
         <div class="testimonials-wrapper">
-          <button class="carousel-button prev" @click="prevTestimonial" :disabled="currentTestimonialIndex === 0">
-            <i class="mdi mdi-chevron-left"></i>
-          </button>
-          
           <div class="testimonials-container">
             <div class="testimonials-track" ref="track" :style="trackStyle">
               <div class="testimonial" 
@@ -171,19 +164,23 @@
               </div>
             </div>
           </div>
-          
-          <button class="carousel-button next" @click="nextTestimonial" :disabled="currentTestimonialIndex >= maxTestimonials">
-            <i class="mdi mdi-chevron-right"></i>
-          </button>
+          <div class="testimonial-controls">
+            <button class="carousel-button prev" @click="prevTestimonial" :disabled="currentTestimonialIndex === 0">
+              <i class="mdi mdi-chevron-left"></i>
+            </button>
+            <button class="carousel-button next" @click="nextTestimonial" :disabled="currentTestimonialIndex >= maxTestimonials">
+              <i class="mdi mdi-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ Section Mobile Optimisé -->
     <section class="faq-section">
       <div class="container">
         <div class="section-title">
-          <h2>Häufig gestellte Fragen</h2>
+          <h2>Häufige Fragen</h2>
         </div>
         <div class="faq-container">
           <div class="faq-item" 
@@ -203,13 +200,13 @@
       </div>
     </section>
 
-    <!-- Contact CTA -->
+    <!-- Contact CTA Mobile Optimisé -->
     <section class="contact-cta">
       <div class="container">
         <div class="cta-content">
-          <h2>Bereit für unsere Dienstleistungen?</h2>
-          <p>Kontaktieren Sie uns für ein unverbindliches Angebot oder weitere Informationen</p>
-          <a href="#" class="btn btn-primary">Kontakt aufnehmen</a>
+          <h2>Interessiert?</h2>
+          <p>Kontaktieren Sie uns für ein unverbindliches Angebot</p>
+          <a href="#" class="btn btn-primary">Kontakt</a>
         </div>
       </div>
     </section>
@@ -243,7 +240,7 @@ export default {
           description: 'Reparaturen, Ersatzteile und regelmäßige Wartung gemäß MPBetreibV'
         },
         {
-          title: 'Installationsservice',
+          title: 'Installation',
           image: '/images/services/installation.png',
           description: 'Fachgerechte Installation, Einweisung und Entsorgung von Altgeräten'
         },
@@ -283,7 +280,7 @@ export default {
           src: '/images/shop/products4.png',
           alt: 'Produktauswahl 4'
         },
-         {
+        {
           src: '/images/shop/products5.png',
           alt: 'Produktauswahl 5'
         },
@@ -291,7 +288,6 @@ export default {
           src: '/images/shop/products6.png',
           alt: 'Produktauswahl 6'
         },
-       
       ],
       testimonials: [
         {
@@ -354,7 +350,8 @@ export default {
     },
     trackStyle() {
       return {
-        transform: `translateX(-${this.currentTestimonialIndex * (100 / this.visibleTestimonials)}%)`
+        transform: `translateX(-${this.currentTestimonialIndex * (100 / this.visibleTestimonials)}%)`,
+        transition: 'transform 0.5s ease'
       };
     },
     carouselTrackStyle() {
@@ -402,13 +399,12 @@ export default {
     startCarousel() {
       this.carouselInterval = setInterval(() => {
         this.nextShopImage();
-      }, 5000); // Change image every 5 seconds
+      }, 5000);
     },
     resetCarouselInterval() {
       clearInterval(this.carouselInterval);
       this.startCarousel();
     },
-
     scrollToNextSection() {
       const nextSection = document.querySelector('.hero-banner').nextElementSibling;
       if (nextSection) {
@@ -416,6 +412,15 @@ export default {
           behavior: 'smooth' 
         });
       }
+    },
+    toggleServiceCard(event) {
+      // Empêche la navigation si on clique sur le lien
+      if (event.target.tagName === 'A' || event.target.parentElement.tagName === 'A') {
+        return;
+      }
+      
+      const card = event.currentTarget;
+      card.classList.toggle('expanded');
     }
   },
   mounted() {
@@ -430,15 +435,16 @@ export default {
 </script>
 
 <style scoped>
-/* Base Styles */
+/* Base Mobile-First Styles */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
-/* Modern Hero Styles */
+
+/* Hero Banner Mobile Optimisé */
 .hero-banner {
-  padding: 80px 0 40px;
+  padding: 40px 0 30px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9f0f5 100%);
   position: relative;
   overflow: hidden;
@@ -446,34 +452,33 @@ export default {
 
 .hero-content {
   display: flex;
-  align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .hero-text {
-  flex: 1;
-  position: relative;
-  z-index: 2;
+  order: 2;
+  text-align: center;
 }
 
 .tagline {
   display: inline-block;
   background-color: #0056b3;
   color: white;
-  padding: 6px 15px;
-  border-radius: 30px;
-  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .hero-text h1 {
-  font-size: 3rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 20px;
+  line-height: 1.3;
+  margin-bottom: 15px;
   color: #333;
 }
 
@@ -486,37 +491,41 @@ export default {
 .highlight::after {
   content: '';
   position: absolute;
-  bottom: 5px;
+  bottom: 3px;
   left: 0;
   width: 100%;
-  height: 8px;
+  height: 6px;
   background-color: rgba(0, 86, 179, 0.2);
   z-index: -1;
 }
 
 .hero-description {
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
   color: #555;
-  margin-bottom: 30px;
-  max-width: 90%;
+  margin-bottom: 25px;
+  max-width: 100%;
 }
 
 .cta-buttons {
   display: flex;
-  gap: 15px;
-  margin-bottom: 40px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 12px 25px;
+  justify-content: center;
+  padding: 12px 20px;
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .btn i {
@@ -524,20 +533,15 @@ export default {
   transition: transform 0.3s ease;
 }
 
-.btn:hover i {
-  transform: translateX(3px);
-}
-
 .btn-primary {
   background-color: #0056b3;
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
 }
 
 .btn-primary:hover {
   background-color: #004494;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
 }
 
 .btn-secondary {
@@ -548,7 +552,6 @@ export default {
 
 .btn-secondary:hover {
   background-color: #f0f6ff;
-  transform: translateY(-2px);
 }
 
 .btn-secondary i {
@@ -558,71 +561,68 @@ export default {
 
 .trust-badges {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .badge {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 6px;
+  font-size: 0.8rem;
   color: #555;
+  white-space: nowrap;
 }
 
 .badge i {
   color: #0056b3;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-/* Hero Visual */
+/* Hero Visual Mobile */
 .hero-visual {
-  flex: 1;
+  order: 1;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .image-container {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  margin-left: auto;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .main-image {
   width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transform: perspective(1000px) rotateY(-10deg);
-  transition: transform 0.5s ease;
-}
-
-.hero-visual:hover .main-image {
-  transform: perspective(1000px) rotateY(-5deg);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .floating-logo {
   position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 120px;
+  top: -15px;
+  right: -10px;
+  width: 80px;
   height: auto;
   background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  animation: float 6s ease-in-out infinite;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .stats-card {
   position: absolute;
-  bottom: -30px;
-  left: -30px;
+  bottom: -20px;
+  left: 10px;
   background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 .stat-item {
@@ -630,42 +630,30 @@ export default {
 }
 
 .stat-number {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #0056b3;
   line-height: 1;
 }
 
 .stat-label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #666;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
   cursor: pointer;
-  z-index: 10;
 }
 
 .scroll-indicator i {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #0056b3;
   animation: bounce 2s infinite;
-  transition: all 0.3s ease;
-  
-}
-
-.scroll-indicator:hover i {
-  color: #003d7a;
-  transform: scale(1.1);
 }
 
 @keyframes bounce {
@@ -673,32 +661,31 @@ export default {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   60% {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 }
-/* Services Section */
+
+/* Services Section Mobile Optimisé */
 .services-section {
-  padding: 80px 0;
+  padding: 50px 0;
   background-color: #fff;
 }
 
 .section-title {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   text-align: center;
-  position: relative;
 }
+
 .section-title h2 {
   color: #333;
-  font-size: 2rem;
-  text-transform: none;
+  font-size: 1.5rem;
   font-weight: 700;
-  display: inline-block;
-  padding: 0 80px; /* Augmenté l'espacement */
   position: relative;
-  background-color: #fff;
+  display: inline-block;
+  padding: 0 20px;
 }
 
 .section-title h2::before,
@@ -706,41 +693,42 @@ export default {
   content: '';
   position: absolute;
   top: 50%;
-  width: 150px; /* Longueur très importante des traits */
+  width: 30px;
   height: 2px;
   background-color: #0056b3;
 }
 
 .section-title h2::before {
-  left: -150px; /* Positionnement précis */
+  left: -30px;
 }
 
 .section-title h2::after {
-  right: -150px; /* Positionnement précis */
+  right: -30px;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 .service-card {
   background: #fff;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  border: 1px solid #f0f0f0;
-  display: flex;
-  flex-direction: column;
   border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.service-card.expanded {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .service-image-container {
-  height: 200px;
+  height: 160px;
   overflow: hidden;
   position: relative;
-  background-color: #f5f5f5;
 }
 
 .service-image {
@@ -751,30 +739,20 @@ export default {
 }
 
 .service-card:hover .service-image {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .service-content {
-  padding: 25px;
-  flex-grow: 1;
-}
-
-.service-footer {
-  padding: 15px 25px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  border: #bbb7b7 solid 1px;
+  padding: 15px;
 }
 
 .service-content h3 {
-  margin: 0 0 15px 0;
+  margin: 0 0 10px 0;
   color: #333;
-  font-size: 1.3rem;
-  text-align: left;
+  font-size: 1.1rem;
   font-weight: 600;
   position: relative;
-  padding-left: 15px;
-  text-transform: none;
+  padding-left: 12px;
 }
 
 .service-content h3::before {
@@ -783,7 +761,7 @@ export default {
   left: 0;
   top: 5px;
   bottom: 5px;
-  width: 4px;
+  width: 3px;
   background-color: #0056b3;
   border-radius: 2px;
 }
@@ -791,8 +769,14 @@ export default {
 .service-content p {
   color: #666;
   margin: 0;
-  line-height: 1.6;
-  text-align: left;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.service-footer {
+  padding: 12px 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
 }
 
 .service-link {
@@ -802,16 +786,16 @@ export default {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .service-link span {
-  margin-right: 8px;
+  margin-right: 6px;
 }
 
 .service-link i {
   transition: transform 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .service-link:hover {
@@ -819,39 +803,38 @@ export default {
 }
 
 .service-link:hover i {
-  transform: translateX(5px);
+  transform: translateX(3px);
 }
 
-/* Brands Section */
+/* Brands Section Mobile Optimisé */
 .brands-section {
-  padding: 80px 0;
-  text-align: center;
+  padding: 50px 0;
   background-color: #f9f9f9;
 }
 
 .brands-section h2 {
-  margin-bottom: 40px; /* Augmenté la marge pour compenser la suppression du texte */
+  margin-bottom: 30px;
   color: #333;
-  font-size: 2rem;
-  text-transform: none;
+  font-size: 1.5rem;
 }
 
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   align-items: center;
-  max-width: 1000px;
-  margin: 0 auto;
+  padding: 0 10px;
 }
 
 .brand-logo {
-  max-width: 60%;
+  max-width: 80%;
   height: auto;
-  max-height: 80px;
+  max-height: 50px;
   filter: grayscale(100%);
   opacity: 0.7;
   transition: all 0.3s ease;
+  margin: 0 auto;
+  display: block;
 }
 
 .brand-logo:hover {
@@ -859,72 +842,91 @@ export default {
   opacity: 1;
 }
 
-/* Shop Preview */
+/* Shop Preview Mobile Optimisé */
 .shop-preview {
-  padding: 80px 0;
+  padding: 50px 0;
   background-color: #0056b3;
   color: white;
 }
 
 .shop-content {
   display: flex;
-  align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .shop-text {
-  flex: 1;
+  text-align: center;
 }
 
 .shop-text h2 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  text-transform: none;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 .shop-text p {
-  margin-bottom: 25px;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
 }
-
-.btn-shop{
-  border: solid 1px #ffff;
-} 
 
 .feature-list {
   list-style: none;
   padding: 0;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+  text-align: left;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .feature-list li {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 .feature-list i {
   margin-right: 10px;
   color: #4CAF50;
+  font-size: 0.9rem;
 }
 
-/* Shop Preview Carousel */
+.btn-shop {
+  display: inline-block;
+  background-color: white;
+  color: #0056b3;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-shop:hover {
+  background-color: #f0f6ff;
+  transform: translateY(-2px);
+}
+
+/* Shop Carousel Mobile */
 .shop-image-carousel {
-  flex: 1;
+  order: -1;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  max-width: 500px; /* Ajout d'une largeur maximale */
-  margin: 0 auto; /* Centrer le carrousel */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 300px; /* Réduit de 300px à 250px */
+  height: 220px;
   overflow: hidden;
 }
 
@@ -937,29 +939,25 @@ export default {
 .carousel-slide {
   flex: 0 0 100%;
   height: 100%;
-  
   box-sizing: border-box;
 }
 
 .carousel-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Changé de 'cover' à 'contain' pour voir l'image entière */
+  object-fit: contain;
   object-position: center;
-  border-radius: 4px;
-  
 }
-
 
 .carousel-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   color: #0056b3;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -970,31 +968,31 @@ export default {
 }
 
 .carousel-button:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
 }
 
 .carousel-button.prev {
-  left: 15px;
+  left: 10px;
 }
 
 .carousel-button.next {
-  right: 15px;
+  right: 10px;
 }
 
 .carousel-indicators {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   z-index: 10;
 }
 
 .carousel-indicators button {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
@@ -1008,22 +1006,22 @@ export default {
   transform: scale(1.2);
 }
 
-/* Testimonials Section */
+/* Testimonials Mobile Optimisé */
 .testimonials-section {
-  padding: 80px 0;
+  padding: 50px 0;
   background-color: #fff;
   overflow: hidden;
 }
 
 .testimonials-wrapper {
   position: relative;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .testimonials-container {
   overflow: hidden;
-  padding: 0 60px;
+  padding: 0 15px;
 }
 
 .testimonials-track {
@@ -1033,18 +1031,18 @@ export default {
 }
 
 .testimonial {
-  flex: 0 0 calc(100% / 3);
-  padding: 0 15px;
+  flex: 0 0 100%;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
 .testimonial-content {
   background: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   height: 100%;
-  min-height: 250px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
 }
@@ -1053,10 +1051,10 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
   font-style: italic;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .full-quote {
@@ -1065,16 +1063,22 @@ export default {
   text-align: center;
   color: #555;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.5;
   flex-grow: 1;
+  font-size: 0.95rem;
 }
 
+.testimonial-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
 
 .carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  position: relative;
+  top: auto;
+  transform: none;
   background: #0056b3;
   color: white;
   border: none;
@@ -1090,63 +1094,51 @@ export default {
 
 .carousel-button:hover {
   background: #003d7a;
-  transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: translateY(-50%);
-}
-
-.carousel-button.prev {
-  left: 0;
-}
-
-.carousel-button.next {
-  right: 0;
 }
 
 .carousel-button i {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .rating-stars {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
 }
 
-
-
-/* FAQ Section */
+/* FAQ Section Mobile Optimisé */
 .faq-section {
-  padding: 80px 0;
+  padding: 50px 0;
   background-color: #f8f9fa;
 }
 
 .faq-container {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .faq-item {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
   transition: all 0.3s ease;
 }
 
 .faq-item.active {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
 
 .faq-question {
-  padding: 20px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1160,28 +1152,28 @@ export default {
 
 .faq-question h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #0056b3;
   font-weight: 600;
   flex: 1;
-  text-transform: none;
 }
 
 .faq-question i {
   color: #0056b3;
   transition: transform 0.3s ease;
-  margin-left: 15px;
+  margin-left: 10px;
+  font-size: 0.9rem;
 }
 
 .faq-answer {
-  padding: 0 20px;
+  padding: 0 15px;
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 .faq-item.active .faq-answer {
-  padding: 0 20px 20px 20px;
+  padding: 0 15px 15px 15px;
   max-height: 500px;
 }
 
@@ -1190,15 +1182,16 @@ export default {
 }
 
 .faq-answer p {
-  padding: 0 0 20px 0;
+  padding: 0 0 15px 0;
   margin: 0;
   color: #555;
-  line-height: 1.6;
+  line-height: 1.5;
+  font-size: 0.9rem;
 }
 
-/* Contact CTA */
+/* Contact CTA Mobile Optimisé */
 .contact-cta {
-  padding: 100px 0;
+  padding: 60px 0;
   text-align: center;
   background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 86, 179, 0.9)), url('/images/cta-bg.jpg');
   background-size: cover;
@@ -1207,146 +1200,127 @@ export default {
 }
 
 .contact-cta h2 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  text-transform: none;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 .contact-cta p {
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 25px;
+  font-size: 1rem;
+  max-width: 100%;
+  padding: 0 20px;
 }
 
-/* Transition animations */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 20px;
   }
   
-  .shop-content {
-    gap: 30px;
+  .hero-banner {
+    padding: 60px 0 40px;
   }
-
-  .testimonial {
-    flex: 0 0 50%;
+  
+  .hero-text h1 {
+    font-size: 2.2rem;
   }
-
-  .testimonial-content {
-    min-height: 280px;
-  }
-
-  .carousel-container {
-    height: 350px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2rem;
+  
+  .hero-description {
+    font-size: 1.1rem;
   }
   
   .cta-buttons {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    justify-content: center;
   }
   
-  .shop-content {
-    flex-direction: column;
+  .btn {
+    width: auto;
+    padding: 12px 25px;
   }
   
-  .section-title h2::before,
-  .section-title h2::after {
-    width: 60px;
-  }
-  
-  .section-title h2::before {
-    left: -70px;
-  }
-  
-  .section-title h2::after {
-    right: -70px;
-  }
-
-  .testimonial {
-    flex: 0 0 100%;
-  }
-
-  .testimonial-content {
-    min-height: auto;
-  }
-  
-  .carousel-button {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .carousel-button i {
-    font-size: 18px;
-  }
-
-  .carousel-indicators button {
-    width: 8px;
-    height: 8px;
-  }
-}
-
-@media (max-width: 480px) {
   .services-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .section-title h2 {
-    font-size: 1.5rem;
-    padding: 0 40px;
-  }
-  
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-  
-  .hero-content p {
-    font-size: 1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .brands-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
   }
   
-  .section-title h2::before,
-  .section-title h2::after {
-    width: 30px;
+  .shop-content {
+    flex-direction: row;
+    align-items: center;
   }
   
-  .section-title h2::before {
-    left: -40px;
+  .shop-text {
+    text-align: left;
+    flex: 1;
   }
   
-  .section-title h2::after {
-    right: -40px;
+  .shop-image-carousel {
+    order: 0;
+    flex: 1;
   }
   
-  .faq-question {
-    padding: 15px;
+  .feature-list {
+    margin-left: 0;
+    margin-right: 0;
   }
   
-  .faq-question h3 {
-    font-size: 1rem;
+  .testimonial {
+    flex: 0 0 50%;
   }
-
+  
   .carousel-container {
-    height: 250px;
+    height: 280px;
   }
 }
-</style> 
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .hero-content {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .hero-text {
+    order: 0;
+    text-align: left;
+    flex: 1;
+  }
+  
+  .hero-visual {
+    order: 1;
+    flex: 1;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-description {
+    max-width: 90%;
+    margin-left: 0;
+  }
+  
+  .cta-buttons {
+    justify-content: flex-start;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .brands-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .testimonial {
+    flex: 0 0 calc(100% / 3);
+  }
+  
+  .carousel-container {
+    height: 320px;
+  }
+}
+</style>
