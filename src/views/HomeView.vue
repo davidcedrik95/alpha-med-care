@@ -536,7 +536,7 @@ export default {
 /* HERO BANNER          */
 /* ==================== */
 .hero-banner {
-  padding: 80px 0 40px;
+ padding: 80px 0 80px; /* Augmentez le padding-bottom pour plus d'espace */
   background: linear-gradient(135deg, #f8f9fa 0%, #e9f0f5 100%);
   position: relative;
   overflow: hidden;
@@ -701,6 +701,7 @@ export default {
   align-items: center;
   cursor: pointer;
   z-index: 10;
+   margin-top: 40px; /* Ajoutez cette ligne pour le décalage vers le bas */
 }
 
 .scroll-indicator i {
@@ -722,9 +723,23 @@ export default {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
+  0%, 20%, 50%, 80%, 100% { 
+    transform: translateX(-50%) translateY(0); 
+  }
+  40% { 
+    transform: translateX(-50%) translateY(-10px); 
+  }
+  60% { 
+    transform: translateX(-50%) translateY(-5px); 
+  }
+}
+
+/* Pour les écrans mobiles */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    margin-top: 60px; /* Plus d'espace sur mobile si nécessaire */
+    bottom: 20px; /* Ajustez selon vos besoins */
+  }
 }
 
 /* ==================== */
