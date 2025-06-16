@@ -223,6 +223,71 @@
       </div>
     </section>
   </div>
+
+   <!-- Bereich "Einsatzgebiete" -->
+  <section class="domains-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Unsere Einsatzgebiete</h2>
+        <p>Medizinische Spezialisierungen und unterstützte Geräte</p>
+      </div>
+      
+      <div class="domains-grid">
+        <div class="domain-card" v-for="domain in medicalDomains" :key="domain.title">
+          <div class="domain-icon">
+            <i :class="domain.icon"></i>
+          </div>
+          <h3>{{ domain.title }}</h3>
+          <ul class="equipment-list">
+            <li v-for="(equipment, index) in domain.equipments" :key="index">
+              <i class="fas fa-check-circle"></i>
+              <span>{{ equipment }}</span>
+            </li>
+          </ul>
+          <a :href="domain.link" class="domain-link">
+            <span>Mehr erfahren</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bereich "Normen & Zertifizierungen" -->
+  <section class="standards-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Normen & Zertifizierungen</h2>
+        <p>Einhaltung deutscher und internationaler Vorschriften</p>
+      </div>
+      
+      <div class="standards-container">
+        <div class="standards-content">
+          <p>Wir garantieren die strikte Einhaltung aller relevanten Normen für die Sicherheit Ihrer medizinischen Geräte:</p>
+          
+          <ul class="standards-list">
+            <li v-for="standard in standards" :key="standard.name">
+              <div class="standard-badge">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div class="standard-info">
+                <h4>{{ standard.name }}</h4>
+                <p>{{ standard.description }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="standards-visual">
+          <img src="/images/logo.png" alt="Medizinische Zertifizierungen" class="standards-image">
+          <div class="certification-badges">
+            <img src="/images/logo.png" alt="ISO Zertifizierung" class="certification-badge">
+            <img src="/images/logo.png" alt="DIN Zertifizierung" class="certification-badge">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -235,6 +300,75 @@ export default {
       testimonialWidth: 350,
       currentShopImageIndex: 0,
       carouselInterval: null,
+ medicalDomains: [
+        {
+          title: 'Kardiologie & Pneumologie',
+          icon: 'fas fa-heartbeat',
+          equipments: [
+            'Ergometer',
+            'EKG-Geräte',
+            'Spirometer',
+            'Herzmonitore',
+            'Belastungstestgeräte'
+          ],
+          link: '#kardiologie'
+        },
+        {
+          title: 'Rehabilitation & Physiotherapie',
+          icon: 'fas fa-recycle',
+          equipments: [
+            'Rehabilitationsgeräte',
+            'Ergometrische Fahrräder',
+            'Stabilisationsplattformen',
+            'Traktionssysteme',
+            'Mobilitätshilfen'
+          ],
+          link: '#physiotherapie'
+        },
+        {
+          title: 'Medizinische Diagnostik',
+          icon: 'fas fa-stethoscope',
+          equipments: [
+            'Blutdruckmessgeräte',
+            'Thermometer',
+            'Pulsoximeter',
+            'Blutanalysatoren',
+            'Ultraschallgeräte'
+          ],
+          link: '#diagnostik'
+        },
+        {
+          title: 'Krankenhausausrüstung',
+          icon: 'fas fa-hospital',
+          equipments: [
+            'Desinfektionssysteme',
+            'Patientenmonitore',
+            'Infusionspumpen',
+            'Beatmunsgeräte',
+            'Sterile Ausrüstung'
+          ],
+          link: '#krankenhaus'
+        }
+      ],
+      standards: [
+        {
+          name: 'MPBetreibV',
+          description: 'Konformität mit der deutschen Medizinprodukte-Betreiberverordnung (gesetzlich vorgeschrieben)'
+        },
+        {
+          name: 'DIN EN 60601',
+          description: 'Elektrische Sicherheit medizinischer Geräte nach europäischen Normen'
+        },
+        {
+          name: 'ISO 13485',
+          description: 'Zertifiziertes Qualitätsmanagementsystem für Medizinprodukte'
+        },
+        {
+          name: 'RoHS-Richtlinie',
+          description: 'Einhaltung der Beschränkungen gefährlicher Stoffe in Elektrogeräten'
+        }
+      ]
+    ,
       services: [
         {
           title: 'Prüfungen',
@@ -1121,7 +1255,6 @@ export default {
 /* ==================== */
 
 
-/* Testimonials Section */
 .testimonials-section {
   padding: 80px 0;
   background-color: #fff;
@@ -1442,6 +1575,226 @@ export default {
   
   .carousel-container {
     height: 250px;
+  }
+}
+
+.domains-section {
+  padding: 80px 0;
+  background-color: #f9f9f9;
+}
+
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.domain-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.domain-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
+}
+
+.domain-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #0056b3 0%, #003d7a 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 1.8rem;
+}
+
+.domain-card h3 {
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.equipment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.equipment-list li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  color: #555;
+}
+
+.equipment-list i {
+  color: #0056b3;
+  margin-right: 10px;
+  font-size: 0.9rem;
+}
+
+.domain-link {
+  display: inline-flex;
+  align-items: center;
+  color: #0056b3;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: color 0.3s ease;
+}
+
+.domain-link i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.domain-link:hover {
+  color: #003d7a;
+}
+
+.domain-link:hover i {
+  transform: translateX(5px);
+}
+
+/* Normes & Conformité Styles */
+.standards-section {
+  padding: 80px 0;
+  background-color: white;
+}
+
+.standards-container {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.standards-content {
+  flex: 1;
+}
+
+.standards-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.standards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.standards-list li {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  align-items: flex-start;
+}
+
+.standard-badge {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0056b3;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.standard-info h4 {
+  color: #333;
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+}
+
+.standard-info p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.standards-visual {
+  flex: 1;
+  position: relative;
+}
+
+.standards-image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.certification-badges {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  display: flex;
+  gap: 15px;
+}
+
+.certification-badge {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .standards-container {
+    flex-direction: column;
+  }
+  
+  .standards-visual {
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+  .certification-badges {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .domains-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .domains-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .standards-list li {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .certification-badge {
+    width: 60px;
+    height: 60px;
   }
 }
 </style>
