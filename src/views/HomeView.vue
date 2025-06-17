@@ -212,19 +212,7 @@
       </div>
     </section>
 
-    <!-- Contact CTA Mobile Optimisé -->
-    <section class="contact-cta">
-      <div class="container">
-        <div class="cta-content">
-          <h2>Interessiert?</h2>
-          <p>Kontaktieren Sie uns für ein unverbindliches Angebot</p>
-          <a href="#" class="btn btn-primary">Kontakt</a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-   <!-- Bereich "Einsatzgebiete" -->
+     <!-- Bereich "Einsatzgebiete" -->
   <section class="domains-section">
     <div class="container">
       <div class="section-title">
@@ -283,12 +271,29 @@
           <div class="certification-badges">
             <img src="/images/certifications/dguv-certified.png" alt="ISO Zertifizierung" class="certification-badge">
             <img src="/images/certifications/iso-13485.png" alt="DIN Zertifizierung" class="certification-badge">
-             <img src="/images/certifications/isoq-9001.png" alt="DIN Zertifizierung" class="certification-badge">
+             <img src="/images/certifications/tuv-certified.png" alt="DIN Zertifizierung" class="certification-badge">
           </div>
         </div>
       </div>
     </div>
   </section>
+
+
+    <!-- Contact CTA Mobile Optimisé -->
+    <section class="contact-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Interessiert?</h2>
+          <p>Kontaktieren Sie uns für ein unverbindliches Angebot</p>
+          <a href="#" class="btn btn-primary">Kontakt</a>
+        </div>
+      </div>
+    </section>
+
+    
+  </div>
+
+  
 </template>
 
 <script>

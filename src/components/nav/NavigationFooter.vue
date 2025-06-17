@@ -120,18 +120,23 @@
           <div class="footer-images-section">
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.social') }}</h4>
-              <div class="social-icons-group">
-                <div class="social-icons-row">
-                  <a href="#" class="social-icon" :aria-label="$t('social.facebook')"><v-icon>mdi-facebook</v-icon></a>
-                  <a href="#" class="social-icon" :aria-label="$t('social.linkedin')"><v-icon>mdi-linkedin</v-icon></a>
-                  <a href="#" class="social-icon" :aria-label="$t('social.instagram')"><v-icon>mdi-instagram</v-icon></a>
-                </div>
-                <div class="social-icons-row">
-                  <a href="#" class="social-icon" :aria-label="$t('social.twitter')"><v-icon>mdi-twitter</v-icon></a>
-                  <a href="#" class="social-icon" :aria-label="$t('social.youtube')"><v-icon>mdi-youtube</v-icon></a>
-                  <a href="#" class="social-icon" :aria-label="$t('social.whatsapp')"><v-icon>mdi-whatsapp</v-icon></a>
-                </div>
-              </div>
+              <div class="social-3d">
+  <a href="#" class="social-icon-3d facebook" aria-label="Facebook">
+    <i class="mdi mdi-facebook"></i>
+  </a>
+  <a href="#" class="social-icon-3d twitter" aria-label="Twitter">
+    <i class="mdi mdi-twitter"></i>
+  </a>
+  <a href="#" class="social-icon-3d instagram" aria-label="Instagram">
+    <i class="mdi mdi-instagram"></i>
+  </a>
+  <a href="#" class="social-icon-3d linkedin" aria-label="LinkedIn">
+    <i class="mdi mdi-linkedin"></i>
+  </a>
+  <a href="#" class="social-icon-3d youtube" aria-label="YouTube">
+    <i class="mdi mdi-youtube"></i>
+  </a>
+</div>
             </div>
 
             <div class="footer-images-column">
@@ -318,14 +323,14 @@ export default {
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.5rem 1rem 1.25rem;
+  padding: 1.5rem 1rem 0.75rem; /* Réduit le padding */
 }
 
 /* Colonnes et contenu */
 .footer-main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
@@ -439,62 +444,120 @@ export default {
   gap: 0.5rem;
 }
 
-/* Groupes d'icônes et images */
-.social-icons-group {
+/* Styles pour les icônes de réseaux sociaux */
+.social-3d {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
+  perspective: 1000px;
 }
 
-.social-icons-row {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1.5rem;
-}
-
-.social-icon {
-  font-size: 1.8rem;
-  color: #353638;
-  transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.social-icon-3d {
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  font-size: 1.8rem;
+  color: white;
+  border-radius: 12px;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.social-icon:hover {
-  transform: translateY(-5px) rotateX(20deg);
-  color: #3a7bd5;
+/* Effet 3D de base */
+.social-icon-3d::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateZ(-10px);
+  filter: brightness(0.8);
+  transition: all 0.4s;
 }
 
-/* Couleurs spécifiques pour chaque réseau */
-.social-icon .mdi-facebook:hover { color: #3b5998; }
-.social-icon .mdi-linkedin:hover { color: #0077b5; }
-.social-icon .mdi-instagram:hover { 
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Couleurs spécifiques */
+.facebook { background: #3b5998; }
+.twitter { background: #1da1f2; }
+.instagram { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
+.linkedin { background: #0077b5; }
+.youtube { background: #ff0000; }
+
+/* Animation 3D au survol */
+.social-icon-3d:hover {
+  transform: rotateY(20deg) rotateX(10deg) translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
-.social-icon .mdi-twitter:hover { color: #1da1f2; }
-.social-icon .mdi-youtube:hover { color: #ff0000; }
-.social-icon .mdi-whatsapp:hover { color: #25d366; }
+
+.social-icon-3d:hover::before {
+  transform: translateZ(-15px);
+}
+
+/* Effet de profondeur supplémentaire */
+.social-icon-3d::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.1);
+  transform: translateZ(5px);
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .social-3d {
+    gap: 0.8rem;
+  }
+  
+  .social-icon-3d {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+}
+
+@keyframes float-3d {
+  0%, 100% { transform: translateY(0) rotateY(0); }
+  50% { transform: translateY(-10px) rotateY(10deg); }
+}
+
+.social-3d:hover .social-icon-3d {
+  animation: float-3d 3s ease-in-out infinite;
+}
+
+.social-3d:hover .social-icon-3d:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.social-3d:hover .social-icon-3d:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.social-3d:hover .social-icon-3d:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.social-3d:hover .social-icon-3d:nth-child(5) {
+  animation-delay: 0.8s;
+}
 
 .payment-methods-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.3rem;
   background: rgba(87, 86, 86, 0.1);
-  padding: 0.8rem;
+  padding: 0.4rem;
   border-radius: 12px;
 }
 
 .payment-methods-group img {
   height: auto;
-  max-height: 35px;
-  max-width: 55px;
+  max-height: 20px !important; /* Taille réduite */
+  max-width: 35px !important;
+  object-fit: contain;
   transition: all 0.3s ease;
   filter: sepia(0.2) contrast(1.1);
 }
@@ -511,7 +574,8 @@ export default {
   width: 100%;
   max-width: 100%;
   height: auto;
-  padding: 0.5rem;
+  max-height: 30px !important;
+  padding: 0.3rem;
   background: white;
   border-radius: 8px;
   object-fit: contain;
@@ -540,9 +604,10 @@ export default {
 
 .certification-img {
   background: white;
-  padding: 0.6rem;
+  
   border-radius: 6px;
-  max-height: 60px;
+  max-height: 40px !important;
+  padding: 0.3rem;
   width: auto;
 }
 
@@ -555,14 +620,14 @@ export default {
 .app-download-group {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.5rem;
   margin-top: 0.5rem;
 }
 
 .app-download-img {
-  height: 45px;
   width: auto;
-  max-width: 150px;
+  height: 30px !important;
+  max-width: 100px !important;
   border-radius: 7px;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -695,6 +760,27 @@ export default {
   
   .shipping-methods-group {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ajustements pour les écrans mobiles */
+@media (max-width: 768px) {
+  .payment-methods-group img {
+    max-height: 18px !important;
+    max-width: 30px !important;
+  }
+  
+  .shipping-methods-group img {
+    max-height: 25px !important;
+  }
+  
+  .certification-img {
+    max-height: 35px !important;
+  }
+  
+  .app-download-img {
+    height: 25px !important;
+    max-width: 90px !important;
   }
 }
 </style>
