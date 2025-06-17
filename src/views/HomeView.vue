@@ -279,10 +279,11 @@
         </div>
         
         <div class="standards-visual">
-          <img src="/images/logo.png" alt="Medizinische Zertifizierungen" class="standards-image">
+          <img src="/images/certifications/iso.png" alt="Medizinische Zertifizierungen" class="standards-image">
           <div class="certification-badges">
             <img src="/images/certifications/dguv-certified.png" alt="ISO Zertifizierung" class="certification-badge">
             <img src="/images/certifications/iso-13485.png" alt="DIN Zertifizierung" class="certification-badge">
+             <img src="/images/certifications/isoq-9001.png" alt="DIN Zertifizierung" class="certification-badge">
           </div>
         </div>
       </div>
