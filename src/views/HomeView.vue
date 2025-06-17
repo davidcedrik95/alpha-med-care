@@ -279,16 +279,78 @@
   </section>
 
 
-    <!-- Contact CTA Mobile Optimisé -->
-    <section class="contact-cta">
-      <div class="container">
-        <div class="cta-content">
-          <h2>Interessiert?</h2>
-          <p>Kontaktieren Sie uns für ein unverbindliches Angebot</p>
-          <a href="#" class="btn btn-primary">Kontakt</a>
+   
+   <!-- Contact CTA Enhanced -->
+<section class="contact-cta">
+  <div class="container">
+    <div class="cta-content">
+      <div class="cta-text">
+        <div class="tagline">Kontaktieren Sie uns</div>
+        <h2>Bereit für eine <span class="highlight">professionelle Zusammenarbeit</span>?</h2>
+        <p class="cta-description">Unser Expertenteam steht Ihnen für Beratung, Angebote und Support zur Verfügung. Nutzen Sie unseren schnellen Kontaktweg:</p>
+        
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-info">
+              <h4>Telefonischer Support</h4>
+              <a href="tel:+49123456789" class="contact-link">+49 123 456 789</a>
+              <p>Mo-Fr: 8:00-18:00 Uhr</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info">
+              <h4>E-Mail Anfrage</h4>
+              <a href="mailto:info@alpha-med-care.de" class="contact-link">info@alpha-med-care.de</a>
+              <p>Antwort innerhalb von 24h</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+      
+      <div class="cta-form-container">
+        <div class="form-card">
+          <h3>Kontaktformular</h3>
+          <form class="cta-form">
+            <div class="form-group">
+              <input type="text" placeholder="Ihr Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Ihre E-Mail" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Telefon (optional)">
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Ihre Nachricht" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <span>Nachricht senden</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          
+          <div class="form-footer">
+            <div class="trust-badge">
+              <i class="fas fa-lock"></i>
+              <span>Ihre Daten sind sicher</span>
+            </div>
+            <div class="trust-badge">
+              <i class="fas fa-shield-alt"></i>
+              <span>DSGVO konform</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     
   </div>
@@ -1458,30 +1520,277 @@ export default {
   color: #555;
   line-height: 1.6;
 }
-
 /* ==================== */
-/* CONTACT CTA          */
+/* ENHANCED CONTACT CTA */
 /* ==================== */
 .contact-cta {
   padding: 100px 0;
-  text-align: center;
-  background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 86, 179, 0.9)), url('/images/cta-bg.jpg');
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(135deg, #0056b3 0%, #003d7a 100%);
   color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: url('/images/contact-bg-pattern.png') no-repeat;
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.cta-content {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-text {
+  flex: 1;
+}
+
+.tagline {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .contact-cta h2 {
+  font-size: 2.2rem;
   margin-bottom: 20px;
-  font-size: 2rem;
+  line-height: 1.3;
 }
 
-.contact-cta p {
-  margin-bottom: 30px;
+.highlight {
+  position: relative;
+  display: inline-block;
+}
+
+
+/* Pour les fonds bleus (CTA) */
+.contact-cta .highlight::after {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Pour les fonds clairs (autres sections) */
+.hero-text .highlight::after {
+  background-color: rgba(0, 86, 179, 0.2);
+}
+
+/* Texte blanc spécifique pour le CTA */
+.contact-cta .highlight {
+  color: white;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  z-index: -1;
+}
+
+.cta-description {
   font-size: 1.1rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  max-width: 90%;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.contact-method {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contact-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.contact-link {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #cce0ff;
+  text-decoration: underline;
+}
+
+.contact-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.cta-form-container {
+  flex: 1;
+  max-width: 500px;
+}
+
+.form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.form-card h3 {
+  color: #333;
+  margin: 0 0 25px 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.cta-form .form-group {
+  margin-bottom: 20px;
+}
+
+.cta-form input,
+.cta-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.cta-form input:focus,
+.cta-form textarea:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .cta-text {
+    text-align: center;
+  }
+  
+  .cta-description {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contact-method {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .contact-info {
+    text-align: left;
+  }
+  
+  .cta-form-container {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-cta {
+    padding: 80px 0;
+  }
+  
+  .contact-cta h2 {
+    font-size: 1.8rem;
+  }
+  
+  .form-card {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-method {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+  
+  .form-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
 /* ==================== */
