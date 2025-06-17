@@ -163,7 +163,7 @@
                 <img src="/images/certifications/iso-13485.png" :alt="$t('footer.certifications.iso13485')" class="certification-img" loading="lazy">
                 <img src="/images/certifications/tuv-certified.png" :alt="$t('footer.certifications.tuv')" class="certification-img" loading="lazy">
                 <img src="/images/certifications/dguv-certified.png" :alt="$t('footer.certifications.dguv')" class="certification-img" loading="lazy">
-                <img src="/images/certifications/iso-9001.png" :alt="$t('footer.certifications.iso9001')" class="certification-img" loading="lazy">
+                <img src="/images/certifications/trusted-shops.png" :alt="$t('footer.certifications.iso9001')" class="certification-img" loading="lazy">
               </div>
             </div>
 
@@ -186,7 +186,6 @@
               {{ $t('footer.copyright', { year: new Date().getFullYear(), company: $t('company.name') }) }}
             </div>
             <div class="footer-badges">
-              <img src="/images/badges/trusted-shops.png" :alt="$t('footer.badges.trusted_shops')" loading="lazy">
               <img src="/images/badges/safe-shopping.png" :alt="$t('footer.badges.safe_shopping')" loading="lazy">
               <img src="/images/badges/ssl-secured.png" :alt="$t('footer.badges.ssl')" loading="lazy">
             </div>
