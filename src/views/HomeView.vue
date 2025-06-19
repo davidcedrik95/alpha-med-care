@@ -350,7 +350,7 @@
             </div>
             <div class="contact-info">
               <h4>Telefonischer Support</h4>
-              <a href="tel:+49123456789" class="contact-link">+49 123 456 789</a>
+              <a href="tel:+499666188950" class="contact-link">+49(0)9666188950</a>
               <p>Mo-Fr: 8:00-18:00 Uhr</p>
             </div>
           </div>
