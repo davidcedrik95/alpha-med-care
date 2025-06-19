@@ -212,34 +212,88 @@
       </div>
     </section>
 
-     <!-- Bereich "Einsatzgebiete" -->
-  <section class="domains-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Unsere Einsatzgebiete</h2>
-        <p>Medizinische Spezialisierungen und unterstützte Geräte</p>
+  <!-- Bereich "Einsatzgebiete" -->
+  <!-- Dans la section domains-section, ajoutez ces deux nouvelles cartes -->
+<section class="domains-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Unsere Einsatzgebiete</h2>
+      <p>Medizinische Spezialisierungen und unterstützte Geräte</p>
+    </div>
+    
+    <div class="domains-grid">
+      <!-- Cartes existantes... -->
+      
+      <!-- Nouvelle carte pour les équipements -->
+      <div class="domain-card">
+        <div class="domain-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3>Technische Ausrüstung</h3>
+        <ul class="equipment-list">
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Prüf- und Messgeräte</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Kalibrierungsequipment</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Wartungswerkzeuge</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Diagnosesysteme</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Sicherheitsausrüstung</span>
+          </li>
+        </ul>
+        <a href="#equipment" class="domain-link">
+          <span>Mehr erfahren</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
       </div>
       
-      <div class="domains-grid">
-        <div class="domain-card" v-for="domain in medicalDomains" :key="domain.title">
-          <div class="domain-icon">
-            <i :class="domain.icon"></i>
-          </div>
-          <h3>{{ domain.title }}</h3>
-          <ul class="equipment-list">
-            <li v-for="(equipment, index) in domain.equipments" :key="index">
-              <i class="fas fa-check-circle"></i>
-              <span>{{ equipment }}</span>
-            </li>
-          </ul>
-          <a :href="domain.link" class="domain-link">
-            <span>Mehr erfahren</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
+      <!-- Nouvelle carte pour la product integration -->
+      <div class="domain-card">
+        <div class="domain-icon">
+          <i class="fas fa-handshake"></i>
         </div>
+        <h3>Produktintegration (Hersteller)</h3>
+        <ul class="equipment-list">
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>ERGO-FIT</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>proxomed</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>PHYSIOMED</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>FREI AG – Shop</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>FREI AG – Hauptseite</span>
+          </li>
+        </ul>
+        <a href="#integration" class="domain-link">
+          <span>Mehr erfahren</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Bereich "Normen & Zertifizierungen" -->
   <section class="standards-section">
