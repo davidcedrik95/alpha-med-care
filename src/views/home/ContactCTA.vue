@@ -117,15 +117,14 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 /* ==================== */
 /* CONTACT CTA SECTION  */
 /* ==================== */
 .contact-cta {
     padding: 100px 0;
-background: linear-gradient(
-  135deg,
-  rgba(12, 72, 129, 0.95) 0%,
+    background: linear-gradient(135deg,rgba(12, 72, 129, 0.95) 0%,
   rgba(25, 105, 170, 0.95) 50%,
   rgba(12, 72, 129, 0.95) 100%
 ) !important;
