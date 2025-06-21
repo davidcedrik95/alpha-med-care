@@ -124,10 +124,9 @@ export default {
 .contact-cta {
     padding: 100px 0;
 background: linear-gradient(
-  145deg,
+  135deg,
   rgba(12, 72, 129, 0.95) 0%,
-  rgba(50, 120, 180, 0.9) 30%,
-  rgba(10, 60, 100, 0.95) 70%,
+  rgba(25, 105, 170, 0.95) 50%,
   rgba(12, 72, 129, 0.95) 100%
 ) !important;
 
