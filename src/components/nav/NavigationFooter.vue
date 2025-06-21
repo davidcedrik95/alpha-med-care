@@ -315,7 +315,7 @@ export default {
 <style scoped>
 /* Structure principale */
 .footer-wrapper {
-  background-color: rgba(236, 234, 234, 0.377);
+  background-color: rgba(207, 212, 212, 0.377);
   width: 100%;
   color: #333;
 }
