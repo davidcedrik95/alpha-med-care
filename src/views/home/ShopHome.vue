@@ -19,6 +19,10 @@
               <span class="feature-text">Kompetenter Service</span>
             </li>
           </ul>
+          <a href="#" class="btn btn-primary btn-shop desktop-shop-btn">
+            Zum Online Shop
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
         
         <div class="shop-image-carousel">
@@ -45,7 +49,10 @@
           </div>
         </div>
         
-        <a href="#" class="btn btn-primary btn-shop mobile-shop-btn">Zum Shop</a>
+        <a href="#" class="btn btn-primary btn-shop mobile-shop-btn">
+          Zum Online Shop
+          <i class="fas fa-arrow-right"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -149,9 +156,9 @@ export default {
 }
 
 .btn-primary {
-  background-color: #0056b3;
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    background-color: rgba(12, 72, 129, 0.95) !important;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
 }
 
 .btn-primary:hover {
@@ -163,7 +170,11 @@ export default {
 /* Styles spécifiques au composant */
 .shop-preview {
   padding: 80px 0;
-  background-color: #0056b3;
+    background: linear-gradient(135deg,rgba(12, 72, 129, 0.95) 0%,
+  rgba(25, 105, 170, 0.95) 50%,
+  rgba(12, 72, 129, 0.95) 100%
+) !important;
+
   color: white;
 }
 
@@ -215,6 +226,21 @@ export default {
 
 .btn-shop {
   border: solid 1px #ffff;
+}
+
+.desktop-shop-btn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.desktop-shop-btn i {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.desktop-shop-btn:hover i {
+  transform: translateX(3px);
 }
 
 .shop-image-carousel {
@@ -313,6 +339,17 @@ export default {
 
 .mobile-shop-btn {
   display: none;
+  gap: 8px;
+  align-items: center;
+}
+
+.mobile-shop-btn i {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.mobile-shop-btn:hover i {
+  transform: translateX(3px);
 }
 
 /* Responsive Styles */
@@ -337,9 +374,13 @@ export default {
     max-width: 100%;
   }
   
+  .desktop-shop-btn {
+    display: none;
+  }
+  
   .mobile-shop-btn {
     order: 3;
-    display: block;
+    display: inline-flex;
     margin: 0 auto;
     width: fit-content;
   }
