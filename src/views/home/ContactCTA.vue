@@ -122,11 +122,20 @@ export default {
 /* CONTACT CTA SECTION  */
 /* ==================== */
 .contact-cta {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #0056b3 0%, #003d7a 100%);
-  color: white;
-  position: relative;
-  overflow: hidden;
+    padding: 100px 0;
+background: linear-gradient(
+  145deg,
+  rgba(12, 72, 129, 0.95) 0%,
+  rgba(50, 120, 180, 0.9) 30%,
+  rgba(10, 60, 100, 0.95) 70%,
+  rgba(12, 72, 129, 0.95) 100%
+) !important;
+
+
+
+    color: white;
+    position: relative;
+    overflow: hidden;
 }
 
 .contact-cta::before {
@@ -312,10 +321,10 @@ export default {
 }
 
 .btn-primary {
-  background-color: #0056b3;
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
-  border: none;
+    background-color: rgba(12, 72, 129, 0.95) !important;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    border: none;
 }
 
 .btn-primary:hover {
