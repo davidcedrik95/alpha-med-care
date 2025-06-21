@@ -50,7 +50,7 @@
               </div>
               <button type="submit" class="btn btn-primary btn-block" :disabled="isSubmitting">
                 <span>{{ isSubmitting ? 'Wird gesendet...' : 'Nachricht senden' }}</span>
-                <i class="fas" :class="isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
+                <i class="fas ml-2" :class="isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
               </button>
             </form>
             
