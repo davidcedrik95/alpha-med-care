@@ -55,12 +55,12 @@
           @touchstart="startContinuousScroll('up')"
           @touchend="stopContinuousScroll"
           class="scroll-btn up"
-          aria-label="Remonter progressivement"
+          aria-label="Langsam wieder hochgehen "
           size="x-small"
           elevation="4"
         >
           <v-icon>mdi-chevron-up</v-icon>
-          <v-tooltip activator="parent" location="left">Remonter</v-tooltip>
+          <v-tooltip activator="parent" location="left">hochgehen</v-tooltip>
         </v-btn>
       </v-fab-transition>
     </template>
@@ -75,13 +75,13 @@
         right
         @click="toggleActionButtons"
         class="action-main-btn"
-        aria-label="Actions rapides"
+        aria-label="Schnellzugriffe "
         size="x-small"
         elevation="4"
       >
         <v-icon>{{ isActionsOpen ? 'mdi-close' : 'mdi-plus' }}</v-icon>
         <v-tooltip activator="parent" location="left">
-          {{ isActionsOpen ? 'Fermer' : 'Actions rapides' }}
+          {{ isActionsOpen ? 'schließen' : 'Schnellzugriffe ' }}
         </v-tooltip>
       </v-btn>
     </v-fab-transition>
@@ -101,12 +101,12 @@
           @touchstart="startContinuousScroll('down')"
           @touchend="stopContinuousScroll"
           class="scroll-btn down"
-          aria-label="Descendre progressivement"
+          aria-label="Langsam hinuntergehen"
           size="x-small"
           elevation="4"
         >
           <v-icon>mdi-chevron-down</v-icon>
-          <v-tooltip activator="parent" location="left">Descendre</v-tooltip>
+          <v-tooltip activator="parent" location="left">untergehen</v-tooltip>
         </v-btn>
       </v-fab-transition>
     </template>
