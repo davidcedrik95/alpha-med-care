@@ -3,37 +3,51 @@
     <div class="footer-sections">
       <div class="footer-section" v-for="section in sections" :key="section.key">
         <button class="section-header" @click="toggleSection(section.key)">
-          <h3>{{ $t(section.title) }}</h3>
+          <h3>{{ section.title }}</h3>
           <span class="toggle-icon">{{ isOpen(section.key) ? '−' : '+' }}</span>
         </button>
         <div class="section-content" v-if="isOpen(section.key)">
           <ul v-if="section.links && section.links.length">
             <li v-for="(link, index) in section.links" :key="index">
-              <a :href="link.url" :aria-label="$t(link.text)">{{ $t(link.text) }}</a>
+              <a :href="link.url" :aria-label="link.text">{{ link.text }}</a>
             </li>
           </ul>
           
           <div v-if="section.social" class="social-icons">
-            <a href="#" :aria-label="$t('social.facebook')"><v-icon>mdi-facebook</v-icon></a>
-            <a href="#" :aria-label="$t('social.linkedin')"><v-icon>mdi-linkedin</v-icon></a>
-            <a href="#" :aria-label="$t('social.instagram')"><v-icon>mdi-instagram</v-icon></a>
-            <a href="#" :aria-label="$t('social.whatsapp')"><v-icon>mdi-whatsapp</v-icon></a>
+            <a href="#" aria-label="Facebook"><i class="mdi mdi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="mdi mdi-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="mdi mdi-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="mdi mdi-linkedin"></i></a>
+            <a href="#" aria-label="YouTube"><i class="mdi mdi-youtube"></i></a>
           </div>
           
           <div v-if="section.payment" class="payment-methods">
-            <img src="/images/payment/visa.png" :alt="$t('footer.payment_methods.visa')" loading="lazy">
-            <img src="/images/payment/mastercard.png" :alt="$t('footer.payment_methods.mastercard')" loading="lazy">
-            <img src="/images/payment/paypal.png" :alt="$t('footer.payment_methods.paypal')" loading="lazy">
-            <img src="/images/payment/sepa.png" :alt="$t('footer.payment_methods.sepa')" loading="lazy">
-            <img src="/images/payment/sofort.png" :alt="$t('footer.payment_methods.sofort')" loading="lazy">
+            <img src="/images/payment/visa.png" alt="Visa" loading="lazy">
+            <img src="/images/payment/mastercard.png" alt="Mastercard" loading="lazy">
+            <img src="/images/payment/paypal.png" alt="PayPal" loading="lazy">
+            <img src="/images/payment/sepa.png" alt="SEPA-Lastschrift" loading="lazy">
+            <img src="/images/payment/sofort.png" alt="Sofortüberweisung" loading="lazy">
+            <img src="/images/payment/klarna.png" alt="Klarna" loading="lazy">
           </div>
           
           <div v-if="section.shipping" class="shipping-methods">
-            <img src="/images/shipping/dhl.png" :alt="$t('footer.shipping.dhl')" loading="lazy">
-            <img src="/images/shipping/dpd.png" :alt="$t('footer.shipping.dpd')" loading="lazy">
-            <img src="/images/shipping/db_schenk.svg" :alt="$t('footer.shipping.db_schenker')" loading="lazy">
-            <img src="/images/shipping/ups.png" :alt="$t('footer.shipping.ups')" loading="lazy">
-            <img src="/images/shipping/hermes.png" :alt="$t('footer.shipping.hermes')" loading="lazy">
+            <img src="/images/shipping/dhl.png" alt="DHL" loading="lazy">
+            <img src="/images/shipping/dpd.png" alt="DPD" loading="lazy">
+            <img src="/images/shipping/hermes.png" alt="Hermes" loading="lazy">
+            <img src="/images/shipping/ups.png" alt="UPS" loading="lazy">
+            <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" loading="lazy">
+          </div>
+
+          <div v-if="section.opening" class="opening-hours">
+            <p>{{ $t('footer.opening_hours.weekdays') }}</p>
+            <p>{{ $t('footer.opening_hours.saturday') }}</p>
+            <p>{{ $t('footer.opening_hours.emergency') }}</p>
+          </div>
+
+          <div v-if="section.newsletter" class="newsletter-form">
+            <input type="email" :placeholder="$t('footer.newsletter.placeholder')" :aria-label="$t('footer.newsletter.placeholder')">
+            <button class="newsletter-button">{{ $t('footer.newsletter.subscribe') }}</button>
+            <p class="newsletter-note">{{ $t('footer.newsletter.privacy_note') }}</p>
           </div>
         </div>
       </div>
@@ -89,13 +103,12 @@ export default {
     }
   },
   setup(props) {
-    const { locale } = useI18n()
+    const { t, locale } = useI18n()
     const openSections = ref(props.initiallyOpen)
     const footerKey = ref(0)
     const showFooter = ref(true)
 
     watch(locale, () => {
-      // Force le re-rendu du composant
       showFooter.value = false
       footerKey.value++
       setTimeout(() => showFooter.value = true, 50)
@@ -104,47 +117,115 @@ export default {
     const sections = ref([
       {
         key: 'company',
-        title: 'footer.sections.company.title',
+        title: t('footer.sections.company.title'),
         links: [
-          { text: 'footer.sections.company.about', url: '/about' },
-          { text: 'footer.sections.company.career', url: '/careers' },
-          { text: 'footer.sections.company.team', url: '/team' },
-          { text: 'footer.sections.company.quality', url: '/quality' },
-          { text: 'footer.certifications.title', url: '/certifications' }
+          { text: t('footer.sections.company.about'), url: '/about' },
+          { text: t('footer.sections.company.career'), url: '/careers' },
+          { text: t('footer.sections.company.news'), url: '/news' },
+          { text: t('company.details.locations[0]'), url: '/locations' },
+          { text: t('footer.sections.company.partners'), url: '/partners' }
+        ]
+      },
+      {
+        key: 'environment',
+        title: t('footer.sections.environment.title'),
+        links: [
+          { text: t('footer.sections.environment.protection'), url: '/umweltschutz' },
+          { text: t('footer.sections.environment.recycling'), url: '/recycling' },
+          { text: t('footer.sections.environment.sustainability'), url: '/nachhaltigkeit' },
+          { text: t('footer.sections.environment.battery_disposal'), url: '/altbatterie-entsorgung' },
+          { text: t('footer.sections.environment.co2_neutral'), url: '/co2-neutral' }
         ]
       },
       {
         key: 'services',
-        title: 'footer.sections.services.title',
+        title: t('footer.sections.services.title'),
         links: [
-          { text: 'footer.sections.services.inspections', url: '/services/inspections' },
-          { text: 'footer.sections.services.calibration', url: '/services/calibration' },
-          { text: 'footer.sections.services.maintenance', url: '/services/maintenance' }
+          { text: t('menu.categories.inspections'), url: '/inspections' },
+          { text: t('menu.categories.calibration'), url: '/calibration' },
+          { text: t('menu.categories.maintenance'), url: '/maintenance' },
+          { text: t('menu.items.training'), url: '/training' },
+          { text: t('menu.categories.consulting'), url: '/consulting' },
+          { text: t('menu.items.leasing'), url: '/leasing' }
         ]
       },
       {
         key: 'support',
-        title: 'footer.sections.support.title',
+        title: t('footer.sections.support.title'),
         links: [
-          { text: 'footer.sections.support.contact', url: '/contact' },
-          { text: 'footer.sections.support.faq', url: '/faq' },
-          { text: 'footer.sections.support.shipping', url: '/shipping' }
+          { text: t('menu.contact'), url: '/contact' },
+          { text: t('menu.faq'), url: '/faq' },
+          { text: t('footer.sections.support.emergency'), url: '/emergency' },
+          { text: t('header.phone'), url: '/support-hotline' },
+          { text: t('footer.sections.support.live_chat'), url: '/live-chat' },
+          { text: t('footer.sections.support.service_center'), url: '/service-center' }
         ]
       },
       {
+        key: 'products',
+        title: t('menu.products'),
+        links: [
+          { text: t('menu.products'), url: '/products' },
+          { text: t('menu.items.new'), url: '/new' },
+          { text: t('menu.items.specials'), url: '/specials' },
+          { text: t('menu.items.top_seller'), url: '/top-seller' },
+          { text: t('menu.items.sale'), url: '/sale' },
+          { text: t('menu.items.used_equipment'), url: '/gebrauchtgeraete' }
+        ]
+      },
+      {
+        key: 'resources',
+        title: t('footer.sections.resources.title'),
+        links: [
+          { text: t('menu.terms'), url: '/terms' },
+          { text: t('menu.privacy'), url: '/privacy' },
+          { text: t('menu.imprint'), url: '/imprint' },
+          { text: t('footer.sections.support.returns'), url: '/returns' },
+          { text: t('menu.cookies'), url: '/cookies' },
+          { text: t('footer.sections.company.compliance'), url: '/compliance' },
+          { text: t('footer.sections.company.quality'), url: '/quality' }
+        ]
+      },
+      {
+        key: 'account',
+        title: t('account.title'),
+        links: [
+          { text: t('account.title'), url: '/mein-konto' },
+          { text: t('account.login'), url: '/login' },
+          { text: t('account.items.forgot_password'), url: '/passwort-vergessen' },
+          { text: t('account.items.dealer_login'), url: '/haendler-login' },
+          { text: t('footer.sections.support.returns'), url: '/ruecksendungen' }
+        ]
+      },
+      {
+        key: 'opening',
+        title: t('footer.opening_hours.title'),
+        opening: true
+      },
+      {
+        key: 'newsletter',
+        title: t('footer.newsletter.title'),
+        newsletter: true
+      },
+      {
         key: 'social',
-        title: 'footer.sections.social.title',
+        title: t('footer.social'),
         social: true
       },
       {
         key: 'payment',
-        title: 'footer.payment_methods.title',
+        title: t('footer.payment_methods.title'),
         payment: true
       },
       {
         key: 'shipping',
-        title: 'footer.shipping.title',
+        title: t('footer.shipping.title'),
         shipping: true
+      },
+      {
+        key: 'certifications',
+        title: t('footer.certifications.title'),
+        certifications: true
       }
     ])
 
@@ -280,14 +361,16 @@ export default {
 
 .social-icons {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   padding: 16px 0 0;
+  flex-wrap: wrap;
 }
 
 .social-icons a {
   color: #555;
-  font-size: 28px;
+  font-size: 24px;
   transition: color 0.2s, transform 0.2s;
+  display: inline-block;
 }
 
 .social-icons a:hover {
@@ -297,16 +380,16 @@ export default {
 
 .payment-methods {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   padding: 16px 0 0;
   align-items: center;
 }
 
 .payment-methods img {
-  height: 25px;
+  height: 20px;
   width: auto;
-  max-width: 50px;
+  max-width: 40px;
   object-fit: contain;
   background: white;
   padding: 4px;
@@ -321,16 +404,16 @@ export default {
 
 .shipping-methods {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   padding: 16px 0 0;
   align-items: center;
 }
 
 .shipping-methods img {
-  height: 30px;
+  height: 25px;
   width: auto;
-  max-width: 60px;
+  max-width: 50px;
   object-fit: contain;
   background: white;
   padding: 4px;
@@ -358,18 +441,18 @@ export default {
 
 .certifications {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
 .certifications img {
-  height: 40px;
+  height: 35px;
   width: auto;
-  max-width: 80px;
+  max-width: 70px;
   background: white;
-  padding: 8px;
+  padding: 6px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -388,19 +471,60 @@ export default {
 .app-buttons {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .app-buttons img {
-  height: 40px;
+  height: 35px;
   width: auto;
-  max-width: 120px;
+  max-width: 110px;
   border-radius: 6px;
   transition: transform 0.2s;
 }
 
 .app-buttons img:hover {
   transform: scale(1.05);
+}
+
+.opening-hours {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 16px 0 0;
+}
+
+.opening-hours p {
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0 0;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.newsletter-button {
+  background-color: #3a7bd5;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.newsletter-note {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
 }
 
 /* Animations */
