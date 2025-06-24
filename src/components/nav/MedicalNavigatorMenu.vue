@@ -1,365 +1,229 @@
 <template>
-  <v-app-bar>
-    <v-container class="d-flex align-center">
-      <!-- Logo / Titre du site -->
-      <div class="title-container">
-        <v-toolbar-title class="app-title flex-shrink-0">{{ $t('app.title') }}</v-toolbar-title>
+  <div class="navbar">
+    <!-- Titre de l'application -->
+    <div class="title-container">
+      <v-toolbar-title class="app-title flex-shrink-0">{{ $t('app.title') }}</v-toolbar-title>
+    </div>
+    <v-spacer></v-spacer>
+    
+    <!-- Liens de navigation -->
+    <div class="nav-links">
+      <a href="#home">{{ $t('menu.home') }}</a>
+      
+      <!-- Menu déroulant Services -->
+      <div class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+        <button class="dropbtn">
+          {{ $t('menu.services') }} 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" v-show="showDropdown">
+          <div class="header">
+            <h2>{{ $t('menu.services') }}</h2>
+            <button class="close-megamenu" @click.stop="showDropdown = false">
+              <v-icon>mdi-close</v-icon>
+            </button>
+          </div>   
+          <div class="row">
+            <div class="column">
+              <h3>{{ $t('menu.categories.inspections') }}</h3>
+              <hr class="category-divider">
+              <a href="/services/stk"><i class="fa fa-car"></i> {{ $t('menu.items.stk_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/mtk"><i class="fa fa-motorcycle"></i> {{ $t('menu.items.mtk_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/stue"><i class="fa fa-truck"></i> {{ $t('menu.items.stue_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/mtue"><i class="fa fa-bus"></i> {{ $t('menu.items.mtue_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/dguv"><i class="fa fa-shield-alt"></i> {{ $t('menu.items.dguv_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/inspections"><i class="fa fa-clipboard-check"></i> {{ $t('menu.items.general_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/visual"><i class="fa fa-eye"></i> {{ $t('menu.items.visual_inspection') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+            <div class="column">
+              <h3>{{ $t('menu.categories.calibration') }}</h3>
+              <hr class="category-divider">
+              <a href="/services/ergometer"><i class="fa fa-running"></i> {{ $t('menu.items.ergometer_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/thermometer"><i class="fa fa-thermometer-half"></i> {{ $t('menu.items.thermometer_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/blood-pressure"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.blood_pressure_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/ecg"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.ecg_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/ultrasound"><i class="fa fa-wave-square"></i> {{ $t('menu.items.ultrasound_calibration') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+            <div class="column">
+              <h3>{{ $t('menu.categories.maintenance') }}</h3>
+              <hr class="category-divider">
+              <a href="/services/repairs"><i class="fa fa-tools"></i> {{ $t('menu.items.repairs') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/parts"><i class="fa fa-cog"></i> {{ $t('menu.items.spare_parts') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/installation"><i class="fa fa-wrench"></i> {{ $t('menu.items.installation_service') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/training"><i class="fa fa-graduation-cap"></i> {{ $t('menu.items.training') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/disposal"><i class="fa fa-trash-alt"></i> {{ $t('menu.items.equipment_disposal') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/services/maintenance"><i class="fa fa-calendar-check"></i> {{ $t('menu.items.regular_maintenance') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <v-spacer></v-spacer>
-
-      <!-- Menu principal -->
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn variant="text" to="/" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.home') }}</v-btn>
-
-        <!-- Mega-menu Services -->
-        <v-menu
-          :open-on-hover="!isMobile && hoverEnabled"
-          :close-on-content-click="false"
-          v-model="isServicesMenuOpen"
-          ref="servicesMenu"
-          offset-y
-          content-class="mega-menu-wrapper"
-          :position-x="0"
-        >
-          <template v-slot:activator="{ props }">
-            <v-btn
-              variant="text"
-              v-bind="props"
-              class="text-none nav-btn"
-              :class="{ 'active-link': isServicesMenuOpen }"
-              @click="handleActivatorClick"
-            >
-              {{ $t('menu.services') }}
-              <v-icon right>mdi-chevron-down</v-icon>
-            </v-btn>
-          </template>
-
-          <v-card 
-            :width="isMobile ? '100%' : '100vw'"
-            class="mega-menu"
-            elevation="0"
-            :style="{
-              'max-width': isMobile ? '100%' : '1280px',
-              'margin': isMobile ? '0' : '14px auto 0',
-              'left': isMobile ? '0' : '50%',
-              'transform': isMobile ? 'none' : 'translateX(-50%)',
-              'position': isMobile ? 'static' : 'relative'
-            }"
-          >
-            <div class="close-button-wrapper">
-              <v-btn icon class="close-megamenu" @click.stop="closeServicesMenu">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
+      
+      <!-- Menu déroulant Produits -->
+      <div class="dropdown" @mouseenter="showProductsDropdown = true" @mouseleave="showProductsDropdown = false">
+        <button class="dropbtn">
+          {{ $t('menu.products') }} 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" v-show="showProductsDropdown">
+          <div class="header">
+            <h2>{{ $t('menu.products') }}</h2>
+            <button class="close-megamenu" @click.stop="showProductsDropdown = false">
+               <v-icon>mdi-close</v-icon>
+            </button>
+          </div>   
+          <div class="row">
+            <div class="column">
+              <h3>{{ $t('menu.productData.categories.mtt_devices') }}</h3>
+              <hr class="category-divider">
+              <a href="/products/ergo-fit-cycle"><i class="fa fa-bicycle"></i> {{ $t('menu.productData.items.ergo_fit_cycle') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/proxomed-treadmill"><i class="fa fa-running"></i> {{ $t('menu.productData.items.proxomed_treadmill') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/physiomed-trainer"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.physiomed_trainer') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/frei-ag-ergometer"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.frei_ag_ergometer') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/rehabilitation-bike"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.rehabilitation_bike') }} <i class="fa fa-chevron-right"></i></a>
             </div>
-            <v-container class="py-4 mega-menu-container">
-              <v-row>
-                <v-col
-                  cols="12"
-                  md="4"
-                  v-for="(category, index) in servicesCategories"
-                  :key="index"
-                  class="category-col"
-                >
-                  <div class="d-flex flex-column h-100 category-column">
-                    <h3 class="text-h6 mb-3 category-title">{{ $t(`menu.categories.${category.key}`) }}</h3>
-                    <v-divider class="mb-4 category-divider" thickness="2" color="primary"></v-divider>
-                    <v-list density="comfortable" class="pa-0 flex-grow-1 category-list">
-                      <v-list-item
-                        v-for="(item, itemIndex) in category.items"
-                        :key="itemIndex"
-                        :title="$t(`menu.items.${item.key}`)"
-                        class="px-0 list-item service-item"
-                        :to="item.route"
-                        active-class="router-link-active"
-                        @click="navigateToService(item.route)"
-                      >
-                        <template v-slot:prepend>
-                          <v-icon :icon="item.icon" size="small" class="mr-2"></v-icon>
-                        </template>
-                        <template v-slot:append>
-                          <v-icon icon="mdi-chevron-right" size="small" class="ml-0"></v-icon>
-                        </template>
-                      </v-list-item>
-                    </v-list>
-                  </div>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-menu>
-
-        <!-- Mega-menu Produkte -->
-        <v-menu
-          :open-on-hover="!isMobile && hoverEnabled"
-          :close-on-content-click="false"
-          v-model="isProductsMenuOpen"
-          ref="productsMenu"
-          offset-y
-          content-class="mega-menu-wrapper"
-          :position-x="0"
-        >
-          <template v-slot:activator="{ props }">
-            <v-btn
-              variant="text"
-              v-bind="props"
-              class="text-none nav-btn"
-              :class="{ 'active-link': isProductsMenuOpen }"
-              @click="handleProductsActivatorClick"
-            >
-              {{ $t('menu.products') }}
-              <v-icon right>mdi-chevron-down</v-icon>
-            </v-btn>
-          </template>
-
-          <v-card 
-            :width="isMobile ? '100%' : '100vw'"
-            class="mega-menu"
-            elevation="0"
-            :style="{
-              'max-width': isMobile ? '100%' : '1280px',
-              'margin': isMobile ? '0' : '14px auto 0',
-              'left': isMobile ? '0' : '50%',
-              'transform': isMobile ? 'none' : 'translateX(-50%)',
-              'position': isMobile ? 'static' : 'relative'
-            }"
-          >
-            <div class="close-button-wrapper">
-              <v-btn icon class="close-megamenu" @click.stop="closeProductsMenu">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
+            <div class="column">
+              <h3>{{ $t('menu.productData.categories.therapy') }}</h3>
+              <hr class="category-divider">
+              <a href="/products/electrotherapy"><i class="fa fa-bolt"></i> {{ $t('menu.productData.items.electrotherapy') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/ultrasound-therapy"><i class="fa fa-wave-square"></i> {{ $t('menu.productData.items.ultrasound_therapy') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/heat-therapy"><i class="fa fa-fire"></i> {{ $t('menu.productData.items.heat_therapy') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/cryotherapy"><i class="fa fa-snowflake"></i> {{ $t('menu.productData.items.cryotherapy') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/magnetotherapy"><i class="fa fa-magnet"></i> {{ $t('menu.productData.items.magnetotherapy') }} <i class="fa fa-chevron-right"></i></a>
             </div>
-            <v-container class="py-4 mega-menu-container">
-              <v-row>
-                <v-col
-                  cols="12"
-                  md="4"
-                  v-for="(category, index) in productsCategories"
-                  :key="index"
-                  class="category-col"
-                >
-                  <div class="d-flex flex-column h-100 category-column">
-                    <h3 class="text-h6 mb-3 category-title">{{ $t(`menu.productData.categories.${category.key}`) }}</h3>
-                    <v-divider class="mb-4 category-divider" thickness="2" color="primary"></v-divider>
-                    <v-list density="comfortable" class="pa-0 flex-grow-1 category-list">
-                      <v-list-item
-                        v-for="(product, productIndex) in category.items"
-                        :key="productIndex"
-                        :title="$t(`menu.productData.items.${product.key}`)"
-                        class="px-0 list-item product-item"
-                        :to="product.route"
-                        active-class="router-link-active"
-                        @click="navigateToProduct(product.route)"
-                      >
-                        <template v-slot:prepend>
-                          <v-icon :icon="product.icon" size="small" class="mr-2"></v-icon>
-                        </template>
-                        <template v-slot:append>
-                          <v-icon icon="mdi-chevron-right" size="small" class="ml-0"></v-icon>
-                        </template>
-                      </v-list-item>
-                    </v-list>
-                  </div>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-menu>
-
-        <v-btn variant="text" to="/about" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.about') }}</v-btn>
-        <v-btn variant="text" to="/contact" class="text-none nav-btn" active-class="router-link-active">{{ $t('menu.contact') }}</v-btn>
-      </v-toolbar-items>
-
-      <!-- Sélecteur de langue -->
-      <LanguageSelector />
-
-      <!-- Icône menu mobile -->
-      <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleMobileMenu"></v-app-bar-nav-icon>
-    </v-container>
-  </v-app-bar>
+            <div class="column">
+              <h3>{{ $t('menu.productData.categories.sport_gymnastics') }}</h3>
+              <hr class="category-divider">
+              <a href="/products/training-equipment"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.training_equipment') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/rehabilitation-balls"><i class="fa fa-basketball-ball"></i> {{ $t('menu.productData.items.rehabilitation_balls') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/resistance-bands"><i class="fa fa-elastic"></i> {{ $t('menu.productData.items.resistance_bands') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/balance-boards"><i class="fa fa-surfing"></i> {{ $t('menu.productData.items.balance_boards') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/gymnastics-mats"><i class="fa fa-th-large"></i> {{ $t('menu.productData.items.gymnastics_mats') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <h3>{{ $t('menu.productData.categories.therapy_beds') }}</h3>
+              <hr class="category-divider">
+              <a href="/products/adjustable-beds"><i class="fa fa-bed"></i> {{ $t('menu.productData.items.adjustable_beds') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/massage-tables"><i class="fa fa-table"></i> {{ $t('menu.productData.items.massage_tables') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/examination-beds"><i class="fa fa-procedures"></i> {{ $t('menu.productData.items.examination_beds') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/hydrotherapy-beds"><i class="fa fa-water"></i> {{ $t('menu.productData.items.hydrotherapy_beds') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+            <div class="column">
+              <h3>{{ $t('menu.productData.categories.practice_supplies') }}</h3>
+              <hr class="category-divider">
+              <a href="/products/medical-instruments"><i class="fa fa-stethoscope"></i> {{ $t('menu.productData.items.medical_instruments') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/diagnostic-equipment"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.diagnostic_equipment') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/disposables"><i class="fa fa-syringe"></i> {{ $t('menu.productData.items.disposables') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/furniture"><i class="fa fa-chair"></i> {{ $t('menu.productData.items.furniture') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+            <div class="column">
+              <h3>{{ $t('menu.productData.categories.cardio') }}</h3>
+              <hr class="category-divider">
+              <a href="/products/ecg-machines"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.ecg_machines') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/blood-pressure-monitors"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.blood_pressure_monitors') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/stress-test-systems"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.stress_test_systems') }} <i class="fa fa-chevron-right"></i></a>
+              <hr>
+              <a href="/products/holter-monitors"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.holter_monitors') }} <i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="/about">{{ $t('menu.about') }}</a>
+      <a href="/contact">{{ $t('menu.contact') }}</a>
+      <a href="/blog">{{ $t('menu.blog') }}</a>
+      <a href="/faq">{{ $t('menu.faq') }}</a>
+    </div>
+    
+    <!-- Sélecteur de langue -->
+    <div class="language-selector">
+      <select v-model="selectedLanguage" @change="changeLanguage">
+        <option value="de">{{ $t('language.de') }}</option>
+        <option value="en">{{ $t('language.en') }}</option>
+        <option value="fr">{{ $t('language.fr') }}</option>
+      </select>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
-import LanguageSelector from './LanguageSelector.vue'
-
-const router = useRouter()
-const servicesMenu = ref(null)
-const productsMenu = ref(null)
-const isServicesMenuOpen = ref(false)
-const isProductsMenuOpen = ref(false)
-const hoverEnabled = ref(true)
-let hoverTimeout = null
-
-// Responsiveness
-const isMobile = ref(false)
-onMounted(() => {
-  isMobile.value = window.innerWidth <= 960
-  window.addEventListener('resize', () => {
-    isMobile.value = window.innerWidth <= 960
-  })
-})
-
-// Nettoyage
-onBeforeUnmount(() => {
-  if (hoverTimeout) clearTimeout(hoverTimeout)
-})
-
-const navigateToService = (route) => {
-  closeServicesMenu()
-  router.push(route)
-}
-
-const navigateToProduct = (route) => {
-  closeProductsMenu()
-  router.push(route)
-}
-
-const closeServicesMenu = () => {
-  isServicesMenuOpen.value = false
-  hoverEnabled.value = true
-  if (hoverTimeout) clearTimeout(hoverTimeout)
-}
-
-const closeProductsMenu = () => {
-  isProductsMenuOpen.value = false
-  hoverEnabled.value = true
-  if (hoverTimeout) clearTimeout(hoverTimeout)
-}
-
-const handleActivatorClick = () => {
-  if (isMobile.value) {
-    isServicesMenuOpen.value = !isServicesMenuOpen.value
-    isProductsMenuOpen.value = false
-  } else if (hoverEnabled.value) {
-    isServicesMenuOpen.value = true
-    isProductsMenuOpen.value = false
+<script>
+export default {
+  name: 'MegaMenu',
+  data() {
+    return {
+      showDropdown: false,
+      showProductsDropdown: false,
+      selectedLanguage: this.$i18n.locale || 'de'
+    }
+  },
+  methods: {
+    changeLanguage() {
+      this.$i18n.locale = this.selectedLanguage;
+      // Vous pouvez aussi sauvegarder la préférence de langue dans localStorage
+      localStorage.setItem('userLanguage', this.selectedLanguage);
+    }
+  },
+  mounted() {
+    // Récupérer la langue sauvegardée si elle existe
+    const savedLanguage = localStorage.getItem('userLanguage');
+    if (savedLanguage) {
+      this.selectedLanguage = savedLanguage;
+      this.$i18n.locale = savedLanguage;
+    }
   }
 }
-
-const handleProductsActivatorClick = () => {
-  if (isMobile.value) {
-    isProductsMenuOpen.value = !isProductsMenuOpen.value
-    isServicesMenuOpen.value = false
-  } else if (hoverEnabled.value) {
-    isProductsMenuOpen.value = true
-    isServicesMenuOpen.value = false
-  }
-}
-
-const emit = defineEmits(['toggle-drawer'])
-
-const toggleMobileMenu = () => {
-  emit('toggle-drawer')
-}
-
-// Données du mega-menu Services
-const servicesCategories = [
-  {
-    key: "inspections",
-    items: [
-      { key: "stk_inspection", icon: "mdi-car-brake-alert", route: "/services/stk" },
-      { key: "mtk_inspection", icon: "mdi-motorbike", route: "/services/mtk" },
-      { key: "stue_inspection", icon: "mdi-truck-check", route: "/services/stue" },
-      { key: "mtue_inspection", icon: "mdi-bus-alert", route: "/services/mtue" },
-      { key: "dguv_inspection", icon: "mdi-shield-check", route: "/services/dguv" },
-      { key: "general_inspection", icon: "mdi-clipboard-check", route: "/services/inspections" },
-      { key: "visual_inspection", icon: "mdi-eye-check", route: "/services/visual" }
-    ]
-  },
-  {
-    key: "calibration",
-    items: [
-      { key: "ergometer_calibration", icon: "mdi-run-fast", route: "/services/ergometer" },
-      { key: "thermometer_calibration", icon: "mdi-thermometer", route: "/services/thermometer" },
-      { key: "blood_pressure_calibration", icon: "mdi-heart-pulse", route: "/services/blood-pressure" }
-    ]
-  },
-  {
-    key: "maintenance",
-    items: [
-      { key: "repairs", icon: "mdi-tools", route: "/services/repairs" },
-      { key: "spare_parts", icon: "mdi-cog", route: "/services/parts" },
-      { key: "installation_service", icon: "mdi-wrench", route: "/services/installation" },
-      { key: "training", icon: "mdi-school", route: "/services/training" },
-      { key: "equipment_disposal", icon: "mdi-trash-can", route: "/services/disposal" },
-      { key: "regular_maintenance", icon: "mdi-calendar-check", route: "/services/maintenance" }
-    ]
-  }
-]
-
-// Données du mega-menu Produkte
-const productsCategories = [
-  {
-    key: "mtt_devices",
-    items: [
-      { key: "ergo_fit_cycle", icon: "mdi-bike", route: "/products/ergo-fit-cycle" },
-      { key: "proxomed_treadmill", icon: "mdi-run", route: "/products/proxomed-treadmill" },
-      { key: "physiomed_trainer", icon: "mdi-weight-lifter", route: "/products/physiomed-trainer" },
-      { key: "frei_ag_ergometer", icon: "mdi-bike-fast", route: "/products/frei-ag-ergometer" },
-      { key: "rehabilitation_bike", icon: "mdi-bike-pedal", route: "/products/rehabilitation-bike" }
-    ]
-  },
-  {
-    key: "therapy",
-    items: [
-      { key: "electrotherapy", icon: "mdi-flash", route: "/products/electrotherapy" },
-      { key: "ultrasound_therapy", icon: "mdi-sound", route: "/products/ultrasound-therapy" },
-      { key: "heat_therapy", icon: "mdi-fire", route: "/products/heat-therapy" },
-      { key: "cryotherapy", icon: "mdi-snowflake", route: "/products/cryotherapy" },
-      { key: "magnetotherapy", icon: "mdi-magnet", route: "/products/magnetotherapy" }
-    ]
-  },
-  {
-    key: "sport_gymnastics",
-    items: [
-      { key: "training_equipment", icon: "mdi-dumbbell", route: "/products/training-equipment" },
-      { key: "rehabilitation_balls", icon: "mdi-ballot-recount", route: "/products/rehabilitation-balls" },
-      { key: "resistance_bands", icon: "mdi-elastic", route: "/products/resistance-bands" },
-      { key: "balance_boards", icon: "mdi-surfing", route: "/products/balance-boards" },
-      { key: "gymnastics_mats", icon: "mdi-floor-mat", route: "/products/gymnastics-mats" }
-    ]
-  },
-  {
-    key: "therapy_beds",
-    items: [
-      { key: "adjustable_beds", icon: "mdi-bed-king", route: "/products/adjustable-beds" },
-      { key: "massage_tables", icon: "mdi-table-furniture", route: "/products/massage-tables" },
-      { key: "examination_beds", icon: "mdi-hospital-bed", route: "/products/examination-beds" },
-      { key: "hydrotherapy_beds", icon: "mdi-water", route: "/products/hydrotherapy-beds" }
-    ]
-  },
-  {
-    key: "practice_supplies",
-    items: [
-      { key: "medical_instruments", icon: "mdi-stethoscope", route: "/products/medical-instruments" },
-      { key: "diagnostic_equipment", icon: "mdi-heart-pulse", route: "/products/diagnostic-equipment" },
-      { key: "disposables", icon: "mdi-needle", route: "/products/disposables" },
-      { key: "furniture", icon: "mdi-chair-rolling", route: "/products/furniture" }
-    ]
-  },
-  {
-    key: "cardio",
-    items: [
-      { key: "ecg_machines", icon: "mdi-heart-flash", route: "/products/ecg-machines" },
-      { key: "blood_pressure_monitors", icon: "mdi-blood-bag", route: "/products/blood-pressure-monitors" },
-      { key: "stress_test_systems", icon: "mdi-heart-plus", route: "/products/stress-test-systems" },
-      { key: "holter_monitors", icon: "mdi-monitor-heart", route: "/products/holter-monitors" }
-    ]
-  }
-]
 </script>
 
 <style scoped>
-.v-app-bar {
-  background-color: rgba(12, 72, 129, 0.95) !important;
-  color: white !important;
-  z-index: 999 !important;
-  position: sticky !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+* {
+  box-sizing: border-box;
 }
 
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
 .title-container {
   flex: 0 0 auto;
   min-width: 0;
@@ -374,209 +238,223 @@ const productsCategories = [
   margin-right: auto;
 }
 
-.nav-btn {
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  color: white !important;
-}
-
-.nav-btn:hover,
-.nav-btn.router-link-active {
-  color: #a0c4ff !important;
-}
-
-.nav-btn.router-link-active::after,
-.nav-btn.active-link::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 3px;
-  background-color: #a0c4ff;
-  border-radius: 2px;
-}
-
-.nav-btn.active-link {
-  color: #a0c4ff !important;
-}
-
-.mega-menu {
-  background: white !important;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  border: none;
-  z-index: 1000;
-  padding: 16px 0;
-}
-
-.mega-menu-wrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
+.nav-links {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  overflow-x: hidden;
-  background: linear-gradient(to bottom, rgba(12, 72, 129, 0.1) 0%, transparent 100%);
+  flex-grow: 1;
 }
 
-.mega-menu-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 24px;
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-.category-col {
-  border-right: 1px solid #f0f0f0;
-  padding: 0 24px;
+.dropdown {
+  float: left;
+  overflow: hidden;
 }
 
-.category-col:last-child {
-  border-right: none;
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
 }
 
-.category-title {
-  color: var(--v-primary-base) !important;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding-top: 8px;
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(9, 113, 182);
 }
 
-.category-divider {
-  width: 40px;
-  margin-left: 0;
-  background-color: var(--v-primary-base) !important;
-  height: 3px !important;
-}
-
-.service-item, .product-item {
-  transition: all 0.2s ease;
-  border-radius: 6px;
-  margin-bottom: 4px;
-  color: #333 !important;
-  min-height: 42px;
-}
-
-.service-item:hover, .product-item:hover {
-  background-color: #f8fafc !important;
-  transform: translateX(4px);
-}
-
-.service-item.router-link-active, 
-.product-item.router-link-active {
-  background-color: #f0f7ff !important;
-  color: var(--v-primary-base) !important;
-}
-
-.service-item .v-icon, 
-.product-item .v-icon {
-  color: var(--v-primary-base) !important;
-  opacity: 0.9;
-}
-
-.service-item:hover .v-icon,
-.product-item:hover .v-icon,
-.service-item.router-link-active .v-icon,
-.product-item.router-link-active .v-icon {
-  opacity: 1;
-}
-
-.close-button-wrapper {
+.dropdown-content {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  background-color: #f9f9f9;
+  width: 80%; /* Réduit de 100% à 80% */
+  left: 10%; /* Centré avec 10% de marge à gauche */
+  right: 10%; /* Centré avec 10% de marge à droite */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  max-width: 1200px; /* Largeur maximale pour les très grands écrans */
+  margin: 0 auto; /* Centrage supplémentaire */
+}
+
+.dropdown-content .header {
+  background: rgb(9, 113, 182);
+  padding: 16px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .close-megamenu {
-  background-color: #f5f5f5;
-  color: #666 !important;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0 8px;
+  
 }
 
 .close-megamenu:hover {
-  background-color: #e0e0e0;
-  transform: rotate(90deg);
+  opacity: 0.8;
 }
 
-/* Animation d'ouverture */
-.v-menu__content {
-  transition: all 0.3s ease-out !important;
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  background-color: #f9f9f9;
+  height: auto;
+  min-height: 250px;
+}
+.column a {
+  float: none;
+  color: #333;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: flex; /* Garder flex pour l'alignement */
+  align-items: center; /* Alignement vertical */
+  text-align: left;
+  transition: background-color 0.3s;
+  position: relative; /* Pour positionnement relatif */
 }
 
-.v-menu__content:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+.column a i:not(.fa-chevron-right) {
+  margin-right: 10px; /* Espace après l'icône principale */
+  min-width: 20px; /* Largeur fixe pour l'alignement */
+  text-align: center;
+}
+
+.column a i.fa-chevron-right {
+  position: absolute; /* Position absolue par rapport à l'élément parent */
+  right: 16px; /* Alignement à droite avec le même padding que le texte */
+  color: #666;
+  font-size: 12px;
+}
+
+/* Pour s'assurer que le texte ne passe pas sous la flèche */
+.column a span {
+  flex-grow: 1;
+  padding-right: 20px; /* Espace pour la flèche */
+}
+
+/* Ajouter ceci pour mieux aligner les icônes et le texte */
+.column a i:first-child {
+  margin-right: 10px;
+  width: 20px; /* Largeur fixe pour aligner verticalement */
+  text-align: center;
+}
+
+.column a:hover {
+  background-color: #ddd;
+  color: rgb(9, 113, 182);
+}
+
+.column a i {
+  margin-right: 8px;
+  color: rgb(9, 113, 182);
+}
+
+.column a i.fa-chevron-right {
+  margin-right: 0;
+  margin-left: 8px;
+  color: #666;
+  font-size: 12px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #eee;
+  margin: 4px 0;
+}
+
+hr.category-divider {
   height: 2px;
-  background: var(--v-primary-base);
-  animation: grow 0.3s ease-out forwards;
+  background-color: rgb(9, 113, 182);
+  margin: 8px 0 12px 0;
 }
 
-@keyframes grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-/* Responsive */
-@media (max-width: 960px) {
-  .v-app-bar {
-    top: 0 !important;
-    background-color: rgba(12, 72, 129, 0.95) !important;
+.language-selector select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 14px;
+}
+
+
+/* Responsive layout */
+/* Pour les écrans plus petits, ajustements supplémentaires */
+@media screen and (max-width: 960px) {
+  .dropdown-content {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dropdown-content {
+    width: 95%;
+    left: 2.5%;
+    right: 2.5%;
+  }
+  
+  .column {
+    padding: 5px;
+  }
+}
+
+
+@media screen and (max-width: 960px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
   }
   
   .app-title {
-    font-size: 1rem;
+    margin-bottom: 10px;
+    margin-right: 0;
   }
   
-  .mega-menu {
-    border-radius: 0;
-    box-shadow: none;
-    border-top: 1px solid #eee;
-    padding: 8px 0;
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
-  .category-col {
-    border-right: none;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 16px 0;
-    margin-bottom: 8px;
+  .column {
+    width: 50%;
   }
   
-  .category-col:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-  }
-  
-  .category-title {
-    font-size: 1rem;
-  }
-  
-  .mega-menu-container {
-    padding: 0 16px;
-  }
-  
-  .nav-btn {
-    font-size: 0.9rem;
+  .language-selector {
+    margin-top: 10px;
   }
 }
 
-@media (max-width: 600px) {
-  .app-title {
-    font-size: 0.9rem;
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
   }
   
-  .mega-menu {
-    padding: 8px 0;
-  }
-  
-  .service-item, .product-item {
-    min-height: 38px;
+  .navbar a, .dropdown .dropbtn {
+    padding: 10px 12px;
+    font-size: 14px;
   }
 }
 </style>
