@@ -2,9 +2,8 @@
   <div class="navbar">
     <!-- Titre de l'application -->
     <div class="title-container">
-      <v-toolbar-title class="app-title flex-shrink-0">{{ $t('app.title') }}</v-toolbar-title>
+      <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
     </div>
-    <v-spacer></v-spacer>
     
     <!-- Liens de navigation -->
     <div class="nav-links">
@@ -171,40 +170,40 @@
       <a href="/faq">{{ $t('menu.faq') }}</a>
     </div>
     
-    <!-- Sélecteur de langue -->
-    <div class="language-selector">
-      <select v-model="selectedLanguage" @change="changeLanguage">
-        <option value="de">{{ $t('language.de') }}</option>
-        <option value="en">{{ $t('language.en') }}</option>
-        <option value="fr">{{ $t('language.fr') }}</option>
-      </select>
+    <!-- Conteneur pour les éléments de droite -->
+    <div class="right-section">
+      <!-- Sélecteur de langue -->
+      <LanguageSelector />
+
+       <!-- Icône menu mobile -->
+      <v-app-bar-nav-icon 
+      class="hidden-md-and-up" 
+      @click.stop="toggleMobileMenu"
+      :icon="mobileDrawer ? 'mdi-close' : 'mdi-menu'"
+    ></v-app-bar-nav-icon>
     </div>
   </div>
 </template>
 
 <script>
+import LanguageSelector from './LanguageSelector.vue'
+
 export default {
   name: 'MegaMenu',
+  components: {
+    LanguageSelector
+  },
   data() {
     return {
       showDropdown: false,
       showProductsDropdown: false,
-      selectedLanguage: this.$i18n.locale || 'de'
+      mobileMenuOpen: false
     }
   },
   methods: {
-    changeLanguage() {
-      this.$i18n.locale = this.selectedLanguage;
-      // Vous pouvez aussi sauvegarder la préférence de langue dans localStorage
-      localStorage.setItem('userLanguage', this.selectedLanguage);
-    }
-  },
-  mounted() {
-    // Récupérer la langue sauvegardée si elle existe
-    const savedLanguage = localStorage.getItem('userLanguage');
-    if (savedLanguage) {
-      this.selectedLanguage = savedLanguage;
-      this.$i18n.locale = savedLanguage;
+    toggleMobileMenu() {
+      this.mobileMenuOpen = !this.mobileMenuOpen
+     this.$emit('update:mobile-drawer', !this.mobileDrawer)
     }
   }
 }
@@ -216,31 +215,38 @@ export default {
 }
 
 .navbar {
-  overflow: hidden;
-  background-color: #333;
-  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #333;
   padding: 0 20px;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
 }
+
 .title-container {
   flex: 0 0 auto;
-  min-width: 0;
 }
 
 .app-title {
+  color: white !important;
   font-size: 1.25rem;
   font-weight: 600;
-  color: white !important;
   white-space: nowrap;
-  padding-right: 16px;
-  margin-right: auto;
 }
 
 .nav-links {
   display: flex;
+  justify-content: center;
   flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .navbar a {
@@ -275,13 +281,13 @@ export default {
 .dropdown-content {
   position: absolute;
   background-color: #f9f9f9;
-  width: 80%; /* Réduit de 100% à 80% */
-  left: 10%; /* Centré avec 10% de marge à gauche */
-  right: 10%; /* Centré avec 10% de marge à droite */
+  width: 80%;
+  left: 10%;
+  right: 10%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  max-width: 1200px; /* Largeur maximale pour les très grands écrans */
-  margin: 0 auto; /* Centrage supplémentaire */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .dropdown-content .header {
@@ -299,7 +305,7 @@ export default {
   cursor: pointer;
   font-size: 20px;
   padding: 0 8px;
-  
+  background: transparent;
 }
 
 .close-megamenu:hover {
@@ -314,41 +320,40 @@ export default {
   height: auto;
   min-height: 250px;
 }
+
 .column a {
   float: none;
   color: #333;
   padding: 10px 16px;
   text-decoration: none;
-  display: flex; /* Garder flex pour l'alignement */
-  align-items: center; /* Alignement vertical */
+  display: flex;
+  align-items: center;
   text-align: left;
   transition: background-color 0.3s;
-  position: relative; /* Pour positionnement relatif */
+  position: relative;
 }
 
 .column a i:not(.fa-chevron-right) {
-  margin-right: 10px; /* Espace après l'icône principale */
-  min-width: 20px; /* Largeur fixe pour l'alignement */
+  margin-right: 10px;
+  min-width: 20px;
   text-align: center;
 }
 
 .column a i.fa-chevron-right {
-  position: absolute; /* Position absolue par rapport à l'élément parent */
-  right: 16px; /* Alignement à droite avec le même padding que le texte */
+  position: absolute;
+  right: 16px;
   color: #666;
   font-size: 12px;
 }
 
-/* Pour s'assurer que le texte ne passe pas sous la flèche */
 .column a span {
   flex-grow: 1;
-  padding-right: 20px; /* Espace pour la flèche */
+  padding-right: 20px;
 }
 
-/* Ajouter ceci pour mieux aligner les icônes et le texte */
 .column a i:first-child {
   margin-right: 10px;
-  width: 20px; /* Largeur fixe pour aligner verticalement */
+  width: 20px;
   text-align: center;
 }
 
@@ -388,19 +393,8 @@ hr.category-divider {
   clear: both;
 }
 
-.language-selector select {
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: none;
-  background-color: #f9f9f9;
-  color: #333;
-  font-size: 14px;
-}
-
-
-/* Responsive layout */
-/* Pour les écrans plus petits, ajustements supplémentaires */
-@media screen and (max-width: 960px) {
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
   .dropdown-content {
     width: 90%;
     left: 5%;
@@ -408,42 +402,29 @@ hr.category-divider {
   }
 }
 
-@media screen and (max-width: 600px) {
-  .dropdown-content {
-    width: 95%;
-    left: 2.5%;
-    right: 2.5%;
-  }
-  
-  .column {
-    padding: 5px;
-  }
-}
-
-
 @media screen and (max-width: 960px) {
   .navbar {
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 10px;
   }
   
-  .app-title {
-    margin-bottom: 10px;
-    margin-right: 0;
+  .nav-links {
+    order: 3;
+    width: 100%;
+    display: none; /* Cache les liens en mobile par défaut */
   }
   
-  .nav-links {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
+  .navbar.expanded .nav-links {
+    display: flex; /* Affiche les liens quand le menu mobile est ouvert */
+    flex-direction: column;
+  }
+  
+  .right-section {
+    margin-left: auto;
   }
   
   .column {
     width: 50%;
-  }
-  
-  .language-selector {
-    margin-top: 10px;
   }
 }
 
@@ -455,6 +436,34 @@ hr.category-divider {
   .navbar a, .dropdown .dropbtn {
     padding: 10px 12px;
     font-size: 14px;
+  }
+  
+  .dropdown-content {
+    width: 95%;
+    left: 2.5%;
+    right: 2.5%;
+  }
+}
+
+/* Language selector styles */
+.language-selector-container {
+  display: flex;
+  align-items: center;
+}
+
+.language-selector-btn {
+  color: white !important;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.hidden-md-and-up {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .hidden-md-and-up {
+    display: block;
   }
 }
 </style>

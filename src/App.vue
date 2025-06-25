@@ -4,7 +4,12 @@
     
     <div class="sticky-header-group">
       <NavigationHeader class="header" />
-      <MedicalNavigatorMenu class="nav-bar" @toggle-drawer="toggleDrawer" />
+      <!-- Passer l'état mobileDrawer au méga-menu -->
+      <MedicalNavigatorMenu 
+        class="nav-bar" 
+        :mobile-drawer="mobileDrawer"
+        @update:mobile-drawer="mobileDrawer = $event"
+      />
       <BreadcrumbNavigation class="breadcrumb" />
     </div>
     
@@ -176,10 +181,6 @@ const stopContinuousScroll = () => {
   scrollSpeed = 8
   scrollInterval = null
   accelerationInterval = null
-}
-
-const toggleDrawer = () => {
-  mobileDrawer.value = !mobileDrawer.value
 }
 
 const handleResize = () => {
