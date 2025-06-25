@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Impressum from '@/views/Impressum.vue'
+
 
 const routes = [
   {
@@ -31,11 +31,11 @@ const routes = [
     component: () => import('@/views/AboutView.vue')
   },
 
-   {
+  {
     path: '/imprint',
-    name: 'Impressum',
-    component: Impressum
-  }
+    name: 'imprint',
+    component: () => import('../views/ImprintView.vue')
+  },
 ]
 
 const router = createRouter({
