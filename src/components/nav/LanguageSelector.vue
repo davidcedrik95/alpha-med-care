@@ -59,7 +59,7 @@ const changeLocale = (newLocale) => {
 
 .language-list {
   padding: 8px 0;
-  background-color: rgba(12, 72, 129, 0.95) !important;
+  background-color: rgb(9, 113, 182)!important;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -70,7 +70,7 @@ const changeLocale = (newLocale) => {
 }
 
 .language-item:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(9, 113, 182, 0.1) !important;
 }
 
 .language-item.active {
