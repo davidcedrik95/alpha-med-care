@@ -177,10 +177,11 @@
 
        <!-- Icône menu mobile -->
       <v-app-bar-nav-icon 
-      class="hidden-md-and-up" 
-      @click.stop="toggleMobileMenu"
-      :icon="mobileDrawer ? 'mdi-close' : 'mdi-menu'"
-    ></v-app-bar-nav-icon>
+          class="hidden-md-and-up" 
+          @click.stop="toggleMobileMenu"
+          :icon="mobileDrawer ? 'mdi-close' : 'mdi-menu'"
+      
+      ></v-app-bar-nav-icon>
     </div>
   </div>
 </template>
@@ -392,6 +393,10 @@ hr.category-divider {
   display: table;
   clear: both;
 }
+
+ .hidden-md-and-up {
+   color: white;
+  }
 
 /* Responsive styles */
 @media screen and (max-width: 1200px) {

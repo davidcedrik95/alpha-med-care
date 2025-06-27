@@ -235,7 +235,7 @@ onBeforeUnmount(() => {
   user-select: none;
   border-bottom: 1px solid #ddd;
   position: relative;
-  z-index: 1000;
+  z-index: 1100;
 }
 
 /* Barre supérieure, cachée sur mobile */
@@ -655,6 +655,7 @@ hr {
 .account-dropdown {
   position: relative;
   display: inline-block;
+  
 }
 
 .dropdown-menu {
