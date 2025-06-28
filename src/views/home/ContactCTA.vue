@@ -29,23 +29,7 @@
             </div>
           </div>
           
-          <div class="office-hours">
-            <h4><i class="fas fa-clock"></i> Unsere Bürozeiten</h4>
-            <div class="hours-grid">
-              <div class="hour-item">
-                <span class="hour-day">Montag - Freitag:</span>
-                <span class="hour-time">8:00 - 18:00 Uhr</span>
-              </div>
-              <div class="hour-item">
-                <span class="hour-day">Samstag:</span>
-                <span class="hour-time">10:00 - 14:00 Uhr</span>
-              </div>
-              <div class="hour-item">
-                <span class="hour-day">Sonntag:</span>
-                <span class="hour-time">Geschlossen</span>
-              </div>
-            </div>
-          </div>
+        
         </div>
         
         <!-- Colonne droite : Adresse et autres informations -->
@@ -76,20 +60,6 @@
             </div>
           </div>
           
-          <div class="trust-badges">
-            <div class="trust-badge">
-              <i class="fas fa-lock"></i>
-              <span>Ihre Daten sind sicher</span>
-            </div>
-            <div class="trust-badge">
-              <i class="fas fa-shield-alt"></i>
-              <span>DSGVO konform</span>
-            </div>
-          </div>
-          
-          <div class="footer-note">
-            <p>Wir freuen uns darauf, von Ihnen zu hören und stehen Ihnen jederzeit für Fragen zur Verfügung.</p>
-          </div>
         </div>
       </div>
     </div>
