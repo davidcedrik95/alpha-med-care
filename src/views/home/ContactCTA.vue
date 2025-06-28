@@ -1,3 +1,4 @@
+
 <template>
   <section class="contact-cta">
     <div class="container">
@@ -5,9 +6,7 @@
         <!-- Colonne gauche : Informations de contact -->
         <div class="contact-column">
           <div class="tagline">Kontaktieren Sie uns</div>
-          <h2>Bereit für eine <span class="highlight">professionelle Zusammenarbeit</span>?</h2>
-          <p class="cta-description">Unser Expertenteam steht Ihnen für Beratung, Angebote und Support zur Verfügung. Nutzen Sie unsere direkten Kontaktwege:</p>
-          
+         
           <div class="contact-method">
             <div class="contact-icon">
               <i class="fas fa-phone-alt"></i>
@@ -52,8 +51,6 @@
         <!-- Colonne droite : Adresse et autres informations -->
         <div class="contact-column">
           <div class="tagline">Besuchen Sie uns</div>
-          <h2>Unser <span class="highlight">Standort</span> in München</h2>
-          <p class="cta-description">Unser Hauptsitz befindet sich im Herzen von München. Besuchen Sie uns für persönliche Beratungen oder geschäftliche Anfragen.</p>
           
           <div class="contact-method">
             <div class="contact-icon">
@@ -66,17 +63,7 @@
               80539 München</p>
             </div>
           </div>
-          
-          <div class="contact-method">
-            <div class="contact-icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="contact-info">
-              <h4>Team Kontakt</h4>
-              <a href="mailto:team@alpha-med-care.de" class="contact-link">team@alpha-med-care.de</a>
-              <p>Für spezifische Teamanfragen</p>
-            </div>
-          </div>
+        
           
           <div class="contact-method">
             <div class="contact-icon">
