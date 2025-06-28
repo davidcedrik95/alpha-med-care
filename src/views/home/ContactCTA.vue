@@ -2,68 +2,106 @@
   <section class="contact-cta">
     <div class="container">
       <div class="cta-content">
-        <div class="cta-text">
+        <!-- Colonne gauche : Informations de contact -->
+        <div class="contact-column">
           <div class="tagline">Kontaktieren Sie uns</div>
           <h2>Bereit für eine <span class="highlight">professionelle Zusammenarbeit</span>?</h2>
-          <p class="cta-description">Unser Expertenteam steht Ihnen für Beratung, Angebote und Support zur Verfügung. Nutzen Sie unseren schnellen Kontaktweg:</p>
+          <p class="cta-description">Unser Expertenteam steht Ihnen für Beratung, Angebote und Support zur Verfügung. Nutzen Sie unsere direkten Kontaktwege:</p>
           
-          <div class="contact-methods">
-            <div class="contact-method">
-              <div class="contact-icon">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div class="contact-info">
-                <h4>Telefonischer Support</h4>
-                <a href="tel:+499666188950" class="contact-link">+49 (0) 9666188950</a>
-                <p>Mo-Fr: 8:00-18:00 Uhr</p> 
-              </div>
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
             </div>
-            
-            <div class="contact-method">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
+            <div class="contact-info">
+              <h4>Telefonischer Support</h4>
+              <a href="tel:+499666188950" class="contact-link">+49 (0) 9666 188 950</a>
+              <p>Mo-Fr: 8:00-18:00 Uhr</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info">
+              <h4>E-Mail Anfrage</h4>
+              <a href="mailto:info@alpha-med-care.de" class="contact-link">kontakt@alpha-med-care.de</a>
+              <p>Antwort innerhalb von 24h</p>
+            </div>
+          </div>
+          
+          <div class="office-hours">
+            <h4><i class="fas fa-clock"></i> Unsere Bürozeiten</h4>
+            <div class="hours-grid">
+              <div class="hour-item">
+                <span class="hour-day">Montag - Freitag:</span>
+                <span class="hour-time">8:00 - 18:00 Uhr</span>
               </div>
-              <div class="contact-info">
-                <h4>E-Mail Anfrage</h4>
-                <a href="mailto:info@alpha-med-care.de" class="contact-link">kontakt@alpha-med-care.de</a>
-                <p>Antwort innerhalb von 24h</p>
+              <div class="hour-item">
+                <span class="hour-day">Samstag:</span>
+                <span class="hour-time">10:00 - 14:00 Uhr</span>
+              </div>
+              <div class="hour-item">
+                <span class="hour-day">Sonntag:</span>
+                <span class="hour-time">Geschlossen</span>
               </div>
             </div>
           </div>
         </div>
         
-        <div class="cta-form-container">
-          <div class="form-card">
-            <h3>Kontaktformular</h3>
-            <form class="cta-form" @submit.prevent="submitForm">
-              <div class="form-group">
-                <input type="text" v-model="form.name" placeholder="Ihr Name" required>
-              </div>
-              <div class="form-group">
-                <input type="email" v-model="form.email" placeholder="Ihre E-Mail" required>
-              </div>
-              <div class="form-group">
-                <input type="tel" v-model="form.phone" placeholder="Telefon (optional)">
-              </div>
-              <div class="form-group">
-                <textarea v-model="form.message" placeholder="Ihre Nachricht" rows="3" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block" :disabled="isSubmitting">
-                <span>{{ isSubmitting ? 'Wird gesendet...' : 'Nachricht senden' }}</span>
-                <i class="fas ml-2" :class="isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
-              </button>
-            </form>
-            
-            <div class="form-footer">
-              <div class="trust-badge">
-                <i class="fas fa-lock"></i>
-                <span>Ihre Daten sind sicher</span>
-              </div>
-              <div class="trust-badge">
-                <i class="fas fa-shield-alt"></i>
-                <span>DSGVO konform</span>
-              </div>
+        <!-- Colonne droite : Adresse et autres informations -->
+        <div class="contact-column">
+          <div class="tagline">Besuchen Sie uns</div>
+          <h2>Unser <span class="highlight">Standort</span> in München</h2>
+          <p class="cta-description">Unser Hauptsitz befindet sich im Herzen von München. Besuchen Sie uns für persönliche Beratungen oder geschäftliche Anfragen.</p>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
             </div>
+            <div class="contact-info">
+              <h4>Unser Büro</h4>
+              <p class="contact-link">Alpha Med Care GmbH<br>
+              Maximilianstraße 35<br>
+              80539 München</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="contact-info">
+              <h4>Team Kontakt</h4>
+              <a href="mailto:team@alpha-med-care.de" class="contact-link">team@alpha-med-care.de</a>
+              <p>Für spezifische Teamanfragen</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="contact-info">
+              <h4>Live Chat</h4>
+              <p class="contact-link">Verfügbar auf unserer Website</p>
+              <p>Mo-Fr: 9:00-17:00 Uhr</p>
+            </div>
+          </div>
+          
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <i class="fas fa-lock"></i>
+              <span>Ihre Daten sind sicher</span>
+            </div>
+            <div class="trust-badge">
+              <i class="fas fa-shield-alt"></i>
+              <span>DSGVO konform</span>
+            </div>
+          </div>
+          
+          <div class="footer-note">
+            <p>Wir freuen uns darauf, von Ihnen zu hören und stehen Ihnen jederzeit für Fragen zur Verfügung.</p>
           </div>
         </div>
       </div>
@@ -74,47 +112,7 @@
 <script>
 export default {
   name: 'ContactCTA',
-  data() {
-    return {
-      form: {
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-      },
-      isSubmitting: false
-    }
-  },
-  methods: {
-    async submitForm() {
-      this.isSubmitting = true;
-      
-      try {
-        // Ici vous ajouteriez votre logique d'envoi de formulaire
-        // Par exemple avec axios ou fetch
-        // await axios.post('/api/contact', this.form);
-        
-        // Simulation d'envoi
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Réinitialisation du formulaire après envoi
-        this.form = {
-          name: '',
-          email: '',
-          phone: '',
-          message: ''
-        };
-        
-        // Message de succès
-        this.$toast.success('Ihre Nachricht wurde erfolgreich gesendet!');
-      } catch (error) {
-        console.error('Fehler beim Senden der Nachricht:', error);
-        this.$toast.error('Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.');
-      } finally {
-        this.isSubmitting = false;
-      }
-    }
-  }
+  // Aucune logique complexe nécessaire pour ce composant statique
 }
 </script>
 
@@ -123,17 +121,16 @@ export default {
 /* CONTACT CTA SECTION  */
 /* ==================== */
 .contact-cta {
-    padding: 100px 0;
-    background: linear-gradient(135deg,rgba(12, 72, 129, 0.95) 0%,
-  rgba(25, 105, 170, 0.95) 50%,
-  rgba(12, 72, 129, 0.95) 100%
-) !important;
-
-
-
-    color: white;
-    position: relative;
-    overflow: hidden;
+  padding: 100px 0;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 72, 129, 0.95) 0%,
+    rgba(25, 105, 170, 0.95) 50%,
+    rgba(12, 72, 129, 0.95) 100%
+  );
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-cta::before {
@@ -143,44 +140,56 @@ export default {
   right: 0;
   width: 40%;
   height: 100%;
-  background: url('/images/contact-bg-pattern.png') no-repeat;
-  background-size: cover;
-  opacity: 0.1;
+  background: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, transparent 75%, transparent);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  z-index: 1;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-.cta-content {
-  display: flex;
-  gap: 50px;
-  align-items: center;
   position: relative;
   z-index: 2;
 }
 
-/* Text Section */
-.cta-text {
+.cta-content {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-column {
   flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.contact-column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .tagline {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 6px 15px;
+  padding: 8px 18px;
   border-radius: 30px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
-.contact-cta h2 {
+h2 {
   font-size: 2.2rem;
   margin-bottom: 20px;
   line-height: 1.3;
@@ -200,6 +209,7 @@ export default {
   height: 8px;
   background-color: rgba(255, 255, 255, 0.3);
   z-index: -1;
+  border-radius: 4px;
 }
 
 .cta-description {
@@ -207,38 +217,44 @@ export default {
   line-height: 1.6;
   margin-bottom: 30px;
   opacity: 0.9;
-  max-width: 90%;
-}
-
-/* Contact Methods */
-.contact-methods {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-bottom: 40px;
 }
 
 .contact-method {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contact-method:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .contact-icon {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.contact-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .contact-info h4 {
-  margin: 0 0 5px 0;
-  font-size: 1.1rem;
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
 }
 
 .contact-link {
@@ -248,6 +264,7 @@ export default {
   display: block;
   margin-bottom: 5px;
   transition: all 0.3s ease;
+  font-size: 1.1rem;
 }
 
 .contact-link:hover {
@@ -257,158 +274,136 @@ export default {
 
 .contact-info p {
   margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 0.95rem;
+  opacity: 0.85;
 }
 
-/* Form Section */
-.cta-form-container {
-  flex: 1;
-  max-width: 500px;
+.office-hours {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
 }
 
-.form-card {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.form-card h3 {
-  color: #333;
-  margin: 0 0 25px 0;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-/* Form Elements */
-.cta-form .form-group {
-  margin-bottom: 20px;
-}
-
-.cta-form input,
-.cta-form textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.cta-form input:focus,
-.cta-form textarea:focus {
-  border-color: #0056b3;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
+.office-hours h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  display: flex;
   align-items: center;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  gap: 10px;
 }
 
-.btn i {
-  transition: transform 0.3s ease;
+.hours-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 12px;
 }
 
-.btn-primary {
-    background-color: rgba(12, 72, 129, 0.95) !important;
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
-    border: none;
-}
-
-.btn-primary:hover {
-  background-color: #004494;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
-}
-
-.btn-block {
+.hour-item {
   display: flex;
-  width: 100%;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-/* Form Footer */
-.form-footer {
+.hour-day {
+  font-weight: 500;
+}
+
+.hour-time {
+  opacity: 0.9;
+}
+
+.trust-badges {
   display: flex;
-  justify-content: center;
   gap: 20px;
-  margin-top: 20px;
-  flex-wrap: wrap;
+  margin-top: 30px;
+  justify-content: center;
 }
 
 .trust-badge {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8rem;
-  color: #666;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+}
+
+.footer-note {
+  margin-top: 40px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 /* ==================== */
 /* RESPONSIVE STYLES    */
 /* ==================== */
 @media (max-width: 1024px) {
-  .contact-methods {
-    grid-template-columns: 1fr;
-  }
-  
   .cta-content {
-    flex-direction: column;
-    gap: 40px;
+    gap: 30px;
   }
   
-  .cta-text {
-    text-align: center;
+  .contact-column {
+    padding: 30px;
   }
   
-  .cta-description {
-    max-width: 100%;
-  }
-  
-  .contact-method {
-    justify-content: center;
-  }
-  
-  .cta-form-container {
-    width: 100%;
-    max-width: 600px;
+  h2 {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
+  .cta-content {
+    flex-direction: column;
+  }
+  
   .contact-cta {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   
-  .contact-cta h2 {
-    font-size: 1.8rem;
+  .tagline {
+    font-size: 0.85rem;
   }
   
-  .form-card {
-    padding: 25px;
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .contact-link {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .contact-column {
+    padding: 25px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
   .contact-method {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .trust-badges {
     flex-direction: column;
     align-items: center;
   }
   
-  .form-footer {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  .hours-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
