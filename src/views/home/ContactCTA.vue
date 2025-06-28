@@ -1,4 +1,3 @@
-
 <template>
   <section class="contact-cta">
     <div class="container">
@@ -6,7 +5,7 @@
         <!-- Colonne gauche : Informations de contact -->
         <div class="contact-column">
           <div class="tagline">Kontaktieren Sie uns</div>
-         
+
           <div class="contact-method">
             <div class="contact-icon">
               <i class="fas fa-phone-alt"></i>
@@ -17,7 +16,7 @@
               <p>Mo-Fr: 8:00-18:00 Uhr</p>
             </div>
           </div>
-          
+
           <div class="contact-method">
             <div class="contact-icon">
               <i class="fas fa-envelope"></i>
@@ -28,27 +27,26 @@
               <p>Antwort innerhalb von 24h</p>
             </div>
           </div>
-          
-        
         </div>
-        
+
         <!-- Colonne droite : Adresse et autres informations -->
         <div class="contact-column">
           <div class="tagline">Besuchen Sie uns</div>
-          
+
           <div class="contact-method">
             <div class="contact-icon">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div class="contact-info">
               <h4>Unser Büro</h4>
-              <p class="contact-link">Alpha Med Care GmbH<br>
-              Maximilianstraße 35<br>
-              80539 München</p>
+              <p class="contact-link">
+                Alpha Med Care GmbH<br>
+                Maximilianstraße 35<br>
+                80539 München
+              </p>
             </div>
           </div>
-        
-          
+
           <div class="contact-method">
             <div class="contact-icon">
               <i class="fas fa-comments"></i>
@@ -59,7 +57,6 @@
               <p>Mo-Fr: 9:00-17:00 Uhr</p>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -68,15 +65,11 @@
 
 <script>
 export default {
-  name: 'ContactCTA',
-  // Aucune logique complexe nécessaire pour ce composant statique
+  name: 'ContactCTA'
 }
 </script>
 
 <style scoped>
-/* ==================== */
-/* CONTACT CTA SECTION  */
-/* ==================== */
 .contact-cta {
   padding: 100px 0;
   background: linear-gradient(
@@ -146,36 +139,6 @@ export default {
   letter-spacing: 1.5px;
 }
 
-h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  line-height: 1.3;
-}
-
-.highlight {
-  position: relative;
-  display: inline-block;
-}
-
-.highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.3);
-  z-index: -1;
-  border-radius: 4px;
-}
-
-.cta-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 30px;
-  opacity: 0.9;
-}
-
 .contact-method {
   display: flex;
   gap: 20px;
@@ -235,80 +198,14 @@ h2 {
   opacity: 0.85;
 }
 
-.office-hours {
-  margin-top: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.office-hours h4 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.hours-grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 12px;
-}
-
-.hour-item {
-  display: flex;
-  justify-content: space-between;
-}
-
-.hour-day {
-  font-weight: 500;
-}
-
-.hour-time {
-  opacity: 0.9;
-}
-
-.trust-badges {
-  display: flex;
-  gap: 20px;
-  margin-top: 30px;
-  justify-content: center;
-}
-
-.trust-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px 15px;
-  border-radius: 30px;
-  font-size: 0.9rem;
-}
-
-.footer-note {
-  margin-top: 40px;
-  text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-/* ==================== */
-/* RESPONSIVE STYLES    */
-/* ==================== */
+/* Responsive Styles */
 @media (max-width: 1024px) {
   .cta-content {
     gap: 30px;
   }
-  
+
   .contact-column {
     padding: 30px;
-  }
-  
-  h2 {
-    font-size: 2rem;
   }
 }
 
@@ -316,20 +213,20 @@ h2 {
   .cta-content {
     flex-direction: column;
   }
-  
+
   .contact-cta {
     padding: 60px 0;
   }
-  
+
   .tagline {
     font-size: 0.85rem;
   }
-  
+
   .contact-icon {
     width: 50px;
     height: 50px;
   }
-  
+
   .contact-link {
     font-size: 1rem;
   }
@@ -339,28 +236,15 @@ h2 {
   .container {
     padding: 0 15px;
   }
-  
+
   .contact-column {
     padding: 25px;
   }
-  
-  h2 {
-    font-size: 1.8rem;
-  }
-  
+
   .contact-method {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-  
-  .trust-badges {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hours-grid {
-    grid-template-columns: 1fr;
   }
 }
 </style>
