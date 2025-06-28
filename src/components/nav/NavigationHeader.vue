@@ -58,10 +58,16 @@
 
       <!-- Icons -->
       <nav class="top-bar-links" :aria-label="$t('menu.categories.sales')">
-        <a href="#" class="link-item" :aria-label="$t('header.wishlist')">
-          <i class="mdi mdi-heart"></i>
-          <span class="link-text hide-on-mobile">{{ $t('header.wishlist') }}</span>
-        </a>
+        <!-- Wishlist link -->
+      <a href="#" class="link-item" 
+        :aria-label="$t('header.wishlist')" 
+        @click.prevent="toggleWishlist">
+        <i class="mdi mdi-heart"></i>
+        <span class="link-text hide-on-mobile">{{ $t('header.wishlist') }}</span>
+        <span class="wishlist-badge" aria-hidden="true" v-if="wishlistStore.items.length > 0">
+          {{ wishlistStore.items.length }}
+        </span>
+      </a>
 
         <div class="account-dropdown">
           <button class="link-item" @click="toggleAccountMenu" :aria-label="$t('header.account')" aria-haspopup="true" :aria-expanded="accountMenuOpen">
@@ -149,6 +155,8 @@
         </button>
       </form>
     </div>
+    <!-- Wishlist component -->
+    <SideWishlist />
   </header>
 </template>
 
@@ -156,6 +164,14 @@
 import { ref, onMounted, computed, onBeforeUnmount } from 'vue'
 import { useCartStore } from '@/stores/cart'
 import SideCart from './SideCart.vue'
+import { useWishlistStore } from '@/stores/wishlist'
+import SideWishlist from '@/layouts/SideWishlist.vue'
+
+const wishlistStore = useWishlistStore()
+
+function toggleWishlist() {
+  wishlistStore.toggleWishlist()
+}
 
 const searchQuery = ref('')
 const searchExpanded = ref(false)
@@ -459,6 +475,19 @@ hr {
 
 .close-menu{
   display: none;
+}
+
+.wishlist-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ff3b3b;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 /* Styles spécifiques mobile */

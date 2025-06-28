@@ -133,8 +133,8 @@
   <a href="#" class="social-icon-3d linkedin" aria-label="LinkedIn">
     <i class="mdi mdi-linkedin"></i>
   </a>
-  <a href="#" class="social-icon-3d youtube" aria-label="YouTube">
-    <i class="mdi mdi-youtube"></i>
+  <a href="#" class="social-icon-3d whatsapp" aria-label="WhatsApp">
+    <i class="mdi mdi-whatsapp"></i>
   </a>
 </div>
             </div>
@@ -484,7 +484,7 @@ export default {
 .twitter { background: #1da1f2; }
 .instagram { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
 .linkedin { background: #0077b5; }
-.youtube { background: #ff0000; }
+.whatsapp { background: #11c22e; }
 
 /* Animation 3D au survol */
 .social-icon-3d:hover {

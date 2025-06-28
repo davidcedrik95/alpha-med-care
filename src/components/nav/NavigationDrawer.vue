@@ -12,7 +12,7 @@
     <div class="drawer-header">
       <div class="drawer-header-content">
         <v-icon size="36" color="white">mdi-menu-open</v-icon>
-        <span class="title">{{ $t('app.title') }}</span>
+        <span class="title">Menu</span>
         <v-btn
           icon
           @click.stop="closeDrawer"
@@ -385,7 +385,7 @@ function closeDrawer() {
 }
 
 .drawer-header {
-  background-color: #0C4881F2 !important;
+  background-color: #333 !important;
   padding: 14px 16px;
   padding-top: calc(14px + env(safe-area-inset-top));
   display: flex;

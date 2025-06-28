@@ -78,6 +78,14 @@
     "en": "English",
     "fr": "French"
   },
+
+  "wishlist": {
+    "title": "My Wishlist",
+    "empty": "Your wishlist is empty",
+    "add_to_cart": "Add to cart",
+    "remove": "Remove"
+  },
+  
   "account": {
     "title": "My Account",
     "login": "Login",

@@ -114,6 +114,14 @@
     "en": "Englisch",
     "fr": "Französisch"
   },
+
+    "wishlist": {
+    "title": "Meine Wunschliste",
+    "empty": "Ihre Wunschliste ist leer",
+    "add_to_cart": "In den Warenkorb legen",
+    "remove": "Entfernen"
+  },
+
   "account": {
     "title": "Mein Konto",
     "login": "Anmelden",

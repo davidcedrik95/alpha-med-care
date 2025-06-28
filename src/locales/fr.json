@@ -75,6 +75,14 @@
     "en": "Anglais",
     "fr": "Français"
   },
+
+  "wishlist": {
+    "title": "Ma liste de souhaits",
+    "empty": "Votre liste de souhaits est vide",
+    "add_to_cart": "Ajouter au panier",
+    "remove": "Retirer"
+  },
+
   "account": {
     "title": "Mon compte",
     "login": "Connexion",
