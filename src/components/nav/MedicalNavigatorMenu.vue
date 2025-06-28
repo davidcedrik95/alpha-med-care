@@ -2,12 +2,14 @@
   <div class="navbar">
     <!-- Titre de l'application -->
     <div class="title-container">
-      <v-toolbar-title class="app-title">{{ $t('app.title') }}</v-toolbar-title>
+      <v-toolbar-title class="app-title">
+        <router-link to="/">{{ $t('app.title') }}</router-link>
+      </v-toolbar-title>
     </div>
     
     <!-- Liens de navigation -->
     <div class="nav-links">
-      <a href="#home">{{ $t('menu.home') }}</a>
+      <router-link to="/">{{ $t('menu.home') }}</router-link>
       
       <!-- Menu déroulant Services -->
       <div class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
@@ -26,47 +28,47 @@
             <div class="column">
               <h3>{{ $t('menu.categories.inspections') }}</h3>
               <hr class="category-divider">
-              <a href="/services/stk"><i class="fa fa-car"></i> {{ $t('menu.items.stk_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/stk" @click="closeMenus"><i class="fa fa-car"></i> {{ $t('menu.items.stk_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/mtk"><i class="fa fa-motorcycle"></i> {{ $t('menu.items.mtk_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/mtk" @click="closeMenus"><i class="fa fa-motorcycle"></i> {{ $t('menu.items.mtk_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/stue"><i class="fa fa-truck"></i> {{ $t('menu.items.stue_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/stue" @click="closeMenus"><i class="fa fa-truck"></i> {{ $t('menu.items.stue_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/mtue"><i class="fa fa-bus"></i> {{ $t('menu.items.mtue_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/mtue" @click="closeMenus"><i class="fa fa-bus"></i> {{ $t('menu.items.mtue_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/dguv"><i class="fa fa-shield-alt"></i> {{ $t('menu.items.dguv_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/dguv" @click="closeMenus"><i class="fa fa-shield-alt"></i> {{ $t('menu.items.dguv_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/inspections"><i class="fa fa-clipboard-check"></i> {{ $t('menu.items.general_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/inspections" @click="closeMenus"><i class="fa fa-clipboard-check"></i> {{ $t('menu.items.general_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/visual"><i class="fa fa-eye"></i> {{ $t('menu.items.visual_inspection') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/visual" @click="closeMenus"><i class="fa fa-eye"></i> {{ $t('menu.items.visual_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
             <div class="column">
               <h3>{{ $t('menu.categories.calibration') }}</h3>
               <hr class="category-divider">
-              <a href="/services/ergometer"><i class="fa fa-running"></i> {{ $t('menu.items.ergometer_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/ergometer" @click="closeMenus"><i class="fa fa-running"></i> {{ $t('menu.items.ergometer_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/thermometer"><i class="fa fa-thermometer-half"></i> {{ $t('menu.items.thermometer_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/thermometer" @click="closeMenus"><i class="fa fa-thermometer-half"></i> {{ $t('menu.items.thermometer_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/blood-pressure"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.blood_pressure_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/blood-pressure" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.blood_pressure_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/ecg"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.ecg_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/ecg" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.ecg_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/ultrasound"><i class="fa fa-wave-square"></i> {{ $t('menu.items.ultrasound_calibration') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/ultrasound" @click="closeMenus"><i class="fa fa-wave-square"></i> {{ $t('menu.items.ultrasound_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
             <div class="column">
               <h3>{{ $t('menu.categories.maintenance') }}</h3>
               <hr class="category-divider">
-              <a href="/services/repairs"><i class="fa fa-tools"></i> {{ $t('menu.items.repairs') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/repairs" @click="closeMenus"><i class="fa fa-tools"></i> {{ $t('menu.items.repairs') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/parts"><i class="fa fa-cog"></i> {{ $t('menu.items.spare_parts') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/parts" @click="closeMenus"><i class="fa fa-cog"></i> {{ $t('menu.items.spare_parts') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/installation"><i class="fa fa-wrench"></i> {{ $t('menu.items.installation_service') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/installation" @click="closeMenus"><i class="fa fa-wrench"></i> {{ $t('menu.items.installation_service') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/training"><i class="fa fa-graduation-cap"></i> {{ $t('menu.items.training') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/training" @click="closeMenus"><i class="fa fa-graduation-cap"></i> {{ $t('menu.items.training') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/disposal"><i class="fa fa-trash-alt"></i> {{ $t('menu.items.equipment_disposal') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/disposal" @click="closeMenus"><i class="fa fa-trash-alt"></i> {{ $t('menu.items.equipment_disposal') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/services/maintenance"><i class="fa fa-calendar-check"></i> {{ $t('menu.items.regular_maintenance') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/services/maintenance" @click="closeMenus"><i class="fa fa-calendar-check"></i> {{ $t('menu.items.regular_maintenance') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
         </div>
@@ -89,85 +91,86 @@
             <div class="column">
               <h3>{{ $t('menu.productData.categories.mtt_devices') }}</h3>
               <hr class="category-divider">
-              <a href="/products/ergo-fit-cycle"><i class="fa fa-bicycle"></i> {{ $t('menu.productData.items.ergo_fit_cycle') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/ergo-fit-cycle" @click="closeMenus"><i class="fa fa-bicycle"></i> {{ $t('menu.productData.items.ergo_fit_cycle') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/proxomed-treadmill"><i class="fa fa-running"></i> {{ $t('menu.productData.items.proxomed_treadmill') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/proxomed-treadmill" @click="closeMenus"><i class="fa fa-running"></i> {{ $t('menu.productData.items.proxomed_treadmill') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/physiomed-trainer"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.physiomed_trainer') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/physiomed-trainer" @click="closeMenus"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.physiomed_trainer') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/frei-ag-ergometer"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.frei_ag_ergometer') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/frei-ag-ergometer" @click="closeMenus"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.frei_ag_ergometer') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/rehabilitation-bike"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.rehabilitation_bike') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/rehabilitation-bike" @click="closeMenus"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.rehabilitation_bike') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
             <div class="column">
               <h3>{{ $t('menu.productData.categories.therapy') }}</h3>
               <hr class="category-divider">
-              <a href="/products/electrotherapy"><i class="fa fa-bolt"></i> {{ $t('menu.productData.items.electrotherapy') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/electrotherapy" @click="closeMenus"><i class="fa fa-bolt"></i> {{ $t('menu.productData.items.electrotherapy') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/ultrasound-therapy"><i class="fa fa-wave-square"></i> {{ $t('menu.productData.items.ultrasound_therapy') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/ultrasound-therapy" @click="closeMenus"><i class="fa fa-wave-square"></i> {{ $t('menu.productData.items.ultrasound_therapy') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/heat-therapy"><i class="fa fa-fire"></i> {{ $t('menu.productData.items.heat_therapy') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/heat-therapy" @click="closeMenus"><i class="fa fa-fire"></i> {{ $t('menu.productData.items.heat_therapy') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/cryotherapy"><i class="fa fa-snowflake"></i> {{ $t('menu.productData.items.cryotherapy') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/cryotherapy" @click="closeMenus"><i class="fa fa-snowflake"></i> {{ $t('menu.productData.items.cryotherapy') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/magnetotherapy"><i class="fa fa-magnet"></i> {{ $t('menu.productData.items.magnetotherapy') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/magnetotherapy" @click="closeMenus"><i class="fa fa-magnet"></i> {{ $t('menu.productData.items.magnetotherapy') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
             <div class="column">
               <h3>{{ $t('menu.productData.categories.sport_gymnastics') }}</h3>
               <hr class="category-divider">
-              <a href="/products/training-equipment"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.training_equipment') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/training-equipment" @click="closeMenus"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.training_equipment') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/rehabilitation-balls"><i class="fa fa-basketball-ball"></i> {{ $t('menu.productData.items.rehabilitation_balls') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/rehabilitation-balls" @click="closeMenus"><i class="fa fa-basketball-ball"></i> {{ $t('menu.productData.items.rehabilitation_balls') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/resistance-bands"><i class="fa fa-elastic"></i> {{ $t('menu.productData.items.resistance_bands') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/resistance-bands" @click="closeMenus"><i class="fa fa-elastic"></i> {{ $t('menu.productData.items.resistance_bands') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/balance-boards"><i class="fa fa-surfing"></i> {{ $t('menu.productData.items.balance_boards') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/balance-boards" @click="closeMenus"><i class="fa fa-surfing"></i> {{ $t('menu.productData.items.balance_boards') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/gymnastics-mats"><i class="fa fa-th-large"></i> {{ $t('menu.productData.items.gymnastics_mats') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/gymnastics-mats" @click="closeMenus"><i class="fa fa-th-large"></i> {{ $t('menu.productData.items.gymnastics_mats') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
           <div class="row">
             <div class="column">
               <h3>{{ $t('menu.productData.categories.therapy_beds') }}</h3>
               <hr class="category-divider">
-              <a href="/products/adjustable-beds"><i class="fa fa-bed"></i> {{ $t('menu.productData.items.adjustable_beds') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/adjustable-beds" @click="closeMenus"><i class="fa fa-bed"></i> {{ $t('menu.productData.items.adjustable_beds') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/massage-tables"><i class="fa fa-table"></i> {{ $t('menu.productData.items.massage_tables') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/massage-tables" @click="closeMenus"><i class="fa fa-table"></i> {{ $t('menu.productData.items.massage_tables') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/examination-beds"><i class="fa fa-procedures"></i> {{ $t('menu.productData.items.examination_beds') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/examination-beds" @click="closeMenus"><i class="fa fa-procedures"></i> {{ $t('menu.productData.items.examination_beds') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/hydrotherapy-beds"><i class="fa fa-water"></i> {{ $t('menu.productData.items.hydrotherapy_beds') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/hydrotherapy-beds" @click="closeMenus"><i class="fa fa-water"></i> {{ $t('menu.productData.items.hydrotherapy_beds') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
             <div class="column">
               <h3>{{ $t('menu.productData.categories.practice_supplies') }}</h3>
               <hr class="category-divider">
-              <a href="/products/medical-instruments"><i class="fa fa-stethoscope"></i> {{ $t('menu.productData.items.medical_instruments') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/medical-instruments" @click="closeMenus"><i class="fa fa-stethoscope"></i> {{ $t('menu.productData.items.medical_instruments') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/diagnostic-equipment"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.diagnostic_equipment') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/diagnostic-equipment" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.diagnostic_equipment') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/disposables"><i class="fa fa-syringe"></i> {{ $t('menu.productData.items.disposables') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/disposables" @click="closeMenus"><i class="fa fa-syringe"></i> {{ $t('menu.productData.items.disposables') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/furniture"><i class="fa fa-chair"></i> {{ $t('menu.productData.items.furniture') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/furniture" @click="closeMenus"><i class="fa fa-chair"></i> {{ $t('menu.productData.items.furniture') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
             <div class="column">
               <h3>{{ $t('menu.productData.categories.cardio') }}</h3>
               <hr class="category-divider">
-              <a href="/products/ecg-machines"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.ecg_machines') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/ecg-machines" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.ecg_machines') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/blood-pressure-monitors"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.blood_pressure_monitors') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/blood-pressure-monitors" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.blood_pressure_monitors') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/stress-test-systems"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.stress_test_systems') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/stress-test-systems" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.stress_test_systems') }} <i class="fa fa-chevron-right"></i></router-link>
               <hr>
-              <a href="/products/holter-monitors"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.holter_monitors') }} <i class="fa fa-chevron-right"></i></a>
+              <router-link to="/products/holter-monitors" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.holter_monitors') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
         </div>
       </div>
       
-      <a href="/about">{{ $t('menu.about') }}</a>
-      <a href="/contact">{{ $t('menu.contact') }}</a>
-      <a href="/blog">{{ $t('menu.blog') }}</a>
-      <a href="/faq">{{ $t('menu.faq') }}</a>
+      <router-link to="/about" @click="closeMenus">{{ $t('menu.about') }}</router-link>
+      <router-link to="/contact" @click="closeMenus">{{ $t('menu.contact') }}</router-link>
+      <router-link to="/blog" @click="closeMenus">{{ $t('menu.blog') }}</router-link>
+      <router-link to="/faq" @click="closeMenus">{{ $t('menu.faq') }}</router-link>
+      <router-link to="/imprint" @click="closeMenus">{{ $t('menu.imprint') }}</router-link>
     </div>
     
     <!-- Conteneur pour les éléments de droite -->
@@ -180,7 +183,6 @@
           class="hidden-md-and-up" 
           @click.stop="toggleMobileMenu"
           :icon="mobileDrawer ? 'mdi-close' : 'mdi-menu'"
-      
       ></v-app-bar-nav-icon>
     </div>
   </div>
@@ -194,6 +196,9 @@ export default {
   components: {
     LanguageSelector
   },
+  props: {
+    mobileDrawer: Boolean
+  },
   data() {
     return {
       showDropdown: false,
@@ -203,8 +208,15 @@ export default {
   },
   methods: {
     toggleMobileMenu() {
-      this.mobileMenuOpen = !this.mobileMenuOpen
-     this.$emit('update:mobile-drawer', !this.mobileDrawer)
+      this.$emit('update:mobile-drawer', !this.mobileDrawer)
+    },
+    closeMenus() {
+      this.showDropdown = false;
+      this.showProductsDropdown = false;
+      
+      if (this.mobileDrawer) {
+        this.$emit('update:mobile-drawer', false);
+      }
     }
   }
 }
@@ -237,6 +249,11 @@ export default {
   white-space: nowrap;
 }
 
+.app-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .nav-links {
   display: flex;
   justify-content: center;
@@ -259,6 +276,10 @@ export default {
   text-decoration: none;
 }
 
+.navbar .router-link-exact-active {
+  background-color: rgb(9, 113, 182);
+}
+
 .dropdown {
   float: left;
   overflow: hidden;
@@ -273,9 +294,12 @@ export default {
   background-color: inherit;
   font: inherit;
   margin: 0;
+  cursor: pointer;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover, 
+.navbar .router-link:hover, 
+.dropdown:hover .dropbtn {
   background-color: rgb(9, 113, 182);
 }
 
@@ -322,7 +346,8 @@ export default {
   min-height: 250px;
 }
 
-.column a {
+.column a,
+.column .router-link {
   float: none;
   color: #333;
   padding: 10px 16px;
@@ -334,41 +359,48 @@ export default {
   position: relative;
 }
 
-.column a i:not(.fa-chevron-right) {
+.column a i:not(.fa-chevron-right),
+.column .router-link i:not(.fa-chevron-right) {
   margin-right: 10px;
   min-width: 20px;
   text-align: center;
 }
 
-.column a i.fa-chevron-right {
+.column a i.fa-chevron-right,
+.column .router-link i.fa-chevron-right {
   position: absolute;
   right: 16px;
   color: #666;
   font-size: 12px;
 }
 
-.column a span {
+.column a span,
+.column .router-link span {
   flex-grow: 1;
   padding-right: 20px;
 }
 
-.column a i:first-child {
+.column a i:first-child,
+.column .router-link i:first-child {
   margin-right: 10px;
   width: 20px;
   text-align: center;
 }
 
-.column a:hover {
+.column a:hover,
+.column .router-link:hover {
   background-color: #ddd;
   color: rgb(9, 113, 182);
 }
 
-.column a i {
+.column a i,
+.column .router-link i {
   margin-right: 8px;
   color: rgb(9, 113, 182);
 }
 
-.column a i.fa-chevron-right {
+.column a i.fa-chevron-right,
+.column .router-link i.fa-chevron-right {
   margin-right: 0;
   margin-left: 8px;
   color: #666;
@@ -416,11 +448,11 @@ hr.category-divider {
   .nav-links {
     order: 3;
     width: 100%;
-    display: none; /* Cache les liens en mobile par défaut */
+    display: none;
   }
   
   .navbar.expanded .nav-links {
-    display: flex; /* Affiche les liens quand le menu mobile est ouvert */
+    display: flex;
     flex-direction: column;
   }
   
@@ -438,7 +470,9 @@ hr.category-divider {
     width: 100%;
   }
   
-  .navbar a, .dropdown .dropbtn {
+  .navbar a, 
+  .navbar .router-link,
+  .dropdown .dropbtn {
     padding: 10px 12px;
     font-size: 14px;
   }

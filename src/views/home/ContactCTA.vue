@@ -25,7 +25,7 @@
               </div>
               <div class="contact-info">
                 <h4>E-Mail Anfrage</h4>
-                <a href="mailto:info@alpha-med-care.de" class="contact-link">info@alpha-med-care.de</a>
+                <a href="mailto:info@alpha-med-care.de" class="contact-link">kontakt@alpha-med-care.de</a>
                 <p>Antwort innerhalb von 24h</p>
               </div>
             </div>

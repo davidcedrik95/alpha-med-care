@@ -16,7 +16,7 @@
     "close": "Close menu",
     "blog": "Blog",
     "faq": "FAQ",
-    "imprint": "Legal Notice",
+    "imprint": "Imprint",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "cookies": "Cookies",
@@ -85,7 +85,7 @@
     "add_to_cart": "Add to cart",
     "remove": "Remove"
   },
-  
+
   "account": {
     "title": "My Account",
     "login": "Login",
