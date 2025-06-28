@@ -41,8 +41,8 @@
               <h4>Unser Büro</h4>
               <p class="contact-link">
                 Alpha Med Care GmbH<br>
-                Maximilianstraße 35<br>
-                80539 München
+                Ulrichstraße 11A<br>
+                92278 Illschwang
               </p>
             </div>
           </div>
