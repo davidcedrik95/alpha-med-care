@@ -457,7 +457,6 @@ function changeLanguage(lang) {
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .title {
   font-weight: 600;
   font-size: 1.5rem;
