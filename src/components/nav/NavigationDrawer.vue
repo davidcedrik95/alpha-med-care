@@ -297,7 +297,7 @@ const drawerWidth = computed(() => {
     return Math.min(windowWidth.value * 0.6, 450);
   }
   // Bureau - largeur fixe
-  return 350;
+  return 370;
 });
 
 const menuCategories = [
