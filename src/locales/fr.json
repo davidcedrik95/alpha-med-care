@@ -16,44 +16,83 @@
     "blog": "Blog",
     "faq": "FAQ",
     "imprint": "Mentions légales",
-    "privacy": "Protection des données",
+    "privacy": "Confidentialité",
     "terms": "CGV",
     "cookies": "Cookies",
     "categories": {
-      "inspections": "Vérifications & contrôles",
+      "inspections": "Vérifications & Contrôles",
       "calibration": "Étalonnages",
-      "maintenance": "Maintenance & service",
-      "sales": "Vente & produits",
-      "consulting": "Conseil & formation",
-      "stk": "Contrôle de sécurité technique (STK)",
+      "maintenance": "Maintenance & Service",
+      "sales": "Vente & Produits",
+      "consulting": "Conseil & Formation",
+      "stk": "Contrôle technique de sécurité (STK)",
       "mtk": "Contrôle métrologique (MTK)"
     },
     "items": {
       "new": "Nouveautés",
       "specials": "Offres spéciales",
       "top_seller": "Meilleures ventes",
-      "sale": "Soldes",
+      "sale": "Promotions",
       "used_equipment": "Équipement d'occasion",
-      "leasing": "Location",
-      "stk_inspection": "Contrôle de sécurité technique (STK)",
+      "leasing": "Leasing",
+      "stk_inspection": "Contrôle technique de sécurité (STK)",
       "mtk_inspection": "Contrôle métrologique (MTK)",
-      "stue_inspection": "Vérification de sécurité technique (STÜ)",
+      "stue_inspection": "Vérification technique de sécurité (STÜ)",
       "mtue_inspection": "Vérification métrologique (MTÜ)",
-      "dguv_inspection": "Vérification DGUV",
-      "general_inspection": "Inspection générale",
-      "visual_inspection": "Inspection visuelle",
-      "ergometer_calibration": "Étalonnage ergomètre",
-      "thermometer_calibration": "Étalonnage thermomètre",
-      "blood_pressure_calibration": "Étalonnage tensiomètre",
-      "ecg_calibration": "Étalonnage ECG",
-      "ultrasound_calibration": "Étalonnage échographe",
-      "repairs": "Réparations",
-      "spare_parts": "Pièces détachées & accessoires",
+      "dguv_inspection": "Contrôle DGUV",
+      "general_inspection": "Contrôle général",
+      "visual_inspection": "Contrôle visuel",
+      "ergometer_calibration": "Étalonnage d'ergomètre",
+      "thermometer_calibration": "Étalonnage de thermomètre",
+      "blood_pressure_calibration": "Étalonnage de tensiomètre",
+      "ecg_calibration": "Étalonnage d'appareil ECG",
+      "ultrasound_calibration": "Étalonnage d'appareil à ultrasons",
+      "repairs": "Réparations d'appareils",
+      "spare_parts": "Pièces détachées & Accessoires",
       "installation_service": "Service d'installation",
       "training": "Formation utilisateur",
-      "equipment_disposal": "Recyclage d'équipement",
+      "equipment_disposal": "Élimination d'équipement",
       "regular_maintenance": "Maintenance régulière",
       "emergency_service": "Service d'urgence"
+    },
+    "productData": {
+      "categories": {
+        "mtt_devices": "Appareils MTT",
+        "therapy": "Appareils de thérapie",
+        "sport_gymnastics": "Sport & Gymnastique",
+        "therapy_beds": "Lits de thérapie",
+        "practice_supplies": "Fournitures de cabinet",
+        "cardio": "Cardiologie"
+      },
+      "items": {
+        "ergo_fit_cycle": "Ergomètre vélo Ergo-Fit",
+        "proxomed_treadmill": "Tapis roulant Proxomed",
+        "physiomed_trainer": "Appareil Physiomed",
+        "frei_ag_ergometer": "Ergomètre Frei AG",
+        "rehabilitation_bike": "Vélo de rééducation",
+        "electrotherapy": "Appareils d'électrothérapie",
+        "ultrasound_therapy": "Appareils de thérapie par ultrasons",
+        "heat_therapy": "Appareils de thermothérapie",
+        "cryotherapy": "Appareils de cryothérapie",
+        "magnetotherapy": "Appareils de magnétothérapie",
+        "training_equipment": "Équipement d'entraînement",
+        "rehabilitation_balls": "Ballons de rééducation",
+        "resistance_bands": "Bandes de résistance",
+        "balance_boards": "Planches d'équilibre",
+        "gymnastics_mats": "Tapis de gymnastique",
+        "adjustable_beds": "Lits de thérapie réglables",
+        "massage_tables": "Tables de massage",
+        "examination_beds": "Lits d'examen",
+        "hydrotherapy_beds": "Lits d'hydrothérapie",
+        "medical_instruments": "Instruments médicaux",
+        "diagnostic_equipment": "Équipement de diagnostic",
+        "disposables": "Consommables",
+        "furniture": "Mobilier de cabinet",
+        "ecg_machines": "Appareils ECG",
+        "blood_pressure_monitors": "Tensiomètres",
+        "stress_test_systems": "Systèmes de test d'effort",
+        "holter_monitors": "Moniteurs Holter"
+      }
     }
   },
   "header": {
@@ -62,7 +101,7 @@
     "invoice": "Achat sur facture",
     "consultation": "Conseil technique",
     "search_placeholder": "Rechercher des produits...",
-    "prices_incl_vat": "Tous prix en euros TTC, hors frais de livraison",
+    "prices_incl_vat": "Tous prix en euros TTC, hors frais de port",
     "free_shipping": "Livraison gratuite à partir de 149€",
     "wishlist": "Liste de souhaits",
     "account": "Mon compte",
@@ -75,14 +114,12 @@
     "en": "Anglais",
     "fr": "Français"
   },
-
   "wishlist": {
     "title": "Ma liste de souhaits",
     "empty": "Votre liste de souhaits est vide",
     "add_to_cart": "Ajouter au panier",
-    "remove": "Retirer"
+    "remove": "Supprimer"
   },
-
   "account": {
     "title": "Mon compte",
     "login": "Connexion",
@@ -95,7 +132,7 @@
     "orders": "Commandes",
     "items": {
       "forgot_password": "Mot de passe oublié",
-      "dealer_login": "Espace revendeur",
+      "dealer_login": "Connexion revendeur",
       "my_account": "Mon compte",
       "my_orders": "Mes commandes",
       "my_returns": "Mes retours",
@@ -106,24 +143,24 @@
   "cart": {
     "title": "Votre panier",
     "empty": "Votre panier est vide",
-    "continue_shopping": "Continuer vos achats",
+    "continue_shopping": "Continuer les achats",
     "subtotal": "Sous-total",
     "discount": "Remise",
     "total": "Total",
-    "checkout": "Passer commande",
+    "checkout": "Commander",
     "request_quote": "Demander un devis",
-    "save_cart": "Sauvegarder le panier",
+    "save_cart": "Enregistrer le panier",
     "coupon_placeholder": "Code promo",
     "apply": "Appliquer"
   },
   "info": {
     "help": {
-      "title": "Aide & informations",
+      "title": "Aide & Informations",
       "items": {
         "faq": "FAQ",
         "shipping": "Informations de livraison",
-        "payment": "Modes de paiement",
-        "privacy": "Protection des données",
+        "payment": "Moyens de paiement",
+        "privacy": "Confidentialité",
         "terms": "CGV"
       }
     },
@@ -154,10 +191,10 @@
     "imprint": "Mentions légales",
     "products": "Produits",
     "opening_hours": {
-      "title": "Heures d'ouverture",
-      "weekdays": "Lun-Ven: 8h00 - 18h00",
-      "saturday": "Sam: 9h00 - 14h00",
-      "emergency": "Service d'urgence: 24/7"
+      "title": "Horaires d'ouverture",
+      "weekdays": "Lun-Ven : 8h00 - 18h00",
+      "saturday": "Sam : 9h00 - 14h00",
+      "emergency": "Service d'urgence : 24/7"
     },
     "mobile_app": {
       "title": "Application mobile",
@@ -183,25 +220,25 @@
         "career": "Carrières",
         "news": "Actualités",
         "team": "Notre équipe",
-        "quality": "Gestion qualité",
+        "quality": "Management qualité",
         "partners": "Partenaires",
         "compliance": "Conformité",
         "locations": "Implantations"
       },
       "services": {
         "title": "Services",
-        "inspections": "Vérifications & contrôles",
+        "inspections": "Vérifications & Contrôles",
         "calibration": "Étalonnages",
         "maintenance": "Service de maintenance",
         "consulting": "Conseil technique",
         "certification": "Certifications",
         "training": "Formations",
-        "leasing": "Location"
+        "leasing": "Leasing"
       },
       "support": {
         "title": "Support",
         "contact": "Formulaire de contact",
-        "faq": "Questions fréquentes",
+        "faq": "FAQ",
         "shipping": "Infos livraison",
         "returns": "Processus de retour",
         "emergency": "Service d'urgence",
@@ -211,11 +248,11 @@
       },
       "resources": {
         "title": "Ressources",
-        "blog": "Blog technique",
+        "blog": "Blog spécialisé",
         "guides": "Manuels d'utilisation",
         "videos": "Vidéos de formation",
         "downloads": "Téléchargements",
-        "regulations": "Normes & directives",
+        "regulations": "Normes & Règlementations",
         "cookies": "Cookies"
       },
       "environment": {
@@ -223,18 +260,18 @@
         "protection": "Protection environnementale",
         "recycling": "Recyclage",
         "sustainability": "Durabilité",
-        "battery_disposal": "Recyclage de batteries",
-        "co2_neutral": "Neutralité CO2"
+        "battery_disposal": "Élimination des batteries",
+        "co2_neutral": "Neutralité CO₂"
       }
     },
     "newsletter": {
       "title": "Lettre d'information technique",
       "description": "Restez informé des nouveautés en technologie médicale et des offres spéciales.",
-      "placeholder": "Votre email professionnel",
-      "subscribe": "S'abonner maintenant",
-      "privacy_note": "Nous ne partageons pas vos données. Vous pouvez vous désabonner à tout moment.",
+      "placeholder": "Votre e-mail professionnel",
+      "subscribe": "S'abonner",
+      "privacy_note": "Nous ne partageons pas vos données. Désabonnement à tout moment.",
       "success": "Merci pour votre inscription !",
-      "error": "Veuillez saisir un email professionnel valide"
+      "error": "Veuillez saisir un e-mail professionnel valide"
     },
     "certifications": {
       "title": "Certifications",
@@ -246,10 +283,10 @@
       "dguv": "Certifié DGUV"
     },
     "payment_methods": {
-      "title": "Modes de paiement",
+      "title": "Moyens de paiement",
       "methods": [
         "Facture (net 30 jours)",
-        "Carte de crédit",
+        "Carte bancaire",
         "Prélèvement SEPA",
         "PayPal",
         "Paiement anticipé"
@@ -262,7 +299,7 @@
     "copyright": "Tous droits réservés",
     "slogan": "Précision en technologie médicale",
     "details": {
-      "founded": "Fondé en 2010",
+      "founded": "Fondée en 2010",
       "employees": "50+ techniciens certifiés",
       "locations": [
         "Siège social : Illschwang",
@@ -275,7 +312,7 @@
     },
     "mission": {
       "title": "Notre mission",
-      "content": "Nous garantissons la sécurité et la précision des équipements médicaux grâce à une maintenance, un étalonnage et des contrôles appropriés conformes aux normes en vigueur."
+      "content": "Nous garantissons la sécurité et la précision des dispositifs médicaux grâce à une maintenance, un étalonnage et des contrôles professionnels conformes aux normes en vigueur."
     }
   },
   "social": {
@@ -287,7 +324,7 @@
     "whatsapp": "WhatsApp"
   },
   "seo": {
-    "keywords": "Technologie médicale, Vérification d'équipement, STK, MTK, Étalonnage, Maintenance d'équipement médical, Vérification DGUV",
-    "description": "alpha-med-care - Votre prestataire spécialisé pour les contrôles de sécurité, les étalonnages et la maintenance d'équipements médicaux dans toute l'Allemagne."
+    "keywords": "Technologie médicale, Vérification d'appareils, STK, MTK, Étalonnage, Maintenance d'appareils médicaux, Contrôle DGUV",
+    "description": "alpha-med-care - Votre prestataire spécialisé en contrôles de sécurité, étalonnages et maintenance d'appareils médicaux en Allemagne."
   }
 }

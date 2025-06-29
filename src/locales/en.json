@@ -3,8 +3,8 @@
     "title": "alpha med care GmbH"
   },
   "construction": {
-    "title": "Website Under Construction",
-    "message": "We're actively working on this website",
+    "title": "Website under construction",
+    "message": "We are actively working on this website",
     "click": "Click to continue"
   },
   "menu": {
@@ -13,11 +13,10 @@
     "about": "About Us",
     "contact": "Contact",
     "products": "Products",
-    "close": "Close menu",
     "blog": "Blog",
     "faq": "FAQ",
-    "imprint": "Imprint",
-    "privacy": "Privacy Policy",
+    "imprint": "Legal Notice",
+    "privacy": "Privacy",
     "terms": "Terms & Conditions",
     "cookies": "Cookies",
     "categories": {
@@ -27,19 +26,19 @@
       "sales": "Sales & Products",
       "consulting": "Consulting & Training",
       "stk": "Safety Technical Inspection (STK)",
-      "mtk": "Measurement Technical Inspection (MTK)"
+      "mtk": "Metrological Inspection (MTK)"
     },
     "items": {
-      "new": "New Arrivals",
-      "specials": "Special Offers",
-      "top_seller": "Bestsellers",
+      "new": "New",
+      "specials": "Specials",
+      "top_seller": "Top Seller",
       "sale": "Sale",
       "used_equipment": "Used Equipment",
       "leasing": "Leasing",
       "stk_inspection": "Safety Technical Inspection (STK)",
-      "mtk_inspection": "Measurement Technical Inspection (MTK)",
-      "stue_inspection": "Safety Technical Examination (STÜ)",
-      "mtue_inspection": "Measurement Technical Examination (MTÜ)",
+      "mtk_inspection": "Metrological Inspection (MTK)",
+      "stue_inspection": "Safety Technical Verification (STÜ)",
+      "mtue_inspection": "Metrological Verification (MTÜ)",
       "dguv_inspection": "DGUV Inspection",
       "general_inspection": "General Inspection",
       "visual_inspection": "Visual Inspection",
@@ -48,44 +47,79 @@
       "blood_pressure_calibration": "Blood Pressure Monitor Calibration",
       "ecg_calibration": "ECG Device Calibration",
       "ultrasound_calibration": "Ultrasound Device Calibration",
-      "repairs": "Equipment Repairs",
+      "repairs": "Device Repairs",
       "spare_parts": "Spare Parts & Accessories",
       "installation_service": "Installation Service",
       "training": "User Training",
       "equipment_disposal": "Equipment Disposal",
       "regular_maintenance": "Regular Maintenance",
       "emergency_service": "Emergency Service"
+    },
+    "productData": {
+      "categories": {
+        "mtt_devices": "MTT Devices",
+        "therapy": "Therapy Equipment",
+        "sport_gymnastics": "Sports & Gymnastics",
+        "therapy_beds": "Therapy Beds",
+        "practice_supplies": "Practice Supplies",
+        "cardio": "Cardiology"
+      },
+      "items": {
+        "ergo_fit_cycle": "Ergo-Fit Cycle Ergometer",
+        "proxomed_treadmill": "Proxomed Treadmill",
+        "physiomed_trainer": "Physiomed Trainer",
+        "frei_ag_ergometer": "Frei AG Ergometer",
+        "rehabilitation_bike": "Rehabilitation Bike",
+        "electrotherapy": "Electrotherapy Devices",
+        "ultrasound_therapy": "Ultrasound Therapy Devices",
+        "heat_therapy": "Heat Therapy Devices",
+        "cryotherapy": "Cryotherapy Devices",
+        "magnetotherapy": "Magnetotherapy Devices",
+        "training_equipment": "Training Equipment",
+        "rehabilitation_balls": "Rehabilitation Balls",
+        "resistance_bands": "Resistance Bands",
+        "balance_boards": "Balance Boards",
+        "gymnastics_mats": "Gymnastics Mats",
+        "adjustable_beds": "Adjustable Therapy Beds",
+        "massage_tables": "Massage Tables",
+        "examination_beds": "Examination Beds",
+        "hydrotherapy_beds": "Hydrotherapy Beds",
+        "medical_instruments": "Medical Instruments",
+        "diagnostic_equipment": "Diagnostic Equipment",
+        "disposables": "Disposables",
+        "furniture": "Practice Furniture",
+        "ecg_machines": "ECG Machines",
+        "blood_pressure_monitors": "Blood Pressure Monitors",
+        "stress_test_systems": "Stress Test Systems",
+        "holter_monitors": "Holter Monitors"
+      }
     }
   },
   "header": {
     "phone_label": "Hotline",
     "phone": "+49 (0)9666 188950",
-    "invoice": "Purchase on Invoice",
-    "consultation": "Technical Consultation",
+    "invoice": "Invoice Purchase",
+    "consultation": "Expert Consultation",
     "search_placeholder": "Search products...",
     "prices_incl_vat": "All prices in Euro incl. VAT plus shipping",
     "free_shipping": "Free shipping from €149",
     "wishlist": "Wishlist",
     "account": "My Account",
     "cart": "Shopping Cart",
-    "logo_subtext": "Your Specialist for Medical Technology",
-    "search": "Search",
-    "prices_incl_vat_tooltip": "Including VAT"
-
+    "logo_subtext": "Your Specialist in Medical Technology",
+    "search": "Search"
   },
   "language": {
     "de": "German",
     "en": "English",
     "fr": "French"
   },
-
   "wishlist": {
     "title": "My Wishlist",
     "empty": "Your wishlist is empty",
-    "add_to_cart": "Add to cart",
+    "add_to_cart": "Add to Cart",
     "remove": "Remove"
   },
-
   "account": {
     "title": "My Account",
     "login": "Login",
@@ -126,7 +160,7 @@
         "faq": "FAQ",
         "shipping": "Shipping Information",
         "payment": "Payment Methods",
-        "privacy": "Privacy Policy",
+        "privacy": "Privacy",
         "terms": "Terms & Conditions"
       }
     },
@@ -134,7 +168,7 @@
       "title": "More About alpha-med-care",
       "items": {
         "about_us": "About Us",
-        "career": "Careers",
+        "career": "Career",
         "locations": "Locations",
         "partners": "Partners",
         "press": "Press"
@@ -164,8 +198,8 @@
     },
     "mobile_app": {
       "title": "Mobile App",
-      "app_store": "Download on the App Store",
-      "google_play": "Get it on Google Play"
+      "app_store": "Download now on App Store",
+      "google_play": "Download now on Google Play"
     },
     "shipping": {
       "title": "Shipping"
@@ -178,12 +212,12 @@
     "sections": {
       "social": {
         "title": "Social Media",
-        "follow_us": "Follow us"
+        "follow_us": "Follow Us"
       },
       "company": {
         "title": "Company",
         "about": "About Us",
-        "career": "Careers",
+        "career": "Career",
         "news": "News",
         "team": "Our Team",
         "quality": "Quality Management",
@@ -196,7 +230,7 @@
         "inspections": "Inspections & Controls",
         "calibration": "Calibrations",
         "maintenance": "Maintenance Service",
-        "consulting": "Technical Consulting",
+        "consulting": "Expert Consultation",
         "certification": "Certifications",
         "training": "Training",
         "leasing": "Leasing"
@@ -204,9 +238,9 @@
       "support": {
         "title": "Support",
         "contact": "Contact Form",
-        "faq": "Frequently Asked Questions",
+        "faq": "FAQ",
         "shipping": "Shipping Info",
-        "returns": "Return Process",
+        "returns": "Returns Process",
         "emergency": "Emergency Service",
         "live_chat": "Live Chat",
         "service_center": "Service Center",
@@ -214,11 +248,11 @@
       },
       "resources": {
         "title": "Resources",
-        "blog": "Technical Blog",
+        "blog": "Expert Blog",
         "guides": "User Manuals",
         "videos": "Training Videos",
         "downloads": "Downloads",
-        "regulations": "Standards & Regulations",
+        "regulations": "Norms & Regulations",
         "cookies": "Cookies"
       },
       "environment": {
@@ -231,11 +265,11 @@
       }
     },
     "newsletter": {
-      "title": "Technical Newsletter",
+      "title": "Expert Newsletter",
       "description": "Stay updated with medical technology news and special offers.",
       "placeholder": "Your business email",
       "subscribe": "Subscribe Now",
-      "privacy_note": "We don't share your data. You can unsubscribe anytime.",
+      "privacy_note": "We do not share your data. You can unsubscribe at any time.",
       "success": "Thank you for subscribing!",
       "error": "Please enter a valid business email"
     },
@@ -255,7 +289,7 @@
         "Credit Card",
         "SEPA Direct Debit",
         "PayPal",
-        "Advance Payment"
+        "Prepayment"
       ]
     }
   },
@@ -272,13 +306,13 @@
         "Branch: Munich",
         "Service Center: Berlin"
       ],
-      "quality": "TÜV-certified according to ISO 13485",
+      "quality": "TÜV certified to ISO 13485",
       "vat": "DE123456789",
-      "commercial_register": "HRB 12345, Nuremberg Local Court"
+      "commercial_register": "HRB 12345, Local Court Nürnberg"
     },
     "mission": {
       "title": "Our Mission",
-      "content": "We guarantee the safety and precision of medical equipment through proper maintenance, calibration and inspections according to current standards."
+      "content": "We guarantee the safety and precision of medical devices through professional maintenance, calibration, and inspections according to current standards."
     }
   },
   "social": {
@@ -290,7 +324,7 @@
     "whatsapp": "WhatsApp"
   },
   "seo": {
-    "keywords": "Medical Technology, Equipment Inspection, STK, MTK, Calibration, Medical Equipment Maintenance, DGUV Inspection",
-    "description": "alpha-med-care - Your specialized service provider for safety inspections, calibrations and maintenance of medical equipment throughout Germany."
+    "keywords": "Medical Technology, Device Inspection, STK, MTK, Calibration, Medical Device Maintenance, DGUV Inspection",
+    "description": "alpha-med-care - Your specialized service provider for safety inspections, calibrations, and maintenance of medical devices throughout Germany."
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <footer v-if="showFooter" class="mobile-footer" :key="footerKey">
+  <footer class="mobile-footer">
     <div class="footer-sections">
       <div class="footer-section" v-for="section in sections" :key="section.key">
         <button class="section-header" @click="toggleSection(section.key)">
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default {
@@ -103,18 +103,10 @@ export default {
     }
   },
   setup(props) {
-    const { t, locale } = useI18n()
+    const { t } = useI18n()
     const openSections = ref(props.initiallyOpen)
-    const footerKey = ref(0)
-    const showFooter = ref(true)
 
-    watch(locale, () => {
-      showFooter.value = false
-      footerKey.value++
-      setTimeout(() => showFooter.value = true, 50)
-    })
-
-    const sections = ref([
+    const sections = computed(() => [
       {
         key: 'company',
         title: t('footer.sections.company.title'),
@@ -230,8 +222,9 @@ export default {
     ])
 
     const toggleSection = (key) => {
-      if (isOpen(key)) {
-        openSections.value = openSections.value.filter(t => t !== key)
+      const index = openSections.value.indexOf(key)
+      if (index > -1) {
+        openSections.value.splice(index, 1)
       } else {
         openSections.value.push(key)
       }
@@ -244,8 +237,6 @@ export default {
     return {
       sections,
       openSections,
-      footerKey,
-      showFooter,
       toggleSection,
       isOpen
     }
