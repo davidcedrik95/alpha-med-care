@@ -18,7 +18,7 @@
             <a href="#" aria-label="Twitter"><i class="mdi mdi-twitter"></i></a>
             <a href="#" aria-label="Instagram"><i class="mdi mdi-instagram"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="mdi mdi-linkedin"></i></a>
-            <a href="#" aria-label="YouTube"><i class="mdi mdi-youtube"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="mdi mdi-whatsapp"></i></a>
           </div>
           
           <div v-if="section.payment" class="payment-methods">
