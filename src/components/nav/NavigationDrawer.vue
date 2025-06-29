@@ -257,6 +257,56 @@
           </v-list>
         </v-card>
       </div>
+      
+      <!-- Quatrième carte - Langue et copyright -->
+      <div class="language-copyright-section">
+        <!-- Titre placé avant la carte -->
+        <div class="section-header">
+          <h3>{{ $t('language') }}</h3>
+        </div>
+        
+        <!-- La carte elle-même -->
+        <v-card class="language-copyright-card" flat>
+          <div class="language-selector">
+            <span class="language-text">{{ $t('language') }}</span>
+            <div class="vertical-divider"></div>
+            <div class="flags">
+              <div 
+                class="flag-icon" 
+                :class="{ active: currentLanguage === 'de' }"
+                @click="changeLanguage('de')"
+              >
+                <img src="/images/flags/de.png" alt="Deutsch" class="flag-img">
+              </div>
+              <div 
+                class="flag-icon" 
+                :class="{ active: currentLanguage === 'en' }"
+                @click="changeLanguage('en')"
+              >
+                <img src="/images/flags/en.png" alt="English" class="flag-img">
+              </div>
+              <div 
+                class="flag-icon" 
+                :class="{ active: currentLanguage === 'fr' }"
+                @click="changeLanguage('fr')"
+              >
+                <img src="/images/flags/fr.png" alt="Français" class="flag-img">
+              </div>
+            </div>
+          </div>
+
+          <hr class="custom-divider">
+
+          <div class="copyright-version">
+            <div class="copyright">
+              {{ $t('footer.copyright', { year: new Date().getFullYear(), company: $t('company.name') }) }}
+            </div>
+            <div class="app-version">
+              v{{ appVersion }}
+            </div>
+          </div>
+        </v-card>
+      </div>
     </div>
   </v-navigation-drawer>
 </template>
@@ -265,7 +315,7 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { defineProps, defineEmits } from 'vue'
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 
 const props = defineProps({
   modelValue: Boolean
@@ -280,7 +330,16 @@ const drawer = computed({
 const windowWidth = ref(window.innerWidth)
 const updateWidth = () => (windowWidth.value = window.innerWidth)
 
-onMounted(() => window.addEventListener('resize', updateWidth))
+onMounted(() => {
+  window.addEventListener('resize', updateWidth)
+  
+  // Charger la langue sauvegardée
+  const savedLang = localStorage.getItem('userLanguage')
+  if (savedLang) {
+    locale.value = savedLang
+    currentLanguage.value = savedLang
+  }
+})
 onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
 const drawerWidth = computed(() => {
@@ -299,6 +358,8 @@ const drawerWidth = computed(() => {
   // Bureau - largeur fixe
   return 370;
 });
+
+const appVersion = "1.2.5"; // Version de l'application
 
 const menuCategories = [
   {
@@ -372,8 +433,17 @@ const authItems = [
   { key: "register", icon: "mdi-account-plus", route: "/register" }
 ]
 
+const currentLanguage = ref(locale.value)
+
 function closeDrawer() {
   drawer.value = false
+}
+
+function changeLanguage(lang) {
+  locale.value = lang
+  currentLanguage.value = lang
+  localStorage.setItem('userLanguage', lang)
+  closeDrawer()
 }
 </script>
 
@@ -436,7 +506,8 @@ function closeDrawer() {
 
 .menu-card,
 .account-card,
-.auth-card {
+.auth-card,
+.language-copyright-card {
   background: #ffffff;
   border-radius: 10px;
   margin-bottom: 16px;
@@ -635,5 +706,114 @@ function closeDrawer() {
   min-width: 24px; /* Largeur fixe pour les icônes */
   display: flex;
   justify-content: center;
+}
+
+/* Styles pour la nouvelle section Langue et Copyright */
+.language-copyright-section {
+  margin-top: 16px;
+}
+
+.language-copyright-card {
+  padding: 16px 0;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  padding: 0 16px 8px;
+  gap: 12px;
+}
+
+.language-text {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  min-width: 70px;
+}
+
+.vertical-divider {
+  height: 24px;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.flags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.flag-icon {
+  width: 32px;
+  height: 24px;
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  border: 1px solid transparent;
+}
+
+.flag-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.flag-icon.active {
+  opacity: 1;
+  border-color: #3a7bd5;
+  box-shadow: 0 0 0 2px rgba(58, 123, 213, 0.3);
+}
+
+.flag-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.copyright-version {
+  padding: 8px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #7f8c8d;
+  line-height: 1.4;
+}
+
+.app-version {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #666;
+  background: rgba(0,0,0,0.05);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: monospace;
+  align-self: center;
+}
+
+/* Responsive */
+@media (max-width: 599px) {
+  .language-selector {
+    padding: 0 12px 6px;
+  }
+  
+  .flag-icon {
+    width: 28px;
+    height: 21px;
+  }
+  
+  .copyright {
+    font-size: 0.7rem;
+  }
+  
+  .app-version {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
 }
 </style>
