@@ -15,7 +15,6 @@
                 <li><a href="/news" :aria-label="$t('footer.sections.company.news')">{{ $t('footer.sections.company.news') }}</a></li>
                 <li><a href="/locations" :aria-label="$t('company.details.locations[0]')">{{ $t('company.details.locations[0]') }}</a></li>
                 <li><a href="/partners" :aria-label="$t('footer.sections.company.partners')">{{ $t('footer.sections.company.partners') }}</a></li>
-              
               </ul>
             </div>
 
@@ -121,22 +120,22 @@
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.social') }}</h4>
               <div class="social-3d">
-  <a href="#" class="social-icon-3d facebook" aria-label="Facebook">
-    <i class="mdi mdi-facebook"></i>
-  </a>
-  <a href="#" class="social-icon-3d twitter" aria-label="Twitter">
-    <i class="mdi mdi-twitter"></i>
-  </a>
-  <a href="#" class="social-icon-3d instagram" aria-label="Instagram">
-    <i class="mdi mdi-instagram"></i>
-  </a>
-  <a href="#" class="social-icon-3d linkedin" aria-label="LinkedIn">
-    <i class="mdi mdi-linkedin"></i>
-  </a>
-  <a href="#" class="social-icon-3d whatsapp" aria-label="WhatsApp">
-    <i class="mdi mdi-whatsapp"></i>
-  </a>
-</div>
+                <a href="#" class="social-icon-3d facebook" aria-label="Facebook">
+                  <i class="mdi mdi-facebook"></i>
+                </a>
+                <a href="#" class="social-icon-3d twitter" aria-label="Twitter">
+                  <i class="mdi mdi-twitter"></i>
+                </a>
+                <a href="#" class="social-icon-3d instagram" aria-label="Instagram">
+                  <i class="mdi mdi-instagram"></i>
+                </a>
+                <a href="#" class="social-icon-3d linkedin" aria-label="LinkedIn">
+                  <i class="mdi mdi-linkedin"></i>
+                </a>
+                <a href="#" class="social-icon-3d whatsapp" aria-label="WhatsApp">
+                  <i class="mdi mdi-whatsapp"></i>
+                </a>
+              </div>
             </div>
 
             <div class="footer-images-column">
@@ -185,16 +184,20 @@
             </div>
           </div>
 
-          <!-- Troisième rangée - Copyright -->
+          <!-- Troisième rangée - Copyright et version -->
           <div class="footer-bottom">
             <div class="copyright">
               {{ $t('footer.copyright', { year: new Date().getFullYear(), company: $t('company.name') }) }}
+            </div>
+            <div class="app-version">
+              v{{ appVersion }}
             </div>
             <div class="footer-badges">
               <img src="/images/badges/safe-shopping.png" :alt="$t('footer.badges.safe_shopping')" loading="lazy">
               <img src="/images/badges/ssl-secured.png" :alt="$t('footer.badges.ssl')" loading="lazy">
             </div>
           </div>
+          
         </div>
       </div>
     </footer>
@@ -219,6 +222,7 @@ export default {
   data() {
     return {
       isMobile: false,
+      appVersion: "1.2.5", // Version de l'application
       mobileSections: [
         {
           title: this.$t('footer.sections.company.title'),
@@ -604,7 +608,6 @@ export default {
 
 .certification-img {
   background: white;
-  
   border-radius: 6px;
   max-height: 40px !important;
   padding: 0.3rem;
@@ -690,20 +693,30 @@ export default {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(51, 51, 51, 0.2);
-  text-align: center;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .copyright {
   font-size: 0.8rem;
   color: #333;
+  flex: 1;
+}
+
+.app-version {
+  font-size: 0.8rem;
+  color: #666;
+  background: rgba(0,0,0,0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-family: monospace;
 }
 
 .footer-badges {
   display: flex;
-  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -717,6 +730,23 @@ export default {
 
 .footer-badges img:hover {
   transform: translateY(-3px);
+}
+
+/* Responsive pour la section footer-bottom */
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .copyright, .app-version, .footer-badges {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .footer-badges {
+    justify-content: center;
+  }
 }
 
 /* Responsive */
