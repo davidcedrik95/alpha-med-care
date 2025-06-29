@@ -49,19 +49,21 @@
             <button class="newsletter-button">{{ $t('footer.newsletter.subscribe') }}</button>
             <p class="newsletter-note">{{ $t('footer.newsletter.privacy_note') }}</p>
           </div>
+          
+          <!-- Nouveau bloc pour les certifications -->
+          <div v-if="section.certifications" class="certifications">
+            <img src="/images/certifications/iso-13485.png" :alt="$t('footer.certifications.iso13485')" loading="lazy">
+            <img src="/images/certifications/tuv-certified.png" :alt="$t('footer.certifications.tuv')" loading="lazy">
+            <img src="/images/certifications/dguv-certified.png" :alt="$t('footer.certifications.dguv')" loading="lazy">
+            <img src="/images/certifications/trusted-shops.png" :alt="$t('footer.certifications.iso9001')" loading="lazy">
+          </div>
         </div>
       </div>
     </div>
 
     <div class="mobile-essentials">
       <div class="essentials-group">
-        <div class="certifications">
-            <img src="/images/certifications/iso-13485.png" :alt="$t('footer.certifications.iso13485')" loading="lazy">
-            <img src="/images/certifications/tuv-certified.png" :alt="$t('footer.certifications.tuv')" loading="lazy">
-            <img src="/images/certifications/dguv-certified.png" :alt="$t('footer.certifications.dguv')" loading="lazy">
-            <img src="/images/certifications/trusted-shops.png" :alt="$t('footer.certifications.iso9001')" loading="lazy">
-        </div>
-        
+        <!-- Suppression des certifications de ce bloc -->
         <div class="app-download">
           <h4>{{ $t('footer.mobile_app.title') }}</h4>
           <div class="app-buttons">
@@ -217,7 +219,7 @@ export default {
       {
         key: 'certifications',
         title: t('footer.certifications.title'),
-        certifications: true
+        certifications: true  // Nouveau flag pour activer le bloc des certifications
       }
     ])
 
@@ -430,15 +432,16 @@ export default {
   gap: 20px;
 }
 
-.certifications {
+/* Nouveau style pour les certifications dans la section accordéon */
+.section-content .certifications {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  padding: 16px 0 0;
   justify-content: center;
-  align-items: center;
 }
 
-.certifications img {
+.section-content .certifications img {
   height: 35px;
   width: auto;
   max-width: 70px;
@@ -446,6 +449,11 @@ export default {
   padding: 6px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.section-content .certifications img:hover {
+  transform: scale(1.05);
 }
 
 .app-download {
