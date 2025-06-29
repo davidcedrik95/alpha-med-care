@@ -459,7 +459,7 @@ function closeDrawer() {
 }
 
 .v-list-item__prepend {
-  margin-right: 16px;
+  margin-right: 10px; /* Réduit de 16px à 10px */
 }
 
 .v-list-item__prepend .v-icon {
@@ -484,7 +484,7 @@ function closeDrawer() {
 }
 
 .v-list-group__items .v-list-item {
-  padding-left: 48px !important;
+  padding-left: 20px !important;
 }
 
 .section-header {
@@ -516,7 +516,7 @@ function closeDrawer() {
 }
 
 .submenu-divider {
-  margin-left: 48px;
+  margin-left: 20px !important;
   margin-right: 16px;
 }
 
@@ -570,7 +570,7 @@ function closeDrawer() {
   }
   
   .submenu-divider {
-    margin-left: 56px;
+    margin-left: 56px !important;
     margin-right: 28px;
   }
   
@@ -581,16 +581,44 @@ function closeDrawer() {
 
 @media (max-width: 599px) {
   .v-list-item {
-    min-height: 44px;
-    padding: 0 12px !important;
+    min-height: 42px; /* Réduit de 44px à 42px */
+    padding: 0 10px !important; /* Réduit de 12px à 10px */
   }
 
-  .custom-divider {
-    margin: 4px 12px;
+  .v-list-item__prepend {
+    margin-right: 8px !important; /* Réduit de 12px à 8px */
+  }
+
+  .v-list-item-title {
+    font-size: 0.82rem !important; /* Légèrement plus petit */
+    padding-right: 4px; /* Évite le débordement */
+  }
+
+  .v-list-group__items .v-list-item {
+    padding-left: 18px !important; /* Réduit de 20px à 18px */
   }
   
   .submenu-divider {
-    margin-left: 44px;
+    margin-left: 18px !important; /* Aligné sur le nouveau padding */
+    margin-right: 10px;
+  }
+
+  .v-icon {
+    font-size: 16px !important; /* Plus petit sur mobile */
+  }
+
+  .section-header h3 {
+    font-size: 0.85rem !important; /* Plus petit */
+  }
+  
+  .custom-divider {
+    margin: 4px 10px; /* Réduit */
+  }
+
+  /* Réduire l'espace vertical entre les éléments */
+  .v-list-item {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
   }
 }
 
@@ -602,35 +630,10 @@ function closeDrawer() {
   transition: color 0.2s ease;
 }
 
-@media (max-width: 400px) {
-  .v-list-item {
-    min-height: 40px !important;
-    padding: 0 10px !important;
-  }
-  
-  .v-list-item__prepend {
-    margin-right: 12px !important;
-  }
-  
-  .v-list-item-title {
-    font-size: 0.85rem !important;
-  }
-  
-  .v-list-group__items .v-list-item {
-    padding-left: 42px !important;
-  }
-  
-  .submenu-divider {
-    margin-left: 42px !important;
-    margin-right: 10px !important;
-  }
-  
-  .v-icon {
-    font-size: 20px !important;
-  }
-  
-  .section-header h3 {
-    font-size: 0.9rem !important;
-  }
+/* Nouveau style pour réduire l'espace autour des icônes */
+.v-list-item__prepend {
+  min-width: 24px; /* Largeur fixe pour les icônes */
+  display: flex;
+  justify-content: center;
 }
 </style>
