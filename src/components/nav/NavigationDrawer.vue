@@ -9,19 +9,10 @@
     :style="drawerStyle"
     @click-outside="closeDrawer"
   >
-
-
-    <!-- Contenu principal -->
     <div class="drawer-content">
-      <!-- Première carte pour le menu principal -->
       <v-card class="menu-card" flat>
         <v-list dense nav>
-          <!-- Menu principal -->
-          <v-list-item
-            :to="'/'"
-            link
-            @click="closeDrawer"
-          >
+          <v-list-item :to="'/'">
             <template v-slot:prepend>
               <v-icon>mdi-home</v-icon>
             </template>
@@ -30,7 +21,6 @@
 
           <hr class="custom-divider">
 
-          <!-- Menu déroulant Services -->
           <v-list-group value="Services">
             <template v-slot:activator="{ props }">
               <v-list-item v-bind="props">
@@ -41,7 +31,6 @@
               </v-list-item>
             </template>
 
-            <!-- Sous-menu Inspections -->
             <v-list-group value="Inspections" sub-group>
               <template v-slot:activator="{ props }">
                 <v-list-item v-bind="props">
@@ -53,11 +42,7 @@
               </template>
               
               <template v-for="(item, index) in menuCategories[0].items" :key="'inspections-'+index">
-                <v-list-item
-                  :to="item.route"
-                  link
-                  @click="closeDrawer"
-                >
+                <v-list-item :to="item.route">
                   <template v-slot:prepend>
                     <v-icon>{{ item.icon }}</v-icon>
                   </template>
@@ -69,7 +54,6 @@
               </template>
             </v-list-group>
 
-            <!-- Sous-menu Calibration -->
             <v-list-group value="Calibration" sub-group>
               <template v-slot:activator="{ props }">
                 <v-list-item v-bind="props">
@@ -81,11 +65,7 @@
               </template>
               
               <template v-for="(item, index) in menuCategories[1].items" :key="'calibration-'+index">
-                <v-list-item
-                  :to="item.route"
-                  link
-                  @click="closeDrawer"
-                >
+                <v-list-item :to="item.route">
                   <template v-slot:prepend>
                     <v-icon>{{ item.icon }}</v-icon>
                   </template>
@@ -97,7 +77,6 @@
               </template>
             </v-list-group>
 
-            <!-- Sous-menu Maintenance -->
             <v-list-group value="Maintenance" sub-group>
               <template v-slot:activator="{ props }">
                 <v-list-item v-bind="props">
@@ -109,11 +88,7 @@
               </template>
               
               <template v-for="(item, index) in menuCategories[2].items" :key="'maintenance-'+index">
-                <v-list-item
-                  :to="item.route"
-                  link
-                  @click="closeDrawer"
-                >
+                <v-list-item :to="item.route">
                   <template v-slot:prepend>
                     <v-icon>{{ item.icon }}</v-icon>
                   </template>
@@ -128,12 +103,7 @@
 
           <hr class="custom-divider">
 
-          <!-- Autres liens -->
-          <v-list-item
-            :to="'/products'"
-            link
-            @click="closeDrawer"
-          >
+          <v-list-item :to="'/products'">
             <template v-slot:prepend>
               <v-icon>mdi-cart</v-icon>
             </template>
@@ -142,11 +112,7 @@
 
           <hr class="custom-divider">
 
-          <v-list-item
-            :to="'/contact'"
-            link
-            @click="closeDrawer"
-          >
+          <v-list-item :to="'/contact'">
             <template v-slot:prepend>
               <v-icon>mdi-phone</v-icon>
             </template>
@@ -155,22 +121,15 @@
         </v-list>
       </v-card>
 
-      <!-- Deuxième carte - Compte utilisateur -->
       <div class="account-section">
-        <!-- Titre placé avant la carte -->
         <div class="section-header">
           <h3>{{ $t('account.title') }}</h3>
         </div>
         
-        <!-- La carte elle-même -->
         <v-card class="account-card" flat>
           <v-list dense>
             <template v-for="(item, index) in accountItems" :key="'account-'+index">
-              <v-list-item
-                :to="item.route"
-                link
-                @click="closeDrawer"
-              >
+              <v-list-item :to="item.route">
                 <template v-slot:prepend>
                   <v-icon>{{ item.icon }}</v-icon>
                 </template>
@@ -179,10 +138,8 @@
               <hr class="custom-divider" v-if="index < accountItems.length - 1">
             </template>
             
-            <!-- Séparateur principal -->
             <hr class="custom-divider main-divider">
             
-            <!-- Nouveaux éléments dépliables -->
             <v-list-group
               v-for="(item, index) in infoItems"
               :key="'info-'+index"
@@ -194,20 +151,12 @@
                     <v-icon>{{ item.icon }}</v-icon>
                   </template>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  <template v-slot:append>
-                    <v-icon>mdi-plus</v-icon>
-                  </template>
                 </v-list-item>
-                <!-- Ligne horizontale sous chaque titre -->
                 <hr class="custom-divider" v-if="index < infoItems.length - 1">
               </template>
               
               <template v-for="(subItem, subIndex) in item.items" :key="'subinfo-'+index+'-'+subIndex">
-                <v-list-item
-                  :to="subItem.route"
-                  link
-                  @click="closeDrawer"
-                >
+                <v-list-item :to="subItem.route">
                   <v-list-item-title>{{ subItem.title }}</v-list-item-title>
                 </v-list-item>
                 <hr class="custom-divider submenu-divider" v-if="subIndex < item.items.length - 1">
@@ -217,22 +166,15 @@
         </v-card>
       </div>
       
-      <!-- Troisième carte - Authentification -->
       <div class="auth-section">
-        <!-- Titre placé avant la carte -->
         <div class="section-header">
           <h3>{{ $t('auth.authentication') }}</h3>
         </div>
         
-        <!-- La carte elle-même -->
         <v-card class="auth-card" flat>
           <v-list dense>
             <template v-for="(item, index) in authItems" :key="'auth-'+index">
-              <v-list-item
-                :to="item.route"
-                link
-                @click="closeDrawer"
-              >
+              <v-list-item :to="item.route">
                 <template v-slot:prepend>
                   <v-icon>{{ item.icon }}</v-icon>
                 </template>
@@ -244,14 +186,11 @@
         </v-card>
       </div>
       
-      <!-- Quatrième carte - Langue et copyright -->
       <div class="language-copyright-section">
-        <!-- Titre placé avant la carte -->
         <div class="section-header">
           <h3>{{ $t('language') }}</h3>
         </div>
         
-        <!-- La carte elle-même -->
         <v-card class="language-copyright-card" flat>
           <div class="language-selector">
             <span class="language-text">{{ $t('language') }}</span>
@@ -301,14 +240,11 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { defineProps, defineEmits } from 'vue'
 import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n({ useScope: 'global' })
 
+const { t, locale } = useI18n({ useScope: 'global' })
 const props = defineProps({
   modelValue: Boolean,
-  navbarHeight: {
-    type: Number,
-    default: 0
-  }
+  navbarHeight: { type: Number, default: 0 }
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -327,8 +263,6 @@ const updateWidth = () => (windowWidth.value = window.innerWidth)
 
 onMounted(() => {
   window.addEventListener('resize', updateWidth)
-  
-  // Charger la langue sauvegardée
   const savedLang = localStorage.getItem('userLanguage')
   if (savedLang) {
     locale.value = savedLang
@@ -338,23 +272,14 @@ onMounted(() => {
 onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
 const drawerWidth = computed(() => {
-  // Écrans très petits (iPhone) - 85% de largeur
-  if (windowWidth.value < 400) {
-    return windowWidth.value * 0.85;
-  }
-  // Mobiles - 75% de largeur (max 320px)
-  else if (windowWidth.value < 600) {
-    return Math.min(windowWidth.value * 0.75, 320);
-  }
-  // Tablettes - 60% de largeur (max 450px)
-  else if (windowWidth.value >= 768 && windowWidth.value <= 1024) {
-    return Math.min(windowWidth.value * 0.6, 450);
-  }
-  // Bureau - largeur fixe
-  return 370;
-});
+  if (windowWidth.value < 400) return windowWidth.value * 0.85
+  if (windowWidth.value < 600) return Math.min(windowWidth.value * 0.75, 320)
+  if (windowWidth.value >= 768 && windowWidth.value <= 1024) return Math.min(windowWidth.value * 0.6, 450)
+  return 370
+})
 
-const appVersion = "1.2.5"; // Version de l'application
+const appVersion = "1.2.5"
+const currentLanguage = ref(locale.value)
 
 const menuCategories = [
   {
@@ -428,8 +353,6 @@ const authItems = [
   { key: "register", icon: "mdi-account-plus", route: "/register" }
 ]
 
-const currentLanguage = ref(locale.value)
-
 function closeDrawer() {
   drawer.value = false
 }
@@ -457,29 +380,10 @@ function changeLanguage(lang) {
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: white;
-  flex-grow: 1;
-}
-
-.close-btn {
-  margin-left: auto;
-  color: white;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.close-btn:hover {
-  opacity: 1;
-}
-
 .drawer-content {
   flex: 1;
   overflow-y: auto;
   padding: 12px 8px;
-  background: #ffffff;
   padding-top: 65px;
   margin-top: 30px;
 }
@@ -492,8 +396,6 @@ function changeLanguage(lang) {
   border-radius: 10px;
   margin-bottom: 16px;
   border: 1px solid #eaeaea;
-  overflow: hidden;
-  transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -510,7 +412,7 @@ function changeLanguage(lang) {
 }
 
 .v-list-item__prepend {
-  margin-right: 10px; /* Réduit de 16px à 10px */
+  margin-right: 10px;
 }
 
 .v-list-item__prepend .v-icon {
@@ -571,124 +473,42 @@ function changeLanguage(lang) {
   margin-right: 16px;
 }
 
-.v-list-group--active .v-list-group__items {
-  max-height: 1000px !important;
-}
-
-.v-list-group__items {
-  transition: max-height 0.5s ease-in-out;
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .navigation-drawer {
-    width: 400px !important;
-  }
-
-  .v-list-item {
-    min-height: 52px;
-  }
-
-  .v-list-item-title {
-    font-size: 1rem;
-  }
-
-  .v-icon {
-    font-size: 1.4rem;
-  }
-
-  .v-list-group__items .v-list-item {
-    padding-left: 56px !important;
-  }
-
-  .section-header h3 {
-    font-size: 1.1rem;
-  }
-
-  .drawer-header {
-    padding: 16px 20px;
-  }
-
-  .title {
-    font-size: 1.4rem;
-  }
-
-  .drawer-content {
-    padding: 16px 12px;
-  }
-
-  .custom-divider {
-    margin: 8px 28px;
-  }
-  
-  .submenu-divider {
-    margin-left: 56px !important;
-    margin-right: 28px;
-  }
-  
-  .main-divider {
-    margin: 12px 28px;
-  }
-}
-
 @media (max-width: 599px) {
   .v-list-item {
-    min-height: 42px; /* Réduit de 44px à 42px */
-    padding: 0 10px !important; /* Réduit de 12px à 10px */
+    min-height: 42px;
+    padding: 0 10px !important;
   }
 
   .v-list-item__prepend {
-    margin-right: 8px !important; /* Réduit de 12px à 8px */
+    margin-right: 8px !important;
   }
 
   .v-list-item-title {
-    font-size: 0.82rem !important; /* Légèrement plus petit */
-    padding-right: 4px; /* Évite le débordement */
+    font-size: 0.82rem !important;
   }
 
   .v-list-group__items .v-list-item {
-    padding-left: 18px !important; /* Réduit de 20px à 18px */
+    padding-left: 18px !important;
   }
   
   .submenu-divider {
-    margin-left: 18px !important; /* Aligné sur le nouveau padding */
+    margin-left: 18px !important;
     margin-right: 10px;
   }
 
   .v-icon {
-    font-size: 16px !important; /* Plus petit sur mobile */
+    font-size: 16px !important;
   }
 
   .section-header h3 {
-    font-size: 0.85rem !important; /* Plus petit */
+    font-size: 0.85rem !important;
   }
   
   .custom-divider {
-    margin: 4px 10px; /* Réduit */
-  }
-
-  /* Réduire l'espace vertical entre les éléments */
-  .v-list-item {
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    margin: 4px 10px;
   }
 }
 
-.v-list-item {
-  transition: background-color 0.2s ease;
-}
-
-.v-icon {
-  transition: color 0.2s ease;
-}
-
-/* Nouveau style pour réduire l'espace autour des icônes */
-.v-list-item__prepend {
-  min-width: 24px; /* Largeur fixe pour les icônes */
-  display: flex;
-  justify-content: center;
-}
-
-/* Styles pour la nouvelle section Langue et Copyright */
 .language-copyright-section {
   margin-top: 16px;
 }
@@ -720,7 +540,6 @@ function changeLanguage(lang) {
 .flags {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
 .flag-icon {
@@ -735,14 +554,12 @@ function changeLanguage(lang) {
 }
 
 .flag-icon:hover {
-  transform: scale(1.1);
   opacity: 0.9;
 }
 
 .flag-icon.active {
   opacity: 1;
   border-color: #3a7bd5;
-  box-shadow: 0 0 0 2px rgba(58, 123, 213, 0.3);
 }
 
 .flag-img {
@@ -776,7 +593,6 @@ function changeLanguage(lang) {
   align-self: center;
 }
 
-/* Responsive */
 @media (max-width: 599px) {
   .language-selector {
     padding: 0 12px 6px;
