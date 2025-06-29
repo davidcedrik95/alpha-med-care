@@ -178,7 +178,9 @@
     <!-- Conteneur pour les éléments de droite -->
     <div class="right-section">
       <!-- Sélecteur de langue -->
-      <LanguageSelector />
+      <div class="language-selector-container hidden-on-mobile">
+          <LanguageSelector />
+      </div>
 
        <!-- Icône menu mobile -->
       <v-app-bar-nav-icon 
@@ -465,6 +467,11 @@ hr.category-divider {
   .column {
     width: 50%;
   }
+
+   .hidden-on-mobile {
+    display: none !important;
+  }
+  
 }
 
 @media screen and (max-width: 600px) {
