@@ -10,6 +10,8 @@
     @click-outside="closeDrawer"
   >
 
+   <!-- Ajout d'un espace vide pour compenser la hauteur du Breadcrumb -->
+    <div class="header-spacer" :style="{ height: `${props.headerHeight}px` }"></div>
 
     <!-- Contenu principal -->
     <div class="drawer-content">
@@ -309,6 +311,12 @@ const props = defineProps({
     type: Number,
     default: 0
   }
+  ,
+  // Nouvelle prop pour la hauteur totale du header
+  headerHeight: {
+    type: Number,
+    default: 0
+  }
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -457,6 +465,23 @@ function changeLanguage(lang) {
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Espace pour le header */
+.header-spacer {
+  position: sticky;
+  top: 0;
+  background: transparent;
+  z-index: -1;
+}
+
+.drawer-content {
+  margin-top: -1px; /* Compense la bordure */
+  padding-top: 16px;
+  overflow-y: auto;
+  height: calc(100% - 16px);
+  padding-top: 60px;
+  margin-top: 30px;
+}
+
 .title {
   font-weight: 600;
   font-size: 1.5rem;
@@ -475,14 +500,6 @@ function changeLanguage(lang) {
   opacity: 1;
 }
 
-.drawer-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 12px 8px;
-  background: #ffffff;
-  padding-top: 20px;
-  margin-top: 25px;
-}
 
 .menu-card,
 .account-card,
