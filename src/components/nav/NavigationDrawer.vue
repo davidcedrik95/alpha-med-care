@@ -482,7 +482,7 @@ function changeLanguage(lang) {
   padding: 12px 8px;
   background: #ffffff;
   padding-top: 20px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .menu-card,
