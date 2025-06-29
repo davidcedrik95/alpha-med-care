@@ -284,19 +284,19 @@ onMounted(() => window.addEventListener('resize', updateWidth))
 onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
 const drawerWidth = computed(() => {
-  // Pour les écrans très petits (<400px) : 90% de la largeur
+  // Écrans très petits (iPhone) - 85% de largeur
   if (windowWidth.value < 400) {
-    return windowWidth.value * 0.9;
+    return windowWidth.value * 0.85;
   }
-  // Pour les mobiles (400px - 599px) : 70% de la largeur (max 350px)
+  // Mobiles - 75% de largeur (max 320px)
   else if (windowWidth.value < 600) {
-    return Math.min(windowWidth.value * 0.7, 350);
+    return Math.min(windowWidth.value * 0.75, 320);
   }
-  // Pour les tablettes (768px - 1024px) : 60% de la largeur (max 450px)
+  // Tablettes - 60% de largeur (max 450px)
   else if (windowWidth.value >= 768 && windowWidth.value <= 1024) {
     return Math.min(windowWidth.value * 0.6, 450);
   }
-  // Pour les écrans larges (>1024px) : largeur fixe
+  // Bureau - largeur fixe
   return 350;
 });
 
@@ -600,5 +600,37 @@ function closeDrawer() {
 
 .v-icon {
   transition: color 0.2s ease;
+}
+
+@media (max-width: 400px) {
+  .v-list-item {
+    min-height: 40px !important;
+    padding: 0 10px !important;
+  }
+  
+  .v-list-item__prepend {
+    margin-right: 12px !important;
+  }
+  
+  .v-list-item-title {
+    font-size: 0.85rem !important;
+  }
+  
+  .v-list-group__items .v-list-item {
+    padding-left: 42px !important;
+  }
+  
+  .submenu-divider {
+    margin-left: 42px !important;
+    margin-right: 10px !important;
+  }
+  
+  .v-icon {
+    font-size: 20px !important;
+  }
+  
+  .section-header h3 {
+    font-size: 0.9rem !important;
+  }
 }
 </style>
