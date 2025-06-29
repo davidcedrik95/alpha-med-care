@@ -1,17 +1,20 @@
 <template>
   <v-app>
-    <NavigationDrawer v-model="mobileDrawer" />
-    
-    <div class="sticky-header-group">
+   <div class="sticky-header-group" ref="headerGroup">
       <NavigationHeader class="header" />
-      <!-- Passer l'état mobileDrawer au méga-menu -->
       <MedicalNavigatorMenu 
+        :style="{'--navbar-height': navbarHeight + 'px'}" ref="navbar"
         class="nav-bar" 
         :mobile-drawer="mobileDrawer"
         @update:mobile-drawer="mobileDrawer = $event"
       />
       <BreadcrumbNavigation class="breadcrumb" />
     </div>
+    
+    <NavigationDrawer 
+      v-model="mobileDrawer" 
+      :navbar-height="navbarHeight"
+    />
     
     <div class="app-container">
       <v-main class="main-content">
@@ -222,9 +225,13 @@ const getActionButtonStyle = (index) => {
   }
 }
 
+const navbar = ref(null)
+const navbarHeight = ref(0)
+
 onMounted(() => {
   updateDeviceDetection()
   window.addEventListener('resize', handleResize)
+  navbarHeight.value = navbar.value.$el.clientHeight
 })
 
 onUnmounted(() => {
@@ -237,7 +244,7 @@ onUnmounted(() => {
 .sticky-header-group {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1300;
   background: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

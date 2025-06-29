@@ -6,24 +6,10 @@
     absolute
     :width="drawerWidth"
     class="navigation-drawer"
+    :style="drawerStyle"
     @click-outside="closeDrawer"
   >
-    <!-- Barre de navigation header -->
-    <div class="drawer-header">
-      <div class="drawer-header-content">
-        <v-icon size="36" color="white">mdi-menu-open</v-icon>
-        <span class="title">Menu</span>
-        <v-btn
-          icon
-          @click.stop="closeDrawer"
-          variant="text"
-          aria-label="Close drawer"
-          class="close-btn"
-        >
-          <v-icon color="white">mdi-close</v-icon>
-        </v-btn>
-      </div>
-    </div>
+
 
     <!-- Contenu principal -->
     <div class="drawer-content">
@@ -318,9 +304,18 @@ import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n({ useScope: 'global' })
 
 const props = defineProps({
-  modelValue: Boolean
+  modelValue: Boolean,
+  navbarHeight: {
+    type: Number,
+    default: 0
+  }
 })
 const emit = defineEmits(['update:modelValue'])
+
+const drawerStyle = computed(() => ({
+  top: `${props.navbarHeight}px`,
+  height: `calc(100vh - ${props.navbarHeight}px)`
+}))
 
 const drawer = computed({
   get: () => props.modelValue,
@@ -450,9 +445,8 @@ function changeLanguage(lang) {
 <style scoped>
 .navigation-drawer {
   position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  height: 100vh !important;
+  top: 0;
+  left: 0;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 1200;
@@ -463,21 +457,6 @@ function changeLanguage(lang) {
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.drawer-header {
-  background-color: #333 !important;
-  padding: 14px 16px;
-  padding-top: calc(14px + env(safe-area-inset-top));
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.drawer-header-content {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 12px;
-}
 
 .title {
   font-weight: 600;
@@ -502,6 +481,8 @@ function changeLanguage(lang) {
   overflow-y: auto;
   padding: 12px 8px;
   background: #ffffff;
+  padding-top: 20px;
+  margin-top: 80px;
 }
 
 .menu-card,

@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar"  ref="navbarEl" :style="style">
     <!-- Titre de l'application -->
     <div class="title-container">
       <v-toolbar-title class="app-title">
