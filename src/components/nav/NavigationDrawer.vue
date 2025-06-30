@@ -10,117 +10,131 @@
     @click-outside="closeDrawer"
   >
     <div class="drawer-content">
-      <v-card class="menu-card" flat>
-        <v-list dense nav>
-          <v-list-item :to="'/'">
-            <template v-slot:prepend>
-              <v-icon>mdi-home</v-icon>
-            </template>
-            <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
-          </v-list-item>
+      <!-- Menu principal -->
+      <div class="menu-section">
+        <div class="section-header">
+          <h3>{{ $t('menu.title') }}</h3>
+        </div>
+        <v-card class="menu-card" flat>
+          <v-list dense nav>
+            <!-- Home -->
+            <v-list-item :to="'/'">
+              <template v-slot:prepend>
+                <v-icon>mdi-home</v-icon>
+              </template>
+              <v-list-item-title>{{ $t('menu.home') }}</v-list-item-title>
+            </v-list-item>
 
-          <hr class="custom-divider">
+            <hr class="custom-divider">
 
-          <v-list-group value="Services">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props">
-                <template v-slot:prepend>
-                  <v-icon>mdi-cog</v-icon>
+            <!-- Services -->
+            <v-list-group value="Services">
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-cog</v-icon>
+                  </template>
+                  <v-list-item-title>{{ $t('menu.services') }}</v-list-item-title>
+                </v-list-item>
+              </template>
+
+              <!-- Inspections -->
+              <v-list-group value="Inspections" sub-group>
+                <template v-slot:activator="{ props }">
+                  <v-list-item v-bind="props">
+                    <template v-slot:prepend>
+                      <v-icon>mdi-clipboard-check</v-icon>
+                    </template>
+                    <v-list-item-title>{{ $t('menu.categories.inspections') }}</v-list-item-title>
+                  </v-list-item>
                 </template>
-                <v-list-item-title>{{ $t('menu.services') }}</v-list-item-title>
-              </v-list-item>
-            </template>
+                
+                <template v-for="(item, index) in menuCategories[0].items" :key="'inspections-'+index">
+                  <v-list-item :to="item.route">
+                    <template v-slot:prepend>
+                      <v-icon>{{ item.icon }}</v-icon>
+                    </template>
+                    <v-list-item-title>
+                      {{ $t(`menu.items.${item.key}`) }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <hr class="custom-divider submenu-divider" v-if="index < menuCategories[0].items.length - 1">
+                </template>
+              </v-list-group>
 
-            <v-list-group value="Inspections" sub-group>
-              <template v-slot:activator="{ props }">
-                <v-list-item v-bind="props">
-                  <template v-slot:prepend>
-                    <v-icon>mdi-clipboard-check</v-icon>
-                  </template>
-                  <v-list-item-title>{{ $t('menu.categories.inspections') }}</v-list-item-title>
-                </v-list-item>
-              </template>
-              
-              <template v-for="(item, index) in menuCategories[0].items" :key="'inspections-'+index">
-                <v-list-item :to="item.route">
-                  <template v-slot:prepend>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </template>
-                  <v-list-item-title>
-                    {{ $t(`menu.items.${item.key}`) }}
-                  </v-list-item-title>
-                </v-list-item>
-                <hr class="custom-divider submenu-divider" v-if="index < menuCategories[0].items.length - 1">
-              </template>
+              <!-- Calibration -->
+              <v-list-group value="Calibration" sub-group>
+                <template v-slot:activator="{ props }">
+                  <v-list-item v-bind="props">
+                    <template v-slot:prepend>
+                      <v-icon>mdi-tune</v-icon>
+                    </template>
+                    <v-list-item-title>{{ $t('menu.categories.calibration') }}</v-list-item-title>
+                  </v-list-item>
+                </template>
+                
+                <template v-for="(item, index) in menuCategories[1].items" :key="'calibration-'+index">
+                  <v-list-item :to="item.route">
+                    <template v-slot:prepend>
+                      <v-icon>{{ item.icon }}</v-icon>
+                    </template>
+                    <v-list-item-title>
+                      {{ $t(`menu.items.${item.key}`) }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <hr class="custom-divider submenu-divider" v-if="index < menuCategories[1].items.length - 1">
+                </template>
+              </v-list-group>
+
+              <!-- Maintenance -->
+              <v-list-group value="Maintenance" sub-group>
+                <template v-slot:activator="{ props }">
+                  <v-list-item v-bind="props">
+                    <template v-slot:prepend>
+                      <v-icon>mdi-wrench</v-icon>
+                    </template>
+                    <v-list-item-title>{{ $t('menu.categories.maintenance') }}</v-list-item-title>
+                  </v-list-item>
+                </template>
+                
+                <template v-for="(item, index) in menuCategories[2].items" :key="'maintenance-'+index">
+                  <v-list-item :to="item.route">
+                    <template v-slot:prepend>
+                      <v-icon>{{ item.icon }}</v-icon>
+                    </template>
+                    <v-list-item-title>
+                      {{ $t(`menu.items.${item.key}`) }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <hr class="custom-divider submenu-divider" v-if="index < menuCategories[2].items.length - 1">
+                </template>
+              </v-list-group>
             </v-list-group>
 
-            <v-list-group value="Calibration" sub-group>
-              <template v-slot:activator="{ props }">
-                <v-list-item v-bind="props">
-                  <template v-slot:prepend>
-                    <v-icon>mdi-tune</v-icon>
-                  </template>
-                  <v-list-item-title>{{ $t('menu.categories.calibration') }}</v-list-item-title>
-                </v-list-item>
+            <hr class="custom-divider">
+
+            <!-- Products -->
+            <v-list-item :to="'/products'">
+              <template v-slot:prepend>
+                <v-icon>mdi-cart</v-icon>
               </template>
-              
-              <template v-for="(item, index) in menuCategories[1].items" :key="'calibration-'+index">
-                <v-list-item :to="item.route">
-                  <template v-slot:prepend>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </template>
-                  <v-list-item-title>
-                    {{ $t(`menu.items.${item.key}`) }}
-                  </v-list-item-title>
-                </v-list-item>
-                <hr class="custom-divider submenu-divider" v-if="index < menuCategories[1].items.length - 1">
+              <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
+            </v-list-item>
+
+            <hr class="custom-divider">
+
+            <!-- Contact -->
+            <v-list-item :to="'/contact'">
+              <template v-slot:prepend>
+                <v-icon>mdi-phone</v-icon>
               </template>
-            </v-list-group>
+              <v-list-item-title>{{ $t('menu.contact') }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </div>
 
-            <v-list-group value="Maintenance" sub-group>
-              <template v-slot:activator="{ props }">
-                <v-list-item v-bind="props">
-                  <template v-slot:prepend>
-                    <v-icon>mdi-wrench</v-icon>
-                  </template>
-                  <v-list-item-title>{{ $t('menu.categories.maintenance') }}</v-list-item-title>
-                </v-list-item>
-              </template>
-              
-              <template v-for="(item, index) in menuCategories[2].items" :key="'maintenance-'+index">
-                <v-list-item :to="item.route">
-                  <template v-slot:prepend>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </template>
-                  <v-list-item-title>
-                    {{ $t(`menu.items.${item.key}`) }}
-                  </v-list-item-title>
-                </v-list-item>
-                <hr class="custom-divider submenu-divider" v-if="index < menuCategories[2].items.length - 1">
-              </template>
-            </v-list-group>
-          </v-list-group>
-
-          <hr class="custom-divider">
-
-          <v-list-item :to="'/products'">
-            <template v-slot:prepend>
-              <v-icon>mdi-cart</v-icon>
-            </template>
-            <v-list-item-title>{{ $t('menu.products') }}</v-list-item-title>
-          </v-list-item>
-
-          <hr class="custom-divider">
-
-          <v-list-item :to="'/contact'">
-            <template v-slot:prepend>
-              <v-icon>mdi-phone</v-icon>
-            </template>
-            <v-list-item-title>{{ $t('menu.contact') }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-card>
-
+      <!-- Section Compte -->
       <div class="account-section">
         <div class="section-header">
           <h3>{{ $t('account.title') }}</h3>
@@ -166,6 +180,7 @@
         </v-card>
       </div>
       
+      <!-- Section Authentification -->
       <div class="auth-section">
         <div class="section-header">
           <h3>{{ $t('auth.authentication') }}</h3>
@@ -186,6 +201,7 @@
         </v-card>
       </div>
       
+      <!-- Section Langue et Copyright -->
       <div class="language-copyright-section">
         <div class="section-header">
           <h3>{{ $t('language') }}</h3>
@@ -380,23 +396,22 @@ function changeLanguage(lang) {
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* CORRECTION PRINCIPALE : Réduction de l'espace en haut */
 .drawer-content {
   flex: 1;
   overflow-y: auto;
-  padding: 12px 8px;
-  padding-top: 20px;
-  margin-top: 10px;
-  
+  padding: 60px 8px; /* Padding réduit en haut et en bas */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espacement entre les sections */
 }
 
-
-.menu-card,
-.account-card,
-.auth-card,
-.language-copyright-card {
+.menu-section,
+.account-section,
+.auth-section,
+.language-copyright-section {
   background: #ffffff;
   border-radius: 10px;
-  margin-bottom: 16px;
   border: 1px solid #eaeaea;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -445,7 +460,6 @@ function changeLanguage(lang) {
 .section-header {
   background: #f8f9fa;
   padding: 12px 16px;
-  margin: 0 0 4px 0;
   border-radius: 10px 10px 0 0;
   border-bottom: 1px solid #eaeaea;
 }
@@ -509,10 +523,6 @@ function changeLanguage(lang) {
   .custom-divider {
     margin: 4px 10px;
   }
-}
-
-.language-copyright-section {
-  margin-top: 16px;
 }
 
 .language-copyright-card {
