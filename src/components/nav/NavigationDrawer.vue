@@ -388,6 +388,11 @@ function changeLanguage(lang) {
   
 }
 
+.menu-card{
+
+  margin-top: 80px;
+}
+
 .menu-card,
 .account-card,
 .auth-card,
