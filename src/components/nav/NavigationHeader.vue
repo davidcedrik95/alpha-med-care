@@ -135,33 +135,72 @@
       </button>
     </div>
 
-    <!-- Mobile search -->
+    <!-- Barre de recherche mobile améliorée -->
     <div class="mobile-search-container" v-if="isMobile && searchExpanded">
-      <form class="mobile-search-bar" role="search" @submit.prevent="performSearch">
-        <input 
-          type="search"
-          :placeholder="$t('header.search_placeholder')"
-          :aria-label="$t('header.search_placeholder')"
-          autocomplete="off"
-          spellcheck="false"
-          v-model="searchQuery"
-          autofocus
-        />
-        <button type="button" class="close-search" @click="closeSearch" :aria-label="$t('menu.close')">
-          <i class="mdi mdi-close"></i>
+      <div class="mobile-search-header">
+        <button 
+          class="back-button"
+          @click="closeSearch"
+          :aria-label="$t('menu.close')"
+        >
+          <i class="mdi mdi-arrow-left"></i>
         </button>
-        <button type="submit" :aria-label="$t('header.search')">
+        <form 
+          class="mobile-search-bar" 
+          role="search" 
+          @submit.prevent="performSearch"
+        >
+          <input 
+            type="search"
+            class="mobile-search-input"
+            :placeholder="$t('header.search_placeholder')"
+            :aria-label="$t('header.search_placeholder')"
+            autocomplete="off"
+            spellcheck="false"
+            v-model="searchQuery"
+            ref="mobileSearchInput"
+          />
+          <button 
+            v-if="searchQuery" 
+            type="button" 
+            class="clear-search" 
+            @click="clearSearch"
+            :aria-label="$t('header.clear_search')"
+          >
+            <i class="mdi mdi-close"></i>
+          </button>
+        </form>
+        <button 
+          type="submit" 
+          class="search-submit"
+          :aria-label="$t('header.search')"
+          @click="performSearch"
+          :disabled="!searchQuery.trim()"
+        >
           <i class="mdi mdi-magnify"></i>
         </button>
-      </form>
+      </div>
+
+      <!-- Suggestions de recherche -->
+      <div class="search-suggestions" v-if="searchSuggestions.length > 0">
+        <div 
+          v-for="(suggestion, index) in searchSuggestions" 
+          :key="index"
+          class="suggestion-item"
+          @click="selectSuggestion(suggestion)"
+        >
+          {{ suggestion }}
+        </div>
+      </div>
     </div>
+
     <!-- Wishlist component -->
     <SideWishlist />
   </header>
 </template>
 
 <script setup>
-import { ref, onMounted, computed, onBeforeUnmount } from 'vue'
+import { ref, onMounted, computed, onBeforeUnmount, watch, nextTick } from 'vue'
 import { useCartStore } from '@/stores/cart'
 import SideCart from './SideCart.vue'
 import { useWishlistStore } from '@/stores/wishlist'
@@ -177,6 +216,8 @@ const searchQuery = ref('')
 const searchExpanded = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
 const accountMenuOpen = ref(false)
+const mobileSearchInput = ref(null)
+const searchSuggestions = ref([])
 
 // Using Pinia store
 const cartStore = useCartStore()
@@ -200,6 +241,11 @@ function updateIsMobile() {
 
 function toggleSearch() {
   searchExpanded.value = !searchExpanded.value
+  if (searchExpanded.value) {
+    nextTick(() => {
+      mobileSearchInput.value.focus()
+    })
+  }
 }
 
 function closeSearch() {
@@ -211,6 +257,7 @@ function performSearch() {
   alert(`${$t('header.search')}: ${searchQuery.value}`)
   searchExpanded.value = false
   searchQuery.value = ''
+  searchSuggestions.value = []
 }
 
 function toggleAccountMenu() {
@@ -223,6 +270,36 @@ function closeAccountMenu() {
 
 function navigateToRegister() {
   closeAccountMenu()
+}
+
+function clearSearch() {
+  searchQuery.value = ''
+  searchSuggestions.value = []
+  mobileSearchInput.value.focus()
+}
+
+function selectSuggestion(suggestion) {
+  searchQuery.value = suggestion
+  performSearch()
+}
+
+watch(searchQuery, async (newVal) => {
+  if (newVal.length > 2) {
+    // Simuler des suggestions basées sur la recherche
+    searchSuggestions.value = await fetchSuggestions(newVal)
+  } else {
+    searchSuggestions.value = []
+  }
+})
+
+async function fetchSuggestions(query) {
+  // Simulation de suggestions - à remplacer par un appel API réel
+  return [
+    `${query} téléphone`,
+    `${query} portable`,
+    `${query} accessoire`,
+    `${query} casque`
+  ]
 }
 
 onMounted(() => {
@@ -239,7 +316,6 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', () => {})
 })
 </script>
-
 
 <style scoped>
 /* Reset basique */
@@ -641,43 +717,113 @@ hr {
 /* Conteneur recherche mobile en overlay */
 .mobile-search-container {
   position: fixed;
-  top: 56px;
+  top: 0;
   left: 0;
   right: 0;
-  z-index: 1001;
+  bottom: 0;
+  z-index: 2000;
   background: white;
-  padding: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease-out;
 }
 
-/* Barre recherche mobile */
-.mobile-search-bar {
+.mobile-search-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.mobile-search-bar input {
-  flex-grow: 1;
-  font-size: 16px;
-  padding: 8px 12px;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  outline: none;
-}
-
-.mobile-search-bar button {
+.back-button {
   border: none;
-  background: transparent;
+  background: none;
+  padding: 8px;
+  margin-right: 8px;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+.mobile-search-bar {
+  flex: 1;
+  position: relative;
+  display: flex;
+}
+
+.mobile-search-input {
+  width: 100%;
+  padding: 12px 36px 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.clear-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  padding: 4px;
   font-size: 18px;
   cursor: pointer;
-  color: #666;
-  padding: 4px 8px;
 }
 
-.close-search .mdi {
+.search-submit {
+  border: none;
+  background: none;
+  padding: 8px 12px;
   font-size: 24px;
-  color: #999;
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.search-submit:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Suggestions de recherche */
+.search-suggestions {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.suggestion-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Animation d'entrée */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Menu déroulant compte */
