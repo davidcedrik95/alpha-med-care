@@ -400,7 +400,7 @@ function changeLanguage(lang) {
 .drawer-content {
   flex: 1;
   overflow-y: auto;
-  padding: 60px 8px; /* Padding réduit en haut et en bas */
+  padding: 100px 8px; /* Padding réduit en haut et en bas */
   display: flex;
   flex-direction: column;
   gap: 12px; /* Espacement entre les sections */
