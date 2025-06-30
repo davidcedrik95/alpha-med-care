@@ -8,6 +8,7 @@
     "click": "Klicken Sie, um fortzufahren"
   },
   "menu": {
+    "title":"Menu",
     "home": "Startseite",
     "services": "Dienstleistungen",
     "about": "Über uns",
