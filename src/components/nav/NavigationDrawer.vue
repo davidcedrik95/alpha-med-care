@@ -385,13 +385,10 @@ function changeLanguage(lang) {
   overflow-y: auto;
   padding: 12px 8px;
   padding-top: 20px;
+  margin-top: 20px;
   
 }
 
-.menu-card{
-
-  margin-top: 80px;
-}
 
 .menu-card,
 .account-card,
