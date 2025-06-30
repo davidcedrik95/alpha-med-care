@@ -385,7 +385,7 @@ function changeLanguage(lang) {
   overflow-y: auto;
   padding: 12px 8px;
   padding-top: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   
 }
 
