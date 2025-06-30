@@ -384,8 +384,8 @@ function changeLanguage(lang) {
   flex: 1;
   overflow-y: auto;
   padding: 12px 8px;
-  padding-top: 65px;
-  margin-top: 30px;
+  padding-top: 20px;
+  
 }
 
 .menu-card,
