@@ -9,7 +9,7 @@
     :style="drawerStyle"
     @click-outside="closeDrawer"
   >
-    <div class="drawer-content">
+    <div class="drawer-content" :style="drawerContentStyle">
       <!-- Menu principal -->
       <div class="menu-section">
         <div class="section-header">
@@ -260,8 +260,14 @@ import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n({ useScope: 'global' })
 const props = defineProps({
   modelValue: Boolean,
-  navbarHeight: { type: Number, default: 0 }
+  navbarHeight: { type: Number, default: 0 },
+  breadcrumbHeight: { type: Number, default: 0 } // Nouvelle prop
 })
+
+// Calculer le style du contenu avec marge supplémentaire
+const drawerContentStyle = computed(() => ({
+  marginTop: `${props.breadcrumbHeight}px`
+}))
 const emit = defineEmits(['update:modelValue'])
 
 const drawerStyle = computed(() => ({
@@ -400,7 +406,7 @@ function changeLanguage(lang) {
 .drawer-content {
   flex: 1;
   overflow-y: auto;
-  padding: 100px 8px; /* Padding réduit en haut et en bas */
+  padding: 12px 8px; /* Padding réduit en haut et en bas */
   display: flex;
   flex-direction: column;
   gap: 12px; /* Espacement entre les sections */

@@ -8,13 +8,14 @@
         :mobile-drawer="mobileDrawer"
         @update:mobile-drawer="mobileDrawer = $event"
       />
-      <BreadcrumbNavigation class="breadcrumb" />
+      <BreadcrumbNavigation class="breadcrumb" ref="breadcrumb" />
     </div>
     
     <NavigationDrawer 
-      v-model="mobileDrawer" 
-      :navbar-height="navbarHeight"
-    />
+  v-model="mobileDrawer" 
+  :navbar-height="navbarHeight"
+  :breadcrumb-height="breadcrumbHeight"
+/>
     
     <div class="app-container">
       <v-main class="main-content">
@@ -136,6 +137,9 @@ const screenWidth = ref(window.innerWidth)
 const mobileBreakpoint = 960
 const footer = ref(null)
 
+const breadcrumb = ref(null)
+const breadcrumbHeight = ref(0)
+
 // Détection d'appareil
 const isDesktop = ref(false)
 const isTablet = ref(false)
@@ -192,6 +196,7 @@ const handleResize = () => {
   if (screenWidth.value < mobileBreakpoint) {
     mobileDrawer.value = false
   }
+  breadcrumbHeight.value = breadcrumb.value?.$el.clientHeight || 0
 }
 
 // Actions flottantes
@@ -231,7 +236,8 @@ const navbarHeight = ref(0)
 onMounted(() => {
   updateDeviceDetection()
   window.addEventListener('resize', handleResize)
-  navbarHeight.value = navbar.value.$el.clientHeight
+  navbarHeight.value = navbar.value.$el.clientHeight,
+  breadcrumbHeight.value = breadcrumb.value?.$el.clientHeight || 0
 })
 
 onUnmounted(() => {
