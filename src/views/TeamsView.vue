@@ -143,11 +143,11 @@ body {
 
 .team-image-container {
   width: 100%;
-  aspect-ratio: 5/3; /* Uniformise toutes les images */
+  aspect-ratio: 4/5; /* Hauteur plus grande */
   overflow: hidden;
   background-color: #fff;
-  
 }
+
 
 .team-image {
   width: 100%;
