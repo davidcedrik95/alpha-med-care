@@ -9,16 +9,14 @@
         </p>
       </div>
     </section>
+
+    <TeamsView/>
   </div>
-
-
-
-    
 
 </template>
 
 <script setup>
-// Pas de logique JS dynamique dans ce composant statique
+  import TeamsView from './TeamsView.vue';
 </script>
 
 <style scoped>
