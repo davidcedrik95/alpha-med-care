@@ -19,6 +19,7 @@
     "privacy": "Privacy",
     "terms": "Terms & Conditions",
     "cookies": "Cookies",
+    "shop": "Shop",
     "categories": {
       "inspections": "Inspections & Controls",
       "calibration": "Calibrations",
@@ -54,46 +55,8 @@
       "equipment_disposal": "Equipment Disposal",
       "regular_maintenance": "Regular Maintenance",
       "emergency_service": "Emergency Service"
-    },
-    "productData": {
-      "categories": {
-        "mtt_devices": "MTT Devices",
-        "therapy": "Therapy Equipment",
-        "sport_gymnastics": "Sports & Gymnastics",
-        "therapy_beds": "Therapy Beds",
-        "practice_supplies": "Practice Supplies",
-        "cardio": "Cardiology"
-      },
-      "items": {
-        "ergo_fit_cycle": "Ergo-Fit Cycle Ergometer",
-        "proxomed_treadmill": "Proxomed Treadmill",
-        "physiomed_trainer": "Physiomed Trainer",
-        "frei_ag_ergometer": "Frei AG Ergometer",
-        "rehabilitation_bike": "Rehabilitation Bike",
-        "electrotherapy": "Electrotherapy Devices",
-        "ultrasound_therapy": "Ultrasound Therapy Devices",
-        "heat_therapy": "Heat Therapy Devices",
-        "cryotherapy": "Cryotherapy Devices",
-        "magnetotherapy": "Magnetotherapy Devices",
-        "training_equipment": "Training Equipment",
-        "rehabilitation_balls": "Rehabilitation Balls",
-        "resistance_bands": "Resistance Bands",
-        "balance_boards": "Balance Boards",
-        "gymnastics_mats": "Gymnastics Mats",
-        "adjustable_beds": "Adjustable Therapy Beds",
-        "massage_tables": "Massage Tables",
-        "examination_beds": "Examination Beds",
-        "hydrotherapy_beds": "Hydrotherapy Beds",
-        "medical_instruments": "Medical Instruments",
-        "diagnostic_equipment": "Diagnostic Equipment",
-        "disposables": "Disposables",
-        "furniture": "Practice Furniture",
-        "ecg_machines": "ECG Machines",
-        "blood_pressure_monitors": "Blood Pressure Monitors",
-        "stress_test_systems": "Stress Test Systems",
-        "holter_monitors": "Holter Monitors"
-      }
     }
+    
   },
   "header": {
     "phone_label": "Hotline",

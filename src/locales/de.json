@@ -13,13 +13,13 @@
     "services": "Dienstleistungen",
     "about": "Über uns",
     "contact": "Kontakt",
-    "products": "Produkte",
     "blog": "Blog",
     "faq": "FAQ",
     "imprint": "Impressum",
     "privacy": "Datenschutz",
     "terms": "AGB",
     "cookies": "Cookies",
+    "shop": "Shop",
     "categories": {
       "inspections": "Prüfungen & Kontrollen",
       "calibration": "Kalibrierungen",
@@ -55,46 +55,8 @@
       "equipment_disposal": "Altgeräteentsorgung",
       "regular_maintenance": "Regelmäßige Wartung",
       "emergency_service": "Notfall-Service"
-    },
-    "productData": {
-      "categories": {
-        "mtt_devices": "MTT-Geräte",
-        "therapy": "Therapiegeräte",
-        "sport_gymnastics": "Sport & Gymnastik",
-        "therapy_beds": "Therapieliegen",
-        "practice_supplies": "Praxisbedarf",
-        "cardio": "Kardiologie"
-      },
-      "items": {
-        "ergo_fit_cycle": "Ergo-Fit Fahrradergometer",
-        "proxomed_treadmill": "Proxomed Laufband",
-        "physiomed_trainer": "Physiomed Trainer",
-        "frei_ag_ergometer": "Frei AG Ergometer",
-        "rehabilitation_bike": "Rehabilitationsfahrrad",
-        "electrotherapy": "Elektrotherapiegeräte",
-        "ultrasound_therapy": "Ultraschalltherapiegeräte",
-        "heat_therapy": "Wärmetherapiegeräte",
-        "cryotherapy": "Kryotherapiegeräte",
-        "magnetotherapy": "Magnetfeldtherapiegeräte",
-        "training_equipment": "Trainingsgeräte",
-        "rehabilitation_balls": "Rehabilitationsbälle",
-        "resistance_bands": "Therabänder",
-        "balance_boards": "Balance-Boards",
-        "gymnastics_mats": "Gymnastikmatten",
-        "adjustable_beds": "Verstellbare Therapieliegen",
-        "massage_tables": "Massageliegen",
-        "examination_beds": "Untersuchungsliegen",
-        "hydrotherapy_beds": "Hydrotherapieliegen",
-        "medical_instruments": "Medizinische Instrumente",
-        "diagnostic_equipment": "Diagnostikgeräte",
-        "disposables": "Verbrauchsmaterialien",
-        "furniture": "Praxisausstattung",
-        "ecg_machines": "EKG-Geräte",
-        "blood_pressure_monitors": "Blutdruckmessgeräte",
-        "stress_test_systems": "Belastungstest-Systeme",
-        "holter_monitors": "Holter-Monitore"
-      }
     }
+  
   },
   "header": {
     "phone_label": "Hotline",

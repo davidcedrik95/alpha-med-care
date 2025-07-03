@@ -76,98 +76,36 @@
         </div>
       </div>
       
-      <!-- Menu déroulant Produits -->
-      <div class="dropdown" @mouseenter="showProductsDropdown = true" @mouseleave="showProductsDropdown = false">
-        <button class="dropbtn">
-          {{ $t('menu.products') }} 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content" v-show="showProductsDropdown">
-          <div class="header">
-            <h2>{{ $t('menu.products') }}</h2>
-            <button class="close-megamenu" @click.stop="showProductsDropdown = false">
-               <v-icon>mdi-close</v-icon>
-            </button>
-          </div>   
-          <div class="row">
-            <div class="column">
-              <h3>{{ $t('menu.productData.categories.mtt_devices') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/products/ergo-fit-cycle" @click="closeMenus"><i class="fa fa-bicycle"></i> {{ $t('menu.productData.items.ergo_fit_cycle') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/proxomed-treadmill" @click="closeMenus"><i class="fa fa-running"></i> {{ $t('menu.productData.items.proxomed_treadmill') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/physiomed-trainer" @click="closeMenus"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.physiomed_trainer') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/frei-ag-ergometer" @click="closeMenus"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.frei_ag_ergometer') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/rehabilitation-bike" @click="closeMenus"><i class="fa fa-biking"></i> {{ $t('menu.productData.items.rehabilitation_bike') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-            <div class="column">
-              <h3>{{ $t('menu.productData.categories.therapy') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/products/electrotherapy" @click="closeMenus"><i class="fa fa-bolt"></i> {{ $t('menu.productData.items.electrotherapy') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/ultrasound-therapy" @click="closeMenus"><i class="fa fa-wave-square"></i> {{ $t('menu.productData.items.ultrasound_therapy') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/heat-therapy" @click="closeMenus"><i class="fa fa-fire"></i> {{ $t('menu.productData.items.heat_therapy') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/cryotherapy" @click="closeMenus"><i class="fa fa-snowflake"></i> {{ $t('menu.productData.items.cryotherapy') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/magnetotherapy" @click="closeMenus"><i class="fa fa-magnet"></i> {{ $t('menu.productData.items.magnetotherapy') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-            <div class="column">
-              <h3>{{ $t('menu.productData.categories.sport_gymnastics') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/products/training-equipment" @click="closeMenus"><i class="fa fa-dumbbell"></i> {{ $t('menu.productData.items.training_equipment') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/rehabilitation-balls" @click="closeMenus"><i class="fa fa-basketball-ball"></i> {{ $t('menu.productData.items.rehabilitation_balls') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/resistance-bands" @click="closeMenus"><i class="fa fa-elastic"></i> {{ $t('menu.productData.items.resistance_bands') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/balance-boards" @click="closeMenus"><i class="fa fa-surfing"></i> {{ $t('menu.productData.items.balance_boards') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/gymnastics-mats" @click="closeMenus"><i class="fa fa-th-large"></i> {{ $t('menu.productData.items.gymnastics_mats') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <h3>{{ $t('menu.productData.categories.therapy_beds') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/products/adjustable-beds" @click="closeMenus"><i class="fa fa-bed"></i> {{ $t('menu.productData.items.adjustable_beds') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/massage-tables" @click="closeMenus"><i class="fa fa-table"></i> {{ $t('menu.productData.items.massage_tables') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/examination-beds" @click="closeMenus"><i class="fa fa-procedures"></i> {{ $t('menu.productData.items.examination_beds') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/hydrotherapy-beds" @click="closeMenus"><i class="fa fa-water"></i> {{ $t('menu.productData.items.hydrotherapy_beds') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-            <div class="column">
-              <h3>{{ $t('menu.productData.categories.practice_supplies') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/products/medical-instruments" @click="closeMenus"><i class="fa fa-stethoscope"></i> {{ $t('menu.productData.items.medical_instruments') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/diagnostic-equipment" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.diagnostic_equipment') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/disposables" @click="closeMenus"><i class="fa fa-syringe"></i> {{ $t('menu.productData.items.disposables') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/furniture" @click="closeMenus"><i class="fa fa-chair"></i> {{ $t('menu.productData.items.furniture') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-            <div class="column">
-              <h3>{{ $t('menu.productData.categories.cardio') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/products/ecg-machines" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.ecg_machines') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/blood-pressure-monitors" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.blood_pressure_monitors') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/stress-test-systems" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.stress_test_systems') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/products/holter-monitors" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.productData.items.holter_monitors') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-          </div>
-        </div>
+      <!-- Menu déroulant Produits (version partenaires) -->
+<div class="dropdown" @mouseenter="showProductsDropdown = true" @mouseleave="showProductsDropdown = false">
+  <button class="dropbtn">
+    {{ $t('menu.shop') }} 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-content partners-grid" v-show="showProductsDropdown">
+    <div class="header">
+      <h2>{{ $t('menu.products') }}</h2>
+      <button class="close-megamenu" @click.stop="showProductsDropdown = false">
+        <v-icon>mdi-close</v-icon>
+      </button>
+    </div>
+    
+    <div class="partners-container">
+      <div class="partner-row">
+        <a v-for="(partner, index) in partners.slice(0, 3)" :key="index" 
+           :href="partner.url" target="_blank" rel="noopener" @click="closeMenus">
+          <img :src="partner.logo" :alt="partner.name" class="partner-logo">
+        </a>
       </div>
-      
+      <div class="partner-row">
+        <a v-for="(partner, index) in partners.slice(3)" :key="index + 3" 
+           :href="partner.url" target="_blank" rel="noopener" @click="closeMenus">
+          <img :src="partner.logo" :alt="partner.name" class="partner-logo">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
       <router-link to="/about" @click="closeMenus">{{ $t('menu.about') }}</router-link>
       <router-link to="/contact" @click="closeMenus">{{ $t('menu.contact') }}</router-link>
       <router-link to="/blog" @click="closeMenus">{{ $t('menu.blog') }}</router-link>
@@ -207,7 +145,16 @@ export default {
     return {
       showDropdown: false,
       showProductsDropdown: false,
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      partners: [
+        { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
+        { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.amersports.com/' },
+        { name: 'ergoline', logo: '/images/partners/ergoline-logo.png', url: 'https://www.ergoline.com/de/' },
+        { name: 'FREI AG', logo: '/images/partners/frei-ag-logo.png', url: 'https://www.frei-ag.de/' },
+        { name: 'hp-cosmos', logo: '/images/partners/hp-cosmos-logo.png', url: 'https://www.hpcosmos.com/' },
+        { name: 'star-trac', logo: '/images/partners/star-trac-logo.png', url: 'https://www.motomed.com/' }
+      ]
+  
     }
   },
   methods: {
@@ -430,9 +377,74 @@ hr.category-divider {
   clear: both;
 }
 
- .hidden-md-and-up {
+.hidden-md-and-up {
    color: white;
+}
+
+
+/* Nouveaux styles pour la grille de partenaires */
+.partners-grid .dropdown-content {
+  padding-bottom: 20px;
+}
+
+.partners-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.partner-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.partner-logo {
+  max-height: 80px;
+  max-width: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  filter: grayscale(100%);
+  opacity: 0.8;
+}
+
+.partner-logo:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .partner-logo {
+    max-height: 70px;
+    max-width: 180px;
   }
+}
+
+@media (max-width: 768px) {
+  .partner-row {
+    gap: 15px;
+  }
+  
+  .partner-logo {
+    max-height: 60px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .partner-row {
+    gap: 10px;
+  }
+  
+  .partner-logo {
+    max-height: 50px;
+    max-width: 120px;
+  }
+}
 
 /* Responsive styles */
 @media screen and (max-width: 1200px) {

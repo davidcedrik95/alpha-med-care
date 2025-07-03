@@ -19,6 +19,7 @@
     "privacy": "Confidentialité",
     "terms": "CGV",
     "cookies": "Cookies",
+    "shop": "Boutique",
     "categories": {
       "inspections": "Vérifications & Contrôles",
       "calibration": "Étalonnages",
@@ -28,6 +29,7 @@
       "stk": "Contrôle technique de sécurité (STK)",
       "mtk": "Contrôle métrologique (MTK)"
     },
+
     "items": {
       "new": "Nouveautés",
       "specials": "Offres spéciales",
@@ -54,45 +56,6 @@
       "equipment_disposal": "Élimination d'équipement",
       "regular_maintenance": "Maintenance régulière",
       "emergency_service": "Service d'urgence"
-    },
-    "productData": {
-      "categories": {
-        "mtt_devices": "Appareils MTT",
-        "therapy": "Appareils de thérapie",
-        "sport_gymnastics": "Sport & Gymnastique",
-        "therapy_beds": "Lits de thérapie",
-        "practice_supplies": "Fournitures de cabinet",
-        "cardio": "Cardiologie"
-      },
-      "items": {
-        "ergo_fit_cycle": "Ergomètre vélo Ergo-Fit",
-        "proxomed_treadmill": "Tapis roulant Proxomed",
-        "physiomed_trainer": "Appareil Physiomed",
-        "frei_ag_ergometer": "Ergomètre Frei AG",
-        "rehabilitation_bike": "Vélo de rééducation",
-        "electrotherapy": "Appareils d'électrothérapie",
-        "ultrasound_therapy": "Appareils de thérapie par ultrasons",
-        "heat_therapy": "Appareils de thermothérapie",
-        "cryotherapy": "Appareils de cryothérapie",
-        "magnetotherapy": "Appareils de magnétothérapie",
-        "training_equipment": "Équipement d'entraînement",
-        "rehabilitation_balls": "Ballons de rééducation",
-        "resistance_bands": "Bandes de résistance",
-        "balance_boards": "Planches d'équilibre",
-        "gymnastics_mats": "Tapis de gymnastique",
-        "adjustable_beds": "Lits de thérapie réglables",
-        "massage_tables": "Tables de massage",
-        "examination_beds": "Lits d'examen",
-        "hydrotherapy_beds": "Lits d'hydrothérapie",
-        "medical_instruments": "Instruments médicaux",
-        "diagnostic_equipment": "Équipement de diagnostic",
-        "disposables": "Consommables",
-        "furniture": "Mobilier de cabinet",
-        "ecg_machines": "Appareils ECG",
-        "blood_pressure_monitors": "Tensiomètres",
-        "stress_test_systems": "Systèmes de test d'effort",
-        "holter_monitors": "Moniteurs Holter"
-      }
     }
   },
   "header": {
