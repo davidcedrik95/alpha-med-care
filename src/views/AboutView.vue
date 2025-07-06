@@ -1,12 +1,11 @@
 <template>
   <div class="bg-gray-50">
     <!-- Hero Section -->
-    <section
-      class="hero-pattern text-white h-screen flex flex-col justify-center items-center relative"
-    >
-     
-    </section>
+    <section class="hero-pattern w-full text-white h-screen flex flex-col justify-center items-center relative">
+  
+</section>
 
+    
     <!-- Wrapper avec id pour cibler le scroll -->
     <div id="entreprise-section">
       <EntrepriseSection />
@@ -17,7 +16,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import TeamsView from './TeamsView.vue';
 import EntrepriseSection from './EntrepriseSection.vue';
 
