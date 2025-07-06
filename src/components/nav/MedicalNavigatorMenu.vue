@@ -108,8 +108,6 @@
 </div>
       <router-link to="/about" @click="closeMenus">{{ $t('menu.about') }}</router-link>
       <router-link to="/contact" @click="closeMenus">{{ $t('menu.contact') }}</router-link>
-      <router-link to="/blog" @click="closeMenus">{{ $t('menu.blog') }}</router-link>
-      <router-link to="/faq" @click="closeMenus">{{ $t('menu.faq') }}</router-link>
       <router-link to="/imprint" @click="closeMenus">{{ $t('menu.imprint') }}</router-link>
     </div>
     
