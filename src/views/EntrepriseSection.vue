@@ -1,7 +1,5 @@
 <template>
   <v-container fluid class="pa-0 bg-grey-lighten-4">
-  
-  
 
     <!-- Contenu principal -->
     <v-container class="py-10">
@@ -14,7 +12,6 @@
             height="400"
             cover
             style="height: 100%; width: 100%;"
-           
           />
         </v-col>
 
