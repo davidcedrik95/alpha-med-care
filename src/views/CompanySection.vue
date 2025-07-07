@@ -1,17 +1,16 @@
 <template>
   <v-container fluid class="pa-0 bg-grey-lighten-4">
-    <v-container class="py-10">
+    <v-container class="py-12">
       <v-row align="start" justify="center" no-gutters>
         <!-- Colonne image à gauche -->
         <v-col cols="12" md="5" class="d-flex flex-column align-center">
-          <div class="left-content" style="width: 100%; max-width: 480px;">
+          <div class="left-content">
             <v-img
               src="/images/logo.png"
               alt="Logo Alpha Med Care"
               max-height="70"
               contain
-              class="mb-4"
-              style="max-width: 180px; border: 1px solid grey;"
+              class="mb-5"
             />
             <v-img
               src="/images/company.png"
@@ -21,97 +20,89 @@
               class="main-image mb-6"
             />
 
-             <div class="highlight-text mb-4">
-                <p class="mb-0 text-center font-weight-medium">
-                  Vertrauen Sie sich uns an, ...wir kümmern uns!
-                </p>
-              </div>
-            <!-- Statistiques sous l'image -->
+            <div class="highlight-text mb-6">
+              <p class="mb-0 text-center font-weight-medium">
+                Vertrauen Sie sich uns an, ...wir kümmern uns!
+              </p>
+            </div>
+
             <v-row class="stats-container" justify="center" no-gutters>
-              <v-col cols="4" class="stat-item">
-                <div class="stat-value">4+</div>
-                <div class="stat-label">Jahre</div>
-              </v-col>
-              <v-col cols="4" class="stat-item">
-                <div class="stat-value">360°</div>
-                <div class="stat-label">Service</div>
-              </v-col>
-              <v-col cols="4" class="stat-item">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Zufriedenheit</div>
+              <v-col
+                cols="4"
+                class="stat-item"
+                v-for="(stat, index) in stats"
+                :key="index"
+                :style="{ animationDelay: (index * 0.3) + 's' }"
+              >
+                <div class="stat-circle">
+                  <span class="stat-value">{{ stat.value }}</span>
+                </div>
+                <div class="stat-label">{{ stat.label }}</div>
               </v-col>
             </v-row>
           </div>
         </v-col>
 
-        <!-- Colonne texte à droite -->
-        <v-col cols="12" md="5" class="d-flex justify-center">
-          <v-card
-            class="modern-card pa-3 pa-md-5 bg-white"
-            style="width: 100%; max-width: 480px;"
-          >
-            <h2 class="section-title text-h5 font-weight-bold text-blue-darken-4 mb-4">
-              DAS UNTERNEHMEN
-            </h2>
-            <div class="text-body text-grey-darken-2">
-              <div class="feature-item mb-5">
-                <div class="feature-icon small">
-                  <v-icon color="blue-darken-2" size="18">mdi-account-group</v-icon>
-                </div>
-                <div>
-                  Wir sind ein junges, aufstrebendes Unternehmen, das auf dem
-                  neusten Stand der Technik arbeitet und Ihnen im Bereich der
-                  Pflege, Reparatur, Wartung und Anschaffung Ihrer Geräte mit Rat
-                  und Tat zur Seite steht.
-                </div>
-              </div>
-              <div class="feature-item mb-5">
-                <div class="feature-icon small">
-                  <v-icon color="blue-darken-2" size="18">mdi-medical-bag</v-icon>
-                </div>
-                <div>
-                  Unsere Medizinprodukteberater stehen Ihnen gerne zur Verfügung.
-                  alpha med care kümmert sich um Ihre medizinischen Produkte,
-                  sowie Sport- und Fitnessgeräte. Unsere Experten entwickeln im
-                  Bedarfsfall ein auf Ihre Bedürfnisse maßgeschneidertes Konzept,
-                  damit Ihre Geräte fit für die Zukunft sind.
-                </div>
-              </div>
-              <div class="feature-item mb-5">
-                <div class="feature-icon small">
-                  <v-icon color="blue-darken-2" size="18">mdi-tools</v-icon>
-                </div>
-                <div>
-                  Von der kleinen Wartung, über die sicherheitstechnische Kontrolle
-                  (STK), bis hin zur Reparatur inklusive messtechnischer Kontrolle
-                  (MTK), vor Ort in Ihrem Unternehmen: Mehr Vielfalt und Flexibilität
-                  werden Sie nirgends finden.
-                </div>
-              </div>
-              <div class="feature-item mb-5">
-                <div class="feature-icon small">
-                  <v-icon color="blue-darken-2" size="18">mdi-chart-line</v-icon>
-                </div>
-                <div>
-                  Wir können nun auf mehr als vier Jahre Erfahrung im
-                  medizintechnischen Bereich zurück greifen, und erzielen somit
-                  den idealsten Nutzen für Ihr Unternehmen.
-                </div>
-              </div>
-             
-              <!-- Ici on supprime les stats (car elles sont déplacées à gauche) -->
-            </div>
-          </v-card>
-        </v-col>
+   <!-- Colonne texte à droite -->
+<v-col cols="12" md="5" class="d-flex justify-center">
+  <v-card class="modern-card pa-5 bg-white" max-width="480">
+    <h2 class="section-title mb-5">
+      DAS UNTERNEHMEN
+    </h2>
+    <div class="text-body text-grey-darken-2">
+      <div class="feature-item mb-6">
+        <div class="feature-icon small">
+          <v-icon color="#1565C0" size="20">mdi-account-group</v-icon>
+        </div>
+        <div>
+          Wir sind ein junges Unternehmen, das modernste Technik nutzt und Sie bei Pflege, Reparatur, Wartung und Anschaffung Ihrer Geräte unterstützt.
+        </div>
+      </div>
+      <div class="feature-item mb-6">
+        <div class="feature-icon small">
+          <v-icon color="#1565C0" size="20">mdi-medical-bag</v-icon>
+        </div>
+        <div>
+          Unsere Medizinprodukteberater entwickeln maßgeschneiderte Konzepte für Ihre medizinischen und Fitnessgeräte – für eine zukunftssichere Nutzung.
+        </div>
+      </div>
+      <div class="feature-item mb-6">
+        <div class="feature-icon small">
+          <v-icon color="#1565C0" size="20">mdi-tools</v-icon>
+        </div>
+        <div>
+          Von Wartung über sicherheitstechnische Kontrolle (STK) bis zur Reparatur mit messtechnischer Kontrolle (MTK) bieten wir Flexibilität vor Ort.
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon small">
+          <v-icon color="#1565C0" size="20">mdi-chart-line</v-icon>
+        </div>
+        <div>
+          Mit über vier Jahren Erfahrung erzielen wir den optimalen Nutzen für Ihr Unternehmen.
+        </div>
+      </div>
+    </div>
+  </v-card>
+</v-col>
+
       </v-row>
     </v-container>
   </v-container>
 </template>
 
-
 <script>
 export default {
-  name: 'CompanySection',
+  name: "CompanySection",
+  data() {
+    return {
+      stats: [
+        { value: "4+", label: "Jahre" },
+        { value: "360°", label: "Service" },
+        { value: "100%", label: "Zufriedenheit" },
+      ],
+    };
+  },
 };
 </script>
 
@@ -120,121 +111,183 @@ export default {
   width: 100%;
   max-width: 480px;
 }
+
 .main-image {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.main-image:hover {
+  transform: scale(1.03);
 }
 
 .modern-card {
-  border-radius: 5px !important;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1) !important;
+  border-top: 5px solid #1976D2;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 4px solid #1976D2;
   position: relative;
 }
 .modern-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.15) !important;
 }
+
 .section-title {
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 0.5px;
-  padding-bottom: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.7px;
+  color: #1565C0;
+  padding-bottom: 14px;
   position: relative;
+  margin-bottom: 1.8rem;
 }
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 60px;
-  height: 3px;
+  width: 70px;
+  height: 4px;
   background: linear-gradient(90deg, #1976D2, #64B5F6);
-  border-radius: 2px;
+  border-radius: 3px;
 }
+
 .text-body {
-  font-size: 1.05rem;
-  line-height: 1.5;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #37474F;
 }
+
 .feature-item {
   display: flex;
   align-items: flex-start;
-  font-size: 1rem; /* Avant : 0.85rem */
+  font-size: 1rem;
 }
+
 .feature-icon.small {
   background: #E3F2FD;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 12px;
+  margin-right: 16px;
   flex-shrink: 0;
+  color: #1565C0;
 }
+
 .highlight-text {
   background: linear-gradient(120deg, #E3F2FD, #BBDEFB);
-  border-left: 4px solid #1976D2;
-  padding: 16px;
-  border-radius: 0 8px 8px 0;
+  border-left: 5px solid #1976D2;
+  padding: 20px;
+  border-radius: 0 12px 12px 0;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.07);
   position: relative;
-  font-size: 0.85rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 480px;
+  margin: 0 auto;
 }
 .highlight-text::before {
   content: '"';
   position: absolute;
-  top: -10px;
-  left: 12px;
-  font-size: 40px;
+  top: -14px;
+  left: 16px;
+  font-size: 48px;
   color: #1976D2;
   opacity: 0.15;
   font-family: serif;
 }
+
 .stats-container {
-  margin-top: 10px;
+  margin-top: 20px;
 }
+
+/* Apparition progressive (fade + slide up) */
 .stat-item {
   text-align: center;
-  padding: 4px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.7s forwards;
 }
+
+.stat-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(25, 118, 210, 0.15); /* bleu clair transparent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  box-shadow: 0 0 8px rgba(25, 118, 210, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* Animation au survol */
+.stat-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(25, 118, 210, 0.5);
+}
+
 .stat-value {
-  font-size: 26px; /* Avant : 22px */
+  font-size: 28px;
   font-weight: 700;
-  color: #1976D2;
+  color: #1976D2; /* bleu foncé */
+  user-select: none;
 }
+
 .stat-label {
- font-size: 13px; /* Avant : 11px */
+  font-size: 14px;
   color: #546E7A;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 600px) {
   .section-title {
-    font-size: 1.3rem !important;
+    font-size: 1.4rem !important;
     text-align: center;
   }
-
   .text-body {
-    font-size: 0.82rem;
+    font-size: 0.9rem;
   }
-
   .highlight-text {
-    padding: 12px;
+    padding: 14px;
+    font-size: 0.8rem;
   }
-
+  .stat-circle {
+    width: 60px;
+    height: 60px;
+  }
   .stat-value {
-    font-size: 18px;
+    font-size: 20px;
   }
-
   .stat-label {
-    font-size: 10px;
+    font-size: 11px;
   }
-
   .feature-icon.small {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
+  }
+  .modern-card {
+    padding: 24px !important;
   }
 }
 </style>
