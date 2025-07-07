@@ -1,39 +1,41 @@
 <template>
   <v-container fluid class="pa-0 bg-grey-lighten-4">
-    <!-- Contenu principal -->
     <v-container class="py-10">
-      <v-row align="center" justify="center">
-        <!-- Colonne image à gauche (logo + image principale) -->
-        <v-col cols="12" md="6">
-          <!-- Logo -->
-          <v-img
-            src="/images/logo.png"
-            alt="Logo Alpha Med Care"
-            max-height="80"
-            contain
-            class="mb-6"
-            style="max-width: 200px; border: solid 1px grey;"
-          />
-          <!-- Image principale -->
-          <v-img
-            src="/images/company.png"
-            alt="Alpha Med Care"
-            height="400"
-            cover
-            style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 100%;"
-          />
+      <v-row align="start" justify="center" no-gutters>
+        <!-- Colonne image à gauche -->
+        <v-col cols="12" md="5" class="d-flex justify-center">
+          <div class="left-content">
+            <v-img
+              src="/images/logo.png"
+              alt="Logo Alpha Med Care"
+              max-height="70"
+              contain
+              class="mb-4"
+              style="max-width: 180px; border: 1px solid grey;"
+            />
+            <v-img
+              src="/images/company.png"
+              alt="Alpha Med Care"
+              height="340"
+              cover
+              class="main-image"
+            />
+          </div>
         </v-col>
 
-        <!-- Colonne texte à droite - Design amélioré -->
-        <v-col cols="12" md="6">
-          <v-card class="modern-card pa-6 bg-white">
-            <h2 class="section-title text-h4 font-weight-bold text-blue-darken-4 mb-6">
+        <!-- Colonne texte à droite -->
+        <v-col cols="12" md="5" class="d-flex justify-center">
+          <v-card
+            class="modern-card pa-3 pa-md-5 bg-white"
+            style="width: 100%; max-width: 480px;"
+          >
+            <h2 class="section-title text-h5 font-weight-bold text-blue-darken-4 mb-4">
               DAS UNTERNEHMEN
             </h2>
-            <div class="text-body-1 text-grey-darken-2">
-              <div class="feature-item mb-6">
-                <div class="feature-icon">
-                  <v-icon color="blue-darken-2">mdi-account-group</v-icon>
+            <div class="text-body text-grey-darken-2">
+              <div class="feature-item mb-5">
+                <div class="feature-icon small">
+                  <v-icon color="blue-darken-2" size="18">mdi-account-group</v-icon>
                 </div>
                 <div>
                   Wir sind ein junges, aufstrebendes Unternehmen, das auf dem
@@ -42,9 +44,9 @@
                   und Tat zur Seite steht.
                 </div>
               </div>
-              <div class="feature-item mb-6">
-                <div class="feature-icon">
-                  <v-icon color="blue-darken-2">mdi-medical-bag</v-icon>
+              <div class="feature-item mb-5">
+                <div class="feature-icon small">
+                  <v-icon color="blue-darken-2" size="18">mdi-medical-bag</v-icon>
                 </div>
                 <div>
                   Unsere Medizinprodukteberater stehen Ihnen gerne zur Verfügung.
@@ -54,10 +56,20 @@
                   damit Ihre Geräte fit für die Zukunft sind.
                 </div>
               </div>
-            
-              <div class="feature-item mb-8">
-                <div class="feature-icon">
-                  <v-icon color="blue-darken-2">mdi-chart-line</v-icon>
+              <div class="feature-item mb-5">
+                <div class="feature-icon small">
+                  <v-icon color="blue-darken-2" size="18">mdi-tools</v-icon>
+                </div>
+                <div>
+                  Von der kleinen Wartung, über die sicherheitstechnische Kontrolle
+                  (STK), bis hin zur Reparatur inklusive messtechnischer Kontrolle
+                  (MTK), vor Ort in Ihrem Unternehmen: Mehr Vielfalt und Flexibilität
+                  werden Sie nirgends finden.
+                </div>
+              </div>
+              <div class="feature-item mb-5">
+                <div class="feature-icon small">
+                  <v-icon color="blue-darken-2" size="18">mdi-chart-line</v-icon>
                 </div>
                 <div>
                   Wir können nun auf mehr als vier Jahre Erfahrung im
@@ -65,16 +77,16 @@
                   den idealsten Nutzen für Ihr Unternehmen.
                 </div>
               </div>
-              <div class="highlight-text mb-6">
-                <p class="mb-0 text-body-1 font-weight-medium text-center">
+              <div class="highlight-text mb-4">
+                <p class="mb-0 text-center font-weight-medium">
                   Vertrauen Sie sich uns an, ...wir kümmern uns!
                 </p>
               </div>
-              
+
               <v-row class="stats-container">
                 <v-col cols="4" class="stat-item">
                   <div class="stat-value">4+</div>
-                  <div class="stat-label">Jahre Erfahrung</div>
+                  <div class="stat-label">Jahre</div>
                 </v-col>
                 <v-col cols="4" class="stat-item">
                   <div class="stat-value">360°</div>
@@ -82,7 +94,7 @@
                 </v-col>
                 <v-col cols="4" class="stat-item">
                   <div class="stat-value">100%</div>
-                  <div class="stat-label">Kundenzufriedenheit</div>
+                  <div class="stat-label">Zufriedenheit</div>
                 </v-col>
               </v-row>
             </div>
@@ -92,132 +104,133 @@
     </v-container>
   </v-container>
 </template>
+
 <script>
 export default {
   name: 'CompanySection',
-  data: () => ({
-    // Vous pouvez ajouter ici des données si nécessaire
-  })
-}
+};
 </script>
+
 <style scoped>
+.left-content {
+  width: 100%;
+  max-width: 480px;
+}
+.main-image {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-radius: 8px;
+}
+
 .modern-card {
   border-radius: 16px !important;
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-top: 4px solid #1976D2;
+  position: relative;
 }
 .modern-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12) !important;
 }
 .section-title {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
   letter-spacing: 0.5px;
+  padding-bottom: 12px;
   position: relative;
-  padding-bottom: 15px;
 }
 .section-title::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 70px;
-  height: 4px;
+  width: 60px;
+  height: 3px;
   background: linear-gradient(90deg, #1976D2, #64B5F6);
   border-radius: 2px;
+}
+.text-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 .feature-item {
   display: flex;
   align-items: flex-start;
-  position: relative;
+  font-size: 0.85rem;
 }
-.feature-icon {
+.feature-icon.small {
   background: #E3F2FD;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 16px;
+  margin-right: 12px;
   flex-shrink: 0;
 }
 .highlight-text {
   background: linear-gradient(120deg, #E3F2FD, #BBDEFB);
   border-left: 4px solid #1976D2;
-  padding: 24px;
+  padding: 16px;
   border-radius: 0 8px 8px 0;
   position: relative;
+  font-size: 0.85rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 .highlight-text::before {
   content: '"';
   position: absolute;
-  top: -15px;
-  left: 15px;
-  font-size: 60px;
+  top: -10px;
+  left: 12px;
+  font-size: 40px;
   color: #1976D2;
   opacity: 0.15;
   font-family: serif;
-  line-height: 1;
 }
 .stats-container {
   margin-top: 10px;
 }
 .stat-item {
   text-align: center;
-  padding: 10px;
+  padding: 4px;
 }
 .stat-value {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   color: #1976D2;
-  margin-bottom: 5px;
-  line-height: 1.2;
 }
 .stat-label {
-  font-size: 14px;
+  font-size: 11px;
   color: #546E7A;
-  font-weight: 500;
 }
-/* Effet de vague décoratif */
-.v-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e3f2fd' fill-opacity='0.3' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,261.3C672,256,768,224,864,197.3C960,171,1056,149,1152,165.3C1248,181,1344,235,1392,261.3L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.6;
-  z-index: 0;
-}
-@media (max-width: 960px) {
+
+@media (max-width: 600px) {
   .section-title {
-    font-size: 1.8rem !important;
+    font-size: 1.3rem !important;
+    text-align: center;
   }
-  
-  .feature-item {
-    flex-direction: column;
-    align-items: flex-start;
+
+  .text-body {
+    font-size: 0.82rem;
   }
-  
-  .feature-icon {
-    margin-bottom: 12px;
+
+  .highlight-text {
+    padding: 12px;
   }
-  
+
   .stat-value {
-    font-size: 24px;
+    font-size: 18px;
   }
-  
-  .v-card::before {
-    width: 70px;
-    height: 70px;
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .feature-icon.small {
+    width: 26px;
+    height: 26px;
   }
 }
 </style>

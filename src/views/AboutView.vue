@@ -63,7 +63,7 @@
         "
       >
         <!-- Section dynamique -->
-        <EntrepriseSection v-if="activeSection === 'entreprise'" />
+        <CompanySection v-if="activeSection === 'entreprise'" />
         <TeamsView v-else />
       </main>
     </div>
@@ -72,7 +72,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import EntrepriseSection from '@/views/EntrepriseSection.vue';
+import CompanySection from '@/views/CompanySection.vue';
 import TeamsView from '@/views/TeamsView.vue';
 
 const activeSection = ref('entreprise'); // Par défaut "Über uns"
