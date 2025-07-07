@@ -123,7 +123,7 @@ export default {
 }
 
 .modern-card {
-  border-radius: 16px !important;
+  border-radius: 5px !important;
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
