@@ -3,14 +3,24 @@
     <!-- Contenu principal -->
     <v-container class="py-10">
       <v-row align="center" justify="center">
-        <!-- Colonne image à gauche -->
+        <!-- Colonne image à gauche (logo + image principale) -->
         <v-col cols="12" md="6">
+          <!-- Logo -->
           <v-img
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            src="/images/logo.png"
+            alt="Logo Alpha Med Care"
+            max-height="80"
+            contain
+            class="mb-6"
+            style="max-width: 200px; border: solid 1px grey;"
+          />
+          <!-- Image principale -->
+          <v-img
+            src="/images/company.png"
             alt="Alpha Med Care"
-            height="500"
-            class="rounded-lg elevation-5"
-            style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);"
+            height="400"
+            cover
+            style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 100%;"
           />
         </v-col>
 
@@ -20,7 +30,6 @@
             <h2 class="section-title text-h4 font-weight-bold text-blue-darken-4 mb-6">
               DAS UNTERNEHMEN
             </h2>
-
             <div class="text-body-1 text-grey-darken-2">
               <div class="feature-item mb-6">
                 <div class="feature-icon">
@@ -33,7 +42,6 @@
                   und Tat zur Seite steht.
                 </div>
               </div>
-
               <div class="feature-item mb-6">
                 <div class="feature-icon">
                   <v-icon color="blue-darken-2">mdi-medical-bag</v-icon>
@@ -46,7 +54,6 @@
                   damit Ihre Geräte fit für die Zukunft sind.
                 </div>
               </div>
-
               <div class="feature-item mb-6">
                 <div class="feature-icon">
                   <v-icon color="blue-darken-2">mdi-tools</v-icon>
@@ -58,7 +65,6 @@
                   werden Sie nirgends finden.
                 </div>
               </div>
-
               <div class="feature-item mb-8">
                 <div class="feature-icon">
                   <v-icon color="blue-darken-2">mdi-chart-line</v-icon>
@@ -69,7 +75,6 @@
                   den idealsten Nutzen für Ihr Unternehmen.
                 </div>
               </div>
-
               <div class="highlight-text mb-6">
                 <p class="mb-0 text-body-1 font-weight-medium text-center">
                   Vertrauen Sie sich uns an, ...wir kümmern uns!
@@ -97,7 +102,6 @@
     </v-container>
   </v-container>
 </template>
-
 <script>
 export default {
   name: 'CompanySection',
@@ -106,7 +110,6 @@ export default {
   })
 }
 </script>
-
 <style scoped>
 .modern-card {
   border-radius: 16px !important;
@@ -115,12 +118,10 @@ export default {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-top: 4px solid #1976D2;
 }
-
 .modern-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
 }
-
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -128,7 +129,6 @@ export default {
   position: relative;
   padding-bottom: 15px;
 }
-
 .section-title::after {
   content: '';
   position: absolute;
@@ -139,13 +139,11 @@ export default {
   background: linear-gradient(90deg, #1976D2, #64B5F6);
   border-radius: 2px;
 }
-
 .feature-item {
   display: flex;
   align-items: flex-start;
   position: relative;
 }
-
 .feature-icon {
   background: #E3F2FD;
   width: 40px;
@@ -157,7 +155,6 @@ export default {
   margin-right: 16px;
   flex-shrink: 0;
 }
-
 .highlight-text {
   background: linear-gradient(120deg, #E3F2FD, #BBDEFB);
   border-left: 4px solid #1976D2;
@@ -166,7 +163,6 @@ export default {
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-
 .highlight-text::before {
   content: '"';
   position: absolute;
@@ -178,16 +174,13 @@ export default {
   font-family: serif;
   line-height: 1;
 }
-
 .stats-container {
   margin-top: 10px;
 }
-
 .stat-item {
   text-align: center;
   padding: 10px;
 }
-
 .stat-value {
   font-size: 28px;
   font-weight: 700;
@@ -195,13 +188,11 @@ export default {
   margin-bottom: 5px;
   line-height: 1.2;
 }
-
 .stat-label {
   font-size: 14px;
   color: #546E7A;
   font-weight: 500;
 }
-
 /* Effet de vague décoratif */
 .v-card::before {
   content: '';
@@ -216,7 +207,6 @@ export default {
   opacity: 0.6;
   z-index: 0;
 }
-
 @media (max-width: 960px) {
   .section-title {
     font-size: 1.8rem !important;
