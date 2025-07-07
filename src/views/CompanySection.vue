@@ -17,10 +17,10 @@
               alt="Alpha Med Care"
               height="340"
               cover
-              class="main-image mb-6"
+              class="main-image mb-2"
             />
 
-            <div class="highlight-text mb-6">
+            <div class="highlight-text mb-2">
               <p class="mb-0 text-center font-weight-medium">
                 Vertrauen Sie sich uns an, ...wir kümmern uns!
               </p>
