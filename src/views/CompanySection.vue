@@ -3,8 +3,8 @@
     <v-container class="py-10">
       <v-row align="start" justify="center" no-gutters>
         <!-- Colonne image à gauche -->
-        <v-col cols="12" md="5" class="d-flex justify-center">
-          <div class="left-content">
+        <v-col cols="12" md="5" class="d-flex flex-column align-center">
+          <div class="left-content" style="width: 100%; max-width: 480px;">
             <v-img
               src="/images/logo.png"
               alt="Logo Alpha Med Care"
@@ -18,8 +18,29 @@
               alt="Alpha Med Care"
               height="340"
               cover
-              class="main-image"
+              class="main-image mb-6"
             />
+
+             <div class="highlight-text mb-4">
+                <p class="mb-0 text-center font-weight-medium">
+                  Vertrauen Sie sich uns an, ...wir kümmern uns!
+                </p>
+              </div>
+            <!-- Statistiques sous l'image -->
+            <v-row class="stats-container" justify="center" no-gutters>
+              <v-col cols="4" class="stat-item">
+                <div class="stat-value">4+</div>
+                <div class="stat-label">Jahre</div>
+              </v-col>
+              <v-col cols="4" class="stat-item">
+                <div class="stat-value">360°</div>
+                <div class="stat-label">Service</div>
+              </v-col>
+              <v-col cols="4" class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Zufriedenheit</div>
+              </v-col>
+            </v-row>
           </div>
         </v-col>
 
@@ -77,26 +98,8 @@
                   den idealsten Nutzen für Ihr Unternehmen.
                 </div>
               </div>
-              <div class="highlight-text mb-4">
-                <p class="mb-0 text-center font-weight-medium">
-                  Vertrauen Sie sich uns an, ...wir kümmern uns!
-                </p>
-              </div>
-
-              <v-row class="stats-container">
-                <v-col cols="4" class="stat-item">
-                  <div class="stat-value">4+</div>
-                  <div class="stat-label">Jahre</div>
-                </v-col>
-                <v-col cols="4" class="stat-item">
-                  <div class="stat-value">360°</div>
-                  <div class="stat-label">Service</div>
-                </v-col>
-                <v-col cols="4" class="stat-item">
-                  <div class="stat-value">100%</div>
-                  <div class="stat-label">Zufriedenheit</div>
-                </v-col>
-              </v-row>
+             
+              <!-- Ici on supprime les stats (car elles sont déplacées à gauche) -->
             </div>
           </v-card>
         </v-col>
@@ -104,6 +107,7 @@
     </v-container>
   </v-container>
 </template>
+
 
 <script>
 export default {
