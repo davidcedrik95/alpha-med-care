@@ -151,7 +151,7 @@ export default {
   border-radius: 2px;
 }
 .text-body {
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 1.5;
 }
 .feature-item {
