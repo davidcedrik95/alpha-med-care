@@ -1,50 +1,72 @@
 <template>
-  <div class="about-view" style="display: flex; height: 100vh;">
-    <!-- Navigation verticale à gauche -->
-    <nav
+  <div class="about-view" style="min-height: 100vh; display: flex; flex-direction: column;">
+    <!-- Hero Section full width en haut -->
+    <section
+      class="hero-pattern w-full text-white flex flex-col justify-center items-center relative"
+      style="height: 300px; border-radius: 0 0 12px 12px;"
+    >
+      <h1 style="font-weight: 700; font-size: 2.5rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">
+        Alpha Med Care
+      </h1>
+    </section>
+
+    <!-- Conteneur principal sous le hero -->
+    <div
       style="
-        width: 220px;
-        background-color: #f5f7fa;
-        padding: 20px;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         display: flex;
-        flex-direction: column;
-        gap: 16px;
+        flex-grow: 1;
+        min-height: 0;
+        overflow: hidden;
+        margin-top: 24px;
+        padding: 0 20px 20px 20px;
       "
     >
-      <button
-        :class="['nav-btn', { 'active-btn': activeSection === 'entreprise' }]"
-        @click="activeSection = 'entreprise'"
+      <!-- Navigation verticale à gauche -->
+      <nav
+        style="
+          width: 220px;
+          background-color: #f5f7fa;
+          padding: 20px;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          border-radius: 8px;
+          height: fit-content;
+          align-self: flex-start;
+        "
       >
-        <span class="btn-number">1</span>
-        <span class="btn-text">Über uns</span>
-      </button>
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'entreprise' }]"
+          @click="activeSection = 'entreprise'"
+        >
+          <span class="btn-number">1</span>
+          <span class="btn-text">Über uns</span>
+        </button>
 
-      <button
-        :class="['nav-btn', { 'active-btn': activeSection === 'team' }]"
-        @click="activeSection = 'team'"
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'team' }]"
+          @click="activeSection = 'team'"
+        >
+          <span class="btn-number">2</span>
+          <span class="btn-text">Team</span>
+        </button>
+      </nav>
+
+      <!-- Contenu principal à droite -->
+      <main
+        style="
+          flex-grow: 1;
+          overflow-y: auto;
+          padding-left: 30px;
+          border-radius: 8px;
+        "
       >
-        <span class="btn-number">2</span>
-        <span class="btn-text">Team</span>
-      </button>
-    </nav>
-
-    <!-- Contenu principal à droite -->
-    <main style="flex-grow: 1; overflow-y: auto; padding: 30px;">
-      <!-- Hero Section commune -->
-      <section
-        class="hero-pattern w-full text-white flex flex-col justify-center items-center relative mb-8"
-        style="height: 300px; border-radius: 8px;"
-      >
-        <h1 style="font-weight: 700; font-size: 2.5rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">
-          Alpha Med Care
-        </h1>
-      </section>
-
-      <!-- Section dynamique -->
-      <EntrepriseSection v-if="activeSection === 'entreprise'" />
-      <TeamsView v-else />
-    </main>
+        <!-- Section dynamique -->
+        <EntrepriseSection v-if="activeSection === 'entreprise'" />
+        <TeamsView v-else />
+      </main>
+    </div>
   </div>
 </template>
 
@@ -53,7 +75,7 @@ import { ref } from 'vue';
 import EntrepriseSection from '@/views/EntrepriseSection.vue';
 import TeamsView from '@/views/TeamsView.vue';
 
-const activeSection = ref('entreprise'); // Affiche EntrepriseSection par défaut
+const activeSection = ref('entreprise'); // Par défaut "Über uns"
 </script>
 
 <style scoped>
@@ -78,7 +100,7 @@ const activeSection = ref('entreprise'); // Affiche EntrepriseSection par défau
   border-radius: 6px;
   transition: background-color 0.3s ease;
   font-size: 1rem;
-  color: #334155; /* gris foncé */
+  color: #334155;
 }
 
 .nav-btn:hover {
