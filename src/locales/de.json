@@ -97,7 +97,6 @@
     "orders": "Bestellungen",
     "items": {
       "forgot_password": "Passwort vergessen",
-      "dealer_login": "Händler-Login",
       "my_account": "Mein Konto",
       "my_orders": "Meine Bestellungen",
       "my_returns": "Meine Rücksendungen",
@@ -158,8 +157,7 @@
     "opening_hours": {
       "title": "Öffnungszeiten",
       "weekdays": "Mo-Fr: 8:00 - 18:00",
-      "saturday": "Sa: 9:00 - 14:00",
-      "emergency": "Notdienst: 24/7"
+      "saturday": "Sa: 9:00 - 14:00"
     },
     "mobile_app": {
       "title": "Mobile App",
@@ -187,8 +185,7 @@
         "team": "Unser Team",
         "quality": "Qualitätsmanagement",
         "partners": "Partner",
-        "compliance": "Compliance",
-        "locations": "Standorte"
+        "compliance": "Compliance"
       },
       "services": {
         "title": "Dienstleistungen",

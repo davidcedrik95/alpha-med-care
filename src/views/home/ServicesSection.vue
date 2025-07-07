@@ -57,9 +57,9 @@ export default {
           description: 'Fachschulungen für Ihr Personal im Umgang mit medizinischen Geräten'
         },
         {
-          title: 'Notdienst',
-          image: '/images/services/notdienst.png',
-          description: '24/7 Notdienst für kritische medizinische Geräte und Systeme'
+          title: 'Verkauf von Geräten',
+          image: '/images/services/geraete.png',
+          description: 'Verkauf von neuen und zertifizierten gebrauchten Medizingeräten'
         }
       ]
     }

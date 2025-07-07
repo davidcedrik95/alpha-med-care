@@ -13,7 +13,6 @@
                 <li><a href="/about" :aria-label="$t('footer.sections.company.about')">{{ $t('footer.sections.company.about') }}</a></li>
                 <li><a href="/careers" :aria-label="$t('footer.sections.company.career')">{{ $t('footer.sections.company.career') }}</a></li>
                 <li><a href="/news" :aria-label="$t('footer.sections.company.news')">{{ $t('footer.sections.company.news') }}</a></li>
-                <li><a href="/locations" :aria-label="$t('company.details.locations[0]')">{{ $t('company.details.locations[0]') }}</a></li>
                 <li><a href="/partners" :aria-label="$t('footer.sections.company.partners')">{{ $t('footer.sections.company.partners') }}</a></li>
               </ul>
             </div>
@@ -37,7 +36,6 @@
               <ul class="footer-links">
                 <li><a href="/contact" :aria-label="$t('menu.contact')">{{ $t('menu.contact') }}</a></li>
                 <li><a href="/faq" :aria-label="$t('menu.faq')">{{ $t('menu.faq') }}</a></li>
-                <li><a href="/emergency" :aria-label="$t('footer.sections.support.emergency')">{{ $t('footer.sections.support.emergency') }}</a></li>
                 <li><a href="/support-hotline" :aria-label="$t('header.phone')">{{ $t('header.phone') }}</a></li>
                 <li><a href="/live-chat" :aria-label="$t('footer.sections.support.live_chat')">Live Chat</a></li>
                 <li><a href="/service-center" :aria-label="$t('footer.sections.support.service_center')">{{ $t('footer.sections.support.service_center') }}</a></li>
@@ -85,14 +83,7 @@
               </ul>
             </div>
 
-            <div class="footer-horizontal-column">
-              <h4 class="footer-title">{{ $t('footer.opening_hours.title') }}</h4>
-              <div class="opening-hours">
-                <p>{{ $t('footer.opening_hours.weekdays') }}</p>
-                <p>{{ $t('footer.opening_hours.saturday') }}</p>
-                <p>{{ $t('footer.opening_hours.emergency') }}</p>
-              </div>
-            </div>
+           
 
             <div class="footer-horizontal-column">
               <h4 class="footer-title">{{ $t('account.title') }}</h4>
@@ -100,9 +91,17 @@
                 <li><a href="/mein-konto" :aria-label="$t('account.title')">{{ $t('account.title') }}</a></li>
                 <li><a href="/login" :aria-label="$t('account.login')">{{ $t('account.login') }}</a></li>
                 <li><a href="/passwort-vergessen" :aria-label="$t('account.items.forgot_password')">{{ $t('account.items.forgot_password') }}</a></li>
-                <li><a href="/haendler-login" :aria-label="$t('account.items.dealer_login')">{{ $t('account.items.dealer_login') }}</a></li>
+              
                 <li><a href="/ruecksendungen" :aria-label="$t('footer.sections.support.returns')">{{ $t('footer.sections.support.returns') }}</a></li>
               </ul>
+            </div>
+
+             <div class="footer-horizontal-column">
+              <h4 class="footer-title">{{ $t('footer.opening_hours.title') }}</h4>
+              <div class="opening-hours">
+                <p>{{ $t('footer.opening_hours.weekdays') }}</p>
+                <p>{{ $t('footer.opening_hours.saturday') }}</p>
+              </div>
             </div>
 
             <div class="footer-horizontal-column">

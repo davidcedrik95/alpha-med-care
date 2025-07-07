@@ -82,29 +82,7 @@
     {{ $t('menu.shop') }} 
     <i class="fa fa-caret-down"></i>
   </button>
-  <div class="dropdown-content partners-grid" v-show="showProductsDropdown">
-    <div class="header">
-      <h2>{{ $t('menu.products') }}</h2>
-      <button class="close-megamenu" @click.stop="showProductsDropdown = false">
-        <v-icon>mdi-close</v-icon>
-      </button>
-    </div>
-    
-    <div class="partners-container">
-      <div class="partner-row">
-        <a v-for="(partner, index) in partners.slice(0, 3)" :key="index" 
-           :href="partner.url" target="_blank" rel="noopener" @click="closeMenus">
-          <img :src="partner.logo" :alt="partner.name" class="partner-logo">
-        </a>
-      </div>
-      <div class="partner-row">
-        <a v-for="(partner, index) in partners.slice(3)" :key="index + 3" 
-           :href="partner.url" target="_blank" rel="noopener" @click="closeMenus">
-          <img :src="partner.logo" :alt="partner.name" class="partner-logo">
-        </a>
-      </div>
-    </div>
-  </div>
+  
 </div>
       <router-link to="/about" @click="closeMenus">{{ $t('menu.about') }}</router-link>
       <router-link to="/contact" @click="closeMenus">{{ $t('menu.contact') }}</router-link>
@@ -142,7 +120,6 @@ export default {
   data() {
     return {
       showDropdown: false,
-      showProductsDropdown: false,
       mobileMenuOpen: false,
       partners: [
         { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
