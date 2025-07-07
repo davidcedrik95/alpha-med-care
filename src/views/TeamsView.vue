@@ -54,7 +54,7 @@
             <v-col cols="12" sm="6">
               <v-card class="team-card rounded-xl elevation-4">
                 <v-img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=687&q=80"
+                  src="./images/teams/cedrik.png"
                   alt="Cedrik David Moukam"
                   height="380"
                   cover
@@ -84,7 +84,7 @@
             <v-col cols="12" sm="6">
               <v-card class="team-card rounded-xl elevation-4">
                 <v-img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=764&q=80"
+                  src="./images/teams/benjamin.png"
                   alt="Benjamin Weiss"
                   height="380"
                   cover
