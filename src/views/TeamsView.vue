@@ -33,25 +33,16 @@
 <script setup>
 const team = [
   {
-    name: 'Dr. Anna Müller',
-    position: 'Leitende Ingenieurin',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80'
+    name: 'Benjamin Weiss',
+    position: 'Geschäftführer',
+    image: './images/teams/benjamin.png'
   },
   {
-    name: 'Markus Vogel',
-    position: 'Kalibrierungsspezialist',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
+    name: 'Cedrik David Moukam',
+    position: 'IT und Softwareentwickler ',
+    image: './images/teams/cedrik.png'
   },
-  {
-    name: 'Sarah Hoffmann',
-    position: 'Service & Wartung',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    name: 'Thomas Weber',
-    position: 'Installationsleiter',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80'
-  }
+ 
 ]
 </script>
 
