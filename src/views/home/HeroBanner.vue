@@ -37,13 +37,14 @@
             
             <div class="stats-card">
               <div class="stat-item">
-                <div class="stat-number">15+</div>
+                <div class="stat-number">4+</div>
                 <div class="stat-label">Jahre</div>
               </div>
               <div class="stat-item">
                 <div class="stat-number">500+</div>
                 <div class="stat-label">Kunden</div>
               </div>
+              
             </div>
           </div>
         </div>
