@@ -7,7 +7,7 @@
         <!-- Colonne image à gauche -->
         <v-col cols="12" md="6">
           <v-img
-            src="/images/company.jpg"
+            src="/images/company.png"
             alt="Alpha Med Care"
             height="400"
             cover
