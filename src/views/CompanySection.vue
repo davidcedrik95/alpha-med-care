@@ -151,13 +151,13 @@ export default {
   border-radius: 2px;
 }
 .text-body {
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   line-height: 1.5;
 }
 .feature-item {
   display: flex;
   align-items: flex-start;
-  font-size: 0.85rem;
+  font-size: 1rem; /* Avant : 0.85rem */
 }
 .feature-icon.small {
   background: #E3F2FD;
@@ -197,12 +197,12 @@ export default {
   padding: 4px;
 }
 .stat-value {
-  font-size: 22px;
+  font-size: 26px; /* Avant : 22px */
   font-weight: 700;
   color: #1976D2;
 }
 .stat-label {
-  font-size: 11px;
+ font-size: 13px; /* Avant : 11px */
   color: #546E7A;
 }
 
