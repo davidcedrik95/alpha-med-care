@@ -41,7 +41,7 @@
           @click="activeSection = 'entreprise'"
         >
           <span class="btn-number">1</span>
-          <span class="btn-text">Über uns</span>
+          <span class="btn-text">Unternehmen</span>
         </button>
 
         <button
