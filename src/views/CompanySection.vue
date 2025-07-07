@@ -20,11 +20,7 @@
               class="main-image mb-2"
             />
 
-            <div class="highlight-text mb-2">
-              <p class="mb-0 text-center font-weight-medium">
-                Vertrauen Sie sich uns an, ...wir kümmern uns!
-              </p>
-            </div>
+          
 
             <v-row class="stats-container" justify="center" no-gutters>
               <v-col
@@ -82,6 +78,11 @@
           Mit über vier Jahren Erfahrung erzielen wir den optimalen Nutzen für Ihr Unternehmen.
         </div>
       </div>
+        <div class="highlight-text mb-2">
+              <p class="mb-0 text-center font-weight-medium">
+                Vertrauen Sie sich uns an, ...wir kümmern uns!
+              </p>
+            </div>
     </div>
   </v-card>
 </v-col>
