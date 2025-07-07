@@ -54,17 +54,7 @@
                   damit Ihre Geräte fit für die Zukunft sind.
                 </div>
               </div>
-              <div class="feature-item mb-6">
-                <div class="feature-icon">
-                  <v-icon color="blue-darken-2">mdi-tools</v-icon>
-                </div>
-                <div>
-                  Von der kleinen Wartung, über die sicherheitstechnische Kontrolle
-                  (STK), bis hin zur Reparatur inklusive messtechnischer Kontrolle
-                  (MTK), vor Ort in Ihrem Unternehmen: Mehr Vielfalt und Flexibilität
-                  werden Sie nirgends finden.
-                </div>
-              </div>
+            
               <div class="feature-item mb-8">
                 <div class="feature-icon">
                   <v-icon color="blue-darken-2">mdi-chart-line</v-icon>
