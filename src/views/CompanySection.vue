@@ -3,7 +3,7 @@
     <v-container class="py-12">
       <v-row align="start" justify="center" no-gutters>
         <!-- Colonne image à gauche -->
-        <v-col cols="12" md="5" class="d-flex flex-column align-center">
+        <v-col cols="12" md="5" class="d-flex flex-column">
           <div class="left-content">
             <v-img
               src="/images/logo.png"
@@ -19,8 +19,6 @@
               cover
               class="main-image mb-2"
             />
-
-          
 
             <v-row class="stats-container" justify="center" no-gutters>
               <v-col
@@ -39,54 +37,51 @@
           </div>
         </v-col>
 
-   <!-- Colonne texte à droite -->
-<v-col cols="12" md="5" class="d-flex justify-center">
-  <v-card class="modern-card pa-5 bg-white" max-width="480">
-    <h2 class="section-title mb-5">
-      DAS UNTERNEHMEN
-    </h2>
-    <div class="text-body text-grey-darken-2">
-      <div class="feature-item mb-6">
-        <div class="feature-icon small">
-          <v-icon color="#1565C0" size="20">mdi-account-group</v-icon>
-        </div>
-        <div>
-          Wir sind ein junges Unternehmen, das modernste Technik nutzt und Sie bei Pflege, Reparatur, Wartung und Anschaffung Ihrer Geräte unterstützt.
-        </div>
-      </div>
-      <div class="feature-item mb-6">
-        <div class="feature-icon small">
-          <v-icon color="#1565C0" size="20">mdi-medical-bag</v-icon>
-        </div>
-        <div>
-          Unsere Medizinprodukteberater entwickeln maßgeschneiderte Konzepte für Ihre medizinischen und Fitnessgeräte – für eine zukunftssichere Nutzung.
-        </div>
-      </div>
-      <div class="feature-item mb-6">
-        <div class="feature-icon small">
-          <v-icon color="#1565C0" size="20">mdi-tools</v-icon>
-        </div>
-        <div>
-          Von Wartung über sicherheitstechnische Kontrolle (STK) bis zur Reparatur mit messtechnischer Kontrolle (MTK) bieten wir Flexibilität vor Ort.
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon small">
-          <v-icon color="#1565C0" size="20">mdi-chart-line</v-icon>
-        </div>
-        <div>
-          Mit über vier Jahren Erfahrung erzielen wir den optimalen Nutzen für Ihr Unternehmen.
-        </div>
-      </div>
-        <div class="highlight-text mb-2">
-              <p class="mb-0 text-center font-weight-medium">
-                Vertrauen Sie sich uns an, ...wir kümmern uns!
-              </p>
+        <!-- Colonne texte à droite élargie -->
+        <v-col cols="12" md="7" class="d-flex justify-center">
+          <v-card class="modern-card pa-5 bg-white">
+            <h2 class="section-title mb-5">DAS UNTERNEHMEN</h2>
+            <div class="text-body text-grey-darken-2">
+              <div class="feature-item mb-6">
+                <div class="feature-icon small">
+                  <v-icon color="#1565C0" size="20">mdi-account-group</v-icon>
+                </div>
+                <div>
+                  Wir sind ein junges Unternehmen, das modernste Technik nutzt und Sie bei Pflege, Reparatur, Wartung und Anschaffung Ihrer Geräte unterstützt.
+                </div>
+              </div>
+              <div class="feature-item mb-6">
+                <div class="feature-icon small">
+                  <v-icon color="#1565C0" size="20">mdi-medical-bag</v-icon>
+                </div>
+                <div>
+                  Unsere Medizinprodukteberater entwickeln maßgeschneiderte Konzepte für Ihre medizinischen und Fitnessgeräte – für eine zukunftssichere Nutzung.
+                </div>
+              </div>
+              <div class="feature-item mb-6">
+                <div class="feature-icon small">
+                  <v-icon color="#1565C0" size="20">mdi-tools</v-icon>
+                </div>
+                <div>
+                  Von Wartung über sicherheitstechnische Kontrolle (STK) bis zur Reparatur mit messtechnischer Kontrolle (MTK) bieten wir Flexibilität vor Ort.
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon small">
+                  <v-icon color="#1565C0" size="20">mdi-chart-line</v-icon>
+                </div>
+                <div>
+                  Mit über vier Jahren Erfahrung erzielen wir den optimalen Nutzen für Ihr Unternehmen.
+                </div>
+              </div>
+              <div class="highlight-text mb-2">
+                <p class="mb-0 text-center font-weight-medium">
+                  Vertrauen Sie sich uns an, ...wir kümmern uns!
+                </p>
+              </div>
             </div>
-    </div>
-  </v-card>
-</v-col>
-
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </v-container>
@@ -110,7 +105,7 @@ export default {
 <style scoped>
 .left-content {
   width: 100%;
-  max-width: 480px;
+  max-width: none;
 }
 
 .main-image {
@@ -207,7 +202,6 @@ export default {
   margin-top: 20px;
 }
 
-/* Apparition progressive (fade + slide up) */
 .stat-item {
   text-align: center;
   padding: 6px;
@@ -223,7 +217,7 @@ export default {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: rgba(25, 118, 210, 0.15); /* bleu clair transparent */
+  background: rgba(25, 118, 210, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,7 +227,6 @@ export default {
   cursor: default;
 }
 
-/* Animation au survol */
 .stat-circle:hover {
   transform: scale(1.1);
   box-shadow: 0 0 16px rgba(25, 118, 210, 0.5);
@@ -242,7 +235,7 @@ export default {
 .stat-value {
   font-size: 28px;
   font-weight: 700;
-  color: #1976D2; /* bleu foncé */
+  color: #1976D2;
   user-select: none;
 }
 
