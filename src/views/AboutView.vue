@@ -24,7 +24,7 @@
       <!-- Navigation verticale à gauche -->
       <nav
         style="
-          width: 220px;
+          width: 240px;
           background-color: #f5f7fa;
           padding: 20px;
           box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -51,6 +51,15 @@
           <span class="btn-number">2</span>
           <span class="btn-text">Team</span>
         </button>
+
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'wartung' }]"
+          @click="activeSection = 'wartung'"
+        >
+          <span class="btn-number">3</span>
+          <span class="btn-text">Wartungsvertrag</span>
+        </button>
+
       </nav>
 
       <!-- Contenu principal à droite -->
@@ -64,7 +73,8 @@
       >
         <!-- Section dynamique -->
         <CompanySection v-if="activeSection === 'entreprise'" />
-        <TeamsView v-else />
+        <TeamsView v-else-if="activeSection === 'team'" />
+        <Maintenance v-else-if="activeSection === 'wartung'" />
       </main>
     </div>
   </div>
@@ -74,6 +84,7 @@
 import { ref } from 'vue';
 import CompanySection from '@/views/CompanySection.vue';
 import TeamsView from '@/views/TeamsView.vue';
+import Maintenance  from '@/views/Maintenance.vue';
 
 const activeSection = ref('entreprise'); // Par défaut "Über uns"
 </script>
@@ -84,11 +95,10 @@ const activeSection = ref('entreprise'); // Par défaut "Über uns"
       rgba(127, 197, 235, 0.8),
       rgba(13, 74, 106, 0.8)
     ),
-    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+  url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
   background-size: cover;
   background-position: center;
 }
-
 .nav-btn {
   display: flex;
   align-items: center;
@@ -101,6 +111,8 @@ const activeSection = ref('entreprise'); // Par défaut "Über uns"
   transition: background-color 0.3s ease;
   font-size: 1rem;
   color: #334155;
+  width: 100%;
+  min-width: 210px; /* ou ajuste à 260px si nécessaire */
 }
 
 .nav-btn:hover {
@@ -113,6 +125,7 @@ const activeSection = ref('entreprise'); // Par défaut "Über uns"
 }
 
 .btn-number {
+  flex-shrink: 0; /* Empêche le rétrécissement */
   width: 36px;
   height: 36px;
   background-color: #0d4a6a;
@@ -130,6 +143,7 @@ const activeSection = ref('entreprise'); // Par défaut "Über uns"
   background-color: #dbeafe;
   color: #0d4a6a;
   font-weight: 700;
-  border-left: 4px solid #0d4a6a;
+  box-shadow: inset 4px 0 0 #0d4a6a; /* Remplace border-left */
 }
+
 </style>

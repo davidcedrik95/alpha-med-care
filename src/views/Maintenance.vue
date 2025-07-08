@@ -7,24 +7,26 @@
           <div class="left-content">
             <v-img
               src="/images/logo.png"
-              alt="Logo Alpha Med Care"
-              max-height="70"
+              alt="Wartungsvertrag Alpha Med Care"
+              height="70"
               contain
               class="mb-5"
             />
+            <!-- Image principale avec hauteur dynamique -->
             <v-img
-              src="/images/company.png"
-              alt="Alpha Med Care"
-              height="340"
-              cover
+              src="/images/wartungsvertrag.jpg"
+              alt="Wartungsvertrag"
               class="main-image mb-2"
+              cover
+              :height="imageMaxHeight + 'px'"
             />
 
+            <!-- Statistiques -->
             <v-row class="stats-container" justify="center" no-gutters>
               <v-col
                 cols="4"
                 class="stat-item"
-                v-for="(stat, index) in stats"
+                v-for="(stat, index) in contractStats"
                 :key="index"
                 :style="{ animationDelay: (index * 0.3) + 's' }"
               >
@@ -37,47 +39,43 @@
           </div>
         </v-col>
 
-        <!-- Colonne texte à droite élargie -->
+        <!-- Colonne texte à droite -->
         <v-col cols="12" md="7" class="d-flex justify-center">
-          <v-card class="modern-card pa-5 bg-white">
-            <h2 class="section-title mb-5">DAS UNTERNEHMEN</h2>
+          <v-card ref="cardRef" class="modern-card pa-5 bg-white">
+            <h2 class="section-title mb-5">WARTUNGSVERTRAG</h2>
             <div class="text-body text-grey-darken-2">
               <div class="feature-item mb-6">
                 <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-account-group</v-icon>
+                  <v-icon color="#1565C0" size="20">mdi-check-decagram</v-icon>
                 </div>
                 <div>
-                  Wir sind ein junges Unternehmen, das modernste Technik nutzt und Sie bei Pflege, Reparatur, Wartung und Anschaffung Ihrer Geräte unterstützt.
+                  Welche Form des Wartungsvertrages Sie auch wählen, entscheidend ist, dass Sie sich für eine fachgerechte Pflege Ihrer Geräte entscheiden. So wie Sie es von der alpha med care erwarten können.
                 </div>
               </div>
               <div class="feature-item mb-6">
                 <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-medical-bag</v-icon>
+                  <v-icon color="#1565C0" size="20">mdi-shield-check</v-icon>
                 </div>
                 <div>
-                  Unsere Medizinprodukteberater entwickeln maßgeschneiderte Konzepte für Ihre medizinischen und Fitnessgeräte – für eine zukunftssichere Nutzung.
+                  Durch Wartung, Pflege sowie elektrotechnische Kontrollen wird ein stetiges und genaues Funktionieren Ihrer Produkte gewährleistet. Die Prüfung ist gesetzlich verankert.
                 </div>
               </div>
               <div class="feature-item mb-6">
                 <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-tools</v-icon>
+                  <v-icon color="#1565C0" size="20">mdi-handshake</v-icon>
                 </div>
                 <div>
-                  Von Wartung über sicherheitstechnische Kontrolle (STK) bis zur Reparatur mit messtechnischer Kontrolle (MTK) bieten wir Flexibilität vor Ort.
+                  Der Wartungsvertrag mit alpha med care erfüllt gesetzliche Vorschriften und stellt Ihnen einen leistungsstarken Partner an die Seite.
                 </div>
               </div>
-              <div class="feature-item">
-                <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-chart-line</v-icon>
-                </div>
-                <div>
-                  Mit über vier Jahren Erfahrung erzielen wir den optimalen Nutzen für Ihr Unternehmen.
-                </div>
-              </div>
-              <div class="highlight-text mb-2">
-                <p class="mb-0  font-weight-medium">
-                  Vertrauen Sie sich uns an, ...wir kümmern uns!
+
+              <div class="highlight-text mt-6">
+                <p class="mb-2 font-weight-medium">
+                  Faxformular herunterladen, ausfüllen und zurücksenden:
                 </p>
+                <a href="/downloads/wartungsvertrag.pdf" target="_blank" class="text-primary font-weight-bold">
+                  Wartungsvertrag jetzt herunterladen (PDF)
+                </a>
               </div>
             </div>
           </v-card>
@@ -89,23 +87,39 @@
 
 <script>
 export default {
-  name: "CompanySection",
+  name: "Maintenance",
   data() {
     return {
-      stats: [
-        { value: "4+", label: "Jahre" },
-        { value: "360°", label: "Service" },
-        { value: "100%", label: "Zufriedenheit" },
+      contractStats: [
+        { value: "100%", label: "Sicherheit" },
+        { value: "gesetzlich", label: "Konform" },
       ],
+      imageMaxHeight: null,
     };
+  },
+  mounted() {
+    this.setImageHeight();
+    window.addEventListener("resize", this.setImageHeight);
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.setImageHeight);
+  },
+  methods: {
+    setImageHeight() {
+      const card = this.$refs.cardRef;
+      if (card && card.$el) {
+        const cardHeight = card.$el.offsetHeight;
+        this.imageMaxHeight = cardHeight - 100; // Marge pour le logo et stats
+      }
+    },
   },
 };
 </script>
 
+
 <style scoped>
 .left-content {
   width: 100%;
-  max-width: none;
 }
 
 .main-image {
@@ -183,13 +197,11 @@ export default {
   border-radius: 0 12px 12px 0;
   font-size: 0.9rem;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.07);
-  position: relative;
   max-width: 480px;
-  /* modification ici */
   margin-left: 0;
   margin-right: auto;
+  position: relative;
 }
-
 
 .highlight-text::before {
   content: '"';
@@ -230,26 +242,28 @@ export default {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
 }
-
 .stat-circle:hover {
   transform: scale(1.1);
   box-shadow: 0 0 16px rgba(25, 118, 210, 0.5);
 }
-
 .stat-value {
-  font-size: 28px;
+  font-size: 15px;
   font-weight: 700;
   color: #1976D2;
   user-select: none;
 }
-
 .stat-label {
-  font-size: 14px;
+  font-size: 13px; /* ↓ légèrement */
   color: #546E7A;
+  text-align: center;
+  max-width: 80px;
+  word-break: break-word;
+  line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   user-select: none;
 }
+
 
 @keyframes fadeSlideUp {
   to {
@@ -289,3 +303,4 @@ export default {
   }
 }
 </style>
+
