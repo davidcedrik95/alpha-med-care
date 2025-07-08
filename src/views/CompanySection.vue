@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="highlight-text mb-2">
-                <p class="mb-0 text-center font-weight-medium">
+                <p class="mb-0  font-weight-medium">
                   Vertrauen Sie sich uns an, ...wir kümmern uns!
                 </p>
               </div>
@@ -185,8 +185,12 @@ export default {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.07);
   position: relative;
   max-width: 480px;
-  margin: 0 auto;
+  /* modification ici */
+  margin-left: 0;
+  margin-right: auto;
 }
+
+
 .highlight-text::before {
   content: '"';
   position: absolute;
