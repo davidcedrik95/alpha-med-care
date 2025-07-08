@@ -22,21 +22,20 @@
       "
     >
       <!-- Navigation verticale à gauche -->
-<nav
-  style="
-    width: 160px;
-    background-color: #f5f7fa;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border-radius: 8px;
-    height: fit-content;
-    align-self: flex-start;
-  "
->
-
+      <nav
+        style="
+          width: 220px;
+          background-color: #f5f7fa;
+          padding: 20px;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          border-radius: 8px;
+          height: fit-content;
+          align-self: flex-start;
+        "
+      >
         <button
           :class="['nav-btn', { 'active-btn': activeSection === 'entreprise' }]"
           @click="activeSection = 'entreprise'"
