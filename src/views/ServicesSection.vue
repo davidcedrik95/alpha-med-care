@@ -13,7 +13,7 @@
               class="mb-5"
             />
             <v-img
-              src="/images/company.jpg"
+              src="/images/company.png"
               alt="Service Vor Ort"
               class="main-image mb-2"
               cover
