@@ -64,8 +64,16 @@
           :class="['nav-btn', { 'active-btn': activeSection === 'services' }]"
           @click="activeSection = 'services'"
         >
-          <span class="btn-number">3</span>
+          <span class="btn-number">4</span>
           <span class="btn-text">services</span>
+        </button>
+
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'services-partners' }]"
+          @click="activeSection = 'services-partners'"
+        >
+          <span class="btn-number">5</span>
+          <span class="btn-text">Servicepartner</span>
         </button>
 
       </nav>
@@ -84,6 +92,7 @@
         <TeamsView v-else-if="activeSection === 'team'" />
         <Maintenance v-else-if="activeSection === 'wartung'" />
         <ServicesSection v-else-if="activeSection === 'services'" />
+        <ServicePartner v-else-if="activeSection === 'services-partners'" />
       </main>
     </div>
   </div>
@@ -95,6 +104,7 @@ import CompanySection from '@/views/CompanySection.vue';
 import TeamsView from '@/views/TeamsView.vue';
 import Maintenance  from '@/views/Maintenance.vue';
 import ServicesSection from '@/views/ServicesSection.vue';
+import ServicePartner from '@/views/ServicePartner.vue';
 
 const activeSection = ref('entreprise'); // Par défaut "Über uns"
 </script>
