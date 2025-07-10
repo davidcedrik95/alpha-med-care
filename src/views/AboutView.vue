@@ -60,6 +60,14 @@
           <span class="btn-text">Wartungsvertrag</span>
         </button>
 
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'services' }]"
+          @click="activeSection = 'services'"
+        >
+          <span class="btn-number">3</span>
+          <span class="btn-text">services</span>
+        </button>
+
       </nav>
 
       <!-- Contenu principal à droite -->
@@ -75,6 +83,7 @@
         <CompanySection v-if="activeSection === 'entreprise'" />
         <TeamsView v-else-if="activeSection === 'team'" />
         <Maintenance v-else-if="activeSection === 'wartung'" />
+        <ServicesSection v-else-if="activeSection === 'services'" />
       </main>
     </div>
   </div>
@@ -85,6 +94,7 @@ import { ref } from 'vue';
 import CompanySection from '@/views/CompanySection.vue';
 import TeamsView from '@/views/TeamsView.vue';
 import Maintenance  from '@/views/Maintenance.vue';
+import ServicesSection from '@/views/ServicesSection.vue';
 
 const activeSection = ref('entreprise'); // Par défaut "Über uns"
 </script>
