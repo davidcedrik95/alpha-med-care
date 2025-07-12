@@ -49,14 +49,32 @@
           @click="activeSection = 'team'"
         >
           <span class="btn-number">2</span>
-          <span class="btn-text">Team</span>
+          <span class="btn-text">Unsere Team</span>
+        </button>
+
+
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'technik' }]"
+          @click="activeSection = 'technik'"
+        >
+          <span class="btn-number">3</span>
+          <span class="btn-text">Die Technik</span>
+        </button>
+
+
+        <button
+          :class="['nav-btn', { 'active-btn': activeSection === 'pruefung' }]"
+          @click="activeSection = 'pruefung'"
+        >
+          <span class="btn-number">4</span>
+          <span class="btn-text">Die Prüfung</span>
         </button>
 
         <button
           :class="['nav-btn', { 'active-btn': activeSection === 'wartung' }]"
           @click="activeSection = 'wartung'"
         >
-          <span class="btn-number">3</span>
+          <span class="btn-number">5</span>
           <span class="btn-text">Wartungsvertrag</span>
         </button>
 
@@ -64,7 +82,7 @@
           :class="['nav-btn', { 'active-btn': activeSection === 'services' }]"
           @click="activeSection = 'services'"
         >
-          <span class="btn-number">4</span>
+          <span class="btn-number">6</span>
           <span class="btn-text">services</span>
         </button>
 
@@ -72,7 +90,7 @@
           :class="['nav-btn', { 'active-btn': activeSection === 'services-partners' }]"
           @click="activeSection = 'services-partners'"
         >
-          <span class="btn-number">5</span>
+          <span class="btn-number">7</span>
           <span class="btn-text">Servicepartner</span>
         </button>
 
@@ -93,6 +111,8 @@
         <Maintenance v-else-if="activeSection === 'wartung'" />
         <ServicesSection v-else-if="activeSection === 'services'" />
         <ServicePartner v-else-if="activeSection === 'services-partners'" />
+        <TechnikSection v-else-if="activeSection === 'technik'" />
+         <ControlSection v-else-if="activeSection === 'pruefung'" />
       </main>
     </div>
   </div>
@@ -105,6 +125,8 @@ import TeamsView from '@/views/TeamsView.vue';
 import Maintenance  from '@/views/Maintenance.vue';
 import ServicesSection from '@/views/ServicesSection.vue';
 import ServicePartner from '@/views/ServicePartner.vue';
+import TechnikSection from '@/views/TechnikSection.vue';
+import ControlSection from '@/views/ControlSection.vue';
 
 const activeSection = ref('entreprise'); // Par défaut "Über uns"
 </script>

@@ -12,38 +12,34 @@
               contain
               class="mb-5"
             />
-            
+
             <v-img
-              src="/images/service-partner.png"
-              alt="Service Partner"
-              class="main-image mb-2 service-partner-image"
+              src="/images/pruefung-medizinprodukte.png"
+              alt="Prüfung Medizinprodukte"
+              class="main-image mb-2 pruefung-image"
               contain
               :height="imageMaxHeight + 'px'"
               style="max-width: 100%; object-fit: cover;"
             />
-
           </div>
         </v-col>
 
         <!-- Colonne texte -->
         <v-col cols="12" md="7" class="d-flex justify-center">
           <v-card ref="cardRef" class="modern-card pa-5 bg-white">
-            <h2 class="section-title mb-5">WIR SIND IHR SERVICEPARTNER</h2>
+            <h2 class="section-title mb-5">DIE PRÜFUNG</h2>
             <div class="text-body text-grey-darken-2">
               <p class="mb-4">
-                Anders als bei der klassischen Medizintechnik, hat unser Unternehmen bei mehreren Herstellern von Medizinprodukten eine Service-Partner-Verbindung, wie z. B. <strong>ERGO-FIT</strong>, <strong>h/p/cosmos</strong>, <strong>FREI AG</strong>, <strong>ergoline</strong>, <strong>Amer Sports</strong>, <strong>Star Trac</strong> und viele weitere.
+                Die <strong>sicherheitstechnische Kontrolle (STK)</strong>, sowie die <strong>messtechnische Kontrolle (MTK)</strong>, liegen dem <strong>Medizinproduktegesetz (MPG)</strong> und der <strong>Medizinprodukte-Betreiberverordnung (MPBetreibV)</strong> zu Grunde.
               </p>
               <p class="mb-4">
-                Dadurch sind wir als <strong>autorisierter Service-Partner</strong> in der Lage, defekte Geräte direkt <strong>vor Ort</strong> zu reparieren.
+                Wir als <strong>Service-Techniker</strong> und <strong>Medizinprodukteberater</strong> sind ebenfalls jährlichen Fortbildungen verpflichtet. So nehmen wir an zahlreichen Herstellerschulungen teil, und schließen diese mit Erfolg ab, wie unsere zahlreichen Zertifikate belegen.
               </p>
               <p class="mb-4">
-                Dieser entscheidende Vorteil spiegelt sich nicht nur finanziell positiv wider, sondern zeigt sich auch in unserer <strong>fachlichen Kompetenz</strong> gegenüber Ihren Geräten. Selbstverständlich gehören <strong>Pflege, Wartung und Reparatur</strong> bei Ihnen vor Ort zu unseren Stärken.
-              </p>
-              <p class="mb-4">
-                Konkret bedeutet das für Sie: <strong>Nur einmaliger Kostenaufwand</strong>, um allen gesetzlich definierten Prüfpflichten gerecht zu werden.
+                So ist sichergestellt, dass wir den technischen Herausforderungen stetig gewachsen sind.
               </p>
               <p class="mt-6 font-weight-bold text-primary">
-                Wir reparieren und prüfen vor Ort! Vertrauen Sie uns Ihre Geräte an – <br />wir kümmern uns darum!
+                ... wir kümmern uns, als Ihr Partner für Medizinprodukte, um fachgerechte Prüfung Ihrer Geräte.
               </p>
             </div>
           </v-card>
@@ -55,7 +51,7 @@
 
 <script>
 export default {
-  name: "ServicePartner",
+  name: "PruefungMedizinprodukte",
   data() {
     return {
       imageMaxHeight: null,
@@ -87,7 +83,6 @@ export default {
 .main-image {
   width: 100%;
   border-radius: 12px;
-  
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
@@ -130,12 +125,11 @@ export default {
   line-height: 1.65;
   color: #37474F;
 }
-.service-partner-image {
+.pruefung-image {
   max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
 }
-
 
 @media (max-width: 600px) {
   .section-title {
