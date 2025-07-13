@@ -1,95 +1,635 @@
 <template>
-  <v-container fluid class="pa-0 bg-grey-lighten-4">
-    <v-container class="py-12">
-      <v-row align="start" justify="center" class="gap-4">
-        <transition name="fade">
-          <div v-if="!showForm" class="d-flex flex-wrap w-100">
-            <v-col cols="12" md="5" class="d-flex flex-column">
-              <div class="left-content">
-                <v-img src="/images/logo.png" alt="Alpha Med Care Logo" height="70" contain class="mb-5" />
-                <v-img src="/images/service-vor-ort.png" alt="Service Vor Ort" class="main-image mb-2" cover :height="imageMaxHeight + 'px'" />
+  <v-container class="service-container">
+    <!-- En-tête de la section -->
+    <div class="section-header text-center mb-8">
+      <v-divider class="my-4" />
+      <h1 class="text-h3 font-weight-bold primary--text mb-4">UNSER SERVICE ... FÜR SIE VOR ORT</h1>
+      <p class="text-h6 text-medium-emphasis">
+        alpha med care kümmert sich darum, dass Ihre Wartungsintervalle pünktlich eingehalten werden und Ihr Equipment stets nach Norm geprüft und gewartet ist.
+      </p>
+      <v-divider class="my-4" />
+    </div>
+
+    <!-- Contenu principal -->
+    <v-fade-transition mode="out-in">
+      <div v-if="!showForm && !showInstallationForm">
+        <v-row class="service-grid">
+          <v-col cols="12" md="6">
+            <v-hover v-slot="{ isHovering, props }">
+              <v-card
+                v-bind="props"
+                :elevation="isHovering ? 12 : 6"
+                class="service-image rounded-xl overflow-hidden"
+              >
+                <v-img
+                  src="/images/service-vor-ort.png"
+                  alt="Service Vor Ort"
+                  height="500"
+                  cover
+                />
+              </v-card>
+            </v-hover>
+          </v-col>
+          
+          <v-col cols="12" md="6">
+            <v-card class="service-card pa-6 rounded-xl" elevation="6">
+              <h2 class="text-h4 font-weight-bold primary--text mb-6">Umfassender Service für Ihre medizinischen Geräte</h2>
+              
+              <v-list class="service-list mb-6">
+                <v-list-item v-for="(service, index) in services" :key="index" class="px-0">
+                  <template v-slot:prepend>
+                    <v-icon color="primary" class="mr-4">mdi-check-circle</v-icon>
+                  </template>
+                  <v-list-item-title class="text-body-1">{{ service }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+              
+              <p class="text-body-1 mb-6">
+                Wir garantieren Ihnen eine schnelle und zuverlässige Betreuung Ihrer medizinischen Geräte. Unser Expertenteam steht Ihnen mit Fachwissen und modernster Ausrüstung zur Verfügung, um Ausfallzeiten zu minimieren und die Sicherheit Ihrer Geräte zu gewährleisten.
+              </p>
+              
+              <div class="form-options pa-6 rounded-lg">
+                <h3 class="text-h5 font-weight-bold primary--text mb-4">Formulare einfach Online ausfüllen</h3>
+                <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-btn
+                      block
+                      color="primary"
+                      size="x-large"
+                      class="py-6"
+                      @click="showForm = true"
+                    >
+                      <v-icon start>mdi-wrench</v-icon>
+                      SERVICEANFORDERUNG
+                    </v-btn>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-btn
+                      block
+                      color="secondary"
+                      size="x-large"
+                      class="py-6"
+                      @click="showInstallationForm = true"
+                    >
+                      <v-icon start>mdi-cogs</v-icon>
+                      INSTALLATIONSSERVICE
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </div>
-            </v-col>
-            <v-col cols="12" md="7" class="d-flex justify-center">
-              <v-card ref="cardRef" class="modern-card pa-5 bg-white">
-                <h2 class="section-title mb-5">UNSER SERVICE ... FÜR SIE VOR ORT</h2>
-                <div class="text-body text-grey-darken-2">
-                  <div class="feature-item mb-4" v-for="(service, i) in services" :key="i">
-                    <div class="feature-icon small">
-                      <v-icon color="#1565C0" size="20">mdi-wrench</v-icon>
-                    </div>
-                    <div>{{ service }}</div>
-                  </div>
-                  <p class="mt-6 mb-4">alpha med care kümmert sich darum, dass Ihre Wartungsintervalle pünktlich eingehalten werden und Ihr Equipment stets nach Norm geprüft und gewartet ist, siehe auch die Rubrik Wartungsvertrag.</p>
-                  <div class="highlight-text mt-6">
-                    <p class="mb-2 font-weight-medium">Formulare einfach Online ausfüllen.</p>
-                    <ul class="pl-4">
-                      <li class="mb-2">
-                        <a href="#" @click.prevent="showForm = true" class="text-primary font-weight-bold">SERVICEANFORDERUNG</a>
-                      </li>
-                      <li>
-                        <a href="/downloads/installationsservice.pdf" target="_blank" class="text-primary font-weight-bold">INSTALLATIONSSERVICE</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </v-card>
-            </v-col>
-          </div>
-        </transition>
-        <transition name="fade">
-          <div v-if="showForm" class="d-flex flex-wrap w-100">
-            <v-col cols="12">
-              <v-card class="modern-card pa-5 bg-white">
-                <h2 class="section-title mb-5">Serviceanforderung Formular</h2>
-                <v-form ref="formRef">
-                  <div v-if="step === 1">
-                    <p class="text-body text-grey-darken-2 mb-4">Wenn Sie dieses Formular übermitteln, werden Ihre Details wie Name und E-Mail-Adresse nicht automatisch erfasst, es sei denn, Sie geben es selbst an.</p>
-                    <h3 class="section-title mb-4">1. Kundendatenerfassung</h3>
-                    <p class="text-body text-grey-darken-2 mb-4">Formular bitte ausfüllen und absenden. Wir werden uns zeitnah mit Ihnen in Verbindung setzen.</p>
-                    <v-text-field label="1. Heutiges Datum" v-model="form.date"></v-text-field>
-                    <v-text-field label="2. Vorname/Name" v-model="form.name"></v-text-field>
-                    <v-text-field label="3. Firma/Kundennummer" v-model="form.company"></v-text-field>
-                    <v-text-field label="4. Straße/Hausnummer" v-model="form.street"></v-text-field>
-                    <v-text-field label="5. Postleitzahl/Ort" v-model="form.zipCity"></v-text-field>
-                    <v-text-field label="6. Telefon" v-model="form.phone"></v-text-field>
-                    <v-text-field label="7. E-Mail-Adresse" v-model="form.email"></v-text-field>
-                  </div>
-                  <div v-if="step === 2">
-                    <h3 class="section-title mb-4">2. Gerätedaten</h3>
-                    <p class="text-body text-grey-darken-2 mb-4">Hersteller, Modell, Seriennummer, Fehlerbeschreibung</p>
-                    <p class="text-body text-grey-darken-2 mb-4">8. Hersteller</p>
-                    <v-checkbox v-for="item in manufacturers" :key="item" :label="item" :value="item" v-model="form.manufacturer" hide-details />
-                    <v-text-field label="9. Modell" v-model="form.model"></v-text-field>
-                    <v-text-field label="10. Seriennummer" v-model="form.serial"></v-text-field>
-                    <v-textarea label="11. Fehlerbeschreibung" v-model="form.errorDesc"></v-textarea>
-                  </div>
-                  <div v-if="step === 3">
-                    <h3 class="section-title mb-4">3. Anmerkung</h3>
-                    <v-textarea label="21. Was können wir außerdem für Sie tun?" v-model="form.additional"></v-textarea>
-                  </div>
-                  <v-btn color="primary" class="mt-4 mr-2" @click="prevStep" :disabled="step === 1">Zurück</v-btn>
-                  <v-btn color="primary" class="mt-4" @click="nextStep">{{ step === 3 ? 'Absenden' : 'Weiter' }}</v-btn>
-                  <v-btn variant="text" class="mt-4 ml-2" @click="showForm = false">Abbrechen</v-btn>
-                </v-form>
-              </v-card>
-            </v-col>
-          </div>
-        </transition>
-      </v-row>
-    </v-container>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+    </v-fade-transition>
+
+    <!-- Formulaire Serviceanforderung -->
+    <v-dialog v-model="showForm" max-width="900" persistent>
+      <v-card class="form-container rounded-xl">
+        <v-card-title class="form-header text-center py-6">
+          <h2 class="text-h3 font-weight-bold primary--text">Serviceanforderung</h2>
+          <p class="text-body-1 mt-2">
+            Füllen Sie das folgende Formular aus, um einen Service für Ihre medizinischen Geräte anzufordern.
+            Wir werden uns umgehend mit Ihnen in Verbindung setzen.
+          </p>
+        </v-card-title>
+        
+        <v-stepper v-model="step" class="elevation-0">
+          <v-stepper-header class="elevation-0">
+            <v-stepper-item
+              :value="1"
+              :complete="step > 1"
+              title="Kundendaten"
+              editable
+            ></v-stepper-item>
+            <v-divider></v-divider>
+            <v-stepper-item
+              :value="2"
+              :complete="step > 2"
+              title="Gerätedaten"
+              editable
+            ></v-stepper-item>
+            <v-divider></v-divider>
+            <v-stepper-item
+              :value="3"
+              title="Abschluss"
+              editable
+            ></v-stepper-item>
+          </v-stepper-header>
+          
+          <v-stepper-window>
+            <v-stepper-window-item :value="1">
+              <v-form ref="step1Form">
+                <h3 class="text-h5 font-weight-bold primary--text mb-4">1. Kundendatenerfassung</h3>
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.date"
+                      label="Heutiges Datum"
+                      type="date"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.name"
+                      label="Vorname/Name"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.company"
+                      label="Firma/Kundennummer"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.street"
+                      label="Straße/Hausnummer"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.zipCity"
+                      label="Postleitzahl/Ort"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.phone"
+                      label="Telefon"
+                      type="tel"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="form.email"
+                      label="E-Mail-Adresse"
+                      type="email"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-stepper-window-item>
+            
+            <v-stepper-window-item :value="2">
+              <v-form ref="step2Form">
+                <h3 class="text-h5 font-weight-bold primary--text mb-4">2. Gerätedaten</h3>
+                <v-row>
+                  <v-col cols="12">
+                    <h4 class="text-subtitle-1 font-weight-bold mb-3">Hersteller</h4>
+                    <v-row>
+                      <v-col v-for="item in manufacturers" :key="item" cols="6" sm="4" md="3">
+                        <v-checkbox
+                          :label="item"
+                          :value="item"
+                          v-model="form.manufacturer"
+                          density="comfortable"
+                          hide-details
+                        ></v-checkbox>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.model"
+                      label="Modell"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.serial"
+                      label="Seriennummer"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  
+                  <v-col cols="12">
+                    <v-textarea
+                      v-model="form.errorDesc"
+                      label="Fehlerbeschreibung"
+                      required
+                      variant="outlined"
+                      rows="4"
+                      auto-grow
+                      density="comfortable"
+                      style="max-height: 200px; overflow-y: auto;"
+                    ></v-textarea>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-stepper-window-item>
+            
+            <v-stepper-window-item :value="3">
+              <h3 class="text-h5 font-weight-bold primary--text mb-4">3. Anmerkung</h3>
+              <v-row>
+                <v-col cols="12">
+                  <v-textarea
+                    v-model="form.additional"
+                    label="Was können wir außerdem für Sie tun?"
+                    variant="outlined"
+                    rows="4"
+                    auto-grow
+                    density="comfortable"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+            </v-stepper-window-item>
+          </v-stepper-window>
+        </v-stepper>
+        
+        <v-card-actions class="form-actions px-6 py-4">
+          <v-btn
+            color="grey"
+            variant="outlined"
+            :disabled="step === 1"
+            @click="prevStep"
+          >
+            <v-icon start>mdi-arrow-left</v-icon>
+            Zurück
+          </v-btn>
+          
+          <v-spacer></v-spacer>
+          
+          <v-btn
+            color="grey"
+            variant="outlined"
+            @click="cancelForm"
+          >
+            Abbrechen
+          </v-btn>
+          
+          <v-btn
+            color="primary"
+            @click="nextStep"
+          >
+            {{ step === 3 ? 'Absenden' : 'Weiter' }}
+            <v-icon end>mdi-arrow-right</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- Formulaire Installationsanforderung -->
+    <v-dialog v-model="showInstallationForm" max-width="900" persistent>
+      <v-card class="form-container rounded-xl">
+        <v-card-title class="form-header text-center py-6">
+          <h2 class="text-h3 font-weight-bold primary--text">Installationsanforderung</h2>
+          <p class="text-body-1 mt-2">
+            Füllen Sie das folgende Formular aus, um einen Installationsservice für Ihre medizinischen Geräte anzufordern.
+            Wir benötigen diese Informationen, um die Installation optimal vorzubereiten.
+          </p>
+        </v-card-title>
+        
+        <v-stepper v-model="installationStep" class="elevation-0">
+          <v-stepper-header class="elevation-0">
+            <v-stepper-item
+              :value="1"
+              :complete="installationStep > 1"
+              title="Kundendaten"
+              editable
+            ></v-stepper-item>
+            <v-divider></v-divider>
+            <v-stepper-item
+              :value="2"
+              :complete="installationStep > 2"
+              title="Gebäudedaten"
+              editable
+            ></v-stepper-item>
+            <v-divider></v-divider>
+            <v-stepper-item
+              :value="3"
+              title="Abschluss"
+              editable
+            ></v-stepper-item>
+          </v-stepper-header>
+          
+          <v-stepper-window style="max-height: 60vh; overflow-y: auto;">
+            <v-stepper-window-item :value="1">
+              <v-form ref="installationStep1Form">
+                <h3 class="text-h5 font-weight-bold primary--text mb-4">1. Kundendaten</h3>
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.contactPerson"
+                      label="Ansprechpartner vor Ort"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.customerInfo"
+                      label="Name / Firma / Kundennummer"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.address"
+                      label="Straße / Hausnummer"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.zipCity"
+                      label="Postleitzahl / Ort"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.phone"
+                      label="Telefon / Handy für Rückfragen"
+                      type="tel"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.email"
+                      label="E-Mail"
+                      type="email"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.date"
+                      label="Datum"
+                      type="date"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-stepper-window-item>
+            
+            <v-stepper-window-item :value="2">
+              <v-form ref="installationStep2Form">
+                <h3 class="text-h5 font-weight-bold primary--text mb-4">2. Gebäudedaten</h3>
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.floor"
+                      label="Fußböden (Beschaffenheit, Material)"
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="installationForm.doors"
+                      label="Anzahl & Breite der Türen auf dem Weg"
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  
+                  <v-col cols="12">
+                    <v-checkbox
+                      v-model="installationForm.elevator"
+                      label="Aufzug vorhanden"
+                      density="comfortable"
+                      hide-details
+                    ></v-checkbox>
+                  </v-col>
+                  
+                  <template v-if="installationForm.elevator">
+                    <v-col cols="12" class="d-flex flex-wrap" style="max-height: 300px; overflow-y: auto;">
+                      <v-col cols="12" md="6">
+                        <v-text-field
+                          v-model="installationForm.elevatorAccess"
+                          label="Zugang zu Aufzug Stockwerk?"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <v-text-field
+                          v-model="installationForm.elevatorDoorSize"
+                          label="Aufzugtüre Maße (Höhe x Breite)"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="installationForm.elevatorInsideSize"
+                          label="Aufzugtiefe Maße innen (HxBxL)"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                    </v-col>
+                  </template>
+                  
+                  <v-col cols="12">
+                    <v-checkbox
+                      v-model="installationForm.stairs"
+                      label="Treppe vorhanden"
+                      density="comfortable"
+                      hide-details
+                    ></v-checkbox>
+                  </v-col>
+                  
+                  <template v-if="installationForm.stairs">
+                    <!-- Section modifiée pour l'escalier -->
+                    <v-col cols="12" class="d-flex flex-wrap">
+                      <v-col cols="12" md="6">
+                        <v-text-field
+                          v-model="installationForm.stairWidth"
+                          label="Treppenbreite"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <v-checkbox
+                          v-model="installationForm.cornerStair"
+                          label="Übers Eck?"
+                          density="comfortable"
+                          hide-details
+                          class="ml-8"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <v-text-field
+                          v-model="installationForm.stairExit"
+                          label="Ausstieg im Stockwerk"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <v-text-field
+                          v-model="installationForm.stairSteps"
+                          label="Stufenanzahl"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <v-text-field
+                          v-model="installationForm.stairAfterSteps"
+                          label="Weiterer Verlauf nach den Stufen"
+                          variant="outlined"
+                          density="comfortable"
+                          class="ml-8"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6">
+                        <v-checkbox
+                          v-model="installationForm.railingRemovable"
+                          label="Geländer abnehmbar?"
+                          density="comfortable"
+                          hide-details
+                          class="ml-8"
+                        ></v-checkbox>
+                      </v-col>
+                    </v-col>
+                  </template>
+                </v-row>
+              </v-form>
+            </v-stepper-window-item>
+            
+            <v-stepper-window-item :value="3">
+              <h3 class="text-h5 font-weight-bold primary--text mb-4">3. Abschluss</h3>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="installationForm.place"
+                    label="Ort"
+                    variant="outlined"
+                    density="comfortable"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="installationForm.signatureDate"
+                    label="Datum (Unterschrift)"
+                    type="date"
+                    variant="outlined"
+                    density="comfortable"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field
+                    v-model="installationForm.signatureName"
+                    label="Unterschrift (Name)"
+                    variant="outlined"
+                    density="comfortable"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-stepper-window-item>
+          </v-stepper-window>
+        </v-stepper>
+        
+        <v-card-actions class="form-actions px-6 py-4">
+          <v-btn
+            color="grey"
+            variant="outlined"
+            :disabled="installationStep === 1"
+            @click="prevInstallationStep"
+          >
+            <v-icon start>mdi-arrow-left</v-icon>
+            Zurück
+          </v-btn>
+          
+          <v-spacer></v-spacer>
+          
+          <v-btn
+            color="grey"
+            variant="outlined"
+            @click="cancelInstallationForm"
+          >
+            Abbrechen
+          </v-btn>
+          
+          <v-btn
+            color="secondary"
+            @click="nextInstallationStep"
+          >
+            {{ installationStep === 3 ? 'Absenden' : 'Weiter' }}
+            <v-icon end>mdi-arrow-right</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 
 <script>
 export default {
-  name: "ServiceVorOrt",
+  name: 'ServiceVorOrt',
   data() {
     return {
-      services: ["Instandsetzung / Reparatur", "Wartung / Messung / Kalibrieren / MTK-Abgleich", "Ersatzteile", "Installation / Umzug", "Gebrauchtgerätehandel"],
-      manufacturers: ["Ergo-Fit", "FREI medical", "emotion fitness", "Physiomed", "RECK-Technik (MOTOmed)", "ergoline", "proxomed", "Sonstiges"],
-      imageMaxHeight: null,
+      services: [
+        "Instandsetzung / Reparatur",
+        "Wartung / Messung / Kalibrieren / MTK-Abgleich",
+        "Ersatzteile",
+        "Installation / Umzug",
+        "Gebrauchtgerätehandel"
+      ],
+      manufacturers: [
+        "Ergo-Fit",
+        "FREI medical",
+        "emotion fitness",
+        "Physiomed",
+        "RECK-Technik (MOTOmed)",
+        "ergoline",
+        "proxomed",
+        "Sonstiges"
+      ],
       showForm: false,
       step: 1,
       form: {
@@ -105,24 +645,37 @@ export default {
         serial: "",
         errorDesc: "",
         additional: ""
+      },
+      showInstallationForm: false,
+      installationStep: 1,
+      installationForm: {
+        contactPerson: '',
+        customerInfo: '',
+        address: '',
+        zipCity: '',
+        phone: '',
+        email: '',
+        date: '',
+        floor: '',
+        doors: '',
+        elevator: false,
+        elevatorAccess: '',
+        elevatorDoorSize: '',
+        elevatorInsideSize: '',
+        stairs: false,
+        stairWidth: '',
+        cornerStair: false,
+        stairExit: '',
+        stairSteps: '',
+        stairAfterSteps: '',
+        railingRemovable: false,
+        place: '',
+        signatureDate: '',
+        signatureName: ''
       }
     };
   },
-  mounted() {
-    this.setImageHeight();
-    window.addEventListener("resize", this.setImageHeight);
-  },
-  beforeUnmount() {
-    window.removeEventListener("resize", this.setImageHeight);
-  },
   methods: {
-    setImageHeight() {
-      const card = this.$refs.cardRef;
-      if (card && card.$el) {
-        const cardHeight = card.$el.offsetHeight;
-        this.imageMaxHeight = cardHeight - 100;
-      }
-    },
     nextStep() {
       if (this.step < 3) {
         this.step++;
@@ -136,129 +689,171 @@ export default {
       }
     },
     submitForm() {
-      console.log("Formulaire soumis :", this.form);
-      alert("Formular wurde erfolgreich gesendet!");
+      console.log("Serviceanforderung gesendet:", this.form);
+      this.$notify({
+        title: "Erfolg!",
+        text: "Serviceanforderung erfolgreich gesendet!",
+        type: "success"
+      });
       this.showForm = false;
+      this.resetForm();
+    },
+    cancelForm() {
+      this.showForm = false;
+      this.resetForm();
+    },
+    resetForm() {
       this.step = 1;
+      this.form = {
+        date: "",
+        name: "",
+        company: "",
+        street: "",
+        zipCity: "",
+        phone: "",
+        email: "",
+        manufacturer: [],
+        model: "",
+        serial: "",
+        errorDesc: "",
+        additional: ""
+      };
+    },
+    nextInstallationStep() {
+      if (this.installationStep < 3) {
+        this.installationStep++;
+      } else {
+        this.submitInstallationForm();
+      }
+    },
+    prevInstallationStep() {
+      if (this.installationStep > 1) {
+        this.installationStep--;
+      }
+    },
+    submitInstallationForm() {
+      console.log("Installationsanforderung gesendet:", this.installationForm);
+      this.$notify({
+        title: "Erfolg!",
+        text: "Installationsanforderung erfolgreich gesendet!",
+        type: "success"
+      });
+      this.showInstallationForm = false;
+      this.resetInstallationForm();
+    },
+    cancelInstallationForm() {
+      this.showInstallationForm = false;
+      this.resetInstallationForm();
+    },
+    resetInstallationForm() {
+      this.installationStep = 1;
+      this.installationForm = {
+        contactPerson: '',
+        customerInfo: '',
+        address: '',
+        zipCity: '',
+        phone: '',
+        email: '',
+        date: '',
+        floor: '',
+        doors: '',
+        elevator: false,
+        elevatorAccess: '',
+        elevatorDoorSize: '',
+        elevatorInsideSize: '',
+        stairs: false,
+        stairWidth: '',
+        cornerStair: false,
+        stairExit: '',
+        stairSteps: '',
+        stairAfterSteps: '',
+        railingRemovable: false,
+        place: '',
+        signatureDate: '',
+        signatureName: ''
+      };
     }
   }
 };
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s ease;
+.service-container {
+  max-width: 1400px;
+  padding-top: 40px;
+  padding-bottom: 80px;
 }
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.left-content {
-  width: 100%;
-}
-.main-image {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-.main-image:hover {
-  transform: scale(1.03);
-}
-.modern-card {
-  border-radius: 12px !important;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1) !important;
-  border-top: 5px solid #1976D2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+.section-header h1 {
   position: relative;
+  padding-bottom: 15px;
 }
-.modern-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.15) !important;
-}
-.section-title {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: 0.7px;
-  color: #1565C0;
-  padding-bottom: 14px;
-  position: relative;
-  margin-bottom: 1.8rem;
-}
-.section-title::after {
-  content: "";
+
+.section-header h1:after {
+  content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #1976D2, #64B5F6);
-  border-radius: 3px;
+  background: #f57c00;
+  border-radius: 2px;
 }
-.text-body {
-  font-size: 1.1rem;
-  line-height: 1.65;
-  color: #37474F;
+
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.feature-item {
-  display: flex;
-  align-items: flex-start;
-  font-size: 1rem;
+
+.service-card:hover {
+  transform: translateY(-5px);
 }
-.feature-icon.small {
-  background: #E3F2FD;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 16px;
-  flex-shrink: 0;
-  color: #1565C0;
+
+.form-options {
+  background: rgba(21, 101, 192, 0.05);
+  border-left: 4px solid #1565c0;
 }
-.highlight-text {
-  background: linear-gradient(120deg, #E3F2FD, #BBDEFB);
-  border-left: 5px solid #1976D2;
-  padding: 20px;
-  border-radius: 0 12px 12px 0;
-  font-size: 0.9rem;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.07);
-  max-width: 480px;
-  margin-left: 0;
-  margin-right: auto;
+
+.form-container {
+  overflow: hidden;
+}
+
+.form-header h2 {
   position: relative;
+  padding-bottom: 15px;
 }
-.highlight-text::before {
-  content: '"';
+
+.form-header h2:after {
+  content: '';
   position: absolute;
-  top: -14px;
-  left: 16px;
-  font-size: 48px;
-  color: #1976D2;
-  opacity: 0.15;
-  font-family: serif;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #f57c00;
+  border-radius: 2px;
 }
+
+.form-actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.service-list .v-list-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 @media (max-width: 600px) {
-  .section-title {
-    font-size: 1.4rem !important;
-    text-align: center;
+  .section-header h1 {
+    font-size: 1.8rem;
   }
-  .text-body {
-    font-size: 0.9rem;
+  
+  .service-card h2 {
+    font-size: 1.5rem;
   }
-  .highlight-text {
-    padding: 14px;
-    font-size: 0.8rem;
-  }
-  .feature-icon.small {
-    width: 28px;
-    height: 28px;
-  }
-  .modern-card {
-    padding: 24px !important;
+  
+  .form-options h3 {
+    font-size: 1.2rem;
   }
 }
 </style>
