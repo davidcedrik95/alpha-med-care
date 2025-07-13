@@ -32,6 +32,12 @@ const routes = [
   },
 
   {
+    path: '/contact',
+    name: 'ContactView',
+    component: () => import('@/views/ContactView.vue')
+  },
+
+  {
     path: '/imprint',
     name: 'imprint',
     component: () => import('../views/ImprintView.vue')
