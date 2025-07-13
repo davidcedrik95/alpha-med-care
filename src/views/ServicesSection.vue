@@ -59,7 +59,6 @@
                       class="py-6"
                       @click="showForm = true"
                     >
-                      <v-icon start>mdi-wrench</v-icon>
                       SERVICEANFORDERUNG
                     </v-btn>
                   </v-col>
@@ -71,7 +70,6 @@
                       class="py-6"
                       @click="showInstallationForm = true"
                     >
-                      <v-icon start>mdi-cogs</v-icon>
                       INSTALLATIONSSERVICE
                     </v-btn>
                   </v-col>
