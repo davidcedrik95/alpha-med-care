@@ -49,31 +49,23 @@
               </p>
               
               <div class="form-options pa-6 rounded-lg">
-                <h3 class="text-h5 font-weight-bold primary--text mb-4">Formulare einfach Online ausfüllen</h3>
-                <v-row>
-                  <v-col cols="12" sm="6">
-                    <v-btn
-                      block
-                      color="primary"
-                      size="x-large"
-                      class="py-6"
-                      @click="showForm = true"
-                    >
-                      SERVICEANFORDERUNG
-                    </v-btn>
-                  </v-col>
-                  <v-col cols="12" sm="6">
-                    <v-btn
-                      block
-                      color="secondary"
-                      size="x-large"
-                      class="py-6"
-                      @click="showInstallationForm = true"
-                    >
-                      INSTALLATIONSSERVICE
-                    </v-btn>
-                  </v-col>
-                </v-row>
+                <h3 class="text-h5 font-weight-bold primary--text mb-2">Formulare einfach Online ausfüllen</h3>
+                <div class="d-flex flex-column">
+                  <a 
+                    href="#" 
+                    @click.prevent="showForm = true" 
+                    class="text-primary font-weight-bold text-h6 mb-1"
+                  >
+                    Serviceanforderung
+                  </a>
+                  <a 
+                    href="#" 
+                    @click.prevent="showInstallationForm = true" 
+                    class="text-secondary font-weight-bold text-h6"
+                  >
+                    Installationsservice
+                  </a>
+                </div>
               </div>
             </v-card>
           </v-col>

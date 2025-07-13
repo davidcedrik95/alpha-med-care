@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pa-0 bg-grey-lighten-4">
     <v-container class="py-12">
-     <v-row align="start" justify="center" class="gap-4">
+      <v-row align="start" justify="center" class="gap-4">
         <!-- Colonne image à gauche -->
         <v-col cols="12" md="5" class="d-flex flex-column">
           <div class="left-content">
@@ -41,44 +41,179 @@
 
         <!-- Colonne texte à droite -->
         <v-col cols="12" md="7" class="d-flex justify-center">
-          <v-card ref="cardRef" class="modern-card pa-5 bg-white">
-            <h2 class="section-title mb-5">WARTUNGSVERTRAG</h2>
-            <div class="text-body text-grey-darken-2">
-              <div class="feature-item mb-6">
-                <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-check-decagram</v-icon>
-                </div>
-                <div>
-                  Welche Form des Wartungsvertrages Sie auch wählen, entscheidend ist, dass Sie sich für eine fachgerechte Pflege Ihrer Geräte entscheiden. So wie Sie es von der alpha med care erwarten können.
-                </div>
-              </div>
-              <div class="feature-item mb-6">
-                <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-shield-check</v-icon>
-                </div>
-                <div>
-                  Durch Wartung, Pflege sowie elektrotechnische Kontrollen wird ein stetiges und genaues Funktionieren Ihrer Produkte gewährleistet. Die Prüfung ist gesetzlich verankert.
-                </div>
-              </div>
-              <div class="feature-item mb-6">
-                <div class="feature-icon small">
-                  <v-icon color="#1565C0" size="20">mdi-handshake</v-icon>
-                </div>
-                <div>
-                  Der Wartungsvertrag mit alpha med care erfüllt gesetzliche Vorschriften und stellt Ihnen einen leistungsstarken Partner an die Seite.
-                </div>
-              </div>
+          <v-fade-transition mode="out-in">
+            <div v-if="!showForm">
+              <v-card ref="cardRef" class="modern-card pa-5 bg-white">
+                <h2 class="section-title mb-5">WARTUNGSVERTRAG</h2>
+                <div class="text-body text-grey-darken-2">
+                  <div class="feature-item mb-6">
+                    <div class="feature-icon small">
+                      <v-icon color="#1565C0" size="20">mdi-check-decagram</v-icon>
+                    </div>
+                    <div>
+                      Welche Form des Wartungsvertrages Sie auch wählen, entscheidend ist, dass Sie sich für eine fachgerechte Pflege Ihrer Geräte entscheiden. So wie Sie es von der alpha med care erwarten können.
+                    </div>
+                  </div>
+                  <div class="feature-item mb-6">
+                    <div class="feature-icon small">
+                      <v-icon color="#1565C0" size="20">mdi-shield-check</v-icon>
+                    </div>
+                    <div>
+                      Durch Wartung, Pflege sowie elektrotechnische Kontrollen wird ein stetiges und genaues Funktionieren Ihrer Produkte gewährleistet. Die Prüfung ist gesetzlich verankert.
+                    </div>
+                  </div>
+                  <div class="feature-item mb-6">
+                    <div class="feature-icon small">
+                      <v-icon color="#1565C0" size="20">mdi-handshake</v-icon>
+                    </div>
+                    <div>
+                      Der Wartungsvertrag mit alpha med care erfüllt gesetzliche Vorschriften und stellt Ihnen einen leistungsstarken Partner an die Seite.
+                    </div>
+                  </div>
 
-              <div class="highlight-text mt-6">
-                <p class="mb-2 font-weight-medium">
-                  Faxformular herunterladen, ausfüllen und zurücksenden:
-                </p>
-                <a href="/downloads/wartungsvertrag.pdf" target="_blank" class="text-primary font-weight-bold">
-                  Wartungsvertrag jetzt herunterladen (PDF)
-                </a>
-              </div>
+                  <div class="highlight-text mt-6">
+                    <p class="mb-2 font-weight-medium">
+                      Wartungsvertrag einfach Online ausfüllen.
+                    </p>
+                    <a 
+                      href="#" 
+                      @click.prevent="showForm = true" 
+                      class="text-primary font-weight-bold"
+                    >
+                      Wartungsvertrag jetzt anfordern
+                    </a>
+                  </div>
+                </div>
+              </v-card>
             </div>
-          </v-card>
+
+            <!-- Formulaire de demande de contrat -->
+            <v-card v-else class="form-container rounded-xl" ref="cardRef">
+              <v-card-title class="form-header text-center py-6">
+                <v-btn icon @click="showForm = false" class="back-button">
+                  <v-icon>mdi-arrow-left</v-icon>
+                </v-btn>
+                <h2 class="text-h4 font-weight-bold primary--text">Wartungsvertrag Anfrage</h2>
+                <p class="text-body-1 mt-2">
+                  Füllen Sie das folgende Formular aus, um einen Wartungsvertrag anzufordern.<br>
+                  Wir werden uns umgehend mit Ihnen in Verbindung setzen.
+                </p>
+              </v-card-title>
+              
+              <v-form class="px-6 pb-6 mt-2">
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="formData.company"
+                      label="Firma"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="formData.contactPerson"
+                      label="Ansprechpartner"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="8">
+                    <v-text-field
+                      v-model="formData.street"
+                      label="Straße"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="4">
+                    <v-text-field
+                      v-model="formData.zip"
+                      label="PLZ"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="formData.city"
+                      label="Ort"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="formData.phone"
+                      label="Telefon/Fax"
+                      required
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="formData.email"
+                      label="E-Mail"
+                      type="email"
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  
+                  <v-col cols="12">
+                    <h3 class="text-h5 font-weight-bold primary--text mb-4">Bitte wählen Sie:</h3>
+                    <v-checkbox
+                      v-model="formData.options"
+                      value="appointment"
+                      label="Wir wünschen einen persönlichen Termin"
+                      density="comfortable"
+                      hide-details
+                    ></v-checkbox>
+                    <v-checkbox
+                      v-model="formData.options"
+                      value="consultation"
+                      label="Wir wünschen telefonische persönliche Beratung"
+                      density="comfortable"
+                      hide-details
+                    ></v-checkbox>
+                    <v-checkbox
+                      v-model="formData.options"
+                      value="information"
+                      label="Bitte senden Sie uns Informationsmaterial"
+                      density="comfortable"
+                      hide-details
+                    ></v-checkbox>
+                  </v-col>
+                </v-row>
+              </v-form>
+              
+              <v-card-actions class="form-actions px-6 py-4">
+                <v-btn
+                  color="grey"
+                  variant="outlined"
+                  @click="showForm = false"
+                >
+                  <v-icon start>mdi-arrow-left</v-icon>
+                  Zurück
+                </v-btn>
+                
+                <v-spacer></v-spacer>
+                
+                <v-btn
+                  color="primary"
+                  @click="submitForm"
+                >
+                  Anfrage senden
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-fade-transition>
         </v-col>
       </v-row>
     </v-container>
@@ -95,6 +230,17 @@ export default {
         { value: "gesetzlich", label: "Konform" },
       ],
       imageMaxHeight: null,
+      showForm: false,
+      formData: {
+        company: "",
+        contactPerson: "",
+        street: "",
+        zip: "",
+        city: "",
+        phone: "",
+        email: "",
+        options: []
+      }
     };
   },
   mounted() {
@@ -109,15 +255,41 @@ export default {
       const card = this.$refs.cardRef;
       if (card && card.$el) {
         const cardHeight = card.$el.offsetHeight;
-        this.imageMaxHeight = cardHeight - 100; // Marge pour le logo et stats
+        this.imageMaxHeight = cardHeight - 100;
       }
     },
-  },
+    submitForm() {
+      console.log("Formulardaten:", this.formData);
+      
+      // Simuler l'envoi du formulaire
+      this.$notify({
+        title: "Anfrage gesendet!",
+        text: "Vielen Dank für Ihre Anfrage. Wir werden uns in Kürze bei Ihnen melden.",
+        type: "success"
+      });
+      
+      // Réinitialiser le formulaire et revenir à la vue principale
+      this.showForm = false;
+      this.resetForm();
+    },
+    resetForm() {
+      this.formData = {
+        company: "",
+        contactPerson: "",
+        street: "",
+        zip: "",
+        city: "",
+        phone: "",
+        email: "",
+        options: []
+      };
+    }
+  }
 };
 </script>
 
-
 <style scoped>
+/* Styles existants conservés */
 .left-content {
   width: 100%;
 }
@@ -253,7 +425,7 @@ export default {
   user-select: none;
 }
 .stat-label {
-  font-size: 13px; /* ↓ légèrement */
+  font-size: 13px;
   color: #546E7A;
   text-align: center;
   max-width: 80px;
@@ -264,12 +436,53 @@ export default {
   user-select: none;
 }
 
-
 @keyframes fadeSlideUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Nouveaux styles pour le formulaire */
+.form-container {
+  width: 100%;
+  border-radius: 12px !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1) !important;
+  border-top: 5px solid #1976D2;
+  overflow: hidden;
+}
+
+.form-header {
+  position: relative;
+  background: linear-gradient(120deg, #E3F2FD, #BBDEFB);
+}
+
+.form-header h2 {
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.form-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #f57c00;
+  border-radius: 2px;
+}
+
+.form-actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.back-button {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 10;
 }
 
 @media (max-width: 600px) {
@@ -301,6 +514,14 @@ export default {
   .modern-card {
     padding: 24px !important;
   }
+  
+  .form-header h2 {
+    font-size: 1.8rem;
+    padding-top: 40px;
+  }
+  .back-button {
+    top: 10px;
+    left: 10px;
+  }
 }
 </style>
-
