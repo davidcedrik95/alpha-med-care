@@ -8,14 +8,10 @@
         :mobile-drawer="mobileDrawer"
         @update:mobile-drawer="mobileDrawer = $event"
       />
-      <BreadcrumbNavigation class="breadcrumb" ref="breadcrumb" />
+     
     </div>
     
-    <NavigationDrawer 
-      v-model="mobileDrawer" 
-      :navbar-height="navbarHeight"
-      :breadcrumb-height="breadcrumbHeight"
-    />
+ 
     
     <div class="app-container">
       <v-main class="main-content">
@@ -130,7 +126,7 @@ import NavigationHeader from './components/nav/NavigationHeader.vue'
 import MedicalNavigatorMenu from './components/nav/MedicalNavigatorMenu.vue'
 import NavigationDrawer from './components/nav/NavigationDrawer.vue'
 import NavigationFooter from './components/nav/NavigationFooter.vue'
-import BreadcrumbNavigation from './components/nav/BreadcrumbNavigation.vue'
+
 
 const mobileDrawer = ref(false)
 const screenWidth = ref(window.innerWidth)

@@ -74,46 +74,7 @@
             <i class="mdi mdi-account"></i>
             <span class="link-text hide-on-mobile">{{ $t('header.account') }}</span>
           </button>
-          
-          <div class="dropdown-menu" v-if="accountMenuOpen" @click.stop>
-            <div class="mobile-menu-header">
-              <h4 class="account-title">{{ $t('account.title') }}</h4>
-              <hr>
-              <button class="close-menu" @click="closeAccountMenu" :aria-label="$t('menu.close')">
-                <i class="mdi mdi-close"></i>
-              </button>
-            </div>
-            
-            <div class="login-section">
-              <button class="login-button">{{ $t('account.login') }}</button>
-              <div class="register-text">
-                {{ $t('account.or') }} <u @click="navigateToRegister">{{ $t('account.register') }}</u>
-              </div>
-            </div>
-             <hr>
-            <div class="mobile-menu-content">
-              <a href="#" class="dropdown-item">
-                <i class="mdi mdi-view-dashboard"></i> 
-                <span>{{ $t('account.overview') }}</span>
-              </a>
-              <a href="#" class="dropdown-item">
-                <i class="mdi mdi-account-details"></i> 
-                <span>{{ $t('account.profile') }}</span>
-              </a>
-              <a href="#" class="dropdown-item">
-                <i class="mdi mdi-map-marker"></i> 
-                <span>{{ $t('account.addresses') }}</span>
-              </a>
-              <a href="#" class="dropdown-item">
-                <i class="mdi mdi-credit-card"></i> 
-                <span>{{ $t('account.payment_methods') }}</span>
-              </a>
-              <a href="#" class="dropdown-item">
-                <i class="mdi mdi-package-variant"></i> 
-                <span>{{ $t('account.orders') }}</span>
-              </a>
-            </div>
-          </div>
+         
         </div>
 
         <!-- Cart link -->
