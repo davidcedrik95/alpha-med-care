@@ -9,31 +9,64 @@
             <!-- Colonne Entreprise -->
             <div class="footer-column">
               <h4 class="footer-title">{{ $t('footer.sections.company.title') }}</h4>
-             
+              <ul class="footer-links">
+                <li><a href="/about" :aria-label="$t('footer.sections.company.about')">{{ $t('footer.sections.company.about') }}</a></li>
+                <li><a href="/careers" :aria-label="$t('footer.sections.company.career')">{{ $t('footer.sections.company.career') }}</a></li>
+                <li><a href="/news" :aria-label="$t('footer.sections.company.news')">{{ $t('footer.sections.company.news') }}</a></li>
+                <li><a href="/partners" :aria-label="$t('footer.sections.company.partners')">{{ $t('footer.sections.company.partners') }}</a></li>
+              </ul>
             </div>
 
             <!-- Colonne Services -->
             <div class="footer-column">
               <h4 class="footer-title">{{ $t('footer.sections.services.title') }}</h4>
-              
+              <ul class="footer-links">
+                <li><a href="/inspections" :aria-label="$t('menu.categories.inspections')">{{ $t('menu.categories.inspections') }}</a></li>
+                <li><a href="/calibration" :aria-label="$t('menu.categories.calibration')">{{ $t('menu.categories.calibration') }}</a></li>
+                <li><a href="/maintenance" :aria-label="$t('menu.categories.maintenance')">{{ $t('menu.categories.maintenance') }}</a></li>
+                <li><a href="/training" :aria-label="$t('menu.items.training')">{{ $t('menu.items.training') }}</a></li>
+                <li><a href="/consulting" :aria-label="$t('menu.categories.consulting')">{{ $t('menu.categories.consulting') }}</a></li>
+                <li><a href="/leasing" :aria-label="$t('menu.items.leasing')">{{ $t('menu.items.leasing') }}</a></li>
+              </ul>
             </div>
 
             <!-- Colonne Support -->
             <div class="footer-column">
               <h4 class="footer-title">{{ $t('footer.sections.support.title') }}</h4>
-             
+              <ul class="footer-links">
+                <li><a href="/contact" :aria-label="$t('menu.contact')">{{ $t('menu.contact') }}</a></li>
+                <li><a href="/faq" :aria-label="$t('menu.faq')">{{ $t('menu.faq') }}</a></li>
+                <li><a href="/support-hotline" :aria-label="$t('header.phone')">{{ $t('header.phone') }}</a></li>
+                <li><a href="/live-chat" :aria-label="$t('footer.sections.support.live_chat')">Live Chat</a></li>
+                <li><a href="/service-center" :aria-label="$t('footer.sections.support.service_center')">{{ $t('footer.sections.support.service_center') }}</a></li>
+              </ul>
             </div>
 
             <!-- Colonne Produits -->
             <div class="footer-column">
               <h4 class="footer-title">{{ $t('menu.products') }}</h4>
-             
+              <ul class="footer-links">
+                <li><a href="/products" :aria-label="$t('menu.products')">{{ $t('menu.products') }}</a></li>
+                <li><a href="/new" :aria-label="$t('menu.items.new')">{{ $t('menu.items.new') }}</a></li>
+                <li><a href="/specials" :aria-label="$t('menu.items.specials')">{{ $t('menu.items.specials') }}</a></li>
+                <li><a href="/top-seller" :aria-label="$t('menu.items.top_seller')">{{ $t('menu.items.top_seller') }}</a></li>
+                <li><a href="/sale" :aria-label="$t('menu.items.sale')">{{ $t('menu.items.sale') }}</a></li>
+                <li><a href="/gebrauchtgeraete" :aria-label="$t('menu.items.used_equipment')">{{ $t('menu.items.used_equipment') }}</a></li>
+              </ul>
             </div>
 
             <!-- Colonne Informations -->
             <div class="footer-column">
               <h4 class="footer-title">{{ $t('footer.sections.resources.title') }}</h4>
-             
+              <ul class="footer-links">
+                <li><a href="/terms" :aria-label="$t('menu.terms')">{{ $t('menu.terms') }}</a></li>
+                <li><a href="/privacy" :aria-label="$t('menu.privacy')">{{ $t('menu.privacy') }}</a></li>
+                <li><a href="/imprint" :aria-label="$t('menu.imprint')">{{ $t('menu.imprint') }}</a></li>
+                <li><a href="/returns" :aria-label="$t('footer.sections.support.returns')">{{ $t('footer.sections.support.returns') }}</a></li>
+                <li><a href="/cookies" :aria-label="$t('menu.cookies')">{{ $t('menu.cookies') }}</a></li>
+                <li><a href="/compliance" :aria-label="$t('footer.sections.company.compliance')">Compliance</a></li>
+                <li><a href="/quality" :aria-label="$t('footer.sections.company.quality')">{{ $t('footer.sections.company.quality') }}</a></li>
+              </ul>
             </div>
           </div>
 
@@ -41,24 +74,43 @@
           <div class="footer-horizontal-section">
             <div class="footer-horizontal-column">
               <h4 class="footer-title">{{ $t('footer.sections.environment.title') }}</h4>
-             
+              <ul class="footer-links">
+                <li><a href="/umweltschutz" :aria-label="$t('footer.sections.environment.protection')">{{ $t('footer.sections.environment.protection') }}</a></li>
+                <li><a href="/recycling" :aria-label="$t('footer.sections.environment.recycling')">{{ $t('footer.sections.environment.recycling') }}</a></li>
+                <li><a href="/nachhaltigkeit" :aria-label="$t('footer.sections.environment.sustainability')">{{ $t('footer.sections.environment.sustainability') }}</a></li>
+                <li><a href="/altbatterie-entsorgung" :aria-label="$t('footer.sections.environment.battery_disposal')">{{ $t('footer.sections.environment.battery_disposal') }}</a></li>
+                <li><a href="/co2-neutral" :aria-label="$t('footer.sections.environment.co2_neutral')">{{ $t('footer.sections.environment.co2_neutral') }}</a></li>
+              </ul>
             </div>
 
            
 
             <div class="footer-horizontal-column">
               <h4 class="footer-title">{{ $t('account.title') }}</h4>
-             
+              <ul class="footer-links">
+                <li><a href="/mein-konto" :aria-label="$t('account.title')">{{ $t('account.title') }}</a></li>
+                <li><a href="/login" :aria-label="$t('account.login')">{{ $t('account.login') }}</a></li>
+                <li><a href="/passwort-vergessen" :aria-label="$t('account.items.forgot_password')">{{ $t('account.items.forgot_password') }}</a></li>
+              
+                <li><a href="/ruecksendungen" :aria-label="$t('footer.sections.support.returns')">{{ $t('footer.sections.support.returns') }}</a></li>
+              </ul>
             </div>
 
              <div class="footer-horizontal-column">
               <h4 class="footer-title">{{ $t('footer.opening_hours.title') }}</h4>
-             
+              <div class="opening-hours">
+                <p>{{ $t('footer.opening_hours.weekdays') }}</p>
+                <p>{{ $t('footer.opening_hours.saturday') }}</p>
+              </div>
             </div>
 
             <div class="footer-horizontal-column">
               <h4 class="footer-title">{{ $t('footer.newsletter.title') }}</h4>
-             
+              <div class="newsletter-form">
+                <input type="email" :placeholder="$t('footer.newsletter.placeholder')" :aria-label="$t('footer.newsletter.placeholder')">
+                <button class="newsletter-button">{{ $t('footer.newsletter.subscribe') }}</button>
+              </div>
+              <p class="newsletter-note">{{ $t('footer.newsletter.privacy_note') }}</p>
             </div>
           </div>
 
@@ -66,28 +118,67 @@
           <div class="footer-images-section">
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.social') }}</h4>
-              
+              <div class="social-3d">
+                <a href="#" class="social-icon-3d facebook" aria-label="Facebook">
+                  <i class="mdi mdi-facebook"></i>
+                </a>
+                <a href="#" class="social-icon-3d twitter" aria-label="Twitter">
+                  <i class="mdi mdi-twitter"></i>
+                </a>
+                <a href="#" class="social-icon-3d instagram" aria-label="Instagram">
+                  <i class="mdi mdi-instagram"></i>
+                </a>
+                <a href="#" class="social-icon-3d linkedin" aria-label="LinkedIn">
+                  <i class="mdi mdi-linkedin"></i>
+                </a>
+                <a href="#" class="social-icon-3d whatsapp" aria-label="WhatsApp">
+                  <i class="mdi mdi-whatsapp"></i>
+                </a>
+              </div>
             </div>
 
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.payment_methods.title') }}</h4>
-             
+              <div class="payment-methods-group">
+                <img src="/images/payment/visa.png" alt="Visa" title="Visa" loading="lazy">
+                <img src="/images/payment/mastercard.png" alt="Mastercard" title="Mastercard" loading="lazy">
+                <img src="/images/payment/paypal.png" alt="PayPal" title="PayPal" loading="lazy">
+                <img src="/images/payment/sepa.png" alt="SEPA-Lastschrift" title="SEPA-Lastschrift" loading="lazy">
+                <img src="/images/payment/sofort.png" alt="Sofortüberweisung" title="Sofortüberweisung" loading="lazy">
+                <img src="/images/payment/klarna.png" alt="Klarna" title="Klarna" loading="lazy">
+              </div>
             </div>
 
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.shipping.title') }}</h4>
-              
+              <div class="shipping-methods-group">
+                <img src="/images/shipping/dhl.png" alt="DHL" title="DHL" loading="lazy">
+                <img src="/images/shipping/dpd.png" alt="DPD" title="DPD" loading="lazy">
+                <img src="/images/shipping/hermes.png" alt="Hermes" title="Hermes" loading="lazy">
+                <img src="/images/shipping/ups.png" alt="UPS" title="UPS" loading="lazy">
+                <img src="/images/shipping/db_schenk.svg" alt="DB Schenker" title="DB Schenker" loading="lazy">
+              </div>
             </div>
 
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.certifications.title') }}</h4>
-              
+              <div class="certification-group">
+                <img src="/images/certifications/iso-13485.png" :alt="$t('footer.certifications.iso13485')" class="certification-img" loading="lazy">
+                <img src="/images/certifications/tuv-certified.png" :alt="$t('footer.certifications.tuv')" class="certification-img" loading="lazy">
+                <img src="/images/certifications/dguv-certified.png" :alt="$t('footer.certifications.dguv')" class="certification-img" loading="lazy">
+                <img src="/images/certifications/trusted-shops.png" :alt="$t('footer.certifications.iso9001')" class="certification-img" loading="lazy">
+              </div>
             </div>
 
             <div class="footer-images-column">
               <h4 class="footer-title">{{ $t('footer.mobile_app.title') }}</h4>
               <div class="app-download-group">
-               
+                <a href="#" :aria-label="$t('footer.mobile_app.app_store')">
+                  <img src="/images/apps/app-store.png" alt="App Store" class="app-download-img" :title="$t('footer.mobile_app.app_store')" loading="lazy">
+                </a>
+                <a href="#" :aria-label="$t('footer.mobile_app.google_play')">
+                  <img src="/images/apps/google-play.png" alt="Google Play" class="app-download-img" :title="$t('footer.mobile_app.google_play')" loading="lazy">
+                </a>
               </div>
             </div>
           </div>

@@ -50,7 +50,36 @@
         <!-- Colonne équipe -->
         <v-col cols="12" md="6" class="team-col">
           <v-row dense>
-            
+            <!-- Cedrik -->
+            <v-col cols="12" sm="6">
+              <v-card class="team-card rounded-xl elevation-4">
+                <v-img
+                  src="./images/teams/cedrik.png"
+                  alt="Cedrik David Moukam"
+                  height="380"
+                  cover
+                  class="rounded-xl"
+                >
+                  <div class="team-overlay">
+                    <div class="text-h6 font-weight-bold">Cedrik David Moukam</div>
+                    <div class="text-caption mt-1">IT und Softwareentwickler</div>
+                    <div class="d-flex mt-3">
+                      <v-btn icon size="small" class="mr-2" color="white">
+                        <v-icon size="small">mdi-linkedin</v-icon>
+                      </v-btn>
+                      <v-btn icon size="small" color="white">
+                        <v-icon size="small">mdi-email</v-icon>
+                      </v-btn>
+                    </div>
+                  </div>
+                </v-img>
+                <div class="text-center py-4 font-weight-medium bg-white">
+                  <div class="text-h6">Cedrik David Moukam</div>
+                  <div class="text-caption text-grey-darken-1 mt-1">IT und Softwareentwickler</div>
+                </div>
+              </v-card>
+            </v-col>
+
             <!-- Benjamin -->
             <v-col cols="12" sm="6">
               <v-card class="team-card rounded-xl elevation-4">

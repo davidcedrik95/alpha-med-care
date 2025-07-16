@@ -180,6 +180,74 @@
         </v-card>
       </div>
       
+      <!-- Section Authentification -->
+      <div class="auth-section">
+        <div class="section-header">
+          <h3>{{ $t('auth.authentication') }}</h3>
+        </div>
+        
+        <v-card class="auth-card" flat>
+          <v-list dense>
+            <template v-for="(item, index) in authItems" :key="'auth-'+index">
+              <v-list-item :to="item.route">
+                <template v-slot:prepend>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </template>
+                <v-list-item-title>{{ $t(`auth.${item.key}`) }}</v-list-item-title>
+              </v-list-item>
+              <hr class="custom-divider" v-if="index < authItems.length - 1">
+            </template>
+          </v-list>
+        </v-card>
+      </div>
+      
+      <!-- Section Langue et Copyright -->
+      <div class="language-copyright-section">
+        <div class="section-header">
+          <h3>{{ $t('language') }}</h3>
+        </div>
+        
+        <v-card class="language-copyright-card" flat>
+          <div class="language-selector">
+            <span class="language-text">{{ $t('language') }}</span>
+            <div class="vertical-divider"></div>
+            <div class="flags">
+              <div 
+                class="flag-icon" 
+                :class="{ active: currentLanguage === 'de' }"
+                @click="changeLanguage('de')"
+              >
+                <img src="/images/flags/de.png" alt="Deutsch" class="flag-img">
+              </div>
+              <div 
+                class="flag-icon" 
+                :class="{ active: currentLanguage === 'en' }"
+                @click="changeLanguage('en')"
+              >
+                <img src="/images/flags/en.png" alt="English" class="flag-img">
+              </div>
+              <div 
+                class="flag-icon" 
+                :class="{ active: currentLanguage === 'fr' }"
+                @click="changeLanguage('fr')"
+              >
+                <img src="/images/flags/fr.png" alt="Français" class="flag-img">
+              </div>
+            </div>
+          </div>
+
+          <hr class="custom-divider">
+
+          <div class="copyright-version">
+            <div class="copyright">
+              {{ $t('footer.copyright', { year: new Date().getFullYear(), company: $t('company.name') }) }}
+            </div>
+            <div class="app-version">
+              v{{ appVersion }}
+            </div>
+          </div>
+        </v-card>
+      </div>
     </div>
   </v-navigation-drawer>
 </template>
