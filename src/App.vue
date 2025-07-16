@@ -19,103 +19,7 @@
       </v-main>
     </div>
 
-    <!-- Boutons d'actions secondaires -->
-    <div class="action-buttons-container" :class="{ 'open': isActionsOpen }">
-      <v-fab-transition v-for="(action, index) in actions" :key="index">
-        <v-btn
-          fab
-          dark
-          :color="action.color"
-          @click="handleActionClick(action)"
-          class="action-btn"
-          :style="getActionButtonStyle(index)"
-          :aria-label="action.label"
-          size="x-small"
-          elevation="4"
-        >
-          <v-icon>{{ action.icon }}</v-icon>
-          <v-tooltip
-            activator="parent"
-            location="left"
-            transition="slide-x-reverse-transition"
-          >
-            {{ action.label }}
-          </v-tooltip>
-        </v-btn>
-      </v-fab-transition>
-    </div>
-
-    <!-- Bouton pour monter progressivement (up) - Desktop seulement -->
-    <template v-if="isDesktop">
-      <v-fab-transition>
-        <v-btn
-          fab
-          dark
-          fixed
-          bottom
-          right
-          @mousedown="startContinuousScroll('up')"
-          @mouseup="stopContinuousScroll"
-          @mouseleave="stopContinuousScroll"
-          @touchstart="startContinuousScroll('up')"
-          @touchend="stopContinuousScroll"
-          class="scroll-btn up"
-          aria-label="Langsam wieder hochgehen "
-          size="x-small"
-          elevation="4"
-        >
-          <v-icon>mdi-chevron-up</v-icon>
-          <v-tooltip activator="parent" location="left">hochgehen</v-tooltip>
-        </v-btn>
-      </v-fab-transition>
-    </template>
-
-    <!-- Bouton d'actions flottant principal -->
-    <v-fab-transition>
-      <v-btn
-        fab
-        dark
-        fixed
-        bottom
-        right
-        @click="toggleActionButtons"
-        class="action-main-btn"
-        aria-label="Schnellzugriffe "
-        size="x-small"
-        elevation="4"
-      >
-        <v-icon>{{ isActionsOpen ? 'mdi-close' : 'mdi-plus' }}</v-icon>
-        <v-tooltip activator="parent" location="left">
-          {{ isActionsOpen ? 'schließen' : 'Schnellzugriffe ' }}
-        </v-tooltip>
-      </v-btn>
-    </v-fab-transition>
-
-    <!-- Bouton pour descendre progressivement (down) - Desktop seulement -->
-    <template v-if="isDesktop">
-      <v-fab-transition>
-        <v-btn
-          fab
-          dark
-          fixed
-          bottom
-          right
-          @mousedown="startContinuousScroll('down')"
-          @mouseup="stopContinuousScroll"
-          @mouseleave="stopContinuousScroll"
-          @touchstart="startContinuousScroll('down')"
-          @touchend="stopContinuousScroll"
-          class="scroll-btn down"
-          aria-label="Langsam hinuntergehen"
-          size="x-small"
-          elevation="4"
-        >
-          <v-icon>mdi-chevron-down</v-icon>
-          <v-tooltip activator="parent" location="left">untergehen</v-tooltip>
-        </v-btn>
-      </v-fab-transition>
-    </template>
-
+  
     <NavigationFooter ref="footer" />
   </v-app>
 </template>
@@ -124,7 +28,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import NavigationHeader from './components/nav/NavigationHeader.vue'
 import MedicalNavigatorMenu from './components/nav/MedicalNavigatorMenu.vue'
-import NavigationDrawer from './components/nav/NavigationDrawer.vue'
+
 import NavigationFooter from './components/nav/NavigationFooter.vue'
 
 
