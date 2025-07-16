@@ -231,7 +231,7 @@ const submitForm = () => {
   left: 0;
   width: 100%;
   height: 5px;
-  background: linear-gradient(90deg, #0d4a6a, #2e8b57);
+  background: linear-gradient(90deg, #0d4a6a, #093774);
 }
 
 .contact-header {
@@ -249,7 +249,7 @@ const submitForm = () => {
 .logo-circle {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #0d4a6a, #2e8b57);
+  background: linear-gradient(135deg, #2482a7, #07436b);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -271,7 +271,7 @@ const submitForm = () => {
 }
 
 .tagline {
-  color: #2e8b57;
+  color: #124797;
   font-style: italic;
   font-size: 1.1rem;
   margin-top: 5px;
@@ -374,7 +374,7 @@ input:focus, textarea:focus {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #0d4a6a, #2e8b57);
+  background: linear-gradient(135deg, #0d4a6a, #0e3774);
   color: white;
   border: none;
   padding: 14px 25px;

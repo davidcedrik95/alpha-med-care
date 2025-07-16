@@ -54,14 +54,14 @@
                   <a 
                     href="#" 
                     @click.prevent="showForm = true" 
-                    class="text-primary font-weight-bold text-h6 mb-1"
+                    class="text-primary font-weight-bold mb-1"
                   >
                     Serviceanforderung
                   </a>
                   <a 
                     href="#" 
                     @click.prevent="showInstallationForm = true" 
-                    class="text-secondary font-weight-bold text-h6"
+                    class="text-secondary font-weight-bold "
                   >
                     Installationsservice
                   </a>
