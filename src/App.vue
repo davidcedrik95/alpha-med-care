@@ -12,10 +12,10 @@
     </div>
     
     <NavigationDrawer 
-  v-model="mobileDrawer" 
-  :navbar-height="navbarHeight"
-  :breadcrumb-height="breadcrumbHeight"
-/>
+      v-model="mobileDrawer" 
+      :navbar-height="navbarHeight"
+      :breadcrumb-height="breadcrumbHeight"
+    />
     
     <div class="app-container">
       <v-main class="main-content">
