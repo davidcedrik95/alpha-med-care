@@ -17,63 +17,6 @@
           {{ $t('menu.services') }} 
           <i class="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-content" v-show="showDropdown">
-          <div class="header">
-            <h2>{{ $t('menu.services') }}</h2>
-            <button class="close-megamenu" @click.stop="showDropdown = false">
-              <v-icon>mdi-close</v-icon>
-            </button>
-          </div>   
-          <div class="row">
-            <div class="column">
-              <h3>{{ $t('menu.categories.inspections') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/services/stk" @click="closeMenus"><i class="fa fa-car"></i> {{ $t('menu.items.stk_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/mtk" @click="closeMenus"><i class="fa fa-motorcycle"></i> {{ $t('menu.items.mtk_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/stue" @click="closeMenus"><i class="fa fa-truck"></i> {{ $t('menu.items.stue_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/mtue" @click="closeMenus"><i class="fa fa-bus"></i> {{ $t('menu.items.mtue_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/dguv" @click="closeMenus"><i class="fa fa-shield-alt"></i> {{ $t('menu.items.dguv_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/inspections" @click="closeMenus"><i class="fa fa-clipboard-check"></i> {{ $t('menu.items.general_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/visual" @click="closeMenus"><i class="fa fa-eye"></i> {{ $t('menu.items.visual_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-           
-            <div class="column">
-              <h3>{{ $t('menu.categories.maintenance') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/services/repairs" @click="closeMenus"><i class="fa fa-tools"></i> {{ $t('menu.items.repairs') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/parts" @click="closeMenus"><i class="fa fa-cog"></i> {{ $t('menu.items.spare_parts') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/installation" @click="closeMenus"><i class="fa fa-wrench"></i> {{ $t('menu.items.installation_service') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/training" @click="closeMenus"><i class="fa fa-graduation-cap"></i> {{ $t('menu.items.training') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/disposal" @click="closeMenus"><i class="fa fa-trash-alt"></i> {{ $t('menu.items.equipment_disposal') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/maintenance" @click="closeMenus"><i class="fa fa-calendar-check"></i> {{ $t('menu.items.regular_maintenance') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-
-             <div class="column">
-              <h3>{{ $t('menu.categories.calibration') }}</h3>
-              <hr class="category-divider">
-              <router-link to="/services/ergometer" @click="closeMenus"><i class="fa fa-running"></i> {{ $t('menu.items.ergometer_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/thermometer" @click="closeMenus"><i class="fa fa-thermometer-half"></i> {{ $t('menu.items.thermometer_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/blood-pressure" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.blood_pressure_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/ecg" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.ecg_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
-              <router-link to="/services/ultrasound" @click="closeMenus"><i class="fa fa-wave-square"></i> {{ $t('menu.items.ultrasound_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-            </div>
-          </div>
-        </div>
       </div>
       
       <!-- Menu déroulant Produits (version partenaires) -->
