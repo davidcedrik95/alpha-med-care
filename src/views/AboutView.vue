@@ -10,112 +10,28 @@
       </h1>
     </section>
 
-    <!-- Conteneur principal sous le hero -->
-    <div
-      style="
-        display: flex;
-        flex-grow: 1;
-        min-height: 0;
-        overflow: hidden;
-        margin-top: 24px;
-        padding: 0 20px 20px 20px;
-      "
-    >
-      <!-- Navigation verticale à gauche -->
-      <nav
-        style="
-          width: 240px;
-          background-color: #f5f7fa;
-          padding: 20px;
-          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          border-radius: 8px;
-          height: fit-content;
-          align-self: flex-start;
-        "
-      >
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'entreprise' }]"
-          @click="activeSection = 'entreprise'"
-        >
-          <span class="btn-number">1</span>
-          <span class="btn-text">Unternehmen</span>
-        </button>
+ 
 
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'team' }]"
-          @click="activeSection = 'team'"
-        >
-          <span class="btn-number">2</span>
-          <span class="btn-text">Unsere Team</span>
-        </button>
-
-
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'technik' }]"
-          @click="activeSection = 'technik'"
-        >
-          <span class="btn-number">3</span>
-          <span class="btn-text">Die Technik</span>
-        </button>
-
-
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'pruefung' }]"
-          @click="activeSection = 'pruefung'"
-        >
-          <span class="btn-number">4</span>
-          <span class="btn-text">Die Prüfung</span>
-        </button>
-
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'wartung' }]"
-          @click="activeSection = 'wartung'"
-        >
-          <span class="btn-number">5</span>
-          <span class="btn-text">Wartungsvertrag</span>
-        </button>
-
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'services' }]"
-          @click="activeSection = 'services'"
-        >
-          <span class="btn-number">6</span>
-          <span class="btn-text">services</span>
-        </button>
-
-        <button
-          :class="['nav-btn', { 'active-btn': activeSection === 'services-partners' }]"
-          @click="activeSection = 'services-partners'"
-        >
-          <span class="btn-number">7</span>
-          <span class="btn-text">Servicepartner</span>
-        </button>
-
-      </nav>
-
-      <!-- Contenu principal à droite -->
+      <!-- Contenu principal-->
       <main
         style="
           flex-grow: 1;
           overflow-y: auto;
-          padding-left: 30px;
+          padding-left: 10px;
           border-radius: 8px;
         "
       >
-        <!-- Section dynamique -->
-        <CompanySection v-if="activeSection === 'entreprise'" />
-        <TeamsView v-else-if="activeSection === 'team'" />
-        <Maintenance v-else-if="activeSection === 'wartung'" />
-        <ServicesSection v-else-if="activeSection === 'services'" />
-        <ServicePartner v-else-if="activeSection === 'services-partners'" />
-        <TechnikSection v-else-if="activeSection === 'technik'" />
-         <ControlSection v-else-if="activeSection === 'pruefung'" />
+       
+        <CompanySection/>
+        <TeamsView/>
+        <Maintenance />
+        <ServicesSection />
+        <ServicePartner />
+        <TechnikSection />
+         <ControlSection />
       </main>
     </div>
-  </div>
+
 </template>
 
 <script setup>
@@ -133,59 +49,15 @@ const activeSection = ref('entreprise'); // Par défaut "Über uns"
 
 <style scoped>
 .hero-pattern {
-  background: linear-gradient(
-      rgba(127, 197, 235, 0.8),
-      rgba(13, 74, 106, 0.8)
-    ),
-  url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+  height: 300px;
+  background: linear-gradient(rgba(13, 74, 106, 0.85), rgba(13, 74, 106, 0.85)), 
+              url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
   background-size: cover;
   background-position: center;
-}
-.nav-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-  font-size: 1rem;
-  color: #334155;
-  width: 100%;
-  min-width: 210px; /* ou ajuste à 260px si nécessaire */
+  position: relative;
+  border-radius: 0 0 15px 15px;
 }
 
-.nav-btn:hover {
-  background-color: #e0e7ff;
-}
 
-.nav-btn:focus {
-  outline: none;
-  background-color: #c7d2fe;
-}
-
-.btn-number {
-  flex-shrink: 0; /* Empêche le rétrécissement */
-  width: 36px;
-  height: 36px;
-  background-color: #0d4a6a;
-  color: white;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  user-select: none;
-}
-
-.active-btn {
-  background-color: #dbeafe;
-  color: #0d4a6a;
-  font-weight: 700;
-  box-shadow: inset 4px 0 0 #0d4a6a; /* Remplace border-left */
-}
 
 </style>
