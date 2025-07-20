@@ -6,7 +6,7 @@
         <v-btn icon @click="cancelForm" class="back-button">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-        <h2 class="text-h4 font-weight-bold primary--text">Serviceanforderung jetzt anforden</h2>
+        <h2 class="text-h4 font-weight-bold primary--text">Serviceanforderung  Anfrage</h2>
         <p class="text-body-1 mt-2">
           Füllen Sie das folgende Formular aus, um eine Serviceanforderung anzufordern.<br>
           Wir werden uns umgehend mit Ihnen in Verbindung setzen.
