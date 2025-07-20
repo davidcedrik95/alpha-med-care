@@ -91,17 +91,14 @@
                     variant="outlined"
                     prepend-inner-icon="mdi-factory"
                   />
-
-                 <v-text-field
+                  <v-text-field
                     v-if="form.manufacturer === 'Sonstiges'"
                     v-model="form.customManufacturer"
                     label="Bitte geben Sie den Hersteller an"
                     variant="outlined"
                     prepend-inner-icon="mdi-pencil"
                   />
-
                 </v-col>
-
                 <v-col cols="12" md="6">
                   <v-file-input
                     v-model="form.imageFile"
@@ -120,7 +117,6 @@
                     class="mt-2 rounded-lg"
                   />
                 </v-col>
-
                 <v-col cols="12" md="6">
                   <v-text-field
                     v-model="form.model"
@@ -130,7 +126,6 @@
                     prepend-inner-icon="mdi-tag"
                   />
                 </v-col>
-
                 <v-col cols="12" md="6">
                   <v-text-field
                     v-model="form.serial"
@@ -148,6 +143,7 @@
           <v-window-item :value="3">
             <div class="form-step">
               <h3 class="text-h5 font-weight-bold primary--text mb-4">3. Abschluss</h3>
+
               <v-textarea
                 v-model="form.additional"
                 label="Was können wir außerdem für Sie tun?"
@@ -156,20 +152,42 @@
                 prepend-inner-icon="mdi-comment"
               />
 
+             
               <v-card variant="outlined" class="pa-4 mt-4">
-                <h4 class="text-h6 font-weight-bold mb-2">Zusammenfassung:</h4>
-                <div><strong>Name:</strong> {{ form.name }}</div>
-                <div><strong>Firma:</strong> {{ form.company }}</div>
-                <div><strong>Hersteller:</strong>
-                  {{
-                    form.manufacturer === 'Sonstiges'
-                      ? form.customManufacturer || 'Nicht angegeben'
-                      : form.manufacturer
-                  }}
-                </div>
+                <h4 class="text-h6 font-weight-bold mb-2">Zusammenfassung der Geräte:</h4>
 
-                <div><strong>Modell:</strong> {{ form.model }}</div>
+                <v-card
+                  v-for="(device, index) in devicesList"
+                  :key="index"
+                  class="mb-4"
+                  variant="tonal"
+                >
+                  <v-card-text>
+                    <div><strong>Gerät {{ index + 1 }}</strong></div>
+                    <div><strong>Hersteller:</strong> {{ device.manufacturer }}</div>
+                    <div><strong>Modell:</strong> {{ device.model }}</div>
+                    <div><strong>Seriennummer:</strong> {{ device.serial }}</div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn
+                      color="error"
+                      variant="text"
+                      @click="removeDevice(index)"
+                      prepend-icon="mdi-delete"
+                    >
+                      Entfernen
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
               </v-card>
+
+               <v-checkbox
+                v-model="addAnotherDevice"
+                label="Ich möchte ein weiteres Gerät hinzufügen"
+                color="primary"
+                class="mt-4"
+              />
+
             </div>
           </v-window-item>
         </v-window>
@@ -201,6 +219,8 @@ export default {
     return {
       step: 1,
       loading: false,
+      addAnotherDevice: false,
+      devicesList: [],
       form: {
         date: this.getCurrentDate(),
         name: '',
@@ -246,8 +266,39 @@ export default {
       };
       reader.readAsDataURL(image);
     },
+    saveDevice() {
+      this.devicesList.push({
+        manufacturer: this.form.manufacturer === 'Sonstiges' ? this.form.customManufacturer : this.form.manufacturer,
+        model: this.form.model,
+        serial: this.form.serial,
+        imageFile: this.form.imageFile,
+        imagePreview: this.form.imagePreview
+      });
+
+      // Reset device fields
+      this.form.manufacturer = '';
+      this.form.customManufacturer = '';
+      this.form.model = '';
+      this.form.serial = '';
+      this.form.imageFile = null;
+      this.form.imagePreview = null;
+      this.imageError = '';
+    },
+    removeDevice(index) {
+      this.devicesList.splice(index, 1);
+    },
     nextStep() {
-      if (this.step < 3) {
+      if (this.step === 2) {
+        this.$refs.step2Form.validate().then((valid) => {
+          if (valid) {
+            this.saveDevice();
+            this.step++;
+          }
+        });
+      } else if (this.step === 3 && this.addAnotherDevice) {
+        this.addAnotherDevice = false;
+        this.step = 2;
+      } else if (this.step < 3) {
         this.step++;
       } else {
         this.submitForm();
@@ -265,12 +316,14 @@ export default {
     },
     resetForm() {
       this.step = 1;
+      this.addAnotherDevice = false;
+      this.devicesList = [];
       this.form = {
         date: this.getCurrentDate(),
         name: '',
         company: '',
         phone: '',
-        manufacturer: [],
+        manufacturer: '',
         customManufacturer: '',
         model: '',
         serial: '',
@@ -283,9 +336,8 @@ export default {
     submitForm() {
       this.loading = true;
 
-      // Optionnel : Ajouter le fabricant personnalisé à la liste
       if (
-        this.form.manufacturer.includes('Sonstiges') &&
+        this.form.manufacturer === 'Sonstiges' &&
         this.form.customManufacturer &&
         !this.manufacturers.includes(this.form.customManufacturer)
       ) {
@@ -293,7 +345,10 @@ export default {
       }
 
       setTimeout(() => {
-        console.log('Formularinhalt:', this.form);
+        console.log('Formularinhalt:', {
+          ...this.form,
+          geraeteliste: this.devicesList
+        });
         alert('Serviceanforderung erfolgreich gesendet!');
         this.resetForm();
         this.loading = false;
