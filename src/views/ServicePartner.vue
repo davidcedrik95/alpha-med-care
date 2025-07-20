@@ -153,7 +153,7 @@ export default {
         { icon: "mdi-cogs", name: "FREI AG" },
         { icon: "mdi-yoga", name: "ergoline" },
         { icon: "mdi-weight-lifter", name: "Amer Sports" },
-        { icon: "mdi-bike", name: "Star Trac" }
+        { icon: "mdi-bike", name: "MOTOmed." }
       ]
     };
   },

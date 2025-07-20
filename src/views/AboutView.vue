@@ -6,7 +6,7 @@
       style="height: 300px; border-radius: 0 0 12px 12px;"
     >
       <h1 style="font-weight: 700; font-size: 2.5rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">
-        alpha med care
+        alpha-med-care
       </h1>
     </section>
 
