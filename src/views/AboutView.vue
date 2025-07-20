@@ -22,13 +22,7 @@
         "
       >
        
-        <CompanySection/>
-        <TeamsView/>
-        <Maintenance />
-        <ServicesSection />
-        <ServicePartner />
-        <TechnikSection />
-         <ControlSection />
+        <router-view /> <!-- Ceci affichera les composants enfants -->
       </main>
     </div>
 

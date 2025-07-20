@@ -76,7 +76,7 @@
                 >
                   <div class="image-container">
                     <v-img
-                      src="./images/teams/cedrik.png"
+                      src="../images/teams/cedrik.png"
                       alt="Cedrik David Moukam"
                       height="340"
                       cover
@@ -116,7 +116,7 @@
                 >
                   <div class="image-container">
                     <v-img
-                      src="./images/teams/benjamin.png"
+                      src="../images/teams/benjamin.png"
                       alt="Benjamin Weiss"
                       height="340"
                       cover

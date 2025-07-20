@@ -28,7 +28,19 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/AboutView.vue')
+    component: () => import('@/views/AboutView.vue'),
+    children: [
+      {
+        path: 'company',
+        name: 'Unternehmen',
+        component: () => import('@/views/CompanySection.vue')
+      },
+      {
+        path: 'team',
+        name: 'Mittarbeiter',
+        component: () => import('@/views/TeamsView.vue')
+      }
+    ]
   },
 
   {
