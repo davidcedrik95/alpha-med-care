@@ -85,19 +85,19 @@
   
 </div>
       <!-- Menu déroulant About -->
-<div class="dropdown" @mouseenter="showAboutDropdown = true" @mouseleave="showAboutDropdown = false">
+<div class="dropdown about-dropdown" @mouseenter="showAboutDropdown = true" @mouseleave="showAboutDropdown = false">
   <button class="dropbtn">
     {{ $t('menu.about') }}
     <i class="fa fa-caret-down"></i>
   </button>
-  <div class="dropdown-content" v-show="showAboutDropdown">
+  <div class="dropdown-content about-dropdown-content" v-show="showAboutDropdown">
     <div class="header">
       <h2>{{ $t('menu.about') }}</h2>
       <button class="close-megamenu" @click.stop="showAboutDropdown = false">
         <v-icon>mdi-close</v-icon>
       </button>
     </div>
-    <div class="row">
+    <div class="row about-menu">
       <!-- Catégorie Informations -->
       <div class="column">
         <h3>{{ $t('menu.categories.information') }}</h3>
@@ -119,6 +119,8 @@
         <hr>
         <router-link to="/forms/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
       </div>
+
+
     </div>
   </div>
 </div>
@@ -246,6 +248,24 @@ export default {
 .navbar .router-link-exact-active {
   background-color: rgb(9, 113, 182);
 }
+
+.about-menu .column {
+  width: 50%;
+}
+
+
+.about-dropdown-content {
+  width: 45% !important;  /* Réduit la largeur uniquement pour le menu About */
+  left: 20% !important;
+  right: auto !important;
+  max-width: unset; /* annule max-width si nécessaire */
+}
+
+
+.about-dropdown-content .column {
+  width: 40%;
+}
+
 
 .dropdown {
   float: left;
