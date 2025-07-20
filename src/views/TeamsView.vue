@@ -2,6 +2,10 @@
   <v-container fluid class="team-section pa-0">
     <div class="decorative-shape shape-1"></div>
     <div class="decorative-shape shape-2"></div>
+
+     <div class="section-title mt-4">
+          <h2>UNSERE MITARBEITER</h2>
+      </div>
     
     <v-container class="py-12">
       <v-row align="center" justify="center">
@@ -10,7 +14,7 @@
           <v-card class="info-card pa-6 rounded-lg">
             <div class="section-header">
               <div class="section-tag">UNSER TEAM</div>
-              <h2 class="section-title">UNSERE MITARBEITER</h2>
+           
               <div class="accent-divider"></div>
             </div>
             
@@ -245,13 +249,21 @@ export default {
 }
 
 .section-title {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: #0d47a1;
-  margin-bottom: 12px;
-  line-height: 1.3;
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
 }
+
+.section-title h2 {
+  color: #0d47a1;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0 80px;
+  position: relative;
+  background-color: #fff;
+}
+
 
 .accent-divider {
   height: 4px;

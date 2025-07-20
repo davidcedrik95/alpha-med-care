@@ -4,7 +4,7 @@
     <div class="decorative-shape shape-1"></div>
     <div class="decorative-shape shape-2"></div>
 
-    <!-- Paragraphe déplacé ici, sous la shape-2 -->
+ 
     
       <div class="section-title mt-4">
           <h2>DAS UNTERNEHMEN</h2>
