@@ -1,20 +1,23 @@
 <template>
-  <div class="navbar"  ref="navbarEl" :style="style">
+  <div class="navbar" ref="navbarEl">
     <!-- Titre de l'application -->
     <div class="title-container">
       <v-toolbar-title class="app-title">
         <router-link to="/">{{ $t('app.title') }}</router-link>
       </v-toolbar-title>
     </div>
-    
+
     <!-- Liens de navigation -->
     <div class="nav-links">
       <router-link to="/">{{ $t('menu.home') }}</router-link>
-      
-      <!-- Menu déroulant Services -->
-      <div class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+
+      <!-- Menu Services -->
+      <div class="dropdown"
+           @mouseenter="showDropdown = true"
+           @mouseleave="showDropdown = false"
+           @click.self="toggleDropdown">
         <button class="dropbtn">
-          {{ $t('menu.services') }} 
+          {{ $t('menu.services') }}
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content" v-show="showDropdown">
@@ -23,124 +26,126 @@
             <button class="close-megamenu" @click.stop="showDropdown = false">
               <v-icon>mdi-close</v-icon>
             </button>
-          </div>   
+          </div>
           <div class="row">
+            <!-- Colonne Inspection -->
             <div class="column">
               <h3>{{ $t('menu.categories.inspections') }}</h3>
-              <hr class="category-divider">
+              <hr class="category-divider" />
               <router-link to="/services/stk" @click="closeMenus"><i class="fa fa-car"></i> {{ $t('menu.items.stk_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/mtk" @click="closeMenus"><i class="fa fa-motorcycle"></i> {{ $t('menu.items.mtk_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/stue" @click="closeMenus"><i class="fa fa-truck"></i> {{ $t('menu.items.stue_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/mtue" @click="closeMenus"><i class="fa fa-bus"></i> {{ $t('menu.items.mtue_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/dguv" @click="closeMenus"><i class="fa fa-shield-alt"></i> {{ $t('menu.items.dguv_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/inspections" @click="closeMenus"><i class="fa fa-clipboard-check"></i> {{ $t('menu.items.general_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/visual" @click="closeMenus"><i class="fa fa-eye"></i> {{ $t('menu.items.visual_inspection') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
-           
+
+            <!-- Colonne Maintenance -->
             <div class="column">
               <h3>{{ $t('menu.categories.maintenance') }}</h3>
-              <hr class="category-divider">
+              <hr class="category-divider" />
               <router-link to="/services/repairs" @click="closeMenus"><i class="fa fa-tools"></i> {{ $t('menu.items.repairs') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/parts" @click="closeMenus"><i class="fa fa-cog"></i> {{ $t('menu.items.spare_parts') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/installation" @click="closeMenus"><i class="fa fa-wrench"></i> {{ $t('menu.items.installation_service') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/training" @click="closeMenus"><i class="fa fa-graduation-cap"></i> {{ $t('menu.items.training') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/disposal" @click="closeMenus"><i class="fa fa-trash-alt"></i> {{ $t('menu.items.equipment_disposal') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/maintenance" @click="closeMenus"><i class="fa fa-calendar-check"></i> {{ $t('menu.items.regular_maintenance') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
 
-             <div class="column">
+            <!-- Colonne Calibration -->
+            <div class="column">
               <h3>{{ $t('menu.categories.calibration') }}</h3>
-              <hr class="category-divider">
+              <hr class="category-divider" />
               <router-link to="/services/ergometer" @click="closeMenus"><i class="fa fa-running"></i> {{ $t('menu.items.ergometer_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/thermometer" @click="closeMenus"><i class="fa fa-thermometer-half"></i> {{ $t('menu.items.thermometer_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/blood-pressure" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.blood_pressure_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/ecg" @click="closeMenus"><i class="fa fa-heartbeat"></i> {{ $t('menu.items.ecg_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
-              <hr>
+              <hr />
               <router-link to="/services/ultrasound" @click="closeMenus"><i class="fa fa-wave-square"></i> {{ $t('menu.items.ultrasound_calibration') }} <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Menu déroulant Produits (version partenaires) -->
-<div class="dropdown" @mouseenter="showProductsDropdown = true" @mouseleave="showProductsDropdown = false">
-  <button class="dropbtn">
-    {{ $t('menu.shop') }} 
-    <i class="fa fa-caret-down"></i>
-  </button>
-  
-</div>
-      <!-- Menu déroulant About -->
-<div class="dropdown about-dropdown" @mouseenter="showAboutDropdown = true" @mouseleave="showAboutDropdown = false">
-  <button class="dropbtn">
-    {{ $t('menu.about') }}
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-content about-dropdown-content" v-show="showAboutDropdown">
-    <div class="header">
-      <h2>{{ $t('menu.about') }}</h2>
-      <button class="close-megamenu" @click.stop="showAboutDropdown = false">
-        <v-icon>mdi-close</v-icon>
-      </button>
-    </div>
-    <div class="row about-menu">
-      <!-- Catégorie Informations -->
-      <div class="column">
-        <h3>{{ $t('menu.categories.information') }}</h3>
-        <hr class="category-divider">
-        <router-link to="/about/company" @click="closeMenus" class="capitalize">Das Unternehmen <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/team" @click="closeMenus" class="capitalize">Unsere Mitarbeiter <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/partner" @click="closeMenus" class="capitalize">Servicepartner <i class="fa fa-chevron-right"></i></router-link>
+
+      <!-- Menu Produits (version partenaire) -->
+      <div class="dropdown"
+           @mouseenter="showProductsDropdown = true"
+           @mouseleave="showProductsDropdown = false"
+           @click.self="toggleProductsDropdown">
+        <button class="dropbtn">
+          {{ $t('menu.shop') }}
+          <i class="fa fa-caret-down"></i>
+        </button>
       </div>
 
-      <!-- Catégorie Formular -->
-      <div class="column">
-        <h3>{{ $t('menu.categories.forms') }}</h3>
-        <hr class="category-divider">
-        <router-link to="/about/servicerequest" @click="closeMenus">Serviceanforderung <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/installation" @click="closeMenus">Installationsservice <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
+      <!-- Menu About -->
+      <div class="dropdown about-dropdown"
+           @mouseenter="showAboutDropdown = true"
+           @mouseleave="showAboutDropdown = false"
+           @click.self="toggleAboutDropdown">
+        <button class="dropbtn">
+          {{ $t('menu.about') }}
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content about-dropdown-content" v-show="showAboutDropdown">
+          <div class="header">
+            <h2>{{ $t('menu.about') }}</h2>
+            <button class="close-megamenu" @click.stop="showAboutDropdown = false">
+              <v-icon>mdi-close</v-icon>
+            </button>
+          </div>
+          <div class="row about-menu">
+            <div class="column">
+              <h3>{{ $t('menu.categories.information') }}</h3>
+              <hr class="category-divider" />
+              <router-link to="/about/company" @click="closeMenus">Das Unternehmen <i class="fa fa-chevron-right"></i></router-link>
+              <hr />
+              <router-link to="/about/team" @click="closeMenus">Unsere Mitarbeiter <i class="fa fa-chevron-right"></i></router-link>
+              <hr />
+              <router-link to="/about/partner" @click="closeMenus">Servicepartner <i class="fa fa-chevron-right"></i></router-link>
+            </div>
+            <div class="column">
+              <h3>{{ $t('menu.categories.forms') }}</h3>
+              <hr class="category-divider" />
+              <router-link to="/about/servicerequest" @click="closeMenus">Serviceanforderung <i class="fa fa-chevron-right"></i></router-link>
+              <hr />
+              <router-link to="/about/installation" @click="closeMenus">Installationsservice <i class="fa fa-chevron-right"></i></router-link>
+              <hr />
+              <router-link to="/about/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
+            </div>
+          </div>
+        </div>
       </div>
 
-
-    </div>
-  </div>
-</div>
-
+      <!-- Autres liens -->
       <router-link to="/contact" @click="closeMenus">{{ $t('menu.contact') }}</router-link>
       <router-link to="/career" @click="closeMenus">{{ $t('menu.career') }}</router-link>
     </div>
-    
-    <!-- Conteneur pour les éléments de droite -->
-    <div class="right-section">
-      <!-- Sélecteur de langue -->
-      <div class="language-selector-container hidden-on-mobile">
-          <LanguageSelector />
-      </div>
 
-       <!-- Icône menu mobile -->
-      <v-app-bar-nav-icon 
-          class="hidden-md-and-up" 
-          @click.stop="toggleMobileMenu"
-          :icon="mobileDrawer ? 'mdi-close' : 'mdi-menu'"
+    <!-- Section de droite -->
+    <div class="right-section">
+      <div class="language-selector-container hidden-on-mobile">
+        <LanguageSelector />
+      </div>
+      <v-app-bar-nav-icon
+        class="hidden-md-and-up"
+        @click.stop="toggleMobileMenu"
+        :icon="mobileDrawer ? 'mdi-close' : 'mdi-menu'"
       ></v-app-bar-nav-icon>
     </div>
   </div>
@@ -160,36 +165,39 @@ export default {
   data() {
     return {
       showDropdown: false,
-      mobileMenuOpen: false,
       showAboutDropdown: false,
-      partners: [
-        { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
-        { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.amersports.com/' },
-        { name: 'ergoline', logo: '/images/partners/ergoline-logo.png', url: 'https://www.ergoline.com/de/' },
-        { name: 'FREI AG', logo: '/images/partners/frei-ag-logo.png', url: 'https://www.frei-ag.de/' },
-        { name: 'hp-cosmos', logo: '/images/partners/hp-cosmos-logo.png', url: 'https://www.hpcosmos.com/' },
-        { name: 'motomed', logo: '/images/partners/motomed.png', url: 'https://www.motomed.com/' }
-      ]
-  
+      showProductsDropdown: false,
+      mobileMenuOpen: false,
+      partners: []
     }
   },
   methods: {
     toggleMobileMenu() {
       this.$emit('update:mobile-drawer', !this.mobileDrawer)
     },
-
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown
+    },
+    toggleAboutDropdown() {
+      this.showAboutDropdown = !this.showAboutDropdown
+    },
+    toggleProductsDropdown() {
+      this.showProductsDropdown = !this.showProductsDropdown
+    },
     closeMenus() {
-        this.showDropdown = false;
-        this.showProductsDropdown = false;
-        this.showAboutDropdown = false;
-      
+      setTimeout(() => {
+        this.showDropdown = false
+        this.showAboutDropdown = false
+        this.showProductsDropdown = false
+      }, 200)
       if (this.mobileDrawer) {
-          this.$emit('update:mobile-drawer', false);
+        this.$emit('update:mobile-drawer', false)
       }
     }
   }
 }
 </script>
+
 
 <style scoped>
 * {
