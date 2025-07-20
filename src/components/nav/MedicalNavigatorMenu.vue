@@ -255,7 +255,7 @@ export default {
 
 
 .about-dropdown-content {
-  width: 45% !important;  /* Réduit la largeur uniquement pour le menu About */
+  width: 50% !important;  /* Réduit la largeur uniquement pour le menu About */
   left: 20% !important;
   right: auto !important;
   max-width: unset; /* annule max-width si nécessaire */
