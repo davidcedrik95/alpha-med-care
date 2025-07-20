@@ -6,7 +6,7 @@
 
     <!-- Titre de section -->
     <div class="section-title mt-4">
-      <h2>UNSER SERVICE PARTNER PROGRAMM</h2>
+      <h2>SERVICE PARTNER</h2>
     </div>
 
     <v-container class="py-12">
@@ -223,20 +223,9 @@ export default {
   display: inline-block;
   padding: 0 80px;
   position: relative;
-  background-color: transparent;
+  background-color: #fff;
 }
 
-.section-title h2::after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #1976D2, #64B5F6);
-  border-radius: 3px;
-}
 
 /* En-tête de carte */
 .section-header {
