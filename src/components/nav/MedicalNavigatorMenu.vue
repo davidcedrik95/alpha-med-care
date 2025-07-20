@@ -113,11 +113,11 @@
       <div class="column">
         <h3>{{ $t('menu.categories.forms') }}</h3>
         <hr class="category-divider">
-        <router-link to="/forms/service-request" @click="closeMenus">Serviceanforderung <i class="fa fa-chevron-right"></i></router-link>
+        <router-link to="/about/service-request" @click="closeMenus">Serviceanforderung <i class="fa fa-chevron-right"></i></router-link>
         <hr>
-        <router-link to="/forms/installation" @click="closeMenus">Installationsservice <i class="fa fa-chevron-right"></i></router-link>
+        <router-link to="/about/installation" @click="closeMenus">Installationsservice <i class="fa fa-chevron-right"></i></router-link>
         <hr>
-        <router-link to="/forms/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
+        <router-link to="/about/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
       </div>
 
 

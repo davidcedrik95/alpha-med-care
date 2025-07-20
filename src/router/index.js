@@ -53,6 +53,12 @@ const routes = [
         path: 'partner',
         name: 'ServicePartner',
         component: () => import('@/views/ServicePartner.vue')
+      },
+
+      {
+        path: 'service-request',
+        name: 'Serviceanforderung',
+        component: () => import('@/views/forms/ServiceRequest.vue')
       }
     ]
   },
