@@ -106,16 +106,7 @@
         <hr>
         <router-link to="/about/team" @click="closeMenus" class="capitalize">Unsere Mitarbeiter <i class="fa fa-chevron-right"></i></router-link>
         <hr>
-        <router-link to="/about/contract" @click="closeMenus" class="capitalize">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
         <router-link to="/about/partner" @click="closeMenus" class="capitalize">Servicepartner <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/technology" @click="closeMenus" class="capitalize">Die Technik <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/service" @click="closeMenus" class="capitalize">Service <i class="fa fa-chevron-right"></i></router-link>
-        <hr>
-        <router-link to="/about/inspection" @click="closeMenus" class="capitalize">Die Prüfung <i class="fa fa-chevron-right"></i></router-link>
-
       </div>
 
       <!-- Catégorie Formular -->
