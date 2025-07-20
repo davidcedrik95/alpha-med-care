@@ -15,6 +15,7 @@
     "products": "Produits",
     "blog": "Blog",
     "faq": "FAQ",
+    "career":"Carrières",
     "imprint": "Mentions légales",
     "privacy": "Confidentialité",
     "terms": "CGV",
@@ -22,6 +23,8 @@
     "shop": "Shop",
     "categories": {
       "inspections": "Vérifications & Contrôles",
+      "information": "Informations",
+      "forms": "Formulaire de services",
       "calibration": "Étalonnages",
       "maintenance": "Maintenance & Service",
       "sales": "Vente & Produits",

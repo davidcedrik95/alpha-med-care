@@ -84,9 +84,56 @@
   </button>
   
 </div>
-      <router-link to="/about" @click="closeMenus">{{ $t('menu.about') }}</router-link>
+      <!-- Menu déroulant About -->
+<div class="dropdown" @mouseenter="showAboutDropdown = true" @mouseleave="showAboutDropdown = false">
+  <button class="dropbtn">
+    {{ $t('menu.about') }}
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-content" v-show="showAboutDropdown">
+    <div class="header">
+      <h2>{{ $t('menu.about') }}</h2>
+      <button class="close-megamenu" @click.stop="showAboutDropdown = false">
+        <v-icon>mdi-close</v-icon>
+      </button>
+    </div>
+    <div class="row">
+      <!-- Catégorie Informations -->
+      <div class="column">
+        <h3>{{ $t('menu.categories.information') }}</h3>
+        <hr class="category-divider">
+        <router-link to="/about/company" @click="closeMenus" class="capitalize">Das Unternehmen <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/about/team" @click="closeMenus" class="capitalize">Unsere Mitarbeiter <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/about/contract" @click="closeMenus" class="capitalize">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/about/partner" @click="closeMenus" class="capitalize">Servicepartner <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/about/technology" @click="closeMenus" class="capitalize">Die Technik <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/about/service" @click="closeMenus" class="capitalize">Service <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/about/inspection" @click="closeMenus" class="capitalize">Die Prüfung <i class="fa fa-chevron-right"></i></router-link>
+
+      </div>
+
+      <!-- Catégorie Formular -->
+      <div class="column">
+        <h3>{{ $t('menu.categories.forms') }}</h3>
+        <hr class="category-divider">
+        <router-link to="/forms/service-request" @click="closeMenus">Serviceanforderung <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/forms/installation" @click="closeMenus">Installationsservice <i class="fa fa-chevron-right"></i></router-link>
+        <hr>
+        <router-link to="/forms/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
+      </div>
+    </div>
+  </div>
+</div>
+
       <router-link to="/contact" @click="closeMenus">{{ $t('menu.contact') }}</router-link>
-      <router-link to="/imprint" @click="closeMenus">{{ $t('menu.imprint') }}</router-link>
+      <router-link to="/career" @click="closeMenus">{{ $t('menu.career') }}</router-link>
     </div>
     
     <!-- Conteneur pour les éléments de droite -->
@@ -121,6 +168,7 @@ export default {
     return {
       showDropdown: false,
       mobileMenuOpen: false,
+      showAboutDropdown: false,
       partners: [
         { name: 'ERGO-FIT', logo: '/images/partners/ergo-fit-logo.png', url: 'https://www.ergo-fit.de/de/' },
         { name: 'amer-sports', logo: '/images/partners/amer-sports-logo.png', url: 'https://www.amersports.com/' },
@@ -136,12 +184,14 @@ export default {
     toggleMobileMenu() {
       this.$emit('update:mobile-drawer', !this.mobileDrawer)
     },
+
     closeMenus() {
-      this.showDropdown = false;
-      this.showProductsDropdown = false;
+        this.showDropdown = false;
+        this.showProductsDropdown = false;
+        this.showAboutDropdown = false;
       
       if (this.mobileDrawer) {
-        this.$emit('update:mobile-drawer', false);
+          this.$emit('update:mobile-drawer', false);
       }
     }
   }
