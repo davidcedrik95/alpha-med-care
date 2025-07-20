@@ -25,6 +25,7 @@ const routes = [
       }
     ]
   },
+
   {
     path: '/about',
     name: 'About',
@@ -35,10 +36,23 @@ const routes = [
         name: 'Unternehmen',
         component: () => import('@/views/CompanySection.vue')
       },
+
       {
         path: 'team',
         name: 'Mittarbeiter',
         component: () => import('@/views/TeamsView.vue')
+      },
+
+      {
+        path: 'team',
+        name: 'Mittarbeiter',
+        component: () => import('@/views/TeamsView.vue')
+      },
+
+      {
+        path: 'partner',
+        name: 'ServicePartner',
+        component: () => import('@/views/ServicePartner.vue')
       }
     ]
   },

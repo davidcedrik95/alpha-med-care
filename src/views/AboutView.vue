@@ -29,16 +29,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import CompanySection from '@/views/CompanySection.vue';
-import TeamsView from '@/views/TeamsView.vue';
-import Maintenance  from '@/views/Maintenance.vue';
-import ServicesSection from '@/views/ServicesSection.vue';
-import ServicePartner from '@/views/ServicePartner.vue';
-import TechnikSection from '@/views/TechnikSection.vue';
-import ControlSection from '@/views/ControlSection.vue';
 
-const activeSection = ref('entreprise'); // Par défaut "Über uns"
 </script>
 
 <style scoped>
