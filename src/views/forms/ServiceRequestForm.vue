@@ -180,35 +180,35 @@
                   variant="tonal"
                 >
                   <v-card-text>
-  <v-row>
-    <!-- Texte à gauche -->
-    <v-col cols="12" md="6">
-      <div><strong>Gerät {{ index + 1 }}</strong></div>
-      <div><strong>Hersteller:</strong> {{ device.manufacturer }}</div>
-      <div><strong>Modell:</strong> {{ device.model }}</div>
-      <div><strong>Seriennummer:</strong> {{ device.serial }}</div>
+                    <v-row>
+                      <!-- Texte à gauche -->
+                      <v-col cols="12" md="6">
+                        <div><strong>Gerät {{ index + 1 }}</strong></div>
+                        <div><strong>Hersteller:</strong> {{ device.manufacturer }}</div>
+                        <div><strong>Modell:</strong> {{ device.model }}</div>
+                        <div><strong>Seriennummer:</strong> {{ device.serial }}</div>
 
-      <div v-if="device.imageFiles.length" class="mt-2">
-        <strong>Dateien:</strong>
-        <ul>
-          <li v-for="(file, i) in device.imageFiles" :key="i">{{ file.name }}</li>
-        </ul>
-      </div>
-    </v-col>
+                        <div v-if="device.imageFiles.length" class="mt-2">
+                          <strong>Dateien:</strong>
+                          <ul>
+                            <li v-for="(file, i) in device.imageFiles" :key="i">{{ file.name }}</li>
+                          </ul>
+                        </div>
+                      </v-col>
 
-    <!-- Images à droite -->
-    <v-col cols="12" md="6" class="d-flex flex-wrap align-start">
-      <v-img
-        v-for="(src, i) in device.imagePreviews"
-        :key="i"
-        :src="src"
-        max-width="120"
-        max-height="100"
-        class="mr-2 mb-2 rounded-lg"
-      />
-    </v-col>
-  </v-row>
-</v-card-text>
+                      <!-- Images à droite -->
+                      <v-col cols="12" md="6" class="d-flex flex-wrap align-start">
+                        <v-img
+                          v-for="(src, i) in device.imagePreviews"
+                          :key="i"
+                          :src="src"
+                          max-width="120"
+                          max-height="100"
+                          class="mr-2 mb-2 rounded-lg"
+                        />
+                      </v-col>
+                    </v-row>
+                  </v-card-text>
 
 
                   <v-card-actions>
