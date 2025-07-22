@@ -100,16 +100,17 @@
                   />
                 </v-col>
                 <v-col cols="12" md="6">
+                  
                   <v-file-input
-                    v-model="form.imageFiles"
-                    label="Bilder des Geräts hochladen"
-                    accept="image/*"
-                    multiple
-                    variant="outlined"
-                    prepend-inner-icon="mdi-camera"
-                    :error-messages="imageError"
-                    @change="validateImageMultiple"
-                  />
+  label="Bilder des Geräts hochladen"
+  accept="image/*"
+  multiple
+  variant="outlined"
+  prepend-inner-icon="mdi-camera"
+  :error-messages="imageError"
+  @update:modelValue="handleImageUpload"
+/>
+
 
                   
                   <!-- Affichage des miniatures avec bouton suppression -->
@@ -179,30 +180,36 @@
                   variant="tonal"
                 >
                   <v-card-text>
-                    <div><strong>Gerät {{ index + 1 }}</strong></div>
-                    <div><strong>Hersteller:</strong> {{ device.manufacturer }}</div>
-                    <div><strong>Modell:</strong> {{ device.model }}</div>
-                    <div><strong>Seriennummer:</strong> {{ device.serial }}</div>
+  <v-row>
+    <!-- Texte à gauche -->
+    <v-col cols="12" md="6">
+      <div><strong>Gerät {{ index + 1 }}</strong></div>
+      <div><strong>Hersteller:</strong> {{ device.manufacturer }}</div>
+      <div><strong>Modell:</strong> {{ device.model }}</div>
+      <div><strong>Seriennummer:</strong> {{ device.serial }}</div>
 
-                    <div v-if="device.imageFiles.length">
-                      <strong>Dateien:</strong>
-                      <ul>
-                        <li v-for="(file, i) in device.imageFiles" :key="i">{{ file.name }}</li>
-                      </ul>
-                    </div>
+      <div v-if="device.imageFiles.length" class="mt-2">
+        <strong>Dateien:</strong>
+        <ul>
+          <li v-for="(file, i) in device.imageFiles" :key="i">{{ file.name }}</li>
+        </ul>
+      </div>
+    </v-col>
 
-                    <v-row v-if="device.imagePreviews.length" class="mt-2">
-                      <v-col
-                        v-for="(src, i) in device.imagePreviews"
-                        :key="i"
-                        cols="6"
-                        md="4"
-                        lg="3"
-                      >
-                        <v-img :src="src" max-width="150" class="rounded-lg" />
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
+    <!-- Images à droite -->
+    <v-col cols="12" md="6" class="d-flex flex-wrap align-start">
+      <v-img
+        v-for="(src, i) in device.imagePreviews"
+        :key="i"
+        :src="src"
+        max-width="120"
+        max-height="100"
+        class="mr-2 mb-2 rounded-lg"
+      />
+    </v-col>
+  </v-row>
+</v-card-text>
+
 
                   <v-card-actions>
                     <v-btn
@@ -326,6 +333,41 @@ export default {
         reader.readAsDataURL(file);
       });
   },
+
+  handleImageUpload(newFiles) {
+  this.imageError = '';
+  if (!newFiles) return;
+
+  const filesArray = Array.from(newFiles);
+  const maxSize = 2 * 1024 * 1024;
+
+  for (const file of filesArray) {
+    if (!file.type.startsWith('image/')) {
+      this.imageError = 'Nur Bilddateien sind erlaubt.';
+      continue;
+    }
+
+    if (file.size > maxSize) {
+      this.imageError = 'Die Bilddatei darf maximal 2 MB groß sein.';
+      continue;
+    }
+
+    // Empêcher les doublons
+    const alreadyExists = this.form.imageFiles.some(
+      (f) => f.name === file.name && f.size === file.size
+    );
+    if (!alreadyExists) {
+      this.form.imageFiles.push(file);
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.form.imagePreviews.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+}
+,
 
     removeImage(index) {
       this.form.imageFiles.splice(index, 1);
