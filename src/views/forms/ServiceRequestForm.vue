@@ -101,21 +101,38 @@
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-file-input
-                    v-model="form.imageFile"
-                    label="Bild des Geräts hochladen"
+                    v-model="form.imageFiles"
+                    label="Bilder des Geräts hochladen"
                     accept="image/*"
+                    multiple
                     variant="outlined"
                     prepend-inner-icon="mdi-camera"
-                    @change="validateImage"
                     :error-messages="imageError"
+                    @change="validateImageMultiple"
                   />
-                  <v-img
-                    v-if="form.imagePreview"
-                    :src="form.imagePreview"
-                    alt="Vorschau"
-                    max-width="200"
-                    class="mt-2 rounded-lg"
-                  />
+
+                  
+                  <!-- Affichage des miniatures avec bouton suppression -->
+                  <v-row v-if="form.imagePreviews.length" class="mt-2" align="center" >
+                  <v-col
+                    v-for="(src, i) in form.imagePreviews"
+                    :key="i"
+                    cols="12" md="6" lg="4"  
+                  >
+                    <div class="image-row">
+                      <v-img :src="src" max-width="150" max-height="100" class="rounded-lg" />
+                     
+                        <v-icon 
+                         class="remove-image-btn"
+                        @click="removeImage(i)"
+                        title="Bild entfernen">
+                          
+                          mdi-close-circle</v-icon>
+                     
+                    </div>
+                  </v-col>
+                </v-row>
+
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-text-field
@@ -152,7 +169,6 @@
                 prepend-inner-icon="mdi-comment"
               />
 
-             
               <v-card variant="outlined" class="pa-4 mt-4">
                 <h4 class="text-h6 font-weight-bold mb-2">Zusammenfassung der Geräte:</h4>
 
@@ -167,7 +183,27 @@
                     <div><strong>Hersteller:</strong> {{ device.manufacturer }}</div>
                     <div><strong>Modell:</strong> {{ device.model }}</div>
                     <div><strong>Seriennummer:</strong> {{ device.serial }}</div>
+
+                    <div v-if="device.imageFiles.length">
+                      <strong>Dateien:</strong>
+                      <ul>
+                        <li v-for="(file, i) in device.imageFiles" :key="i">{{ file.name }}</li>
+                      </ul>
+                    </div>
+
+                    <v-row v-if="device.imagePreviews.length" class="mt-2">
+                      <v-col
+                        v-for="(src, i) in device.imagePreviews"
+                        :key="i"
+                        cols="6"
+                        md="4"
+                        lg="3"
+                      >
+                        <v-img :src="src" max-width="150" class="rounded-lg" />
+                      </v-col>
+                    </v-row>
                   </v-card-text>
+
                   <v-card-actions>
                     <v-btn
                       color="error"
@@ -181,13 +217,12 @@
                 </v-card>
               </v-card>
 
-               <v-checkbox
-                v-model="addAnotherDevice"
-                label="Ich möchte ein weiteres Gerät hinzufügen"
-                color="primary"
-                class="mt-4"
-              />
-
+              <div class="d-flex align-center mt-4">
+                <v-btn icon @click="addNewDevice" style="height: 40px; width: 40px;">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                <span class="ml-3 font-weight-medium">Weiteres Gerät hinzufügen</span>
+              </div>
             </div>
           </v-window-item>
         </v-window>
@@ -219,7 +254,6 @@ export default {
     return {
       step: 1,
       loading: false,
-      addAnotherDevice: false,
       devicesList: [],
       form: {
         date: this.getCurrentDate(),
@@ -231,13 +265,13 @@ export default {
         model: '',
         serial: '',
         additional: '',
-        imageFile: null,
-        imagePreview: null
+        imageFiles: [],
+        imagePreviews: [],
       },
       imageError: '',
       stepLabels: ['Kundendaten', 'Gerätedaten', 'Abschluss'],
       stepIcons: ['mdi-account', 'mdi-devices', 'mdi-check-circle'],
-      manufacturers: ['Ergo-Fit', 'FREI medical', 'emotion fitness', 'Sonstiges']
+      manufacturers: ['Ergo-Fit', 'FREI medical', 'emotion fitness', 'Sonstiges'],
     };
   },
   methods: {
@@ -245,43 +279,77 @@ export default {
       const today = new Date();
       return today.toISOString().substr(0, 10);
     },
-    validateImage(file) {
+    validateImageMultiple(newFiles) {
       this.imageError = '';
-      this.form.imagePreview = null;
-      const image = Array.isArray(file) ? file[0] : file;
-      const maxSize = 2 * 1024 * 1024;
 
-      if (!image?.type?.startsWith('image/')) {
-        this.imageError = 'Nur Bilddateien sind erlaubt.';
-        return;
-      }
-      if (image.size > maxSize) {
-        this.imageError = 'Die Bilddatei darf maximal 2 MB groß sein.';
-        return;
+      // newFiles est un tableau FileList ou array de File
+      if (!newFiles) return;
+
+      // Convertir en array
+      const filesArray = Array.from(newFiles);
+
+      // Filtrer uniquement les fichiers valides et pas déjà ajoutés
+      const maxSize = 2 * 1024 * 1024; // 2MB max
+
+      const filteredFiles = [];
+
+      for (const file of filesArray) {
+        if (
+          !file.type?.startsWith('image/') &&
+          !(/\.(jpe?g|png|gif|bmp|webp|svg)$/i.test(file.name))
+        ) {
+          this.imageError = 'Nur Bilddateien sind erlaubt.';
+          return;
+        }
+        if (file.size > maxSize) {
+          this.imageError = 'Die Bilddatei darf maximal 2 MB groß sein.';
+          return;
+        }
+
+        // Vérifier que le fichier n'est pas déjà dans la liste (par nom + taille)
+        const alreadyExists = this.form.imageFiles.some(
+          (f) => f.name === file.name && f.size === file.size
+        );
+        if (!alreadyExists) filteredFiles.push(file);
       }
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.form.imagePreview = e.target.result;
-      };
-      reader.readAsDataURL(image);
+      // Ajout des fichiers filtrés
+      this.form.imageFiles = [...this.form.imageFiles, ...filteredFiles];
+
+      // Regénérer les aperçus
+      this.form.imagePreviews = [];
+      this.form.imageFiles.forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.form.imagePreviews.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+  },
+
+    removeImage(index) {
+      this.form.imageFiles.splice(index, 1);
+      this.form.imagePreviews.splice(index, 1);
     },
     saveDevice() {
       this.devicesList.push({
-        manufacturer: this.form.manufacturer === 'Sonstiges' ? this.form.customManufacturer : this.form.manufacturer,
+        manufacturer:
+          this.form.manufacturer === 'Sonstiges'
+            ? this.form.customManufacturer
+            : this.form.manufacturer,
         model: this.form.model,
         serial: this.form.serial,
-        imageFile: this.form.imageFile,
-        imagePreview: this.form.imagePreview
+        imageFiles: [...this.form.imageFiles], // garder les fichiers complets
+        imagePreviews: [...this.form.imagePreviews], // garder les aperçus
       });
 
-      // Reset device fields
+      // Réinitialisation du formulaire appareil
       this.form.manufacturer = '';
       this.form.customManufacturer = '';
       this.form.model = '';
       this.form.serial = '';
-      this.form.imageFile = null;
-      this.form.imagePreview = null;
+      this.form.imageFiles = [];
+      this.form.imagePreviews = [];
       this.imageError = '';
     },
     removeDevice(index) {
@@ -295,9 +363,6 @@ export default {
             this.step++;
           }
         });
-      } else if (this.step === 3 && this.addAnotherDevice) {
-        this.addAnotherDevice = false;
-        this.step = 2;
       } else if (this.step < 3) {
         this.step++;
       } else {
@@ -316,7 +381,6 @@ export default {
     },
     resetForm() {
       this.step = 1;
-      this.addAnotherDevice = false;
       this.devicesList = [];
       this.form = {
         date: this.getCurrentDate(),
@@ -328,10 +392,20 @@ export default {
         model: '',
         serial: '',
         additional: '',
-        imageFile: null,
-        imagePreview: null
+        imageFiles: [],
+        imagePreviews: [],
       };
       this.imageError = '';
+    },
+    addNewDevice() {
+      this.form.manufacturer = '';
+      this.form.customManufacturer = '';
+      this.form.model = '';
+      this.form.serial = '';
+      this.form.imageFiles = [];
+      this.form.imagePreviews = [];
+      this.imageError = '';
+      this.step = 2;
     },
     submitForm() {
       this.loading = true;
@@ -347,14 +421,14 @@ export default {
       setTimeout(() => {
         console.log('Formularinhalt:', {
           ...this.form,
-          geraeteliste: this.devicesList
+          geraeteliste: this.devicesList,
         });
         alert('Serviceanforderung erfolgreich gesendet!');
         this.resetForm();
         this.loading = false;
       }, 1500);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -393,4 +467,14 @@ export default {
   background: #f5f5f5;
   border-top: 1px solid #ddd;
 }
+.position-relative {
+  position: relative;
+}
+
+.image-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 </style>
