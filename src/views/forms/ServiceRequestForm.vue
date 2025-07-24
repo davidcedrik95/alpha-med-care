@@ -1,6 +1,6 @@
 <template>
   <v-container class="form-section">
-    <v-card class="form-container rounded-xl">
+    <v-card class="form-container ">
       <!-- En-tête -->
       <v-card-title class="form-header text-center py-6">
         <div class="header-content">
@@ -31,51 +31,107 @@
 
         <v-window v-model="step">
           <!-- Étape 1 -->
-          <v-window-item :value="1">
-            <v-form ref="step1Form" class="form-step">
-              <h3 class="text-h5 font-weight-bold primary--text mb-4">1. Kundendatenerfassung</h3>
-              <v-row>
-                <v-col cols="12" md="6">
-                  <v-text-field
-                    v-model="form.date"
-                    label="Heutiges Datum"
-                    type="date"
-                    required
-                    variant="outlined"
-                    prepend-inner-icon="mdi-calendar"
-                  />
-                </v-col>
-                <v-col cols="12" md="6">
-                  <v-text-field
-                    v-model="form.name"
-                    label="Vorname/Name"
-                    required
-                    variant="outlined"
-                    prepend-inner-icon="mdi-account"
-                  />
-                </v-col>
-                <v-col cols="12" md="6">
-                  <v-text-field
-                    v-model="form.company"
-                    label="Firma/Kundennummer"
-                    required
-                    variant="outlined"
-                    prepend-inner-icon="mdi-office-building"
-                  />
-                </v-col>
-                <v-col cols="12" md="6">
-                  <v-text-field
-                    v-model="form.phone"
-                    label="Telefon"
-                    type="tel"
-                    required
-                    variant="outlined"
-                    prepend-inner-icon="mdi-phone"
-                  />
-                </v-col>
-              </v-row>
-            </v-form>
-          </v-window-item>
+         <v-window-item :value="1">
+  <v-form ref="step1Form" class="form-step">
+    <h3 class="text-h5 font-weight-bold primary--text mb-4">1. Kundendatenerfassung</h3>
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="form.firstname"
+          label="Vorname"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-account"
+        />
+      </v-col>
+
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="form.lastname"
+          label="Nachname"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-account"
+        />
+      </v-col>
+
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="form.company"
+          label="Firma/Kundennummer"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-office-building"
+        />
+      </v-col>
+
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="form.phone"
+          label="Telefon"
+          type="tel"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-phone"
+        />
+      </v-col>
+
+      <v-col cols="12" md="8">
+        <v-text-field
+          v-model="form.address"
+          label="Adresse"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-home"
+        />
+      </v-col>
+
+      <v-col cols="12" md="4">
+        <v-text-field
+          v-model="form.hausnummer"
+          label="Hausnummer"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-pound"
+        />
+      </v-col>
+
+      <v-col cols="12" md="4">
+        <v-text-field
+          v-model="form.plz"
+          label="PLZ"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-map-marker"
+        />
+      </v-col>
+
+      <v-col cols="12" md="4">
+        <v-text-field
+          v-model="form.ort"
+          label="Ort"
+          required
+          variant="outlined"
+          prepend-inner-icon="mdi-city"
+        />
+      </v-col>
+
+     <v-col cols="12" md="4">
+    <v-select
+      v-model="form.land"
+      :items="countries"
+      label="Land"
+      required
+      variant="outlined"
+      prepend-inner-icon="mdi-earth"
+      return-object
+    />
+  </v-col>
+
+    </v-row>
+  </v-form>
+</v-window-item>
+
 
           <!-- Étape 2 -->
           <v-window-item :value="2">
@@ -263,10 +319,16 @@ export default {
       loading: false,
       devicesList: [],
       form: {
-        date: this.getCurrentDate(),
-        name: '',
+        // date: this.getCurrentDate(),  // <-- Supprimer cette ligne
+        firstname: '',
+        lastname: '',
         company: '',
         phone: '',
+        address: '',
+        hausnummer: '',
+        plz: '',
+        ort: '',
+        land: 'Deutschland', // valeur par défaut
         manufacturer: '',
         customManufacturer: '',
         model: '',
@@ -279,6 +341,26 @@ export default {
       stepLabels: ['Kundendaten', 'Gerätedaten', 'Abschluss'],
       stepIcons: ['mdi-account', 'mdi-devices', 'mdi-check-circle'],
       manufacturers: ['Ergo-Fit', 'FREI medical', 'emotion fitness', 'Sonstiges'],
+      countries: [
+        'Belgien',
+        'Dänemark',
+        'Deutschland',
+        'Finnland',
+        'Frankreich',
+        'Großbritannien',
+        'Italien',
+        'Luxemburg',
+        'Niederlande',
+        'Norwegen',
+        'Österreich',
+        'Polen',
+        'Schottland',
+        'Schweden',
+        'Schweiz',
+        'Spanien',
+        'Tschechien',
+      ].sort(),
+
     };
   },
   methods: {
