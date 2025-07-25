@@ -59,6 +59,12 @@ const routes = [
         path: 'servicerequest',
         name: 'Serviceanforderung',
         component: () => import('@/views/forms/ServiceRequestForm.vue')
+      },
+
+      {
+        path: 'installationsupport',
+        name: 'Installationsupport',
+        component: () => import('@/views/forms/InstallationSupportForm.vue')
       }
     ]
   },
