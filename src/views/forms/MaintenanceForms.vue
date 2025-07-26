@@ -180,14 +180,16 @@ export default {
 </script>
 
 <style scoped>
+
 .form-container {
   width: 100%;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  max-width: 900px; /* ✅ Réduction de la largeur */
+  margin: 40px auto; /* ✅ Centre verticalement et horizontalement */
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1) !important;
   border-top: 5px solid #1976D2;
   overflow: hidden;
 }
+
 
 .form-header {
   background: linear-gradient(120deg, #1458a5, #0c4d81);
