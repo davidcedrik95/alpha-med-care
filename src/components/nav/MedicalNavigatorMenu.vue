@@ -117,7 +117,7 @@
               <hr />
               <router-link to="/about/installationsupport" @click="closeMenus">Installationsservice <i class="fa fa-chevron-right"></i></router-link>
               <hr />
-              <router-link to="/about/installation" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
+              <router-link to="/about/wartungsvertrag" @click="closeMenus">Wartungsvertrag <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
         </div>

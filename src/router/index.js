@@ -65,6 +65,12 @@ const routes = [
         path: 'installationsupport',
         name: 'Installationsupport',
         component: () => import('@/views/forms/InstallationSupportForm.vue')
+      },
+
+      {
+        path: 'wartungsvertrag',
+        name: 'Wartungsvertrag',
+        component: () => import('@/views/forms/MaintenanceForms.vue')
       }
     ]
   },
