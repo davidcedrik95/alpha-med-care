@@ -215,6 +215,7 @@ export default {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+
 .back-button {
   position: absolute;
   left: 20px;
