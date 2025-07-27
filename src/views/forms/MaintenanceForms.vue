@@ -183,8 +183,8 @@ export default {
 
 .form-container {
   width: 100%;
-  max-width: 900px; /* ✅ Réduction de la largeur */
-  margin: 40px auto; /* ✅ Centre verticalement et horizontalement */
+  max-width: 900px; 
+  margin: 40px auto; 
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1) !important;
   border-top: 5px solid #1976D2;
   overflow: hidden;
@@ -209,7 +209,7 @@ export default {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: #f57c00;
+  background: #fffdfd;
   border-radius: 2px;
 }
 
