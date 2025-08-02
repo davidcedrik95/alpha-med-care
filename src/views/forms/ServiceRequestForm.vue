@@ -213,13 +213,13 @@ export default {
     }
   },
   methods: {
-    addNewDevice() {
-      if (this.devicesList.length >= 5) {
-        this.step3Error = 'Maximal 5 Geräte pro Anfrage'
-        return
+    // Ajoute l'appareil actuel à la liste si valide
+    addCurrentDeviceToList() {
+      // Vérifie si l'appareil est valide avant de l'ajouter
+      if (!this.form.manufacturer || !this.form.model || !this.form.serial) {
+        return false;
       }
       
-      // Vérifier si l'appareil actuel est déjà dans la liste
       const currentDevice = {
         manufacturer: this.form.manufacturer === 'Sonstiges' 
           ? this.form.customManufacturer 
@@ -230,6 +230,7 @@ export default {
         imagePreviews: [...this.form.imagePreviews],
       }
       
+      // Vérifie si l'appareil existe déjà dans la liste
       const deviceExists = this.devicesList.some(device => 
         device.manufacturer === currentDevice.manufacturer &&
         device.model === currentDevice.model &&
@@ -238,9 +239,22 @@ export default {
       
       if (!deviceExists) {
         this.devicesList.push(currentDevice)
+        return true;
       }
       
+      return false;
+    },
+    
+    addNewDevice() {
+      if (this.devicesList.length >= 5) {
+        this.step3Error = 'Maximal 5 Geräte pro Anfrage'
+        return
+      }
+      
+      // Réinitialise le formulaire avant d'ajouter un nouvel appareil
       this.resetDeviceForm()
+      
+      // Retour à l'étape 2 pour ajouter un nouvel appareil
       this.step = 2
     },
     
@@ -262,7 +276,7 @@ export default {
       this.formError = ''
       this.step3Error = ''
       
-      // Activer l'affichage des erreurs pour l'étape actuelle
+      // Active l'affichage des erreurs pour l'étape actuelle
       this.showErrors[this.step - 1] = true
       
       // Sanitize inputs
@@ -272,7 +286,7 @@ export default {
         }
       })
       
-      // Step-specific validation
+      // Validation spécifique à l'étape
       let isValid = false
       
       if (this.step === 1) {
@@ -286,6 +300,14 @@ export default {
           this.formError = 'Bitte geben Sie den Hersteller an'
           isValid = false
         }
+        
+        // CORRECTION : Ajoute l'appareil seulement si valide
+        if (isValid) {
+          const added = this.addCurrentDeviceToList()
+          if (added) {
+            this.resetDeviceForm()
+          }
+        }
       }
       else if (this.step === 3) {
         if (this.devicesList.length === 0) {
@@ -297,7 +319,7 @@ export default {
       }
       
       if (isValid) {
-        // Désactiver les erreurs avant de passer à l'étape suivante
+        // Désactive les erreurs avant de passer à l'étape suivante
         this.showErrors[this.step - 1] = false;
         this.step++
       }
@@ -309,7 +331,7 @@ export default {
     },
     
     prevStep() {
-      // Désactiver l'affichage des erreurs pour l'étape actuelle
+      // Désactive l'affichage des erreurs pour l'étape actuelle
       this.showErrors[this.step - 1] = false
       if (this.step > 1) this.step--
     },
@@ -349,12 +371,12 @@ export default {
         const formData = new FormData()
         const { imageFiles, imagePreviews, ...formValues } = this.form
         
-        // Add customer data
+        // Ajoute les données client
         Object.entries(formValues).forEach(([key, value]) => {
           formData.append(key, value)
         })
         
-        // Add devices
+        // Ajoute les appareils
         this.devicesList.forEach((device, index) => {
           formData.append(`devices[${index}][manufacturer]`, device.manufacturer)
           formData.append(`devices[${index}][model]`, device.model)
@@ -365,14 +387,14 @@ export default {
           })
         })
         
-        // Simulate API call
+        // Simulation d'appel API
         await new Promise(resolve => setTimeout(resolve, 1500))
         
-        // Handle success
+        // Gestion du succès
         alert('Serviceanforderung erfolgreich gesendet!')
         this.resetForm()
         
-        // Update manufacturers list if new one added
+        // Met à jour la liste des fabricants si nouveau ajouté
         if (this.form.customManufacturer && 
             !this.manufacturers.includes(this.form.customManufacturer)) {
           this.manufacturers.splice(-1, 0, this.form.customManufacturer)
