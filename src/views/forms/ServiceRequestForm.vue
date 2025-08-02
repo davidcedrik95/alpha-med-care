@@ -40,110 +40,150 @@
           <v-window-item :value="1">
             <v-form ref="step1Form" class="form-step">
               <h3 class="text-h5 font-weight-bold primary--text mb-4">1. Kundendatenerfassung</h3>
-              <v-row>
+              <v-row dense class="pa-2">
+
                 <v-col cols="12" md="6">
-                  <v-text-field 
-                    v-model="form.firstname" 
-                    label="Vorname" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-account"
-                    :error-messages="v$.form.firstname.$errors.map(e => e.$message)"
-                    @input="v$.form.firstname.$touch"
+                  <v-select
+                    label="Anrede"
+                    v-model="form.anrede"
+                    :items="['Frau', 'Herr']"
+                    :rules="[v => !!v || 'Bitte wählen Sie eine Anrede']"
+                    outlined
+                    dense
+                    required
                   />
                 </v-col>
-                <v-col cols="12" md="6">
-                  <v-text-field 
-                    v-model="form.lastname" 
-                    label="Nachname" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-account"
-                    :error-messages="v$.form.lastname.$errors.map(e => e.$message)"
-                    @input="v$.form.lastname.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="6">
-                  <v-text-field 
-                    v-model="form.company" 
-                    label="Firma/Kundennummer" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-office-building"
-                    :error-messages="v$.form.company.$errors.map(e => e.$message)"
-                    @input="v$.form.company.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="6">
-                  <v-text-field 
-                    v-model="form.phone" 
-                    label="Telefon" 
-                    type="tel" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-phone"
-                    :error-messages="v$.form.phone.$errors.map(e => e.$message)"
-                    @input="v$.form.phone.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="8">
-                  <v-text-field 
-                    v-model="form.address" 
-                    label="Adresse" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-home"
-                    :error-messages="v$.form.address.$errors.map(e => e.$message)"
-                    @input="v$.form.address.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-text-field 
-                    v-model="form.hausnummer" 
-                    label="Hausnummer" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-pound"
-                    :error-messages="v$.form.hausnummer.$errors.map(e => e.$message)"
-                    @input="v$.form.hausnummer.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-text-field 
-                    v-model="form.plz" 
-                    label="PLZ" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-map-marker"
-                    :error-messages="v$.form.plz.$errors.map(e => e.$message)"
-                    @input="v$.form.plz.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-text-field 
-                    v-model="form.ort" 
-                    label="Ort" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-city"
-                    :error-messages="v$.form.ort.$errors.map(e => e.$message)"
-                    @input="v$.form.ort.$touch"
-                  />
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-select 
-                    v-model="form.land" 
-                    :items="countries" 
-                    label="Land" 
-                    required 
-                    variant="outlined" 
-                    prepend-inner-icon="mdi-earth" 
-                    return-object
-                    :error-messages="v$.form.land.$errors.map(e => e.$message)"
-                    @update:modelValue="v$.form.land.$touch"
-                  />
-                </v-col>
-              </v-row>
+              <!-- Prénom et nom -->
+              <v-col cols="12" md="6">
+                <v-text-field 
+                  v-model="form.firstname" 
+                  label="Vorname" 
+                  required 
+                  variant="outlined" 
+                  prepend-inner-icon="mdi-account"
+                  :error-messages="v$.form.firstname.$errors.map(e => e.$message)"
+                  @input="v$.form.firstname.$touch"
+                />
+              </v-col>
+
+              <v-col cols="12" md="6">
+                <v-text-field 
+                  v-model="form.lastname" 
+                  label="Nachname" 
+                  required 
+                  variant="outlined" 
+                  prepend-inner-icon="mdi-account"
+                  :error-messages="v$.form.lastname.$errors.map(e => e.$message)"
+                  @input="v$.form.lastname.$touch"
+                />
+              </v-col>
+
+  <!-- Société -->
+  <v-col cols="12" md="6">
+    <v-text-field 
+      v-model="form.company" 
+      label="Firma / Kundennummer" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-office-building"
+      :error-messages="v$.form.company.$errors.map(e => e.$message)"
+      @input="v$.form.company.$touch"
+    />
+  </v-col>
+
+  <!-- Téléphone et Email -->
+  <v-col cols="12" md="6">
+    <v-text-field 
+      v-model="form.phone" 
+      label="Telefon" 
+      type="tel" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-phone"
+      :error-messages="v$.form.phone.$errors.map(e => e.$message)"
+      @input="v$.form.phone.$touch"
+    />
+  </v-col>
+
+  <v-col cols="12" md="6">
+    <v-text-field 
+      v-model="form.email" 
+      label="E-Mail Adresse" 
+      type="email"
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-email"
+      :error-messages="v$.form.email.$errors.map(e => e.$message)"
+      @input="v$.form.email.$touch"
+    />
+  </v-col>
+
+  <!-- Adresse complète (Adresse + Hausnummer) -->
+  <v-col cols="12" md="8">
+    <v-text-field 
+      v-model="form.address" 
+      label="Straße / Adresse" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-home"
+      :error-messages="v$.form.address.$errors.map(e => e.$message)"
+      @input="v$.form.address.$touch"
+    />
+  </v-col>
+
+  <v-col cols="12" md="4">
+    <v-text-field 
+      v-model="form.hausnummer" 
+      label="Hausnummer" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-pound"
+      :error-messages="v$.form.hausnummer.$errors.map(e => e.$message)"
+      @input="v$.form.hausnummer.$touch"
+    />
+  </v-col>
+
+  <!-- Code postal et ville -->
+  <v-col cols="12" md="4">
+    <v-text-field 
+      v-model="form.plz" 
+      label="PLZ" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-map-marker"
+      :error-messages="v$.form.plz.$errors.map(e => e.$message)"
+      @input="v$.form.plz.$touch"
+    />
+  </v-col>
+
+  <v-col cols="12" md="4">
+    <v-text-field 
+      v-model="form.ort" 
+      label="Ort" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-city"
+      :error-messages="v$.form.ort.$errors.map(e => e.$message)"
+      @input="v$.form.ort.$touch"
+    />
+  </v-col>
+
+  <!-- Pays -->
+  <v-col cols="12" md="4">
+    <v-select 
+      v-model="form.land" 
+      :items="countries" 
+      label="Land" 
+      required 
+      variant="outlined" 
+      prepend-inner-icon="mdi-earth" 
+      return-object
+      :error-messages="v$.form.land.$errors.map(e => e.$message)"
+      @update:modelValue="v$.form.land.$touch"
+    />
+  </v-col>
+</v-row>
+
             </v-form>
           </v-window-item>
 
@@ -302,7 +342,7 @@
 
 <script>
 import { useVuelidate } from '@vuelidate/core'
-import { required, helpers, maxLength, minLength } from '@vuelidate/validators'
+import { required, email,helpers, maxLength, minLength } from '@vuelidate/validators'
 
 // Fonction de validation de téléphone
 const phoneFormat = (value) => /^[\d\s+\-()]{5,20}$/.test(value)
@@ -335,10 +375,12 @@ export default {
       devicesList: [],
       imageError: '',
       form: {
+        anrede:'',
         firstname: '',
         lastname: '',
         company: '',
         phone: '',
+        email: '',
         address: '',
         hausnummer: '',
         plz: '',
@@ -380,6 +422,11 @@ export default {
         phone: { 
           required: helpers.withMessage('Telefon ist erforderlich', required),
           phoneFormat: helpers.withMessage('Ungültiges Telefonformat', phoneFormat)
+        },
+        email: { 
+          required: helpers.withMessage('E-Mail ist erforderlich', required),
+          email: helpers.withMessage('Ungültige E-Mail Adresse', email),
+          maxLength: maxLength(100)
         },
         address: { 
           required: helpers.withMessage('Adresse ist erforderlich', required),
@@ -522,7 +569,7 @@ export default {
       
       if (this.step === 1) {
         const isValid = await this.validateStep(this.v$.form, [
-          'firstname', 'lastname', 'company', 'phone', 
+          'firstname', 'lastname', 'company', 'phone',  'email', 
           'address', 'hausnummer', 'plz', 'ort', 'land'
         ])
         if (isValid) this.step++
