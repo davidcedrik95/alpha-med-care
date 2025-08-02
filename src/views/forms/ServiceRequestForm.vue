@@ -109,7 +109,7 @@ export default {
       formError: '',
       step3Error: '',
       imageError: '',
-      showErrors: [false, false, false], // Contrôle l'affichage des erreurs par étape
+      showErrors: [false, false, false],
       devicesList: [],
       form: {
         anrede: '',
@@ -219,7 +219,8 @@ export default {
         return
       }
       
-      this.devicesList.push({
+      // Vérifier si l'appareil actuel est déjà dans la liste
+      const currentDevice = {
         manufacturer: this.form.manufacturer === 'Sonstiges' 
           ? this.form.customManufacturer 
           : this.form.manufacturer,
@@ -227,7 +228,17 @@ export default {
         serial: this.form.serial,
         imageFiles: [...this.form.imageFiles],
         imagePreviews: [...this.form.imagePreviews],
-      })
+      }
+      
+      const deviceExists = this.devicesList.some(device => 
+        device.manufacturer === currentDevice.manufacturer &&
+        device.model === currentDevice.model &&
+        device.serial === currentDevice.serial
+      )
+      
+      if (!deviceExists) {
+        this.devicesList.push(currentDevice)
+      }
       
       this.resetDeviceForm()
       this.step = 2
