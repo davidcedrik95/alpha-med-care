@@ -19,6 +19,7 @@
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^13.3.0",
+    "axios": "^1.11.0",
     "lucide-vue-next": "^0.511.0",
     "material-design-icons-iconfont": "^6.7.0",
     "pinia": "^3.0.2",

@@ -82,6 +82,7 @@ import DeviceForm from './DeviceForm.vue'
 import SummaryStep from './SummaryStep.vue'
 import Stepper from './Stepper.vue'
 import NavigationButtons from './NavigationButtons.vue'
+import axios from 'axios';
 
 // Validation helpers
 const phoneFormat = (value) => /^[\d\s+\-()]{5,20}$/.test(value)
@@ -251,10 +252,8 @@ export default {
         return
       }
       
-      // Réinitialise le formulaire avant d'ajouter un nouvel appareil
+      // Réinitialise seulement, n'ajoute pas d'appareil vide
       this.resetDeviceForm()
-      
-      // Retour à l'étape 2 pour ajouter un nouvel appareil
       this.step = 2
     },
     
@@ -301,7 +300,7 @@ export default {
           isValid = false
         }
         
-        // CORRECTION : Ajoute l'appareil seulement si valide
+        // Ajoute l'appareil seulement si valide
         if (isValid) {
           const added = this.addCurrentDeviceToList()
           if (added) {
@@ -368,45 +367,68 @@ export default {
       this.loading = true
       
       try {
-        const formData = new FormData()
-        const { imageFiles, imagePreviews, ...formValues } = this.form
+        // Préparer les données pour l'envoi
+        const formData = new FormData();
         
-        // Ajoute les données client
-        Object.entries(formValues).forEach(([key, value]) => {
-          formData.append(key, value)
-        })
+        // Ajouter les données client
+        formData.append('anrede', this.form.anrede);
+        formData.append('firstname', this.form.firstname);
+        formData.append('lastname', this.form.lastname);
+        formData.append('company', this.form.company);
+        formData.append('phone', this.form.phone);
+        formData.append('email', this.form.email);
+        formData.append('address', this.form.address);
+        formData.append('hausnummer', this.form.hausnummer);
+        formData.append('plz', this.form.plz);
+        formData.append('ort', this.form.ort);
+        formData.append('land', this.form.land);
+        formData.append('additional', this.form.additional);
         
-        // Ajoute les appareils
+        // Ajouter les appareils
         this.devicesList.forEach((device, index) => {
-          formData.append(`devices[${index}][manufacturer]`, device.manufacturer)
-          formData.append(`devices[${index}][model]`, device.model)
-          formData.append(`devices[${index}][serial]`, device.serial)
+          formData.append(`devices[${index}][manufacturer]`, device.manufacturer);
+          formData.append(`devices[${index}][model]`, device.model);
+          formData.append(`devices[${index}][serial]`, device.serial);
           
+          // Ajouter les images
           device.imageFiles.forEach((file, fileIndex) => {
-            formData.append(`devices[${index}][images][${fileIndex}]`, file)
-          })
-        })
+            formData.append(`devices[${index}][images][${fileIndex}]`, file);
+          });
+        });
         
-        // Simulation d'appel API
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        // Envoyer les données au serveur IONOS
+        const response = await axios.post(
+          'https://alpha-med-care.com/process-form.php',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        );
         
-        // Gestion du succès
-        alert('Serviceanforderung erfolgreich gesendet!')
-        this.resetForm()
-        
-        // Met à jour la liste des fabricants si nouveau ajouté
-        if (this.form.customManufacturer && 
-            !this.manufacturers.includes(this.form.customManufacturer)) {
-          this.manufacturers.splice(-1, 0, this.form.customManufacturer)
+        if (response.data.success) {
+          // Gestion du succès
+          alert('Serviceanforderung erfolgreich gesendet! Sie erhalten eine Bestätigungsemail.');
+          this.resetForm();
+          
+          // Update manufacturers list if new one added
+          if (this.form.customManufacturer && 
+              !this.manufacturers.includes(this.form.customManufacturer)) {
+            this.manufacturers.splice(-1, 0, this.form.customManufacturer)
+          }
+        } else {
+          throw new Error(response.data.error || 'Serverfehler');
         }
       } catch (error) {
         console.error('Submission error:', error)
-        this.formError = 'Netzwerkfehler: Bitte versuchen Sie es später erneut'
+        this.formError = error.response?.data?.error || 
+                        'Netzwerkfehler: Bitte versuchen Sie es später erneut';
       } finally {
         this.loading = false
       }
-    },
-  },
+    }
+  }
 }
 </script>
 
