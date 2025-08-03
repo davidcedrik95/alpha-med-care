@@ -7,8 +7,8 @@
       </v-toolbar-title>
     </div>
 
-    <!-- Liens de navigation -->
-    <div class="nav-links">
+    <!-- Liens de navigation - MASQUÉS SUR MOBILE -->
+    <div class="nav-links hidden-on-mobile">
       <router-link to="/">{{ $t('menu.home') }}</router-link>
 
       <!-- Menu déroulant Services -->
@@ -198,8 +198,6 @@ export default {
 </script>
 
 <style scoped>
-/* (Le style reste le même, comme dans ta version) */
-
 * {
   box-sizing: border-box;
 }
@@ -456,33 +454,25 @@ hr.category-divider {
   opacity: 1;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .partner-logo {
-    max-height: 70px;
-    max-width: 180px;
+/* ==================== MODIFICATIONS POUR MOBILE ==================== */
+/* Masquer les liens de navigation sur mobile */
+@media (max-width: 960px) {
+  .hidden-on-mobile {
+    display: none !important;
   }
-}
-
-@media (max-width: 768px) {
-  .partner-row {
-    gap: 15px;
+  
+  .navbar {
+    padding: 8px 16px;
   }
-
-  .partner-logo {
-    max-height: 60px;
-    max-width: 150px;
+  
+  .app-title {
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .partner-row {
-    gap: 10px;
-  }
-
-  .partner-logo {
-    max-height: 50px;
-    max-width: 120px;
+  .app-title {
+    font-size: 1rem;
   }
 }
 
