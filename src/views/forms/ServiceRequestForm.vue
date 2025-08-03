@@ -363,70 +363,70 @@ export default {
       this.v$.$reset()
     },
     
-    async submitForm() {
-  this.loading = true;
-  
-  try {
-    const formData = new FormData();
-    
-    // Ajouter les données client
-    formData.append('anrede', this.form.anrede);
-    formData.append('firstname', this.form.firstname);
-    formData.append('lastname', this.form.lastname);
-    formData.append('company', this.form.company);
-    formData.append('phone', this.form.phone);
-    formData.append('email', this.form.email);
-    formData.append('address', this.form.address);
-    formData.append('hausnummer', this.form.hausnummer);
-    formData.append('plz', this.form.plz);
-    formData.append('ort', this.form.ort);
-    formData.append('land', this.form.land);
-    formData.append('additional', this.form.additional);
-    
-    // CORRECTION : Ajouter les appareils avec la bonne structure
-    this.devicesList.forEach((device, index) => {
-      formData.append(`devices[${index}][manufacturer]`, device.manufacturer);
-      formData.append(`devices[${index}][model]`, device.model);
-      formData.append(`devices[${index}][serial]`, device.serial);
+  async submitForm() {
+      this.loading = true;
       
-      // Ajouter les images
-      device.imageFiles.forEach((file, fileIndex) => {
-        formData.append(`devices[${index}][images][${fileIndex}]`, file);
-      });
-    });
-    
-    // CORRECTION : Ajouter le nombre d'appareils explicitement
-    formData.append('devices_count', this.devicesList.length);
-    
-    const response = await axios.post(
-      'https://alpha-med-care.com/process-form.php',
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      try {
+        const formData = new FormData();
+        
+        // Ajouter les données client
+        formData.append('anrede', this.form.anrede);
+        formData.append('firstname', this.form.firstname);
+        formData.append('lastname', this.form.lastname);
+        formData.append('company', this.form.company);
+        formData.append('phone', this.form.phone);
+        formData.append('email', this.form.email);
+        formData.append('address', this.form.address);
+        formData.append('hausnummer', this.form.hausnummer);
+        formData.append('plz', this.form.plz);
+        formData.append('ort', this.form.ort);
+        formData.append('land', this.form.land);
+        formData.append('additional', this.form.additional);
+        
+        // CORRECTION : Ajouter les appareils avec la bonne structure
+        this.devicesList.forEach((device, index) => {
+          formData.append(`devices[${index}][manufacturer]`, device.manufacturer);
+          formData.append(`devices[${index}][model]`, device.model);
+          formData.append(`devices[${index}][serial]`, device.serial);
+          
+          // Ajouter les images
+          device.imageFiles.forEach((file, fileIndex) => {
+            formData.append(`devices[${index}][images][${fileIndex}]`, file);
+          });
+        });
+        
+        // CORRECTION : Ajouter le nombre d'appareils explicitement
+        formData.append('devices_count', this.devicesList.length);
+        
+        const response = await axios.post(
+          'https://alpha-med-care.com/process-form.php',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        );
+        
+        if (response.data.success) {
+          alert('Serviceanforderung erfolgreich gesendet!');
+          this.resetForm();
+          
+          if (this.form.customManufacturer && 
+              !this.manufacturers.includes(this.form.customManufacturer)) {
+            this.manufacturers.splice(-1, 0, this.form.customManufacturer);
+          }
+        } else {
+          throw new Error(response.data.error || 'Serverfehler');
         }
+      } catch (error) {
+        console.error('Fehler beim Senden:', error);
+        this.formError = error.response?.data?.error || 
+                        'Fehler: Bitte versuchen Sie es später erneut';
+      } finally {
+        this.loading = false;
       }
-    );
-    
-    if (response.data.success) {
-      alert('Serviceanforderung erfolgreich gesendet!');
-      this.resetForm();
-      
-      if (this.form.customManufacturer && 
-          !this.manufacturers.includes(this.form.customManufacturer)) {
-        this.manufacturers.splice(-1, 0, this.form.customManufacturer);
-      }
-    } else {
-      throw new Error(response.data.error || 'Serverfehler');
     }
-  } catch (error) {
-    console.error('Fehler beim Senden:', error);
-    this.formError = error.response?.data?.error || 
-                    'Fehler: Bitte versuchen Sie es später erneut';
-  } finally {
-    this.loading = false;
-  }
-}
   }
 }
 </script>

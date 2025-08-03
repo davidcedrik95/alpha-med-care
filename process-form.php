@@ -24,12 +24,13 @@ require __DIR__ . '/phpmailer/src/Exception.php';
 require __DIR__ . '/phpmailer/src/PHPMailer.php';
 require __DIR__ . '/phpmailer/src/SMTP.php';
 
+
 // Configuration SMTP IONOS
 $smtpHost = 'smtp.ionos.de';
 $smtpPort = 587;
-$smtpUsername = 'cedrik.moukam@alpha-med-care.de';
-$smtpPassword = 'e93z!TxrsWMZjSr';
-$serviceEmail = 'cedrik.moukam@alpha-med-care.de';
+$smtpUsername = 'service@alpha-med-care.com';
+$smtpPassword = '2.MARd.q6tr-n7J';
+$serviceEmail = 'service@alpha-med-care.com';
 
 // Répertoire de stockage
 $uploadDir = __DIR__ . '/uploads/';
@@ -191,10 +192,10 @@ try {
     $confirmationMessage .= "Unser Serviceteam wird sich innerhalb von 24 Stunden mit Ihnen in Verbindung setzen,\n";
     $confirmationMessage .= "um einen Termin zu vereinbaren.\n\n";
     $confirmationMessage .= "Mit freundlichen Grüßen,\n";
-    $confirmationMessage .= "Ihr Alpha Med Care Team\n\n";
-    $confirmationMessage .= "Alpha Med Care GmbH\n";
-    $confirmationMessage .= "Tel: +49 (0) 1234 56789\n";
-    $confirmationMessage .= "Email: cedrik.moukam@alpha-med-care.de\n";
+    $confirmationMessage .= "Ihr alpha-med-care Team\n\n";
+    $confirmationMessage .= "alpha-med-are GmbH\n";
+    $confirmationMessage .= "Tel: +49 (0) 966-618-895-0\n";
+    $confirmationMessage .= "Email: service@alpha-med-care.com\n";
     $confirmationMessage .= "Web: www.alpha-med-care.com";
 
     log_message("Préparation de l'email pour le service");
