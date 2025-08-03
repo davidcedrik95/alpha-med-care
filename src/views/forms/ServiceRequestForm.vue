@@ -364,70 +364,80 @@ export default {
     },
     
     async submitForm() {
-      this.loading = true
+  this.loading = true;
+  
+  try {
+    // Préparer les données pour l'envoi
+    const formData = new FormData();
+    
+    // Ajouter les données client
+    formData.append('anrede', this.form.anrede);
+    formData.append('firstname', this.form.firstname);
+    formData.append('lastname', this.form.lastname);
+    formData.append('company', this.form.company);
+    formData.append('phone', this.form.phone);
+    formData.append('email', this.form.email);
+    formData.append('address', this.form.address);
+    formData.append('hausnummer', this.form.hausnummer);
+    formData.append('plz', this.form.plz);
+    formData.append('ort', this.form.ort);
+    formData.append('land', this.form.land);
+    formData.append('additional', this.form.additional);
+    
+    // Ajouter les appareils avec leurs images
+    this.devicesList.forEach((device, deviceIndex) => {
+      formData.append(`devices[${deviceIndex}][manufacturer]`, device.manufacturer);
+      formData.append(`devices[${deviceIndex}][model]`, device.model);
+      formData.append(`devices[${deviceIndex}][serial]`, device.serial);
       
-      try {
-        // Préparer les données pour l'envoi
-        const formData = new FormData();
-        
-        // Ajouter les données client
-        formData.append('anrede', this.form.anrede);
-        formData.append('firstname', this.form.firstname);
-        formData.append('lastname', this.form.lastname);
-        formData.append('company', this.form.company);
-        formData.append('phone', this.form.phone);
-        formData.append('email', this.form.email);
-        formData.append('address', this.form.address);
-        formData.append('hausnummer', this.form.hausnummer);
-        formData.append('plz', this.form.plz);
-        formData.append('ort', this.form.ort);
-        formData.append('land', this.form.land);
-        formData.append('additional', this.form.additional);
-        
-        // Ajouter les appareils
-        this.devicesList.forEach((device, index) => {
-          formData.append(`devices[${index}][manufacturer]`, device.manufacturer);
-          formData.append(`devices[${index}][model]`, device.model);
-          formData.append(`devices[${index}][serial]`, device.serial);
-          
-          // Ajouter les images
-          device.imageFiles.forEach((file, fileIndex) => {
-            formData.append(`devices[${index}][images][${fileIndex}]`, file);
-          });
-        });
-        
-        // Envoyer les données au serveur IONOS
-        const response = await axios.post(
-          'https://alpha-med-care.com/process-form.php',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          }
-        );
-        
-        if (response.data.success) {
-          // Gestion du succès
-          alert('Serviceanforderung erfolgreich gesendet! Sie erhalten eine Bestätigungsemail.');
-          this.resetForm();
-          
-          // Update manufacturers list if new one added
-          if (this.form.customManufacturer && 
-              !this.manufacturers.includes(this.form.customManufacturer)) {
-            this.manufacturers.splice(-1, 0, this.form.customManufacturer)
-          }
-        } else {
-          throw new Error(response.data.error || 'Serverfehler');
+      // Ajouter les images pour chaque appareil
+      device.imageFiles.forEach((file, fileIndex) => {
+        formData.append(`devices[${deviceIndex}][images][${fileIndex}]`, file);
+      });
+    });
+    
+    // Envoyer les données au serveur
+    const response = await axios.post(
+      'https://alpha-med-care.com/process-form.php',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-      } catch (error) {
-        console.error('Submission error:', error)
-        this.formError = error.response?.data?.error || 
-                        'Netzwerkfehler: Bitte versuchen Sie es später erneut';
-      } finally {
-        this.loading = false
       }
+    );
+    
+    if (response.data.success) {
+      // Gestion du succès
+      alert('Serviceanforderung erfolgreich gesendet! Sie erhalten eine Bestätigungsemail.');
+      this.resetForm();
+      
+      // Mettre à jour la liste des fabricants si nouveau ajouté
+      if (this.form.customManufacturer && 
+          !this.manufacturers.includes(this.form.customManufacturer)) {
+        this.manufacturers.splice(-1, 0, this.form.customManufacturer);
+      }
+    } else {
+      throw new Error(response.data.error || 'Serverfehler');
     }
+  } catch (error) {
+    console.error('Submission error:', error);
+    this.formError = error.response?.data?.error || 
+                    error.message || 
+                    'Netzwerkfehler: Bitte versuchen Sie es später erneut';
+    
+    // Ajouter des informations de débogage
+    if (error.response) {
+      console.log('Response data:', error.response.data);
+      console.log('Response status:', error.response.status);
+      console.log('Response headers:', error.response.headers);
+    } else if (error.request) {
+      console.log('Request:', error.request);
+    }
+  } finally {
+    this.loading = false;
+  }
+}
   }
 }
 </script>
