@@ -108,7 +108,7 @@ export default {
       let error = ''
       if (!newFiles) return
       
-      const filesArray = Array.from(newFiles)
+      const filesArray = Array.isArray(newFiles) ? newFiles : [newFiles];
       const maxSize = 2 * 1024 * 1024 // 2MB
       const validTypes = ['image/jpeg', 'image/png', 'image/gif']
       const maxFiles = 5

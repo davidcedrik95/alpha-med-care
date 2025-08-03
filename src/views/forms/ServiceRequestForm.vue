@@ -367,7 +367,6 @@ export default {
   this.loading = true;
   
   try {
-    // Préparer les données pour l'envoi
     const formData = new FormData();
     
     // Ajouter les données client
@@ -384,19 +383,21 @@ export default {
     formData.append('land', this.form.land);
     formData.append('additional', this.form.additional);
     
-    // Ajouter les appareils avec leurs images
-    this.devicesList.forEach((device, deviceIndex) => {
-      formData.append(`devices[${deviceIndex}][manufacturer]`, device.manufacturer);
-      formData.append(`devices[${deviceIndex}][model]`, device.model);
-      formData.append(`devices[${deviceIndex}][serial]`, device.serial);
+    // CORRECTION : Ajouter les appareils avec la bonne structure
+    this.devicesList.forEach((device, index) => {
+      formData.append(`devices[${index}][manufacturer]`, device.manufacturer);
+      formData.append(`devices[${index}][model]`, device.model);
+      formData.append(`devices[${index}][serial]`, device.serial);
       
-      // Ajouter les images pour chaque appareil
+      // Ajouter les images
       device.imageFiles.forEach((file, fileIndex) => {
-        formData.append(`devices[${deviceIndex}][images][${fileIndex}]`, file);
+        formData.append(`devices[${index}][images][${fileIndex}]`, file);
       });
     });
     
-    // Envoyer les données au serveur
+    // CORRECTION : Ajouter le nombre d'appareils explicitement
+    formData.append('devices_count', this.devicesList.length);
+    
     const response = await axios.post(
       'https://alpha-med-care.com/process-form.php',
       formData,
@@ -408,11 +409,9 @@ export default {
     );
     
     if (response.data.success) {
-      // Gestion du succès
-      alert('Serviceanforderung erfolgreich gesendet! Sie erhalten eine Bestätigungsemail.');
+      alert('Serviceanforderung erfolgreich gesendet!');
       this.resetForm();
       
-      // Mettre à jour la liste des fabricants si nouveau ajouté
       if (this.form.customManufacturer && 
           !this.manufacturers.includes(this.form.customManufacturer)) {
         this.manufacturers.splice(-1, 0, this.form.customManufacturer);
@@ -421,19 +420,9 @@ export default {
       throw new Error(response.data.error || 'Serverfehler');
     }
   } catch (error) {
-    console.error('Submission error:', error);
+    console.error('Fehler beim Senden:', error);
     this.formError = error.response?.data?.error || 
-                    error.message || 
-                    'Netzwerkfehler: Bitte versuchen Sie es später erneut';
-    
-    // Ajouter des informations de débogage
-    if (error.response) {
-      console.log('Response data:', error.response.data);
-      console.log('Response status:', error.response.status);
-      console.log('Response headers:', error.response.headers);
-    } else if (error.request) {
-      console.log('Request:', error.request);
-    }
+                    'Fehler: Bitte versuchen Sie es später erneut';
   } finally {
     this.loading = false;
   }
