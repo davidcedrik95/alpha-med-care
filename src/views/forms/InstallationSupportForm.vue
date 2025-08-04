@@ -51,6 +51,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.firstname.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.firstname.$touch"
+                    @input="sanitizeTextInput('firstname')"
                   />
                 </v-col>
                 <v-col cols="12" md="6">
@@ -62,6 +63,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.lastname.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.lastname.$touch"
+                    @input="sanitizeTextInput('lastname')"
                   />
                 </v-col>
                 <v-col cols="12" md="6">
@@ -73,6 +75,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.company.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.company.$touch"
+                    @input="sanitizeTextInput('company')"
                   />
                 </v-col>
                 <v-col cols="12" md="6">
@@ -85,6 +88,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.phone.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.phone.$touch"
+                    @input="sanitizePhoneInput"
                   />
                 </v-col>
                 <v-col cols="12" md="6">
@@ -97,6 +101,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.email.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.email.$touch"
+                    @input="sanitizeEmailInput"
                   />
                 </v-col>
                 <v-col cols="12" md="8">
@@ -108,6 +113,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.address.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.address.$touch"
+                    @input="sanitizeTextInput('address')"
                   />
                 </v-col>
                 <v-col cols="12" md="4">
@@ -119,6 +125,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.hausnummer.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.hausnummer.$touch"
+                    @input="sanitizeHausnummerInput"
                   />
                 </v-col>
                 <v-col cols="12" md="4">
@@ -130,6 +137,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.plz.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.plz.$touch"
+                    @input="sanitizePlzInput"
                   />
                 </v-col>
                 <v-col cols="12" md="4">
@@ -141,6 +149,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.ort.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.ort.$touch"
+                    @input="sanitizeTextInput('ort')"
                   />
                 </v-col>
                 <v-col cols="12" md="4">
@@ -172,6 +181,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.floor.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.floor.$touch"
+                    @input="sanitizeTextInput('floor')"
                   />
                 </v-col>
                 <v-col cols="12" md="6">
@@ -182,6 +192,7 @@
                     density="comfortable"
                     :error-messages="v$.installationForm.doors.$errors.map(e => e.$message)"
                     @blur="v$.installationForm.doors.$touch"
+                    @input="sanitizeTextInput('doors')"
                   />
                 </v-col>
                 <v-col cols="12">
@@ -204,6 +215,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.elevatorAccess.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.elevatorAccess.$touch"
+                        @input="sanitizeTextInput('elevatorAccess')"
                       />
                     </v-col>
                     <v-col cols="12" md="6">
@@ -215,6 +227,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.elevatorDoorSize.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.elevatorDoorSize.$touch"
+                        @input="sanitizeTextInput('elevatorDoorSize')"
                       />
                     </v-col>
                     <v-col cols="12">
@@ -226,6 +239,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.elevatorInsideSize.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.elevatorInsideSize.$touch"
+                        @input="sanitizeTextInput('elevatorInsideSize')"
                       />
                     </v-col>
                   </v-col>
@@ -251,6 +265,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.stairWidth.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.stairWidth.$touch"
+                        @input="sanitizeTextInput('stairWidth')"
                       />
                     </v-col>
                     <v-col cols="12" md="6">
@@ -271,6 +286,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.stairExit.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.stairExit.$touch"
+                        @input="sanitizeTextInput('stairExit')"
                       />
                     </v-col>
                     <v-col cols="12" md="6">
@@ -282,6 +298,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.stairSteps.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.stairSteps.$touch"
+                        @input="sanitizeTextInput('stairSteps')"
                       />
                     </v-col>
                     <v-col cols="12" md="6">
@@ -293,6 +310,7 @@
                         class="ml-8"
                         :error-messages="v$.installationForm.stairAfterSteps.$errors.map(e => e.$message)"
                         @blur="v$.installationForm.stairAfterSteps.$touch"
+                        @input="sanitizeTextInput('stairAfterSteps')"
                       />
                     </v-col>
                     <v-col cols="12" md="6">
@@ -310,7 +328,7 @@
             </v-form>
           </v-stepper-window-item>
 
-          <!-- Étape 3 : Finalisation -->
+          <!-- Étape 3 : Finalisation - Sécurité renforcée -->
           <v-stepper-window-item :value="3">
             <h3 class="text-h5 font-weight-bold primary--text mb-4">3. Abschluss</h3>
             <v-row>
@@ -318,9 +336,11 @@
                 <v-text-field 
                   v-model="installationForm.place" 
                   label="Ort" 
-                  required 
                   variant="outlined" 
                   density="comfortable"
+                  :error-messages="v$.installationForm.place.$errors.map(e => e.$message)"
+                  @blur="v$.installationForm.place.$touch"
+                  @input="sanitizeTextInput('place')"
                 />
               </v-col>
               <v-col cols="12" md="4">
@@ -342,6 +362,7 @@
                   density="comfortable"
                   :error-messages="v$.installationForm.signatureName.$errors.map(e => e.$message)"
                   @blur="v$.installationForm.signatureName.$touch"
+                  @input="sanitizeTextInput('signatureName')"
                 />
               </v-col>
             </v-row>
@@ -380,6 +401,12 @@ const phoneFormat = (value) => /^[\d\s+\-()]{5,20}$/.test(value)
 // Fonction de validation pour le code postal
 const plzFormat = (value) => /^\d{4,6}$/.test(value)
 
+// Fonction de validation pour les noms de lieu
+const placeFormat = (value) => /^[a-zA-ZäöüÄÖÜß\s\-.,()]{2,50}$/.test(value)
+
+// Fonction de validation pour les noms
+const nameFormat = (value) => /^[a-zA-ZäöüÄÖÜß\s\-']{2,100}$/.test(value)
+
 export default {
   name: 'InstallationsanforderungForm',
   setup() {
@@ -406,7 +433,6 @@ export default {
         land: 'Deutschland',
 
         // Données bâtiment
-        date: '',
         floor: '',
         doors: '',
         elevator: false,
@@ -420,6 +446,8 @@ export default {
         stairSteps: '',
         stairAfterSteps: '',
         railingRemovable: false,
+        
+        // Données finalisation
         place: '',
         signatureDate: '',
         signatureName: ''
@@ -431,15 +459,15 @@ export default {
       installationForm: {
         // Validation étape 1
         anrede: { required, maxLength: maxLength(50) },
-        firstname: { required, maxLength: maxLength(50) },
-        lastname: { required, maxLength: maxLength(50) },
+        firstname: { required, maxLength: maxLength(50), nameFormat },
+        lastname: { required, maxLength: maxLength(50), nameFormat },
         company: { required, maxLength: maxLength(100) },
         phone: { required, phoneFormat },
         email: { required, email, maxLength: maxLength(100) },
         address: { required, maxLength: maxLength(100) },
         hausnummer: { required, maxLength: maxLength(10) },
         plz: { required, plzFormat },
-        ort: { required, maxLength: maxLength(50) },
+        ort: { required, maxLength: maxLength(50), placeFormat },
         land: { required },
         
         // Validation étape 2
@@ -452,12 +480,55 @@ export default {
         stairAfterSteps: { maxLength: maxLength(100) },
         
         // Validation étape 3
+        place: { required, maxLength: maxLength(50), placeFormat },
         signatureDate: { required },
-        signatureName: { required, maxLength: maxLength(100) }
+        signatureName: { required, maxLength: maxLength(100), nameFormat }
       }
     }
   },
   methods: {
+    // Méthodes de sanitisation
+    sanitizeTextInput(field) {
+      if (this.installationForm[field]) {
+        // Autoriser lettres, espaces, caractères spéciaux allemands et ponctuation
+        this.installationForm[field] = this.installationForm[field]
+          .replace(/[^a-zA-ZäöüÄÖÜß\s\-.,()'"]/g, '')
+          .substring(0, this.v$.installationForm[field].maxLength.$params.max);
+      }
+    },
+    
+    sanitizePhoneInput() {
+      if (this.installationForm.phone) {
+        this.installationForm.phone = this.installationForm.phone
+          .replace(/[^\d\s+\-()]/g, '')
+          .substring(0, 20);
+      }
+    },
+    
+    sanitizeEmailInput() {
+      if (this.installationForm.email) {
+        this.installationForm.email = this.installationForm.email
+          .replace(/[^\w.@-]/g, '')
+          .substring(0, 100);
+      }
+    },
+    
+    sanitizeHausnummerInput() {
+      if (this.installationForm.hausnummer) {
+        this.installationForm.hausnummer = this.installationForm.hausnummer
+          .replace(/[^\w\s-]/g, '')
+          .substring(0, 10);
+      }
+    },
+    
+    sanitizePlzInput() {
+      if (this.installationForm.plz) {
+        this.installationForm.plz = this.installationForm.plz
+          .replace(/\D/g, '')
+          .substring(0, 6);
+      }
+    },
+    
     async nextInstallationStep() {
       this.formError = ''
       
@@ -474,7 +545,7 @@ export default {
         ])
       } 
       else if (this.installationStep === 2) {
-        // Validation conditionnelle si ascenseur ou escalier est sélectionné
+        // Validation conditionnelle
         if (this.installationForm.elevator) {
           isValid = await this.validateStep([
             'elevatorAccess', 'elevatorDoorSize', 'elevatorInsideSize'
@@ -489,7 +560,7 @@ export default {
       }
       else if (this.installationStep === 3) {
         isValid = await this.validateStep([
-          'signatureDate', 'signatureName'
+          'place', 'signatureDate', 'signatureName'
         ])
         
         if (isValid) {
@@ -518,10 +589,13 @@ export default {
       this.loading = true
       
       try {
+        // Préparation des données sécurisées
+        const formData = this.sanitizeFormData()
+        
         // Simuler l'envoi au serveur
         await new Promise(resolve => setTimeout(resolve, 1500))
         
-        console.log("Installationsanforderung gesendet:", this.installationForm)
+        console.log("Installationsanforderung gesendet:", formData)
         this.$notify({
           title: "Erfolg!",
           text: "Installationsanforderung erfolgreich gesendet!",
@@ -534,6 +608,34 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+    
+    // Sanitisation complète des données du formulaire
+    sanitizeFormData() {
+      const sanitizedData = {}
+      
+      Object.keys(this.installationForm).forEach(key => {
+        const value = this.installationForm[key]
+        
+        if (typeof value === 'string') {
+          sanitizedData[key] = this.encodeHTML(value)
+        } else {
+          sanitizedData[key] = value
+        }
+      })
+      
+      return sanitizedData
+    },
+    
+    // Encodage HTML pour prévenir les attaques XSS
+    encodeHTML(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     },
     
     cancelInstallationForm() {
