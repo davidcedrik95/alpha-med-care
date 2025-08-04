@@ -21,35 +21,120 @@
           <v-stepper-item :value="3" title="Abschluss" editable />
         </v-stepper-header>
 
-        <v-stepper-window style="max-height: 60vh; overflow-y: auto;">
-          <!-- Etape 1 -->
+        <!-- Suppression du style max-height et overflow-y -->
+        <v-stepper-window>
+          <!-- Étape 1 : Formulaire client -->
           <v-stepper-window-item :value="1">
             <v-form ref="installationStep1Form">
               <h3 class="text-h5 font-weight-bold primary--text mb-4">1. Kundendaten</h3>
-              <v-row>
+              <v-row dense class="pa-2">
                 <v-col cols="12" md="6">
-                  <v-text-field v-model="installationForm.contactPerson" label="Ansprechpartner vor Ort" required variant="outlined" density="comfortable" />
+                  <v-select
+                    v-model="installationForm.anrede"
+                    :items="['Frau', 'Herr']"
+                    label="Anrede"
+                    outlined
+                    density="comfortable"
+                  />
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field v-model="installationForm.customerInfo" label="Name / Firma / Kundennummer" required variant="outlined" density="comfortable" />
+                  <v-text-field 
+                    v-model="installationForm.firstname" 
+                    label="Vorname" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field v-model="installationForm.address" label="Straße / Hausnummer" required variant="outlined" density="comfortable" />
+                  <v-text-field 
+                    v-model="installationForm.lastname" 
+                    label="Nachname" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field v-model="installationForm.zipCity" label="Postleitzahl / Ort" required variant="outlined" density="comfortable" />
+                  <v-text-field 
+                    v-model="installationForm.company" 
+                    label="Firma / Kundennummer" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field v-model="installationForm.phone" label="Telefon / Handy für Rückfragen" type="tel" required variant="outlined" density="comfortable" />
+                  <v-text-field 
+                    v-model="installationForm.phone" 
+                    label="Telefon" 
+                    type="tel" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field v-model="installationForm.email" label="E-Mail" type="email" required variant="outlined" density="comfortable" />
+                  <v-text-field 
+                    v-model="installationForm.email" 
+                    label="E-Mail Adresse" 
+                    type="email"
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-text-field 
+                    v-model="installationForm.address" 
+                    label="Straße / Adresse" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field 
+                    v-model="installationForm.hausnummer" 
+                    label="Hausnummer" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field 
+                    v-model="installationForm.plz" 
+                    label="PLZ" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-text-field 
+                    v-model="installationForm.ort" 
+                    label="Ort" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-select 
+                    v-model="installationForm.land" 
+                    :items="countries" 
+                    label="Land" 
+                    required 
+                    variant="outlined" 
+                    density="comfortable"
+                  />
                 </v-col>
               </v-row>
             </v-form>
           </v-stepper-window-item>
 
-          <!-- Etape 2 -->
+          <!-- Étape 2 : Données du bâtiment -->
           <v-stepper-window-item :value="2">
             <v-form ref="installationStep2Form">
               <h3 class="text-h5 font-weight-bold primary--text mb-4">2. Gebäudedaten</h3>
@@ -65,7 +150,7 @@
                 </v-col>
 
                 <template v-if="installationForm.elevator">
-                  <v-col cols="12" class="d-flex flex-wrap" style="max-height: 300px; overflow-y: auto;">
+                  <v-col cols="12" class="d-flex flex-wrap">
                     <v-col cols="12" md="6">
                       <v-text-field v-model="installationForm.elevatorAccess" label="Zugang zu Aufzug Stockwerk?" variant="outlined" density="comfortable" class="ml-8" />
                     </v-col>
@@ -108,7 +193,7 @@
             </v-form>
           </v-stepper-window-item>
 
-          <!-- Etape 3 -->
+          <!-- Étape 3 : Finalisation -->
           <v-stepper-window-item :value="3">
             <h3 class="text-h5 font-weight-bold primary--text mb-4">3. Abschluss</h3>
             <v-row>
@@ -153,13 +238,22 @@ export default {
   data() {
     return {
       installationStep: 1,
+      countries: ['Deutschland', 'Österreich', 'Schweiz', 'Frankreich', 'Italien', 'Spanien', 'Andere'],
       installationForm: {
-        contactPerson: '',
-        customerInfo: '',
-        address: '',
-        zipCity: '',
+        // Données client
+        anrede: '',
+        firstname: '',
+        lastname: '',
+        company: '',
         phone: '',
         email: '',
+        address: '',
+        hausnummer: '',
+        plz: '',
+        ort: '',
+        land: '',
+
+        // Données bâtiment
         date: '',
         floor: '',
         doors: '',
@@ -207,42 +301,22 @@ export default {
     },
     resetInstallationForm() {
       this.installationStep = 1;
-      this.installationForm = {
-        contactPerson: '',
-        customerInfo: '',
-        address: '',
-        zipCity: '',
-        phone: '',
-        email: '',
-        date: '',
-        floor: '',
-        doors: '',
-        elevator: false,
-        elevatorAccess: '',
-        elevatorDoorSize: '',
-        elevatorInsideSize: '',
-        stairs: false,
-        stairWidth: '',
-        cornerStair: false,
-        stairExit: '',
-        stairSteps: '',
-        stairAfterSteps: '',
-        railingRemovable: false,
-        place: '',
-        signatureDate: '',
-        signatureName: ''
-      };
+      // Réinitialiser tous les champs
+      Object.keys(this.installationForm).forEach(key => {
+        this.installationForm[key] = typeof this.installationForm[key] === 'boolean' 
+          ? false 
+          : '';
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-
 .form-container {
   width: 100%;
-  max-width: 900px; /* ✅ Réduction de la largeur */
-  margin: 40px auto; /* ✅ Centre verticalement et horizontalement */
+  max-width: 900px;
+  margin: 40px auto;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1) !important;
   border-top: 5px solid #1976D2;
   overflow: hidden;
@@ -251,9 +325,6 @@ export default {
 .form-section {
   max-width: 900px;
   margin: 2rem auto;
-}
-.form-container {
-  overflow: hidden;
 }
 
 .back-button {
@@ -272,7 +343,7 @@ export default {
 .form-header h2 {
   position: relative;
   padding-bottom: 15px;
-  color: white; /* s'assurer que le texte reste blanc */
+  color: white;
 }
 
 .form-header h2::after {
