@@ -318,6 +318,7 @@
                 <v-text-field 
                   v-model="installationForm.place" 
                   label="Ort" 
+                  required 
                   variant="outlined" 
                   density="comfortable"
                 />
